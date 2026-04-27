@@ -6,8 +6,9 @@ export async function generateMetadata({
   const { locale } = await params;
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const isJP = locale === "jp";
-
+  
   return {
+    metadataBase: new URL(baseUrl!), // 🔥 IMPORTANT LINE
     title: "Japan Card Shop Map | Find Trading Card Shops Near You",
     description:
       "Explore trading card shops across Japan using an interactive map. Discover Pokémon card stores, filter by area, and find top-rated shops.",
@@ -29,7 +30,7 @@ export async function generateMetadata({
       locale: isJP ? "ja_JP" : "en_US",
       images: [
         {
-          url: `${baseUrl}/og.png`,
+          url: `/og.png`,
           width: 1200,
           height: 630,
         },
