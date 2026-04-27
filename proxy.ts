@@ -8,6 +8,17 @@ const defaultLocale = "en";
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
+  // 🔥 0. IGNORE STATIC FILES (IMPORTANT FIX)
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/images") ||
+    pathname === "/favicon.ico" ||
+    pathname.includes(".") // 🔥 handles og.png, jpg, svg etc
+  ) {
+    return NextResponse.next();
+  }
+
   // 🔥 1. CHECK LOCALE
   const hasLocale = locales.some((locale) =>
     pathname.startsWith(`/${locale}`)
