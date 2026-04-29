@@ -18,13 +18,18 @@ import { Check, ChevronsUpDown } from "lucide-react";
 import React from "react";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
+import { translations } from "@/lib/i18n";
 
 interface RankingFilterType{
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
     open: boolean,
     area: string,
     setArea: React.Dispatch<React.SetStateAction<string>>,
-    areas: string[]
+    areas: {
+    value: string;
+    label: string;
+    group: string;
+}[]
     setTagOpen: React.Dispatch<React.SetStateAction<boolean>>,
     tagOpen: boolean,
     tag: string,
@@ -47,6 +52,12 @@ export default function RankingFilter({
 
     const { locale } = useParams();
     const t = getT(locale as string);
+``
+//     const areasObj = [
+//   { value: "akihabara", label: t.ranking.areas.akihabara },
+//   { value: "ikebukuro", label: t.ranking.areas.ikebukuro },
+//   { value: "tokyo", label: t.ranking.areas.tokyo },
+// ];
 
     return(
         <div className="flex flex-wrap gap-4 justify-center">
@@ -86,16 +97,16 @@ export default function RankingFilter({
 
                 {/* Tokyo */}
                 <CommandGroup heading={t.ranking.filters.tokyoArea}>
-                  {["秋葉原", "池袋", "東京"].map((item) => (
+                  {areas.slice(0,3).map((item) => (
                     <CommandItem
-                      key={item}
+                      key={item.value}
                       onSelect={() => {
-                        setArea(item);
+                        setArea(t.ranking.areas[item.value as keyof typeof t.ranking.areas] || item.value);
                         setOpen(false);
                       }}
                     >
-                      {item}
-                      {area === item && <Check className="ml-auto h-4 w-4" />}
+                      {item.label}
+                      {area === item.value && <Check className="ml-auto h-4 w-4" />}
                     </CommandItem>
                   ))}
                 </CommandGroup>
@@ -103,17 +114,17 @@ export default function RankingFilter({
                 {/* Prefectures */}
                 <CommandGroup heading={t.ranking.filters.prefectures}>
                   {areas
-                    .filter((a) => !["秋葉原", "池袋", "東京"].includes(a))
+                    .filter((a) => !["akihabara", "ikebukuro", "tokyo"].includes(a.value))
                     .map((item) => (
                       <CommandItem
-                        key={item}
+                        key={item.value}
                         onSelect={() => {
-                          setArea(item);
+                          setArea(item.label);
                           setOpen(false);
                         }}
                       >
-                        {item}
-                        {area === item && <Check className="ml-auto h-4 w-4" />}
+                        {item.label}
+                        {area === item.value && <Check className="ml-auto h-4 w-4" />}
                       </CommandItem>
                     ))}
                 </CommandGroup>

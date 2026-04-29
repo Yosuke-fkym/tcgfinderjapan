@@ -14,6 +14,8 @@ import RankingFilter from "@/components/ranking/RankingFilter";
 import AdBanner from "../ads/AdBanner";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
+import { AREA_OPTIONS } from "@/lib/helpers/areas";
+import { translations } from "@/lib/i18n";
 
 interface RankedShop {
   shopId: string;
@@ -40,18 +42,17 @@ export default function RankingPageComponent({initialData = []}: {
   const { locale } = useParams();
   const t = getT(locale as string);
 
-  const areas = [
-    "秋葉原","池袋","東京","北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
-    "茨城県","栃木県","群馬県","埼玉県","千葉県","神奈川県","新潟県","富山県","石川県","福井県",
-    "山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県",
-    "奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県",
-    "高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県",
-  ];
+
+const areas = AREA_OPTIONS.map((a) => ({
+  value: a.value,
+  label: t.ranking.areas[a.key as keyof typeof t.ranking.areas],
+  group: a.group,
+}));
 
   const tags = [
-    { value: "Vintage", label: "ヴィンテージ" },
-    { value: "PSA", label: "PSA" },
-    { value: "BOX", label: "BOX" },
+    { value: "Vintage", label: t.admin.shopForm.extras.productTags.vintage },
+    { value: "PSA", label: t.admin.shopForm.extras.productTags.psa },
+    { value: "BOX", label: t.admin.shopForm.extras.productTags.box },
   ];
 
   useEffect(() => {
@@ -63,8 +64,9 @@ export default function RankingPageComponent({initialData = []}: {
 
     try {
       const params = new URLSearchParams();
+      const isJP = locale === "jp";
 
-      if (area !== "ALL") params.append("area", area);
+      if (area !== "ALL") params.append("area", isJP ? area : translations.jp.ranking.areas[area.toLocaleLowerCase() as keyof typeof t.ranking.areas]);
       if (tag !== "ALL") params.append("tag", tag);
 
       const res = await fetch(`/api/shops/ranking?${params.toString()}`);
