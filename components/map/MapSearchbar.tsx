@@ -10,7 +10,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { SlidersHorizontal, Search } from "lucide-react";
 import { useMapFilters } from "@/hooks/mapFilter";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
@@ -31,6 +31,10 @@ export default function MapSearchBar({
   const { filters, updateFilters } = useMapFilters();
   const { locale } = useParams();
   const t = getT(locale as string);
+  const [tempFilters, setTempFilters] = useState(filters);
+  const [open, setOpen] = useState(false);
+  const [localQuery, setLocalQuery] = useState(filters.query);
+  const [isComposing, setIsComposing] = useState(false);
 
   useEffect(() => {
     if (filters.favoritesOnly && isLoggedIn === false) {
@@ -44,11 +48,34 @@ export default function MapSearchBar({
       : [...arr, value];
   };
 
+
+  useEffect(() => {
+  setTempFilters(filters);
+}, [filters]);
+useEffect(() => {
+  setLocalQuery(filters.query);
+}, [filters.query]);
+
   const activeCount =
-    filters.area.length +
-    filters.productFlags.length +
-    filters.language.length +
-    (filters.openNow ? 1 : 0);
+  tempFilters.area.length +
+  tempFilters.productFlags.length +
+  tempFilters.language.length +
+  (tempFilters.openNow ? 1 : 0);
+
+
+    // debouncing search input with IME support
+  useEffect(() => {
+  if (isComposing) return;
+
+  const timeout = setTimeout(() => {
+    if (localQuery !== filters.query) {
+      updateFilters({ query: localQuery });
+    }
+  }, 400);
+
+  return () => clearTimeout(timeout);
+}, [localQuery, isComposing, filters.query]);
+
 
   return (
     <div className="w-full mx-auto border-b-[0.5px] border-b-[#ffffff42] px-4 py-3 sticky top-0 z-40 shadow-sm">
@@ -58,17 +85,28 @@ export default function MapSearchBar({
         <div className="relative flex-1 sm:w-full">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder={t.map.search.placeholder}
-            value={filters.query}
-            onChange={(e) =>
-              updateFilters({ query: e.target.value })
-            }
-            className="pl-9 bg-white"
-          />
+  value={localQuery}
+   onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      updateFilters({ query: localQuery });
+    }
+  }}
+  placeholder={t.map.search.placeholder}
+  className="pl-9 bg-white"
+
+  onChange={(e) => setLocalQuery(e.target.value)}
+
+  // 🔥 IME fix
+  onCompositionStart={() => setIsComposing(true)}
+  onCompositionEnd={(e) => {
+    setIsComposing(false);
+    setLocalQuery(e.currentTarget.value);
+  }}
+/>
         </div>
 
         {/* 🎯 Filters */}
-        <Popover>
+        <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button variant="outline" className="gap-2 flex cursor-pointer border-none aria-expanded:bg-indigo-600 aria-expanded:text-white bg-indigo-600 text-white hover:bg-indigo-700 shadow-md hover:text-white">
               <SlidersHorizontal size={16} />
@@ -91,12 +129,13 @@ export default function MapSearchBar({
               {areas.map((a) => (
                 <div key={a} className="flex items-center gap-2">
                   <Checkbox
-                    checked={filters.area.includes(a)}
+                    checked={tempFilters.area.includes(a)}
                     onCheckedChange={() =>
-                      updateFilters({
-                        area: toggleValue(filters.area, a),
-                      })
-                    }
+  setTempFilters((prev) => ({
+    ...prev,
+    area: toggleValue(prev.area, a),
+  }))
+}
                   />
                   <span className="text-sm">{a}</span>
                 </div>
@@ -109,17 +148,15 @@ export default function MapSearchBar({
               {productFlags.map((p) => (
                 <div key={p} className="flex items-center gap-2">
                   <Checkbox
-                    checked={filters.productFlags.includes(p)}
+                    checked={tempFilters.productFlags.includes(p)}
                     onCheckedChange={() =>
-                      updateFilters({
-                        productFlags: toggleValue(
-                          filters.productFlags,
-                          p
-                        ),
-                      })
-                    }
+  setTempFilters((prev) => ({
+    ...prev,
+    productFlags: toggleValue(prev.productFlags, p),
+  }))
+}
                   />
-                  <span className="text-sm">{p}</span>
+                  <span className="text-sm">{t.admin.shopForm.extras.productTags[p.toLowerCase() as keyof typeof t.admin.shopForm.extras.productTags]}</span>
                 </div>
               ))}
             </div>
@@ -130,15 +167,13 @@ export default function MapSearchBar({
               {languages.map((l) => (
                 <div key={l} className="flex items-center gap-2">
                   <Checkbox
-                    checked={filters.language.includes(l)}
+                    checked={tempFilters.language.includes(l)}
                     onCheckedChange={() =>
-                      updateFilters({
-                        language: toggleValue(
-                          filters.language,
-                          l
-                        ),
-                      })
-                    }
+  setTempFilters((prev) => ({
+    ...prev,
+    language: toggleValue(prev.language, l),
+  }))
+}
                   />
                   <span className="text-sm">{l}</span>
                 </div>
@@ -148,12 +183,13 @@ export default function MapSearchBar({
             {/* ⏰ Open Now */}
             <div className="flex items-center gap-2">
               <Checkbox
-                checked={filters.openNow}
+                checked={tempFilters.openNow}
                 onCheckedChange={() =>
-                  updateFilters({
-                    openNow: !filters.openNow,
-                  })
-                }
+  setTempFilters((prev) => ({
+    ...prev,
+    openNow: !prev.openNow,
+  }))
+}
               />
               <span className="text-sm">{t.map.filters.openNow}</span>
             </div>
@@ -161,34 +197,47 @@ export default function MapSearchBar({
             {/* ❤️ Favorites Only */}
             <div className="flex items-center gap-2">
               <Checkbox
-                checked={filters.favoritesOnly}
+                checked={tempFilters.favoritesOnly}
                 disabled={!isLoggedIn}
-                onCheckedChange={() =>
-                  updateFilters({
-                    favoritesOnly: !filters.favoritesOnly,
-                  })
-                }
+              onCheckedChange={() =>
+  setTempFilters((prev) => ({
+    ...prev,
+    favoritesOnly: !prev.favoritesOnly,
+  }))
+}
               />
               <span className="text-sm">{t.map.filters.favoritesOnly}</span>
             </div>
 
             {/* 🧹 Clear Filters */}
+         <Button
+  variant="ghost"
+  className="w-full bg-black text-white mb-0"
+  onClick={() => {
+    const cleared = {
+      query: "",
+      area: [],
+      productFlags: [],
+      language: [],
+      openNow: false,
+      favoritesOnly: false,
+    };
+
+    setTempFilters(cleared);     
+    updateFilters(cleared);      
+  }}
+>
+  {t.map.filters.clear}
+</Button>
             <Button
-              variant="ghost"
-              className="w-full bg-black text-white"
-              onClick={() =>
-                updateFilters({
-                  query: "",
-                  area: [],
-                  productFlags: [],
-                  language: [],
-                  openNow: false,
-                  favoritesOnly: false,
-                })
-              }
-            >
-              {t.map.filters.clear}
-            </Button>
+  className="w-full bg-indigo-600 text-white"
+  onClick={() => {
+    updateFilters(tempFilters);
+    setOpen(false);
+  }}
+>
+  {t.map.filters.apply}
+</Button>
           </PopoverContent>
         </Popover>
       </div>

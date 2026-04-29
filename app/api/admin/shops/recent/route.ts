@@ -15,6 +15,7 @@ export async function GET() {
       .order("created_at", { ascending: false })
       .limit(5);
 
+      
     if (error) {
       return Response.json({ error: error.message }, { status: 400 });
     }
@@ -55,7 +56,7 @@ export async function GET() {
         stats: {
           opened,
           closed,
-        },
+        }
       },
       { status: 200 }
     );

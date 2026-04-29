@@ -12,7 +12,7 @@ interface ShopHeaderProps {
 export default function ShopHeader({ shop }: ShopHeaderProps) {
   const { locale } = useParams();
   const t = getT(locale as string);
-
+  
   return (
     <div className="space-y-3">
 
@@ -48,7 +48,7 @@ export default function ShopHeader({ shop }: ShopHeaderProps) {
               key={flag}
               className="bg-indigo-600 text-white"
             >
-              {flag}
+              {t.admin.shopForm.extras.productTags[flag.toLowerCase() as keyof typeof t.admin.shopForm.extras.productTags]}
             </Badge>
           ))}
         </div>

@@ -1,21 +1,32 @@
 import { createAuthClient } from "@/lib/supabase/serverAuth";
 import { ArchiveRestoreIcon, BarChart2, Shapes, User2 } from "lucide-react";
 import { getT } from "@/lib/getT";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 
 async function AdminDashboardStatsCards({ locale }: { locale: string }) {
   const supabaseClient = await createAuthClient();
   const t = getT(locale);
 
-  const { count } = await supabaseClient
+  const { count } = await supabaseAdmin
     .from("shops")
     .select("*", { count: "exact", head: true });
 
   const today = new Date().toISOString().split("T")[0];
 
-  const { count: todayCount } = await supabaseClient
+  const { count: todayCount } = await supabaseAdmin
     .from("shops")
     .select("*", { count: "exact", head: true })
     .gte("created_at", today);
+
+       const { count: reviewCount } = await supabaseAdmin
+      .from("reviews")
+      .select("*", { count: "exact", head: true });
+
+       const { count: usersCount } = await supabaseAdmin
+      .from("users")
+      .select("*", { count: "exact", head: true });
+
+
 
   return (
     <div className="mb-3 sm:mt-6">
@@ -58,7 +69,7 @@ async function AdminDashboardStatsCards({ locale }: { locale: string }) {
 
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold flex items-center gap-2 mt-1">
               <BarChart2 className="text-gray-400" size={18} />
-              320
+              {reviewCount || 0}
             </h2>
           </div>
         </div>
@@ -72,7 +83,7 @@ async function AdminDashboardStatsCards({ locale }: { locale: string }) {
 
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold flex items-center gap-2 mt-1">
               <User2 className="text-gray-400" size={18} />
-              210
+              {usersCount || 0}
             </h2>
           </div>
         </div>

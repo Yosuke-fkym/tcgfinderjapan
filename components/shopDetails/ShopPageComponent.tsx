@@ -19,6 +19,7 @@ import { checkUser } from "@/lib/helpers/getUser";
 import { Spinner } from "../ui/spinner";
 import { getT } from "@/lib/getT";
 import ShopSocials from "./ShopXAccount";
+import TweetEmbed from "./TweetCard";
 
 export default function ShopPageComponent() {
   const params = useParams();
@@ -190,7 +191,7 @@ useEffect(() => {
               {t.shopDetails.page.details}
             </h2>
 <div className="flex gap-2 items-center">
-<ShopSocials xUrl={shop.x_account_url as string} />
+{/* <ShopSocials xUrl={shop.x_account_url as string} /> */}
             <button
               aria-label={
                 favorites.includes(id)
@@ -215,6 +216,17 @@ useEffect(() => {
           </p>
         </div>
       )}
+
+{shop.x_account_url && (
+  <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 mt-4">
+    <h3 className="text-sm font-semibold text-white mb-2">
+      {t.shopDetails.tweetCard.title}
+      
+    </h3>
+
+    <TweetEmbed url={shop.x_account_url} />
+  </div>
+)}
 
       <AdBanner position="center"/>
 

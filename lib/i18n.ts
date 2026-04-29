@@ -255,14 +255,37 @@ export const translations = {
         },
       },
       deleteDialog: {
-    title: "Delete Shop",
-    description: "Are you sure you want to delete",
-    confirmText: "This action cannot be undone.",
-    cancel: "Cancel",
-    delete: "Delete",
-  },
+        title: "Delete Shop",
+        description: "Are you sure you want to delete",
+        confirmText: "This action cannot be undone.",
+        cancel: "Cancel",
+        delete: "Delete",
+      },
     },
     auth: {
+      forgetPassword: {
+        forgotTitle: "Forgot Password",
+        forgotDesc: "Enter your email and we'll send you a reset link",
+        email: "Enter your email",
+        sendReset: "Send Reset Link",
+        sending: "Sending...",
+        resetSent: "Reset link sent! Check your email.",
+        backToLogin: "Remember your password?",
+        login: "Login",
+        requiredEmail: "Please enter your email",
+        error: "Something went wrong",
+      },
+      resetPassword: {
+        resetTitle: "Reset Password",
+        resetDesc: "Enter your new password below",
+        newPassword: "New password",
+        confirmPassword: "Confirm password",
+        updatePassword: "Update Password",
+        updating: "Updating...",
+        resetSuccess: "Password updated successfully! Redirecting...",
+        requiredPassword: "Please fill all fields",
+        passwordMismatch: "Passwords do not match",
+      },
       common: {
         back: "Back",
         email: "Email Address",
@@ -272,12 +295,13 @@ export const translations = {
       login: {
         title: "Welcome back",
         subtitle: "Log in to your account",
+        required: "Please fill all fields",
 
         button: "Log In",
         loading: "Logging in...",
 
         success: "Logged in successfully",
-
+        forgot: "Forgot password?",
         switchText: "Don’t have an account?",
         switchAction: "Sign Up",
       },
@@ -315,6 +339,7 @@ export const translations = {
         openNow: "Open Now",
         favoritesOnly: "Favorites Only",
         clear: "Clear Filters",
+        apply: "Apply Filters",
       },
     },
 
@@ -447,6 +472,9 @@ export const translations = {
       related: {
         title: "Related Shops",
       },
+      tweetCard:{ 
+        title: "Latest Updates"
+      },
       header: {
         open: "Open",
         closed: "Closed",
@@ -476,6 +504,18 @@ export const translations = {
         loginRequired: "Please log in first",
         error: "Something went wrong",
       },
+    },
+    contact: {
+      title: "Contact Us",
+      desc: "Have questions or suggestions? Feel free to reach out.",
+      name: "Your Name",
+      email: "Your Email",
+      message: "Your Message",
+      send: "Send Message",
+      alt: "Or contact us directly at",
+      success: "Message sent successfully!",
+      error: "Failed to send message. Please try again.",
+      required: "Please fill all fields",
     },
     footer: {
       brand: {
@@ -520,71 +560,61 @@ export const translations = {
       },
     },
     privacy: {
-  title: "Privacy Policy",
-  intro:
-    'TCG Finder Japan ("we", "our", "us") respects your privacy and is committed to protecting your personal information.',
+      title: "Privacy Policy",
+      intro:
+        'TCG Finder Japan ("we", "our", "us") respects your privacy and is committed to protecting your personal information.',
 
-  sections: {
-    collect: {
-      title: "Information We Collect",
-      desc:
-        "We may collect basic account information such as email address, as well as usage data including pages visited and interactions on the site.",
+      sections: {
+        collect: {
+          title: "Information We Collect",
+          desc: "We may collect basic account information such as email address, as well as usage data including pages visited and interactions on the site.",
+        },
+        usage: {
+          title: "How We Use Information",
+          desc: "We use collected data to improve our services, personalize user experience, and maintain platform functionality.",
+        },
+        thirdParty: {
+          title: "Third-Party Services",
+          desc: "We use third-party services such as Google Maps and advertising providers, which may collect anonymized usage data.",
+        },
+        protection: {
+          title: "Data Protection",
+          desc: "We take reasonable measures to protect your data, but cannot guarantee absolute security.",
+        },
+        changes: {
+          title: "Changes",
+          desc: "We may update this policy from time to time. Continued use of the service means you accept those changes.",
+        },
+      },
     },
-    usage: {
-      title: "How We Use Information",
-      desc:
-        "We use collected data to improve our services, personalize user experience, and maintain platform functionality.",
-    },
-    thirdParty: {
-      title: "Third-Party Services",
-      desc:
-        "We use third-party services such as Google Maps and advertising providers, which may collect anonymized usage data.",
-    },
-    protection: {
-      title: "Data Protection",
-      desc:
-        "We take reasonable measures to protect your data, but cannot guarantee absolute security.",
-    },
-    changes: {
-      title: "Changes",
-      desc:
-        "We may update this policy from time to time. Continued use of the service means you accept those changes.",
-    },
-  },
-},
-terms: {
-  title: "Terms of Service",
-  intro:
-    "By accessing and using TCG Finder Japan, you agree to comply with these terms.",
+    terms: {
+      title: "Terms of Service",
+      intro:
+        "By accessing and using TCG Finder Japan, you agree to comply with these terms.",
 
-  sections: {
-    responsibilities: {
-      title: "User Responsibilities",
-      desc:
-        "Users must provide accurate information and are responsible for any content they post, including reviews and comments.",
+      sections: {
+        responsibilities: {
+          title: "User Responsibilities",
+          desc: "Users must provide accurate information and are responsible for any content they post, including reviews and comments.",
+        },
+        prohibited: {
+          title: "Prohibited Activities",
+          desc: "Users must not engage in harmful activities such as spamming, abuse, or misuse of the platform.",
+        },
+        content: {
+          title: "Content Management",
+          desc: "We reserve the right to remove content or suspend accounts that violate these terms.",
+        },
+        liability: {
+          title: "Limitation of Liability",
+          desc: "We are not responsible for any damages resulting from the use of this platform.",
+        },
+        changes: {
+          title: "Changes to Terms",
+          desc: "These terms may be updated at any time. Continued use of the service implies acceptance of the updated terms.",
+        },
+      },
     },
-    prohibited: {
-      title: "Prohibited Activities",
-      desc:
-        "Users must not engage in harmful activities such as spamming, abuse, or misuse of the platform.",
-    },
-    content: {
-      title: "Content Management",
-      desc:
-        "We reserve the right to remove content or suspend accounts that violate these terms.",
-    },
-    liability: {
-      title: "Limitation of Liability",
-      desc:
-        "We are not responsible for any damages resulting from the use of this platform.",
-    },
-    changes: {
-      title: "Changes to Terms",
-      desc:
-        "These terms may be updated at any time. Continued use of the service implies acceptance of the updated terms.",
-    },
-  },
-}
   },
 
   jp: {
@@ -784,12 +814,12 @@ terms: {
         },
       },
       deleteDialog: {
-    title: "店舗を削除",
-    description: "本当に削除しますか",
-    confirmText: "この操作は元に戻せません。",
-    cancel: "キャンセル",
-    delete: "削除",
-  },
+        title: "店舗を削除",
+        description: "本当に削除しますか",
+        confirmText: "この操作は元に戻せません。",
+        cancel: "キャンセル",
+        delete: "削除",
+      },
       shopForm: {
         editTitle: "店舗を編集",
         createTitle: "新しい店舗を作成",
@@ -843,8 +873,8 @@ terms: {
           reelPlaceholder: "https://www.instagram.com/reel/...",
           productTags: {
             vintage: "ヴィンテージ",
-            psa: "PSA",
-            box: "BOX",
+            psa: "PSA鑑定",
+            box: "ボックス",
           },
         },
       },
@@ -929,6 +959,30 @@ terms: {
       },
     },
     auth: {
+      forgetPassword: {
+        forgotTitle: "パスワードをお忘れですか？",
+        forgotDesc:
+          "メールアドレスを入力すると、リセット用リンクを送信します。",
+        email: "メールアドレスを入力",
+        sendReset: "リセットリンクを送信",
+        sending: "送信中...",
+        resetSent: "リセットリンクを送信しました。メールをご確認ください。",
+        backToLogin: "パスワードを思い出しましたか？",
+        login: "ログイン",
+        requiredEmail: "メールアドレスを入力してください",
+        error: "エラーが発生しました",
+      },
+      resetPassword: {
+        resetTitle: "パスワードの再設定",
+        resetDesc: "新しいパスワードを入力してください",
+        newPassword: "新しいパスワード",
+        confirmPassword: "パスワードを再入力",
+        updatePassword: "パスワードを更新",
+        updating: "更新中...",
+        resetSuccess: "パスワードが更新されました。リダイレクトしています...",
+        requiredPassword: "すべての項目を入力してください",
+        passwordMismatch: "パスワードが一致しません",
+      },
       common: {
         back: "戻る",
         email: "メールアドレス",
@@ -941,6 +995,8 @@ terms: {
 
         button: "ログイン",
         loading: "ログイン中...",
+        forgot: "パスワードをお忘れですか？",
+        required: "すべての項目を入力してください",
 
         success: "ログインしました",
 
@@ -982,6 +1038,7 @@ terms: {
         openNow: "営業中",
         favoritesOnly: "お気に入りのみ",
         clear: "クリア",
+        apply: "フィルターを適用",
       },
     },
 
@@ -1025,6 +1082,9 @@ terms: {
     shopDetails: {
       videos: {
         title: "店舗動画",
+      },
+      tweetCard: {
+        title: "最新の投稿"
       },
       related: {
         title: "関連店舗",
@@ -1102,70 +1162,72 @@ terms: {
       },
     },
     privacy: {
-  title: "プライバシーポリシー",
-  intro:
-    "TCG Finder Japan（以下「当サービス」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。",
+      title: "プライバシーポリシー",
+      intro:
+        "TCG Finder Japan（以下「当サービス」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。",
 
-  sections: {
-    collect: {
-      title: "収集する情報",
-      desc:
-        "当サービスでは、メールアドレスなどの基本的なアカウント情報や、閲覧したページや操作履歴などの利用データを収集する場合があります。",
+      sections: {
+        collect: {
+          title: "収集する情報",
+          desc: "当サービスでは、メールアドレスなどの基本的なアカウント情報や、閲覧したページや操作履歴などの利用データを収集する場合があります。",
+        },
+        usage: {
+          title: "情報の利用目的",
+          desc: "収集した情報は、サービスの改善、ユーザー体験の向上、および機能の維持のために利用されます。",
+        },
+        thirdParty: {
+          title: "第三者サービス",
+          desc: "当サービスでは、Google Mapsや広告配信サービスなどの第三者サービスを利用しており、匿名の利用データが収集される場合があります。",
+        },
+        protection: {
+          title: "データの保護",
+          desc: "当サービスは、ユーザーの情報を保護するために適切な対策を講じていますが、完全な安全性を保証するものではありません。",
+        },
+        changes: {
+          title: "ポリシーの変更",
+          desc: "本ポリシーは必要に応じて変更される場合があります。サービスの継続利用により、変更内容に同意したものとみなされます。",
+        },
+      },
     },
-    usage: {
-      title: "情報の利用目的",
-      desc:
-        "収集した情報は、サービスの改善、ユーザー体験の向上、および機能の維持のために利用されます。",
-    },
-    thirdParty: {
-      title: "第三者サービス",
-      desc:
-        "当サービスでは、Google Mapsや広告配信サービスなどの第三者サービスを利用しており、匿名の利用データが収集される場合があります。",
-    },
-    protection: {
-      title: "データの保護",
-      desc:
-        "当サービスは、ユーザーの情報を保護するために適切な対策を講じていますが、完全な安全性を保証するものではありません。",
-    },
-    changes: {
-      title: "ポリシーの変更",
-      desc:
-        "本ポリシーは必要に応じて変更される場合があります。サービスの継続利用により、変更内容に同意したものとみなされます。",
-    },
-  },
-},
-terms: {
-  title: "利用規約",
-  intro:
-    "TCG Finder Japan（以下「当サービス」）を利用することにより、本規約に同意したものとみなされます。",
+    terms: {
+      title: "利用規約",
+      intro:
+        "TCG Finder Japan（以下「当サービス」）を利用することにより、本規約に同意したものとみなされます。",
 
-  sections: {
-    responsibilities: {
-      title: "ユーザーの責任",
-      desc:
-        "ユーザーは正確な情報を提供する必要があり、投稿したレビューやコメントを含むすべてのコンテンツに責任を負います。",
+      sections: {
+        responsibilities: {
+          title: "ユーザーの責任",
+          desc: "ユーザーは正確な情報を提供する必要があり、投稿したレビューやコメントを含むすべてのコンテンツに責任を負います。",
+        },
+        prohibited: {
+          title: "禁止事項",
+          desc: "スパム行為、誹謗中傷、または本サービスの不正利用など、有害な行為を行ってはなりません。",
+        },
+        content: {
+          title: "コンテンツ管理",
+          desc: "当サービスは、本規約に違反するコンテンツの削除やアカウントの停止を行う権利を有します。",
+        },
+        liability: {
+          title: "免責事項",
+          desc: "本サービスの利用により生じた損害について、当サービスは一切の責任を負いません。",
+        },
+        changes: {
+          title: "規約の変更",
+          desc: "本規約は予告なく変更される場合があります。サービスを継続して利用することで、変更後の規約に同意したものとみなされます。",
+        },
+      },
     },
-    prohibited: {
-      title: "禁止事項",
-      desc:
-        "スパム行為、誹謗中傷、または本サービスの不正利用など、有害な行為を行ってはなりません。",
+    contact: {
+      title: "お問い合わせ",
+      desc: "ご質問やご提案がございましたら、お気軽にご連絡ください。",
+      name: "お名前",
+      email: "メールアドレス",
+      message: "メッセージ",
+      send: "送信する",
+      alt: "または、こちらから直接ご連絡ください",
+      success: "メッセージが送信されました！",
+      error: "送信に失敗しました。もう一度お試しください。",
+      required: "すべての項目を入力してください",
     },
-    content: {
-      title: "コンテンツ管理",
-      desc:
-        "当サービスは、本規約に違反するコンテンツの削除やアカウントの停止を行う権利を有します。",
-    },
-    liability: {
-      title: "免責事項",
-      desc:
-        "本サービスの利用により生じた損害について、当サービスは一切の責任を負いません。",
-    },
-    changes: {
-      title: "規約の変更",
-      desc:
-        "本規約は予告なく変更される場合があります。サービスを継続して利用することで、変更後の規約に同意したものとみなされます。",
-    },
-  },
-}
   },
 };

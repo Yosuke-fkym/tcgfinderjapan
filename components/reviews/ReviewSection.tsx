@@ -125,13 +125,20 @@ export default function ReviewsSection({ shop }: any) {
                 ))}
               </div>
 
-              <div className="text-xs text-muted-foreground flex gap-1 items-center mt-1">
+              <div className="text-xs text-muted-foreground flex sm:flex-row flex-col gap-1 items-center mt-1">
+                <div>
                 {t.reviews.card.productSelection}
                 <Star size={12} className="inline mx-0.5 fill-yellow-500 text-yellow-500" />
-                {avgSelection.toFixed(1)} ・ 
+                {avgSelection.toFixed(1)}
+                </div>
+                <span className="sm:inline hidden">
+                 ・ 
+                </span>
+                <div>
                 {t.reviews.card.price}
                 <Star size={12} className="inline mx-0.5 fill-yellow-500 text-yellow-500" />
                 {avgPrice.toFixed(1)}
+                </div>
               </div>
 
               <p className="text-xs text-gray-500 mt-1">
