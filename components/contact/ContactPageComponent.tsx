@@ -48,7 +48,7 @@ export default function ContactPageComponent() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-10 text-white">
+    <div className="max-w-2xl mx-auto px-0 sm:px-4 py-10 text-white">
       {/* 🧾 Card */}
       <div className="bg-black/70 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl space-y-6">
 
