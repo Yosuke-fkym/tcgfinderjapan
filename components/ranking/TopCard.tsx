@@ -4,6 +4,7 @@ import { MapPin, Star } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
+import { translations } from "@/lib/i18n";
 
 export function TopCard({ item, index }: any) {
   const medals = ["🥇", "🥈", "🥉"];
@@ -24,7 +25,12 @@ export function TopCard({ item, index }: any) {
 
           {/* Name */}
           <h2 className="font-semibold text-indigo-600 text-base sm:text-lg line-clamp-1">
-            {item.shop?.shop_name}
+            {
+              locale === "jp" ?
+              item.shop?.shop_name
+              :
+             item.shop?.shop_name_in_langs && item.shop?.shop_name_in_langs[locale as keyof typeof translations]
+            }
           </h2>
 
           {/* Rating */}
@@ -58,7 +64,12 @@ export function TopCard({ item, index }: any) {
           {/* Description */}
           {item.shop?.description && (
             <p className="text-[11px] sm:text-xs mt-2 text-muted-foreground line-clamp-2">
-              {item.shop.description}
+              {
+                locale === "jp" ?
+                item.shop.description
+                :
+               item.shop.shop_desc_in_langs && item.shop.shop_desc_in_langs[locale as keyof typeof translations]
+              }
             </p>
           )}
         </div>

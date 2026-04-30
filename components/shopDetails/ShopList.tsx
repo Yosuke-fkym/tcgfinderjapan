@@ -5,6 +5,7 @@ import { Badge } from "../ui/badge";
 import { useRouter, useParams } from "next/navigation";
 import { Heart } from "lucide-react";
 import { getT } from "@/lib/getT";
+import { translations } from "@/lib/i18n";
 
 interface ShopListProps {
   onSelect: (shop: Shop) => void;
@@ -34,6 +35,8 @@ export default function ShopList({
     );
   }
 
+  console.log(shops[0]?.shop_name_in_langs![locale as keyof typeof translations]);
+  
   return (
     <div className="">
       {shops.map((shop) => {
@@ -61,11 +64,21 @@ export default function ShopList({
             {/* LEFT */}
             <div className="flex flex-col gap-1">
               <div className="font-medium text-base text-white">
-                {shop.shop_name}
+                {
+                  locale === "jp" ?
+                  shop.shop_name
+                  :
+                 shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
+                }
               </div>
 
-              <div className="text-xs text-gray-500 line-clamp-2">
-                {shop.shop_address}
+              <div className="text-xs text-gray-500 line-clamp-1">
+                {
+                  locale === "jp" ?
+                  shop.description
+                  :
+                 shop.shop_desc_in_langs && shop?.shop_desc_in_langs[locale as keyof typeof translations]
+                }
               </div>
             </div>
 

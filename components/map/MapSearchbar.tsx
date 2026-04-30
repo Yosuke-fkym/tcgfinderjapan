@@ -54,7 +54,7 @@ export default function MapSearchBar({
 }, [filters]);
 useEffect(() => {
   setLocalQuery(filters.query);
-}, [filters.query]);
+}, []);
 
   const activeCount =
   tempFilters.area.length +
@@ -74,7 +74,7 @@ useEffect(() => {
   }, 400);
 
   return () => clearTimeout(timeout);
-}, [localQuery, isComposing, filters.query]);
+}, [localQuery, isComposing]);
 
 
   return (

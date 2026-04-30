@@ -7,13 +7,19 @@ export function filterShops(
   favorites: string[] // ✅ added
 ): Shop[] {
   return shops.filter((shop) => {
-    const name = shop.shop_name?.toLowerCase() || "";
+    const nameInJp = shop.shop_name?.toLowerCase() || "";
+    const nameInEn = shop.shop_name_in_langs?.en?.toLowerCase() || "";
+    const descInJp = shop.description?.toLowerCase() || "";
+    const descInEn = shop.shop_desc_in_langs?.en?.toLowerCase() || "";
     const address = shop.shop_address?.toLowerCase() || "";
     const area = extractArea(shop.shop_address);
 
     if (
       filters.query &&
-      !(name.includes(filters.query.toLowerCase()) ||
+      !(nameInJp.includes(filters.query.toLowerCase()) ||
+        nameInEn.includes(filters.query.toLowerCase()) ||
+        descInJp.includes(filters.query.toLowerCase()) ||
+        descInEn.includes(filters.query.toLowerCase()) ||
         address.includes(filters.query.toLowerCase()))
     ) {
       return false;

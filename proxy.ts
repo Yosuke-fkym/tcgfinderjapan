@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { createAuthClient } from "./lib/supabase/serverAuth";
 
 const locales = ["en", "jp"];
-const defaultLocale = "en";
+const defaultLocale = "jp";
 
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { RankBadge } from "./RankBadge";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
+import { translations } from "@/lib/i18n";
 
 export function RankingRow({ item, index }: any) {
   const { locale } = useParams();
@@ -20,7 +21,12 @@ export function RankingRow({ item, index }: any) {
 
           <div>
             <p className="font-medium text-indigo-600">
-              {item.shop?.shop_name || t.ranking.row.unknownShop}
+              {
+                locale === "jp" ?
+                item.shop?.shop_name
+                :
+               item.shop?.shop_name_in_langs && item.shop?.shop_name_in_langs[locale as keyof typeof translations]
+              }
             </p>
 
             {/* Overall */}

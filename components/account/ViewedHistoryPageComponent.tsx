@@ -8,6 +8,7 @@ import { checkUser } from "@/lib/helpers/getUser";
 import Image from "next/image";
 import { Spinner } from "../ui/spinner";
 import { getT } from "@/lib/getT";
+import { translations } from "@/lib/i18n";
 
 export default function ViewedHistoryPageComponent() {
   const [history, setHistory] = useState<any[] | null>(null);
@@ -106,7 +107,12 @@ export default function ViewedHistoryPageComponent() {
 
             <CardContent className="p-2 pt-0">
               <p className="font-semibold text-indigo-600 line-clamp-1">
-                {item.shops?.shop_name}
+                {
+                  locale === "jp" ?
+                  item.shops?.shop_name 
+                  :
+                  item.shops?.shop_name_in_langs && item.shops.shop_name_in_langs[locale as keyof typeof translations]
+                }
               </p>
 
               <p className="text-sm text-gray-500 mt-1 line-clamp-1">

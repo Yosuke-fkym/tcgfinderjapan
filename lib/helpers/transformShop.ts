@@ -9,7 +9,9 @@ export function transformShop(shop: any): Shop {
 
     latitude: shop.latitude || 0,
     longitude: shop.longitude || 0,
-    
+    shop_address_in_langs: shop.shop_address_in_langs || undefined,
+    shop_name_in_langs: shop.shop_name_in_langs || undefined,
+    shop_desc_in_langs: shop.shop_desc_in_langs || undefined,
     productFlags:
       shop.shop_product_flags?.map((item: any) => item.product_flags?.name) || [],
     created_at: shop.created_at,

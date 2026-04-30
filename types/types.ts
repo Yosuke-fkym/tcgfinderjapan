@@ -31,6 +31,9 @@ export type Shop = {
   images: string[]
   shopVideos: ShopVideo[]
   x_account_url: string | null;
+  shop_name_in_langs?: Record<string, string>;
+  shop_desc_in_langs?: Record<string, string>;
+  shop_address_in_langs?: Record<string, string>;
 };
 
 

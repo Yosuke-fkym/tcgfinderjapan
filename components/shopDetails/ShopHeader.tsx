@@ -4,6 +4,7 @@ import { Shop } from "@/types/types";
 import { Badge } from "@/components/ui/badge";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
+import { translations } from "@/lib/i18n";
 
 interface ShopHeaderProps {
   shop: Shop;
@@ -20,7 +21,12 @@ export default function ShopHeader({ shop }: ShopHeaderProps) {
 
         <div className="space-y-1">
           <h1 className="text-xl font-semibold text-white">
-            {shop.shop_name}
+            {
+              locale === "jp" ?
+              shop.shop_name
+              :
+             shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
+            }
           </h1>
 
           <p className="text-sm text-gray-500">

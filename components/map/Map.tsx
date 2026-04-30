@@ -12,6 +12,7 @@ import { isShopOpen } from "@/lib/helpers/getShopStatus";
 import { useRouter, useParams } from "next/navigation";
 import { Heart } from "lucide-react";
 import { getT } from "@/lib/getT";
+import { translations } from "@/lib/i18n";
 
 const containerStyle = { width: "100%", height: "100%" };
 const center = { lat: 35.6762, lng: 139.6503 };
@@ -133,7 +134,12 @@ export default function Map({
           >
             <div className="flex justify-between items-center">
               <p className="text-sm font-medium" id="shop-dialog-title">
-                {selected.shop_name}
+                {
+                  locale === "jp" ?
+                  selected.shop_name
+                  :
+                 selected.shop_name_in_langs && selected.shop_name_in_langs[locale as keyof typeof translations]
+                }
               </p>
 
               <button

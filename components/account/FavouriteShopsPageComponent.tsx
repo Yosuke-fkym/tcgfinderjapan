@@ -9,6 +9,7 @@ import { checkUser } from "@/lib/helpers/getUser";
 import Image from "next/image";
 import { Spinner } from "../ui/spinner";
 import { getT } from "@/lib/getT";
+import { translations } from "@/lib/i18n";
 
 export default function FavouriteShopsPageComponent() {
   const [favorites, setFavorites] = useState<any[] | null>(null);
@@ -131,7 +132,12 @@ export default function FavouriteShopsPageComponent() {
 
             <CardContent className="p-2 pt-0">
               <p className="font-semibold text-indigo-600 line-clamp-1">
-                {fav.shops?.shop_name}
+                {
+                  locale === "jp" ?
+                  fav.shops?.shop_name
+                  :
+                 fav.shops?.shop_name_in_langs && fav.shops.shop_name_in_langs[locale as keyof typeof translations]
+                }
               </p>
 
               <p className="text-sm text-gray-500 mt-1 line-clamp-1">

@@ -20,6 +20,7 @@ import { Spinner } from "../ui/spinner";
 import { getT } from "@/lib/getT";
 import ShopSocials from "./ShopXAccount";
 import TweetEmbed from "./TweetCard";
+import { translations } from "@/lib/i18n";
 
 export default function ShopPageComponent() {
   const params = useParams();
@@ -212,7 +213,12 @@ useEffect(() => {
           </div>
 
           <p className="text-sm text-gray-600 leading-relaxed">
-            {shop.description}
+            {
+              params.locale === "jp" ?
+              shop.description
+              :
+             shop.shop_desc_in_langs && shop.shop_desc_in_langs[params.locale as keyof typeof translations]
+            }
           </p>
         </div>
       )}
