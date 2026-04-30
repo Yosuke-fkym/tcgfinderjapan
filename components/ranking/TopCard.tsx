@@ -57,7 +57,12 @@ export function TopCard({ item, index }: any) {
           {/* Address */}
           {item.shop?.shop_address && (
             <p className="text-[11px] sm:text-xs text-muted-foreground mt-2 flex items-center gap-1 line-clamp-1">
-              <MapPin size={12} /> {item.shop.shop_address}
+              <MapPin size={12} /> {
+                locale === "jp" ?
+                item.shop.shop_address
+                :
+               item.shop.shop_address_in_langs && item.shop.shop_address_in_langs[locale as keyof typeof translations]
+              }
             </p>
           )}
 

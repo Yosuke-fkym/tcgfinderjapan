@@ -56,7 +56,8 @@ export async function GET() {
         shop_address,
         shop_photos ( image_url ),
         shop_name_in_langs,
-        shop_desc_in_langs
+        shop_desc_in_langs,
+        shop_address_in_langs
       )
     `)
     .eq("user_id", user.id)

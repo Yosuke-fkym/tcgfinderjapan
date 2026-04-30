@@ -169,7 +169,12 @@ useEffect(() => {
           </span>
           <span>›</span>
           <span className="text-gray-400">
-            {shop.shop_name}
+            {
+              params.locale === "jp" ?
+              shop.shop_name
+              :
+             shop.shop_name_in_langs && shop.shop_name_in_langs[params.locale as keyof typeof translations]
+            }
           </span>
         </div>
       </div>

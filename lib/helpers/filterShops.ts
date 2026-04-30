@@ -11,7 +11,9 @@ export function filterShops(
     const nameInEn = shop.shop_name_in_langs?.en?.toLowerCase() || "";
     const descInJp = shop.description?.toLowerCase() || "";
     const descInEn = shop.shop_desc_in_langs?.en?.toLowerCase() || "";
-    const address = shop.shop_address?.toLowerCase() || "";
+    const addressInJp = shop.shop_address?.toLowerCase() || "";
+    const addressInEn = shop.shop_address_in_langs?.en?.toLowerCase() || "";
+
     const area = extractArea(shop.shop_address);
 
     if (
@@ -20,7 +22,8 @@ export function filterShops(
         nameInEn.includes(filters.query.toLowerCase()) ||
         descInJp.includes(filters.query.toLowerCase()) ||
         descInEn.includes(filters.query.toLowerCase()) ||
-        address.includes(filters.query.toLowerCase()))
+        addressInJp.includes(filters.query.toLowerCase()) ||
+        addressInEn.includes(filters.query.toLowerCase()))
     ) {
       return false;
     }

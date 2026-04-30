@@ -16,6 +16,7 @@ import { Shop } from "@/types/types";
 import { Badge } from "@/components/ui/badge";
 import { useRouter, useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
+import { translations } from "@/lib/i18n";
 
 function AdminRecentShops() {
   const router = useRouter();
@@ -146,7 +147,12 @@ function AdminRecentShops() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Store size={16} className="text-gray-500" />
-                    {shop.shop_name}
+                    {
+                      locale === "jp" ?
+                      shop.shop_name
+                      :
+                     shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
+                    }
                   </div>
 
                   {shop.business_hours && isShopOpen(shop) ? (
@@ -160,7 +166,12 @@ function AdminRecentShops() {
               <TableCell className="text-gray-600">
                 <div className="flex items-center gap-2">
                   <MapPin size={14} />
-                  {shop.shop_address || t.admin.recentShops.table.unknown}
+                  {
+                    locale === "jp" ?
+                    shop.shop_address
+                    :
+                    shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
+                   || t.admin.recentShops.table.unknown}
                 </div>
               </TableCell>
 
@@ -198,7 +209,12 @@ function AdminRecentShops() {
           <div className="flex justify-between items-start">
             <div className="font-medium text-gray-800 flex items-center gap-2">
               <Store size={16} />
-              {shop.shop_name}
+              {
+                locale === "jp" ?
+                shop.shop_name
+                :
+                shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
+              }
             </div>
 
             {shop.business_hours && isShopOpen(shop) ? (
@@ -210,7 +226,12 @@ function AdminRecentShops() {
 
           <div className="text-sm text-gray-600 flex items-center gap-2">
             <MapPin size={14} />
-            {shop.shop_address || t.admin.recentShops.table.unknown}
+            {
+              locale === "jp" ?
+              shop.shop_address
+              :
+              shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
+            || t.admin.recentShops.table.unknown}
           </div>
 
           <div className="text-xs text-gray-500 flex items-center gap-2">

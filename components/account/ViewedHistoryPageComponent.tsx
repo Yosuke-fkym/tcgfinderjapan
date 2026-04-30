@@ -116,7 +116,13 @@ export default function ViewedHistoryPageComponent() {
               </p>
 
               <p className="text-sm text-gray-500 mt-1 line-clamp-1">
-                {item.shops?.shop_address || t.common.unknownLocation}
+                {
+                  locale === "jp" ?
+                  item.shops?.shop_address
+                  :
+                  item.shops?.shop_address_in_langs && item.shops.shop_address_in_langs[locale as keyof typeof translations]
+                || t.common.unknownLocation
+                } 
               </p>
 
               {/* Viewed time */}

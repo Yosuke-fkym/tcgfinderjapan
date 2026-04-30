@@ -44,6 +44,7 @@ import { Badge } from "@/components/ui/badge";
 import { isShopOpen } from "@/lib/helpers/getShopStatus";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
+import { translations } from "@/lib/i18n";
 
 export default function ShopsTable({ shops, refresh }: any) {
   const [open, setOpen] = useState(false);
@@ -121,7 +122,12 @@ export default function ShopsTable({ shops, refresh }: any) {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 line-clamp-1">
                     <Store size={18} className="text-gray-500" />
-                    {shop.shop_name}
+                    {
+                      locale === "jp" ?
+                      shop.shop_name
+                      :
+                     shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
+                    }
                   </div>
 
                   {shop.business_hours && isShopOpen(shop) ? (
@@ -137,7 +143,12 @@ export default function ShopsTable({ shops, refresh }: any) {
               </TableCell>
 
               <TableCell className="text-sm lg:text-base truncate text-gray-600 py-4">
-                {shop.shop_address || "—"}
+                {
+                  locale === "jp" ?
+                  shop.shop_address
+                  :
+                  shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
+                || "—"}
               </TableCell>
 
               <TableCell className="text-sm lg:text-base">
@@ -230,7 +241,12 @@ export default function ShopsTable({ shops, refresh }: any) {
           <div className="flex justify-between items-start">
             <div className="font-medium flex items-center gap-2">
               <Store size={16} />
-              {shop.shop_name}
+              {
+                locale === "jp" ?
+                shop.shop_name
+                :
+                shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
+              }
             </div>
 
             {shop.business_hours && isShopOpen(shop) ? (
@@ -245,7 +261,12 @@ export default function ShopsTable({ shops, refresh }: any) {
           </div>
 
           <div className="text-sm text-gray-600">
-            {shop.shop_address || "—"}
+            {
+              locale === "jp" ?
+              shop.shop_address
+              :
+              shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
+            || "—"}
           </div>
 
           <div className="flex justify-between text-xs text-gray-500">

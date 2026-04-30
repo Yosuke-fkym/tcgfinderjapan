@@ -24,7 +24,8 @@ export async function GET(req: Request) {
           image_url
           ),
           shop_name_in_langs,
-          shop_desc_in_langs
+          shop_desc_in_langs,
+          shop_address_in_langs
       )` : "shop_id")
     .eq("user_id", user.id);
 

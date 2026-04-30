@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
+import { AREA_OPTIONS } from "@/lib/helpers/areas";
 
 type Props = {
   areas: string[];

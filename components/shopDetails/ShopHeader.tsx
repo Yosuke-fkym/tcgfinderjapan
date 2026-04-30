@@ -30,7 +30,12 @@ export default function ShopHeader({ shop }: ShopHeaderProps) {
           </h1>
 
           <p className="text-sm text-gray-500">
-            {shop.shop_address}
+            {
+              locale === "jp" ?
+              shop.shop_address
+              :   
+              shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
+            }
           </p>
         </div>
 

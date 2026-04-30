@@ -166,7 +166,12 @@ export default function Map({
             </div>
 
             <p className="text-xs text-gray-500">
-              {selected.shop_address}
+              {
+                locale === "jp" ?
+                selected.shop_address
+                :
+                selected.shop_address_in_langs && selected.shop_address_in_langs[locale as keyof typeof translations]
+              }
             </p>
 
             <p

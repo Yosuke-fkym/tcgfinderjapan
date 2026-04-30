@@ -35,7 +35,6 @@ export default function ShopList({
     );
   }
 
-  console.log(shops[0]?.shop_name_in_langs![locale as keyof typeof translations]);
   
   return (
     <div className="">
@@ -75,9 +74,9 @@ export default function ShopList({
               <div className="text-xs text-gray-500 line-clamp-1">
                 {
                   locale === "jp" ?
-                  shop.description
+                  shop.shop_address
                   :
-                 shop.shop_desc_in_langs && shop?.shop_desc_in_langs[locale as keyof typeof translations]
+                 shop.shop_address_in_langs && shop?.shop_address_in_langs[locale as keyof typeof translations]
                 }
               </div>
             </div>
