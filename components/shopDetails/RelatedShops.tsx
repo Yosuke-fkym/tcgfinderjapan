@@ -5,6 +5,7 @@ import { Shop } from "@/types/types";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
+import { translations } from "@/lib/i18n";
 
 interface RelatedShopsProps {
   shops: Shop[];
@@ -39,7 +40,11 @@ export default function RelatedShops({ shops }: RelatedShopsProps) {
               <Image
                 height={160}
                 width={256}
-                alt={shop.shop_name}
+                alt={
+                  locale === "jp"
+                  ? shop.shop_name
+                   : shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name
+                }
                 src={
                   shop.images?.[0] || "/placeholder.jpg"
                 }
@@ -52,11 +57,19 @@ export default function RelatedShops({ shops }: RelatedShopsProps) {
 
             <CardContent className="p-2 pt-0">
               <p className="font-semibold text-indigo-600 line-clamp-1">
-                {shop.shop_name}
+                {
+                  locale === "jp"
+                    ? shop.shop_name
+                    : shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name
+                }
               </p>
 
               <p className="text-sm text-gray-500 mt-1 line-clamp-1">
-                {shop.shop_address || t.common.unknownLocation}
+                {
+                  locale === "jp"
+                    ? shop.shop_address
+                     : shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
+                 || t.common.unknownLocation}
               </p>
             </CardContent>
           </Card>
