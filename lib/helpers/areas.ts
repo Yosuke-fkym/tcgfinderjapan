@@ -59,3 +59,65 @@ export const AREA_OPTIONS = [
   { value: "kagoshima", group: "prefecture", key: "kagoshima" },
   { value: "okinawa", group: "prefecture", key: "okinawa" },
 ];
+
+export const AREA_MATCH = {
+  // 🔥 Tokyo hotspots
+  akihabara: ["秋葉原"],
+  ikebukuro: ["池袋"],
+  tokyo: ["東京", "東京都"],
+
+  // 🔥 Prefectures
+  hokkaido: ["北海道"],
+  aomori: ["青森"],
+  iwate: ["岩手"],
+  miyagi: ["宮城"],
+  akita: ["秋田"],
+  yamagata: ["山形"],
+  fukushima: ["福島"],
+
+  ibaraki: ["茨城"],
+  tochigi: ["栃木"],
+  gunma: ["群馬"],
+  saitama: ["埼玉"],
+  chiba: ["千葉"],
+  kanagawa: ["神奈川"],
+
+  niigata: ["新潟"],
+  toyama: ["富山"],
+  ishikawa: ["石川"],
+  fukui: ["福井"],
+  yamanashi: ["山梨"],
+  nagano: ["長野"],
+
+  gifu: ["岐阜"],
+  shizuoka: ["静岡"],
+  aichi: ["愛知"],
+  mie: ["三重"],
+
+  shiga: ["滋賀"],
+  kyoto: ["京都"],
+  osaka: ["大阪"],
+  hyogo: ["兵庫"],
+  nara: ["奈良"],
+  wakayama: ["和歌山"],
+
+  tottori: ["鳥取"],
+  shimane: ["島根"],
+  okayama: ["岡山"],
+  hiroshima: ["広島"],
+  yamaguchi: ["山口"],
+
+  tokushima: ["徳島"],
+  kagawa: ["香川"],
+  ehime: ["愛媛"],
+  kochi: ["高知"],
+
+  fukuoka: ["福岡"],
+  saga: ["佐賀"],
+  nagasaki: ["長崎"],
+  kumamoto: ["熊本"],
+  oita: ["大分"],
+  miyazaki: ["宮崎"],
+  kagoshima: ["鹿児島"],
+  okinawa: ["沖縄"],
+};

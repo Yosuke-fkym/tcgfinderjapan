@@ -87,7 +87,7 @@ export default function CSVImportPageComponent() {
   }
 
   return (
-    <div className="p-8 space-y-6">
+    <div className=" space-y-6">
       <Card className="shadow-lg border">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -150,22 +150,31 @@ export default function CSVImportPageComponent() {
                     </TableRow>
                   </TableHeader>
 
-                  <TableBody>
-                    {rows.slice(0, 10).map((row, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{row.shop_name}</TableCell>
+                <TableBody>
+  {rows.slice(0, 10).map((row, index) => (
+    <TableRow key={index}>
+      <TableCell>{row.shop_name}</TableCell>
 
-                        <TableCell>{row.shop_address}</TableCell>
-                        <TableCell>{row.website}</TableCell>
+      <TableCell>{row.shop_address}</TableCell>
 
-                        <TableCell className="text-xs">
-                          {row.月曜日_closed === "true"
-                            ? t.csvImport.table.closed
-                            : `${row.月曜日_open} - ${row.月曜日_close}`}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
+      <TableCell>{row.website}</TableCell>
+
+      {/* ✅ FIXED monday preview */}
+      <TableCell className="text-xs">
+        {!row.monday_open || row.monday_open === "--:--"
+          ? t.csvImport.table.closed
+          : `${row.monday_open} - ${row.monday_close}`}
+      </TableCell>
+
+      {/* 🔥 OPTIONAL: reels preview (good UX) */}
+      <TableCell className="text-xs max-w-[200px] truncate">
+        {row.reels
+          ? row.reels.split("|").length + " reels"
+          : "-"}
+      </TableCell>
+    </TableRow>
+  ))}
+</TableBody>
                 </Table>
               </div>
 

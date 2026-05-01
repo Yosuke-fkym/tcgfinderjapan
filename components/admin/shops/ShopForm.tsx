@@ -46,15 +46,24 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
  const { locale } = useParams();
   const t = getT(locale as string);
 
-  const days = [
-    "月曜日",
-    "火曜日",
-    "水曜日",
-    "木曜日",
-    "金曜日",
-    "土曜日",
-    "日曜日",
-  ];
+const days = [
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
+];
+const DAY_MAP = {
+  月曜日: "monday",
+  火曜日: "tuesday",
+  水曜日: "wednesday",
+  木曜日: "thursday",
+  金曜日: "friday",
+  土曜日: "saturday",
+  日曜日: "sunday",
+};
 
   const [businessHours, setBusinessHours] = useState<BusinessHoursType>(
     days.reduce((acc: BusinessHoursType, day) => {
@@ -65,7 +74,19 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
 
   useEffect(() => {
     if (initialData?.business_hours) {
-      setBusinessHours(initialData.business_hours);
+      
+      if (initialData?.business_hours) {
+  const converted: BusinessHoursType = {};
+
+  Object.entries(initialData.business_hours).forEach(
+    ([jpDay, value]) => {
+      const key = DAY_MAP[jpDay as keyof typeof DAY_MAP] || jpDay;
+      converted[key] = value as any;
+    }
+  );
+
+  setBusinessHours(converted);
+}
     }
   }, [initialData]);
 
@@ -229,7 +250,7 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
                   <Input
                     name="shop_name"
                     defaultValue={initialData?.shop_name}
-                    placeholder="Tokyo Card Haven"
+                    placeholder={t.admin.shopForm.fields.namePlaceholder}
                   />
                 </div>
 
@@ -238,7 +259,7 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
                   <Input
                     name="shop_address"
                     defaultValue={initialData?.shop_address}
-                    placeholder="Shibuya, Tokyo"
+                    placeholder={t.admin.shopForm.fields.addressPlaceholder}
                   />
                 </div>
 
@@ -304,7 +325,7 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
                   <Input
                     name="language_support"
                     defaultValue={initialData?.language_support}
-                    placeholder="Japanese, English"
+                    placeholder={t.admin.shopForm.fields.languagePlaceholder}
                   />
                 </div>
               </div>
@@ -319,7 +340,7 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
                 {days.map((day) => (
                   <div key={day} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
   
-  <div className="w-full sm:w-28 text-sm">{day}</div>
+  <div className="w-full sm:w-28 text-sm">{t.admin.shopForm.sections.businessDays[day as keyof typeof t.admin.shopForm.sections.businessDays]}</div>
 
   <div className="flex items-center gap-2">
     <Input

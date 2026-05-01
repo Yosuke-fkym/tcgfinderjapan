@@ -21,6 +21,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
+import { translations } from "@/lib/i18n";
 
 interface Props {
   review: Review;
@@ -148,7 +149,11 @@ export default function ReviewCard({
           {review.is_flagged ? (
             <div className="relative">
               <p className="text-sm text-gray-500 blur-sm select-none">
-                {review.comment}
+                {
+                  locale === "jp"
+                    ? review.comment
+                    : review.review_text_in_langs && review.review_text_in_langs[locale as keyof typeof translations]
+                }
               </p>
 
               <div className="absolute inset-0 flex items-center justify-center">
@@ -158,7 +163,11 @@ export default function ReviewCard({
               </div>
             </div>
           ) : (
-            <p className="text-sm text-gray-700">{review.comment}</p>
+            <p className="text-sm text-gray-700">{
+              locale === "jp"
+                ? review.comment
+                : review.review_text_in_langs && review.review_text_in_langs[locale as keyof typeof translations]
+            }</p>
           )}
 
           {/* IMAGES */}

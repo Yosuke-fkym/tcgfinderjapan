@@ -1,5 +1,5 @@
 import { Filters, Shop } from "@/types/types";
-import { extractArea } from "./extractArea";
+import { extractArea, extractAreaMulti } from "./extractArea";
 
 export function filterShops(
   shops: Shop[],
@@ -14,8 +14,6 @@ export function filterShops(
     const addressInJp = shop.shop_address?.toLowerCase() || "";
     const addressInEn = shop.shop_address_in_langs?.en?.toLowerCase() || "";
 
-    const area = extractArea(shop.shop_address);
-
     if (
       filters.query &&
       !(nameInJp.includes(filters.query.toLowerCase()) ||
@@ -28,9 +26,15 @@ export function filterShops(
       return false;
     }
 
+    const area = extractArea(shop.shop_address || "");
+    const areaMulti = extractAreaMulti(shop, "en");
+
     if (
       filters.area.length &&
-      !filters.area.includes(area)
+      !(
+        (area !== null && filters.area.includes(area)) ||
+        (areaMulti !== null && filters.area.includes(areaMulti))
+      )
     ) {
       return false;
     }
@@ -47,7 +51,7 @@ export function filterShops(
     if (
       filters.language.length &&
       !filters.language.some((lang) =>
-        shop.language_support?.includes(lang)
+        typeof lang === "string" && shop.language_support?.includes(lang)
       )
     ) {
       return false;

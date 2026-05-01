@@ -20,7 +20,8 @@ export async function GET() {
         user_id,
         rating,
         photo_url,
-        posted_at
+        posted_at,
+        review_text_in_langs
       )
     `)
     .order("created_at", { ascending: false });

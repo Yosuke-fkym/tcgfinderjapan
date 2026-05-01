@@ -22,7 +22,7 @@ function MapPageComponent() {
   const { locale } = useParams();
   const t = getT(locale as string);
 
-  const { areas, productFlags, languages } = useFilterOptions(shops);
+  const { areas, productFlags, languages } = useFilterOptions(shops, locale as string);
   const { filters } = useMapFilters();
 
   useEffect(() => {
@@ -118,13 +118,14 @@ function MapPageComponent() {
       console.error(err);
     }
   };
+// console.log(areas);
 
   const filteredShops = filterShops(shops, filters, favorites);
 
   return (
     <div className="flex flex-col h-screen">
       <MapSearchBar
-        areas={areas}
+        areas={areas as string[]}
         productFlags={productFlags}
         languages={languages}
         isLoggedIn={!!isLoggedIn}

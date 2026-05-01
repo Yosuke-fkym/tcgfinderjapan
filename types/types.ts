@@ -59,6 +59,7 @@ export interface Review {
   id: string;
   shop_id: string;
   user_id: string;
+  review_text_in_langs?: Record<string, string>;
 
   // OLD (fallback)
   rating?: number;
@@ -97,42 +98,42 @@ export interface ReviewReport{
   review: Review
 }
 
-
-
 export type CSVRow = {
-  shop_name: string
-  shop_address: string
-  latitude: string
-  longitude: string
-  website: string
-  language_support: string
-  description: string
-  x_account_url: string
+  shop_name: string;
+  shop_address: string;
+  latitude: string;
+  longitude: string;
+  website: string;
+  language_support: string;
+  description: string;
+  x_account_url: string;
 
-  月曜日_open: string
-  月曜日_close: string
-  月曜日_closed?: string
+  // 🕒 Business hours (EN keys)
+  monday_open: string;
+  monday_close: string;
 
-  火曜日_open: string
-  火曜日_close: string
+  tuesday_open: string;
+  tuesday_close: string;
 
-  水曜日_open?: string
-  水曜日_close?: string
-  水曜日_closed?: string
+  wednesday_open?: string;
+  wednesday_close?: string;
 
-  木曜日_open: string
-  木曜日_close: string
+  thursday_open: string;
+  thursday_close: string;
 
-  金曜日_open: string
-  金曜日_close: string
+  friday_open: string;
+  friday_close: string;
 
-  土曜日_open: string
-  土曜日_close: string
+  saturday_open: string;
+  saturday_close: string;
 
-  日曜日_open: string
-  日曜日_close: string
+  sunday_open: string;
+  sunday_close: string;
 
-  祝日_open?: string
-  祝日_close?: string
-}
+  // 🎌 Holiday
+  holiday_open?: string;
+  holiday_close?: string;
 
+  // 🎥 Reels (pipe separated)
+  reels?: string;
+};

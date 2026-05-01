@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
 import { AREA_OPTIONS } from "@/lib/helpers/areas";
+import { LANGUAGE_LABELS } from "@/lib/helpers/language";
 
 type Props = {
   areas: string[];
@@ -49,6 +50,12 @@ export default function MapSearchBar({
       : [...arr, value];
   };
 
+  function normalizeLanguage(value: string) {
+  if (value === "日本語") return "japanese";
+  if (value === "英語") return "english";
+  return value;
+}
+
 
   useEffect(() => {
   setTempFilters(filters);
@@ -76,6 +83,7 @@ useEffect(() => {
 
   return () => clearTimeout(timeout);
 }, [localQuery, isComposing]);
+console.log(LANGUAGE_LABELS[locale as keyof typeof LANGUAGE_LABELS], languages);
 
 
   return (
@@ -138,7 +146,7 @@ useEffect(() => {
   }))
 }
                   />
-                  <span className="text-sm">{a}</span>
+                  <span className="text-sm">{t.ranking?.areas?.[a as keyof typeof t.ranking.areas] ?? a}</span>
                 </div>
               ))}
             </div>
@@ -163,23 +171,31 @@ useEffect(() => {
             </div>
 
             {/* 🌐 Language */}
-            <div>
-              <p className="text-sm font-medium mb-2">{t.map.filters.language}</p>
-              {languages.map((l) => (
-                <div key={l} className="flex items-center gap-2">
-                  <Checkbox
-                    checked={tempFilters.language.includes(l)}
-                    onCheckedChange={() =>
-  setTempFilters((prev) => ({
-    ...prev,
-    language: toggleValue(prev.language, l),
-  }))
-}
-                  />
-                  <span className="text-sm">{l}</span>
-                </div>
-              ))}
-            </div>
+           <div>
+  <p className="text-sm font-medium mb-2">
+    {t.map.filters.language}
+  </p>
+
+  {languages.map((l) => (
+    <div key={l} className="flex items-center gap-2">
+      <Checkbox
+        checked={tempFilters.language.includes(l)}
+        onCheckedChange={() =>
+          setTempFilters((prev) => ({
+            ...prev,
+            language: toggleValue(prev.language, l),
+          }))
+        }
+      />
+
+      <span className="text-sm">
+        {(locale === 'en' || locale === 'jp')
+          ? LANGUAGE_LABELS[locale as keyof typeof LANGUAGE_LABELS]?.[normalizeLanguage(l) as keyof typeof LANGUAGE_LABELS.en] ?? l
+          : l}
+      </span>
+    </div>
+  ))}
+</div>
 
             {/* ⏰ Open Now */}
             <div className="flex items-center gap-2">

@@ -164,7 +164,11 @@ export default function AdminReportsPageComponent() {
               </div>
 
               <div className="bg-muted/50 rounded-xl p-4 space-y-2">
-                <p>{r.review?.comment}</p>
+                <p>{
+                   locale === 'jp'
+                   ? r.review.comment
+                   : r.review.review_text_in_langs?.[locale as keyof typeof r.review.review_text_in_langs] 
+                  }</p>
 
                 <div className="flex gap-1">
                   {Array.from({ length: r.review?.rating || 0 }).map((_, i) => (
