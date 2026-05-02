@@ -147,6 +147,7 @@ export default function CSVImportPageComponent() {
                       <TableHead>{t.csvImport.table.address}</TableHead>
                       <TableHead>{t.csvImport.table.website}</TableHead>
                       <TableHead>{t.csvImport.table.mondayHours}</TableHead>
+                      <TableHead>{t.csvImport.table.shopVideo}</TableHead>
                     </TableRow>
                   </TableHeader>
 

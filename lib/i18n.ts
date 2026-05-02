@@ -79,6 +79,7 @@ export const translations = {
         website: "Website",
         mondayHours: "Monday hours",
         closed: "Closed",
+          shopVideo: "Shop video",
       },
 
       success: "CSV imported successfully",
@@ -766,6 +767,7 @@ languagePlaceholder: "Japanese, English",
         website: "ウェブサイト",
         mondayHours: "月曜日の営業時間",
         closed: "休業",
+        shopVideo: "ショップ動画",
       },
 
       success: "CSVのインポートに成功しました",
