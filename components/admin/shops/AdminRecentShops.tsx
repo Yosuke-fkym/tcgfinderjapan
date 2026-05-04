@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { useRouter, useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
 import { translations } from "@/lib/i18n";
+import { truncateText } from "@/lib/utils";
 
 function AdminRecentShops() {
   const router = useRouter();
@@ -148,10 +149,10 @@ function AdminRecentShops() {
                   <div className="flex items-center gap-2">
                     <Store size={16} className="text-gray-500" />
                     {
-                      locale === "jp" ?
+                      truncateText(locale === "jp" ?
                       shop.shop_name
                       :
-                     shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
+                     shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations], 25)
                     }
                   </div>
 
@@ -167,11 +168,11 @@ function AdminRecentShops() {
                 <div className="flex items-center gap-2">
                   <MapPin size={14} />
                   {
-                    locale === "jp" ?
+                    truncateText(locale === "jp" ?
                     shop.shop_address
                     :
-                    shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
-                   || t.admin.recentShops.table.unknown}
+                    shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations], 35) || t.admin.recentShops.table.unknown
+                  }
                 </div>
               </TableCell>
 
@@ -210,10 +211,10 @@ function AdminRecentShops() {
             <div className="font-medium text-gray-800 flex items-center gap-2">
               <Store size={16} />
               {
-                locale === "jp" ?
+                truncateText(locale === "jp" ?
                 shop.shop_name
                 :
-                shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
+                shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations], 25)
               }
             </div>
 
@@ -227,11 +228,11 @@ function AdminRecentShops() {
           <div className="text-sm text-gray-600 flex items-center gap-2">
             <MapPin size={14} />
             {
-              locale === "jp" ?
+              truncateText(locale === "jp" ?
               shop.shop_address
               :
-              shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
-            || t.admin.recentShops.table.unknown}
+              shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations], 35) || t.admin.recentShops.table.unknown
+            }
           </div>
 
           <div className="text-xs text-gray-500 flex items-center gap-2">
