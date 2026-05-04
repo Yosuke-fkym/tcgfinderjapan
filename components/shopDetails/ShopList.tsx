@@ -67,7 +67,7 @@ export default function ShopList({
                   locale === "jp" ?
                   shop.shop_name
                   :
-                 shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
+                 shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name
                 }
               </div>
 
@@ -76,14 +76,14 @@ export default function ShopList({
                   locale === "jp" ?
                   shop.shop_address
                   :
-                 shop.shop_address_in_langs && shop?.shop_address_in_langs[locale as keyof typeof translations]
+                 shop.shop_address_in_langs && shop?.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address
                 }
               </div>
             </div>
 
-            {/* RIGHT */}
+            
             <div className="flex flex-col items-end gap-2">
-              {/* ❤️ */}
+              
               <button
                 aria-label={
                   favorites.includes(shop.shop_id)

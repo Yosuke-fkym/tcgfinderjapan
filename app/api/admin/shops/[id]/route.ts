@@ -24,6 +24,8 @@ export async function PATCH(req: Request, { params }: any) {
   if (body.vintage) flags.push("Vintage");
   if (body.psa) flags.push("PSA");
   if (body.box) flags.push("BOX");
+  if (body.pokémon) flags.push("Pokémon");
+  if (body.onepiece) flags.push("ONE PIECE");
 
   const uniqueFlags = [...new Set(flags)];
 
@@ -34,6 +36,8 @@ export async function PATCH(req: Request, { params }: any) {
   delete body.vintage;
   delete body.psa;
   delete body.box;
+  delete body.pokémon;
+  delete body.onepiece;
   delete body.videos;
 
   // -------- update shop --------

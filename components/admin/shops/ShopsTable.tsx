@@ -127,7 +127,7 @@ export default function ShopsTable({ shops, refresh }: any) {
                       truncateText(locale === "jp" ?
                       shop.shop_name
                       :
-                     shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations], 25)
+                     shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name, 25) || t.admin.recentShops.table.unknown
                     }
                   </div>
 
@@ -148,7 +148,7 @@ export default function ShopsTable({ shops, refresh }: any) {
                   truncateText(locale === "jp" ?
                   shop.shop_address
                   :
-                  shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations], 35) || "—"
+                  shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address, 35) || t.admin.recentShops.table.unknown
                 }
               </TableCell>
 

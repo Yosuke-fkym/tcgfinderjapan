@@ -18,7 +18,6 @@ import dynamic from "next/dynamic";
 import { checkUser } from "@/lib/helpers/getUser";
 import { Spinner } from "../ui/spinner";
 import { getT } from "@/lib/getT";
-import ShopSocials from "./ShopXAccount";
 import TweetEmbed from "./TweetCard";
 import { translations } from "@/lib/i18n";
 

@@ -30,6 +30,8 @@ export async function POST(req: Request) {
     if (body.vintage) flags.push("Vintage");
     if (body.psa) flags.push("PSA");
     if (body.box) flags.push("BOX");
+    if (body.pokémon) flags.push("Pokémon");
+    if (body.onepiece) flags.push("ONE PIECE");
 
     // ✅ 1. Create shop
     const { data: shop, error: shopError } = await supabaseAdmin

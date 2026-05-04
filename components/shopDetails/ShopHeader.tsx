@@ -59,7 +59,7 @@ export default function ShopHeader({ shop }: ShopHeaderProps) {
               key={flag}
               className="bg-indigo-600 text-white"
             >
-              {t.admin.shopForm.extras.productTags[flag.toLowerCase() as keyof typeof t.admin.shopForm.extras.productTags]}
+              {t.admin.shopForm.extras.productTags[flag.replace(" ", '').toLowerCase() as keyof typeof t.admin.shopForm.extras.productTags]}
             </Badge>
           ))}
         </div>

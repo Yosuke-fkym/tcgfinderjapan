@@ -118,7 +118,6 @@ function MapPageComponent() {
       console.error(err);
     }
   };
-// console.log(areas);
 
   const filteredShops = filterShops(shops, filters, favorites);
 

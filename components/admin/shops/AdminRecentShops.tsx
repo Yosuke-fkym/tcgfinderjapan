@@ -152,7 +152,7 @@ function AdminRecentShops() {
                       truncateText(locale === "jp" ?
                       shop.shop_name
                       :
-                     shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations], 25)
+                     shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name, 25)
                     }
                   </div>
 
@@ -171,7 +171,7 @@ function AdminRecentShops() {
                     truncateText(locale === "jp" ?
                     shop.shop_address
                     :
-                    shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations], 35) || t.admin.recentShops.table.unknown
+                    shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address, 35) || t.admin.recentShops.table.unknown
                   }
                 </div>
               </TableCell>
@@ -214,7 +214,7 @@ function AdminRecentShops() {
                 truncateText(locale === "jp" ?
                 shop.shop_name
                 :
-                shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations], 25)
+                shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name, 25) || t.admin.recentShops.table.unknown
               }
             </div>
 
@@ -229,9 +229,9 @@ function AdminRecentShops() {
             <MapPin size={14} />
             {
               truncateText(locale === "jp" ?
-              shop.shop_address
+              shop.shop_address 
               :
-              shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations], 35) || t.admin.recentShops.table.unknown
+              shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address, 35 ) 
             }
           </div>
 

@@ -8,18 +8,25 @@ import { AREA_MATCH } from "./areas";
 //   const jpMatch = address.match(/(.*?[都道府県])/);
 //   if (jpMatch) return jpMatch[0];
 
-//   // 🌍 fallback (English format: "Nagoya, Aichi")
+//   //  fallback (English format: "Nagoya, Aichi")
 //   const enMatch = address.match(/,\s*(\w+)/);
 //   if (enMatch) return enMatch[1];
 
 //   return address;
 // }
 
+
 export function extractArea(address: string): string | null {
   if (!address) return null;
 
+  const lower = address.toLowerCase();
+
   for (const [key, keywords] of Object.entries(AREA_MATCH)) {
-    if (keywords.some((word) => address.includes(word))) {
+    if (
+      keywords.some((word) =>
+        lower.includes(word.toLowerCase())
+      )
+    ) {
       return key;
     }
   }
@@ -29,7 +36,6 @@ export function extractArea(address: string): string | null {
 
  export function extractAreaMulti(shop: Shop, lang: string) {
   const address =
-    shop.shop_address_in_langs?.[lang] ||
     shop.shop_address;
 
   return extractArea(address);

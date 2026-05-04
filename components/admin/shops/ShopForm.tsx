@@ -21,6 +21,7 @@ import { useParams, useRouter } from "next/navigation";
 import { ShopVideo } from "@/types/types";
 import Image from "next/image";
 import { getT } from "@/lib/getT";
+import { translations } from "@/lib/i18n";
 
 export type BusinessHoursType = Record<
   string,
@@ -64,6 +65,9 @@ const DAY_MAP = {
   土曜日: "saturday",
   日曜日: "sunday",
 };
+
+const PRODUCT_TAG_KEYS = ["vintage", "psa", "box", "pokémon", "onepiece"];
+
 
   const [businessHours, setBusinessHours] = useState<BusinessHoursType>(
     days.reduce((acc: BusinessHoursType, day) => {
@@ -526,34 +530,26 @@ const DAY_MAP = {
             {/* PRODUCT FLAGS */}
 
             <div className="space-y-4">
-              <h3 className="font-semibold text-gray-800">{t.admin.shopForm.sections.productTags}</h3>
+  <h3 className="font-semibold text-gray-800">
+    {t.admin.shopForm.sections.productTags}
+  </h3>
 
-              <div className="flex gap-6">
-                <div className="flex items-center gap-2">
-                  <Checkbox
-                    name="vintage"
-                    defaultChecked={activeFlags.includes("Vintage")}
-                  />
-                  <Label>{t.admin.shopForm.extras.productTags.vintage}</Label>
-                </div>
+  <div className="flex gap-6 flex-wrap">
+    {PRODUCT_TAG_KEYS.map((key) => {
+      const label = t.admin.shopForm.extras.productTags[key as keyof typeof t.admin.shopForm.extras.productTags] as keyof typeof t.admin.shopForm.extras.productTags;
 
-                <div className="flex items-center gap-2">
-                  <Checkbox
-                    name="psa"
-                    defaultChecked={activeFlags.includes("PSA")}
-                  />
-                  <Label>{t.admin.shopForm.extras.productTags.psa}</Label>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <Checkbox
-                    name="box"
-                    defaultChecked={activeFlags.includes("BOX")}
-                  />
-                  <Label>{t.admin.shopForm.extras.productTags.box}</Label>
-                </div>
-              </div>
-            </div>
+      return (
+        <div key={key} className="flex items-center gap-2">
+          <Checkbox
+            name={key}
+            defaultChecked={activeFlags.includes(translations['en'].admin.shopForm.extras.productTags[key as keyof typeof t.admin.shopForm.extras.productTags])}
+          />
+          <Label>{label}</Label>
+        </div>
+      );
+    })}
+  </div>
+</div>
 
             {/* ACTIONS */}
 

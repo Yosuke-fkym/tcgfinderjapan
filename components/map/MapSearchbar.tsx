@@ -83,7 +83,7 @@ useEffect(() => {
 
   return () => clearTimeout(timeout);
 }, [localQuery, isComposing]);
-console.log(LANGUAGE_LABELS[locale as keyof typeof LANGUAGE_LABELS], languages);
+// console.log(productFlags);
 
 
   return (
@@ -165,7 +165,7 @@ console.log(LANGUAGE_LABELS[locale as keyof typeof LANGUAGE_LABELS], languages);
   }))
 }
                   />
-                  <span className="text-sm">{t.admin.shopForm.extras.productTags[p.toLowerCase() as keyof typeof t.admin.shopForm.extras.productTags]}</span>
+                  <span className="text-sm">{t.admin.shopForm.extras.productTags[p.toLowerCase().replace(" ", '') as keyof typeof t.admin.shopForm.extras.productTags]}</span>
                 </div>
               ))}
             </div>

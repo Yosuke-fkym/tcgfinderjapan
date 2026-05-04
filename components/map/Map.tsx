@@ -138,7 +138,7 @@ export default function Map({
                   locale === "jp" ?
                   selected.shop_name
                   :
-                 selected.shop_name_in_langs && selected.shop_name_in_langs[locale as keyof typeof translations]
+                 selected.shop_name_in_langs && selected.shop_name_in_langs[locale as keyof typeof translations] || selected.shop_name
                 }
               </p>
 
@@ -170,7 +170,7 @@ export default function Map({
                 locale === "jp" ?
                 selected.shop_address
                 :
-                selected.shop_address_in_langs && selected.shop_address_in_langs[locale as keyof typeof translations]
+                selected.shop_address_in_langs && selected.shop_address_in_langs[locale as keyof typeof translations] || selected.shop_address
               }
             </p>
 
