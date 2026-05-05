@@ -188,7 +188,7 @@ icon={
 
             <p
               className="text-xs text-blue-600 cursor-pointer mt-1"
-              onClick={() => router.push(`shop/${selected.shop_id}`)}
+              onClick={() =>router.push(`/${locale}/shop/${selected.shop_id}`)}
             >
               {t.buttons.viewDetails} →
             </p>
