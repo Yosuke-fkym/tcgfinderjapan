@@ -64,7 +64,7 @@ export const AREA_MATCH = {
   // Tokyo hotspots
   akihabara: ["秋葉原", "Akihabara"],
   ikebukuro: ["池袋", "Ikebukuro"],
-  tokyo: ["東京", "東京都", "Tokyo"],
+  tokyo: ["東京都", "Tokyo"],
 
   // Prefectures
   hokkaido: ["北海道", "Hokkaido"],

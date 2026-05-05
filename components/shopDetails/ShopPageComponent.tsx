@@ -153,15 +153,15 @@ useEffect(() => {
       {/* Back */}
       <div className="space-y-2">
         <button
-          onClick={() => router.push("/map")}
-          className="text-sm text-gray-500 hover:text-gray-800 transition"
-        >
+         onClick={() => router.push(`/${params.locale}/map`)}
+         className="text-sm text-gray-500 hover:text-gray-800 transition"
+         >
           ← {t.common.back}
         </button>
 
         <div className="text-xs text-gray-400 flex items-center gap-1">
           <span
-            onClick={() => router.push("/map")}
+          onClick={() => router.push(`/${params.locale}/map`)}
             className="cursor-pointer hover:underline"
           >
             {t.shopDetails.page.shopList}
@@ -169,9 +169,9 @@ useEffect(() => {
           <span>›</span>
           <span className="text-gray-400">
             {
-              params.locale === "jp" ?
-              shop.shop_name
-              :
+              // params.locale === "jp" ?
+              // shop.shop_name
+              // :
              shop.shop_name_in_langs && shop.shop_name_in_langs[params.locale as keyof typeof translations]
             }
           </span>
@@ -218,9 +218,9 @@ useEffect(() => {
 
           <p className="text-sm text-gray-600 leading-relaxed">
             {
-              params.locale === "jp" ?
-              shop.description
-              :
+              // params.locale === "jp" ?
+              // shop.description
+              // :
              shop.shop_desc_in_langs && shop.shop_desc_in_langs[params.locale as keyof typeof translations]
             }
           </p>

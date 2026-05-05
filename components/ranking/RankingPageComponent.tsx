@@ -24,7 +24,7 @@ interface RankedShop {
   score: number;
   shop: {
     name: string;
-    shop_address?: string;
+    area: string
     description?: string;
   };
 }
@@ -43,16 +43,25 @@ export default function RankingPageComponent({initialData = []}: {
   const t = getT(locale as string);
 
 
-const areas = AREA_OPTIONS.map((a) => ({
-  value: a.value,
-  label: t.ranking.areas[a.key as keyof typeof t.ranking.areas],
-  group: a.group,
-}));
+const availableAreas = new Set(
+  initialData.map((item) => item.shop?.area).filter(Boolean)
+);
+
+const areas = AREA_OPTIONS
+  .filter((a) => availableAreas.has(a.value))
+  .map((a) => ({
+    value: a.value,
+    label: t.ranking.areas[a.key as keyof typeof t.ranking.areas],
+    group: a.group,
+  }));
+  
 
   const tags = [
     { value: "Vintage", label: t.admin.shopForm.extras.productTags.vintage },
     { value: "PSA", label: t.admin.shopForm.extras.productTags.psa },
     { value: "BOX", label: t.admin.shopForm.extras.productTags.box },
+    { value: "Pokémon", label: t.admin.shopForm.extras.productTags.pokémon},
+    { value: "ONE PIECE", label: t.admin.shopForm.extras.productTags.onepiece},
   ];
 
   useEffect(() => {
@@ -65,8 +74,9 @@ const areas = AREA_OPTIONS.map((a) => ({
     try {
       const params = new URLSearchParams();
       const isJP = locale === "jp";
-
-      if (area !== "ALL") params.append("area", isJP ? area : translations.jp.ranking.areas[area.toLocaleLowerCase() as keyof typeof t.ranking.areas]);
+if (area !== "ALL") {
+  params.append("area", area);
+}
       if (tag !== "ALL") params.append("tag", tag);
 
       const res = await fetch(`/api/shops/ranking?${params.toString()}`);

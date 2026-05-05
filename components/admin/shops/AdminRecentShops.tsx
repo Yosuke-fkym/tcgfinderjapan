@@ -149,9 +149,10 @@ function AdminRecentShops() {
                   <div className="flex items-center gap-2">
                     <Store size={16} className="text-gray-500" />
                     {
-                      truncateText(locale === "jp" ?
-                      shop.shop_name
-                      :
+                      truncateText(
+                      //   locale === "jp" ?
+                      // shop.shop_name
+                      // :
                      shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name, 25)
                     }
                   </div>
@@ -168,9 +169,10 @@ function AdminRecentShops() {
                 <div className="flex items-center gap-2">
                   <MapPin size={14} />
                   {
-                    truncateText(locale === "jp" ?
-                    shop.shop_address
-                    :
+                    truncateText(
+                    //   locale === "jp" ?
+                    // shop.shop_address
+                    // :
                     shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address, 35) || t.admin.recentShops.table.unknown
                   }
                 </div>
@@ -187,7 +189,7 @@ function AdminRecentShops() {
 
               <TableCell className="text-right">
                 <button
-                  onClick={() => router.push(`/shop/${shop.shop_id}`)}
+                  onClick={() => router.push(`/${locale}/shop/${shop.shop_id}`)}
                   className="flex ml-auto items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-3 py-1.5 rounded-md transition"
                 >
                   <Eye size={14} />
@@ -211,9 +213,10 @@ function AdminRecentShops() {
             <div className="font-medium text-gray-800 flex items-center gap-2">
               <Store size={16} />
               {
-                truncateText(locale === "jp" ?
-                shop.shop_name
-                :
+                truncateText(
+                  // locale === "jp" ?
+                // shop.shop_name
+                // :
                 shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name, 25) || t.admin.recentShops.table.unknown
               }
             </div>
@@ -228,9 +231,10 @@ function AdminRecentShops() {
           <div className="text-sm text-gray-600 flex items-center gap-2">
             <MapPin size={14} />
             {
-              truncateText(locale === "jp" ?
-              shop.shop_address 
-              :
+              truncateText(
+              //   locale === "jp" ?
+              // shop.shop_address 
+              // :
               shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address, 35 ) 
             }
           </div>
@@ -239,14 +243,13 @@ function AdminRecentShops() {
             <Clock size={14} />
             {new Date(shop.created_at).toLocaleDateString()}
           </div>
-
           <button
-            onClick={() => router.push(`/shop/${shop.shop_id}`)}
-            className="w-full flex justify-center items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-3 py-2 rounded-md transition"
-          >
-            <Eye size={14} />
-            {t.admin.recentShops.actions.viewDetails}
-          </button>
+  onClick={() => router.push(`/${locale}/shop/${shop.shop_id}`)}
+  className="w-full flex justify-center items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-3 py-2 rounded-md transition"
+>
+  <Eye size={14} />
+  {t.admin.recentShops.actions.viewDetails}
+</button>
         </div>
       ))}
     </div>

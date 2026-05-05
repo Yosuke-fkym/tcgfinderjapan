@@ -17,6 +17,7 @@ export function transformShop(shop: any): Shop {
     created_at: shop.created_at,
     business_hours: shop.business_hours,
     description: shop.description,
+    area: shop.area || "",
     x_account_url: shop.x_account_url || null,
     holiday_hours: shop.holiday_hours,
     website: shop.website,

@@ -115,32 +115,9 @@ export async function GET(req: Request) {
     // =============================
 
     // ✅ AREA FILTER
-   if (area && area !== "ALL") {
+  if (area && area !== "ALL") {
   final = final.filter((item) => {
-    const address = item.shop.shop_address || "";
-    const name = item.shop.shop_name || "";
-
-    // 秋葉原
-    if (area === "秋葉原") {
-      return address.includes("秋葉原") || name.includes("秋葉原");
-    }
-
-    // 池袋
-    if (area === "池袋") {
-      return address.includes("池袋");
-    }
-
-    // 東京全体 (client requirement)
-    if (area === "東京") {
-      return (
-        address.includes("東京") ||
-        address.includes("池袋") ||
-        name.includes("秋葉原")
-      );
-    }
-
-    // prefectures (大阪府, 愛知県, etc.)
-    return address.includes(area);
+    return item.shop.area === area;
   });
 }
     // ✅ TAG FILTER

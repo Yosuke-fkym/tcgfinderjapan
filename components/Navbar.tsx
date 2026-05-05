@@ -31,18 +31,20 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const changeLanguage = (newLocale: string) => {
-    const currentPath = path || "/";
-    const segments = currentPath.split("/");
+  if (!path) return;
 
-    if (segments[1] === "en" || segments[1] === "jp") {
-      segments[1] = newLocale;
-      router.push(segments.join("/") || `/${newLocale}`);
-    } else {
-      router.push(`/${newLocale}${currentPath === "/" ? "" : currentPath}`);
-    }
+  const segments = path.split("/");
 
-    setMenuOpen(false);
-  };
+  // replace existing locale
+  if (segments[1] === "en" || segments[1] === "jp") {
+    segments[1] = newLocale;
+  } else {
+    segments.unshift("", newLocale);
+  }
+
+  router.push(segments.join("/") || `/${newLocale}`);
+  setMenuOpen(false);
+};
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -131,7 +133,7 @@ function Navbar() {
             <DropdownMenuTrigger asChild>
               <button className="flex items-center gap-1.5 text-sm text-white hover:opacity-80 transition">
                 <Globe size={16} />
-                <span className="hidden sm:inline">
+                <span >
                   {(locale as string)?.toUpperCase() || "EN"}
                 </span>
               </button>
@@ -169,24 +171,26 @@ function Navbar() {
   </DropdownMenuItem>
 )}
                 <DropdownMenuItem
-                  onClick={() => router.push(`/${locale}/accounts/me`)}
-                >
-                  {t.navbar.myPage}
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() =>
-                    router.push(`/${locale}/accounts/me/favourite-shops`)
-                  }
-                >
-                  {t.navbar.favorites}
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() =>
-                    router.push(`/${locale}/accounts/me/viewed-history`)
-                  }
-                >
-                  {t.navbar.viewedHistory}
-                </DropdownMenuItem>
+  onClick={() => router.push(`/${locale}/accounts/me`)}
+>
+  {t.navbar.myPage}
+</DropdownMenuItem>
+
+<DropdownMenuItem
+  onClick={() =>
+    router.push(`/${locale}/accounts/me/favourite-shops`)
+  }
+>
+  {t.navbar.favorites}
+</DropdownMenuItem>
+
+<DropdownMenuItem
+  onClick={() =>
+    router.push(`/${locale}/accounts/me/viewed-history`)
+  }
+>
+  {t.navbar.viewedHistory}
+</DropdownMenuItem>
                 <DropdownMenuItem onClick={handleLogout} className="text-red-500">
                   {t.navbar.logout}
                 </DropdownMenuItem>

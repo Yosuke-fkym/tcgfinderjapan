@@ -52,7 +52,7 @@ export default function RankingFilter({
 
     const { locale } = useParams();
     const t = getT(locale as string);
-``
+
 //     const areasObj = [
 //   { value: "akihabara", label: t.ranking.areas.akihabara },
 //   { value: "ikebukuro", label: t.ranking.areas.ikebukuro },
@@ -71,7 +71,9 @@ export default function RankingFilter({
               aria-label={t.ranking.filters.selectArea}
               className="w-55 justify-between"
             >
-              {area === "ALL" ? t.ranking.filters.selectArea : area}
+              {area === "ALL"
+  ? t.ranking.filters.selectArea
+  : t.ranking.areas?.[area as keyof typeof t.ranking.areas] || area}
               <ChevronsUpDown className="ml-2 h-4 w-4 opacity-50" />
             </Button>
           </PopoverTrigger>
@@ -101,7 +103,7 @@ export default function RankingFilter({
                     <CommandItem
                       key={item.value}
                       onSelect={() => {
-                        setArea(t.ranking.areas[item.value as keyof typeof t.ranking.areas] || item.value);
+                        setArea(item.value);
                         setOpen(false);
                       }}
                     >
@@ -119,7 +121,7 @@ export default function RankingFilter({
                       <CommandItem
                         key={item.value}
                         onSelect={() => {
-                          setArea(item.label);
+                          setArea(item.value);
                           setOpen(false);
                         }}
                       >

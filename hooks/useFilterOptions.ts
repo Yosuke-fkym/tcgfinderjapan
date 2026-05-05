@@ -6,7 +6,7 @@ export function useFilterOptions(shops: Shop[], lang: string) {
    const areas = Array.from(
   new Set(
     shops
-      .map((shop) => extractArea(shop.shop_address))
+      .map((shop) => shop.area)
       .filter(Boolean)
   )
 );

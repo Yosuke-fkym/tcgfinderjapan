@@ -38,6 +38,10 @@ export default function MapSearchBar({
   const [localQuery, setLocalQuery] = useState(filters.query);
   const [isComposing, setIsComposing] = useState(false);
 
+  const availableAreas = new Set(areas);
+  const filteredAreas = AREA_OPTIONS.filter((a) =>
+  availableAreas.has(a.value)
+);
   useEffect(() => {
     if (filters.favoritesOnly && isLoggedIn === false) {
       toast.error(t.shopDetails.page.loginRequired);
@@ -135,20 +139,22 @@ useEffect(() => {
             {/* 📍 Area */}
             <div>
               <p className="text-sm font-medium mb-2">{t.map.filters.area}</p>
-              {areas.map((a) => (
-                <div key={a} className="flex items-center gap-2">
-                  <Checkbox
-                    checked={tempFilters.area.includes(a)}
-                    onCheckedChange={() =>
-  setTempFilters((prev) => ({
-    ...prev,
-    area: toggleValue(prev.area, a),
-  }))
-}
-                  />
-                  <span className="text-sm">{t.ranking?.areas?.[a as keyof typeof t.ranking.areas] ?? a}</span>
-                </div>
-              ))}
+             {filteredAreas.map((a) => (
+  <div key={a.value} className="flex items-center gap-2">
+    <Checkbox
+      checked={tempFilters.area.includes(a.value)}
+      onCheckedChange={() =>
+        setTempFilters((prev) => ({
+          ...prev,
+          area: toggleValue(prev.area, a.value),
+        }))
+      }
+    />
+    <span className="text-sm">
+      {t.ranking?.areas?.[a.key as keyof typeof t.ranking.areas] ?? a.value}
+    </span>
+  </div>
+))}
             </div>
 
             {/* 🏷️ Product */}

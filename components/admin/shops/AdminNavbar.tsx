@@ -19,10 +19,18 @@ export default function AdminNavbar() {
   const t = getT(locale as string);
 
   const changeLanguage = (newLocale: string) => {
-    const segments = pathname.split("/");
+  if (!pathname || locale === newLocale) return;
+
+  const segments = pathname.split("/");
+
+  if (segments[1] === "en" || segments[1] === "jp") {
     segments[1] = newLocale;
-    router.push(segments.join("/") || `/${newLocale}`);
-  };
+  } else {
+    segments.unshift("", newLocale);
+  }
+
+  router.push(segments.join("/") || `/${newLocale}`);
+};
 
   useEffect(() => {
     const updateTime = () => {

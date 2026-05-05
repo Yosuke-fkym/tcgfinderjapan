@@ -20,6 +20,7 @@ export type Shop = {
   shop_name: string;
   shop_address: string;
   latitude: number;
+  area: string;
   longitude: number;
   language_support: string[];
   description: string;

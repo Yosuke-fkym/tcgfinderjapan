@@ -41,9 +41,10 @@ export default function RelatedShops({ shops }: RelatedShopsProps) {
                 height={160}
                 width={256}
                 alt={
-                  locale === "jp"
-                  ? shop.shop_name
-                   : shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name
+                  // locale === "jp"
+                  // ? shop.shop_name
+                  //  : 
+                   shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name
                 }
                 src={
                   shop.images?.[0] || "/placeholder.jpg"
@@ -58,17 +59,19 @@ export default function RelatedShops({ shops }: RelatedShopsProps) {
             <CardContent className="p-2 pt-0">
               <p className="font-semibold text-indigo-600 line-clamp-1">
                 {
-                  locale === "jp"
-                    ? shop.shop_name
-                    : shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name
+                  // locale === "jp"
+                  //   ? shop.shop_name
+                  //   :
+                     shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name
                 }
               </p>
 
               <p className="text-sm text-gray-500 mt-1 line-clamp-1">
                 {
-                  locale === "jp"
-                    ? shop.shop_address
-                     : shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
+                  // locale === "jp"
+                  //   ? shop.shop_address
+                  //    :
+                      shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
                  || t.common.unknownLocation}
               </p>
             </CardContent>

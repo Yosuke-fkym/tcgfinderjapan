@@ -49,7 +49,7 @@ export default function ShopList({
             id={`shop-${shop.shop_id}`}
             onClick={() => {
               if (selected?.shop_id === shop.shop_id) {
-                router.push(`/shop/${shop.shop_id}`);
+                router.push(`shop/${shop.shop_id}`);
               } else {
                 onSelect(shop);
               }
@@ -64,18 +64,18 @@ export default function ShopList({
             <div className="flex flex-col gap-1">
               <div className="font-medium text-base text-white">
                 {
-                  locale === "jp" ?
-                  shop.shop_name
-                  :
+                  // locale === "jp" ?
+                  // shop.shop_name
+                  // :
                  shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name
                 }
               </div>
 
               <div className="text-xs text-gray-500 line-clamp-1">
                 {
-                  locale === "jp" ?
-                  shop.shop_address
-                  :
+                  // locale === "jp" ?
+                  // shop.shop_address
+                  // :
                  shop.shop_address_in_langs && shop?.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address
                 }
               </div>

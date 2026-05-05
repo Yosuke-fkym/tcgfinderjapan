@@ -22,18 +22,18 @@ export default function ShopHeader({ shop }: ShopHeaderProps) {
         <div className="space-y-1">
           <h1 className="text-xl font-semibold text-white">
             {
-              locale === "jp" ?
-              shop.shop_name
-              :
+              // locale === "jp" ?
+              // shop.shop_name
+              // :
              shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
             }
           </h1>
 
           <p className="text-sm text-gray-500">
             {
-              locale === "jp" ?
-              shop.shop_address
-              :   
+              // locale === "jp" ?
+              // shop.shop_address
+              // :   
               shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
             }
           </p>

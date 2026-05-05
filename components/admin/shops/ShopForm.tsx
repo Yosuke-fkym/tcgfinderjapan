@@ -22,6 +22,23 @@ import { ShopVideo } from "@/types/types";
 import Image from "next/image";
 import { getT } from "@/lib/getT";
 import { translations } from "@/lib/i18n";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+
+import { Check, ChevronsUpDown } from "lucide-react";
+import { AREA_MATCH, AREA_OPTIONS } from "@/lib/helpers/areas";
 
 export type BusinessHoursType = Record<
   string,
@@ -43,9 +60,12 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
   const [reels, setReels] = useState<string[]>(
   initialData?.shopVideos?.map((v: ShopVideo) => v.videoUrl) || [""]
 );
+const [areaOpen, setAreaOpen] = useState(false);
+const [area, setArea] = useState(initialData?.area || "");
 
  const { locale } = useParams();
   const t = getT(locale as string);
+// console.log(area);
 
 const days = [
   "monday",
@@ -167,6 +187,7 @@ const PRODUCT_TAG_KEYS = ["vintage", "psa", "box", "pokémon", "onepiece"];
       holiday_hours: holidayHours,
       videos: reels.filter((url) => url.trim() !== ""),
       shop_id: initialData?.shop_id,
+      area: area,
     };
 
     setLoading(true);
@@ -224,6 +245,13 @@ const PRODUCT_TAG_KEYS = ["vintage", "psa", "box", "pokémon", "onepiece"];
 
     setLoading(false);
   };
+
+
+  const areas = AREA_OPTIONS.map((a) => ({
+  value: a.value,
+  label: AREA_MATCH[a.key as keyof typeof AREA_MATCH][locale === 'en' ? 1 : 0] || a.value,
+  group: a.group,
+}));
 
   return (
     <div className="2xl:max-w-4xl 2xl:mx-auto">
@@ -315,6 +343,75 @@ const PRODUCT_TAG_KEYS = ["vintage", "psa", "box", "pokémon", "onepiece"];
               </div>
             </div>
 
+          <div className="grid gap-2">
+  <Label>{t.admin.shopForm.fields.area || "Area"}</Label>
+
+  <Popover open={areaOpen} onOpenChange={setAreaOpen}>
+    <PopoverTrigger asChild>
+      <Button
+        variant="outline"
+        role="combobox"
+        className="justify-between"
+      >
+        {area
+          ? areas.find((a) => a.value === area)?.label
+          : "Select area"}
+        <ChevronsUpDown className="ml-2 h-4 w-4 opacity-50" />
+      </Button>
+    </PopoverTrigger>
+
+    <PopoverContent className="p-0">
+      <Command>
+        <CommandInput placeholder="Search area..." />
+        <CommandEmpty>No area found</CommandEmpty>
+
+        <CommandList>
+
+          {/* Tokyo */}
+          <CommandGroup heading="Tokyo Area">
+            {areas
+              .filter((a) => a.group === "tokyo")
+              .map((item) => (
+                <CommandItem
+                  key={item.value}
+                  onSelect={() => {
+                    setArea(item.value);
+                    setAreaOpen(false);
+                  }}
+                >
+                  {item.label}
+                  {area === item.value && (
+                    <Check className="ml-auto h-4 w-4" />
+                  )}
+                </CommandItem>
+              ))}
+          </CommandGroup>
+
+          {/* Prefectures */}
+          <CommandGroup heading="Prefectures">
+            {areas
+              .filter((a) => a.group === "prefecture")
+              .map((item) => (
+                <CommandItem
+                  key={item.value}
+                  onSelect={() => {
+                    setArea(item.value);
+                    setAreaOpen(false);
+                  }}
+                >
+                  {item.label}
+                  {area === item.value && (
+                    <Check className="ml-auto h-4 w-4" />
+                  )}
+                </CommandItem>
+              ))}
+          </CommandGroup>
+
+        </CommandList>
+      </Command>
+    </PopoverContent>
+  </Popover>
+</div>
             {/* DETAILS */}
 
             <div className="space-y-4">

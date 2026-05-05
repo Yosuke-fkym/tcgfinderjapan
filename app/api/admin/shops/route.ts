@@ -33,6 +33,8 @@ export async function POST(req: Request) {
     if (body.pokémon) flags.push("Pokémon");
     if (body.onepiece) flags.push("ONE PIECE");
 
+    // console.log("body: ", body.area);
+    
     // ✅ 1. Create shop
     const { data: shop, error: shopError } = await supabaseAdmin
       .from("shops")
@@ -46,6 +48,7 @@ export async function POST(req: Request) {
         website: body.website,
         business_hours: body.business_hours,
         holiday_hours: body.holiday_hours,
+        area: body.area,
       })
       .select()
       .single();
@@ -115,6 +118,7 @@ export async function PATCH(req: Request) {
         website: body.website,
         business_hours: body.business_hours,
         holiday_hours: body.holiday_hours,
+        area: body.area,
       })
       .eq("shop_id", shop_id);
 

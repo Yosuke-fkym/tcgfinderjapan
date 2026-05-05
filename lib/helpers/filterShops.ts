@@ -26,18 +26,25 @@ export function filterShops(
       return false;
     }
 
-    const area = extractArea(shop.shop_address || "");
-    const areaMulti = extractAreaMulti(shop, "en");
+    // const area = extractArea(shop.shop_address || "");
+    // const areaMulti = extractAreaMulti(shop, "en");
+
+    // if (
+    //   filters.area.length &&
+    //   !(
+    //     (area !== null && filters.area.includes(area)) ||
+    //     (areaMulti !== null && filters.area.includes(areaMulti))
+    //   )
+    // ) {
+    //   return false;
+    // }
 
     if (
-      filters.area.length &&
-      !(
-        (area !== null && filters.area.includes(area)) ||
-        (areaMulti !== null && filters.area.includes(areaMulti))
-      )
-    ) {
-      return false;
-    }
+  filters.area.length &&
+  (!shop.area || !filters.area.includes(shop.area))
+) {
+  return false;
+}
 
     if (
       filters.productFlags.length &&

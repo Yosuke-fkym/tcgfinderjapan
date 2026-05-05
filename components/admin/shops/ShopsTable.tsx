@@ -124,9 +124,10 @@ export default function ShopsTable({ shops, refresh }: any) {
                   <div className="flex items-center gap-2 line-clamp-1">
                     <Store size={18} className="text-gray-500" />
                     {
-                      truncateText(locale === "jp" ?
-                      shop.shop_name
-                      :
+                      truncateText(
+                      //   locale === "jp" ?
+                      // shop.shop_name
+                      // :
                      shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name, 25) || t.admin.recentShops.table.unknown
                     }
                   </div>
@@ -145,9 +146,10 @@ export default function ShopsTable({ shops, refresh }: any) {
 
               <TableCell className="text-sm lg:text-base truncate text-gray-600 py-4">
                 {
-                  truncateText(locale === "jp" ?
-                  shop.shop_address
-                  :
+                  truncateText(
+                  //   locale === "jp" ?
+                  // shop.shop_address
+                  // :
                   shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address, 35) || t.admin.recentShops.table.unknown
                 }
               </TableCell>
@@ -171,7 +173,7 @@ export default function ShopsTable({ shops, refresh }: any) {
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem asChild>
                       <Link
-                        href={`/shop/${shop.shop_id}`}
+                        href={`/${locale}/shop/${shop.shop_id}`}
                         className="flex items-center gap-2"
                       >
                         <ArrowUpRightFromSquareIcon className="h-4 w-4" />
@@ -243,9 +245,10 @@ export default function ShopsTable({ shops, refresh }: any) {
             <div className="font-medium flex items-center gap-2">
               <Store size={16} />
               {
-                truncateText(locale === "jp" ?
-                shop.shop_name
-                :
+                truncateText(
+                //   locale === "jp" ?
+                // shop.shop_name
+                // :
                 shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations], 25)
               }
             </div>
@@ -263,9 +266,10 @@ export default function ShopsTable({ shops, refresh }: any) {
 
           <div className="text-sm text-gray-600">
             {
-              truncateText(locale === "jp" ?
-              shop.shop_address
-              :
+              truncateText(
+              //   locale === "jp" ?
+              // shop.shop_address
+              // :
               shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations], 35) || "—"
             }
           </div>
@@ -281,7 +285,7 @@ export default function ShopsTable({ shops, refresh }: any) {
 
           <div className="flex gap-2">
             <Link
-              href={`/shop/${shop.shop_id}`}
+              href={`/${locale}/shop/${shop.shop_id}`}
               className="flex-1 text-center bg-gray-100 hover:bg-gray-200 py-2 rounded-md text-sm"
             >
               {t.buttons.viewDetails}

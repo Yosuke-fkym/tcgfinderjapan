@@ -21,7 +21,7 @@ export async function proxy(req: NextRequest) {
 
   // CHECK LOCALE
   const hasLocale = locales.some((locale) =>
-    pathname.startsWith(`/${locale}`)
+    pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
   // redirect if no locale
@@ -35,7 +35,7 @@ export async function proxy(req: NextRequest) {
   const locale = pathname.split("/")[1];
 
   //  clean path (remove locale)
-  const cleanPath = pathname.replace(`/${locale}`, "") || "/";
+  const cleanPath = pathname.slice(`/${locale}`.length) || "/";
 
   const res = NextResponse.next();
   const supabase = await createAuthClient();

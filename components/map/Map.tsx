@@ -70,8 +70,10 @@ export default function Map({
 
     if (!lat || !lng) return;
 
-    mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    const bounds = new window.google.maps.LatLngBounds();
+    bounds.extend({ lat, lng });
+mapRef.current.fitBounds(bounds);
+    mapRef.current.setZoom(18);
   }, [selected]);
 
   const validShops = useMemo(() => {
@@ -87,7 +89,7 @@ export default function Map({
       onUnmount={onUnmount}
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={10}
+      zoom={13}
       options={{
         disableDefaultUI: true,
         zoomControl: true,
@@ -107,7 +109,7 @@ export default function Map({
             key={shop.shop_id}
             position={{ lat, lng }}
             onClick={() => onSelect(shop)}
-            icon={
+icon={
               isSelected
                 ? "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
                 : isOpen
@@ -135,9 +137,9 @@ export default function Map({
             <div className="flex justify-between items-center">
               <p className="text-sm font-medium" id="shop-dialog-title">
                 {
-                  locale === "jp" ?
-                  selected.shop_name
-                  :
+                  // locale === "jp" ?
+                  // selected.shop_name
+                  // :
                  selected.shop_name_in_langs && selected.shop_name_in_langs[locale as keyof typeof translations] || selected.shop_name
                 }
               </p>
@@ -167,9 +169,9 @@ export default function Map({
 
             <p className="text-xs text-gray-500">
               {
-                locale === "jp" ?
-                selected.shop_address
-                :
+                // locale === "jp" ?
+                // selected.shop_address
+                // :
                 selected.shop_address_in_langs && selected.shop_address_in_langs[locale as keyof typeof translations] || selected.shop_address
               }
             </p>
@@ -186,7 +188,7 @@ export default function Map({
 
             <p
               className="text-xs text-blue-600 cursor-pointer mt-1"
-              onClick={() => router.push(`/shop/${selected.shop_id}`)}
+              onClick={() => router.push(`shop/${selected.shop_id}`)}
             >
               {t.buttons.viewDetails} →
             </p>

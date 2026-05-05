@@ -22,9 +22,9 @@ export function RankingRow({ item, index }: any) {
           <div>
             <p className="font-medium text-indigo-600">
               {
-                locale === "jp" ?
-                item.shop?.shop_name
-                :
+                // locale === "jp" ?
+                // item.shop?.shop_name
+                // :
                item.shop?.shop_name_in_langs && item.shop?.shop_name_in_langs[locale as keyof typeof translations]
               }
             </p>

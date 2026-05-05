@@ -133,18 +133,18 @@ export default function FavouriteShopsPageComponent() {
             <CardContent className="p-2 pt-0">
               <p className="font-semibold text-indigo-600 line-clamp-1">
                 {
-                  locale === "jp" ?
-                  fav.shops?.shop_name
-                  :
+                  // locale === "jp" ?
+                  // fav.shops?.shop_name
+                  // :
                  fav.shops?.shop_name_in_langs && fav.shops.shop_name_in_langs[locale as keyof typeof translations]
                 }
               </p>
 
               <p className="text-sm text-gray-500 mt-1 line-clamp-1">
                 {
-                  locale === "jp" ?
-                  fav.shops?.shop_address
-                  :
+                  // locale === "jp" ?
+                  // fav.shops?.shop_address
+                  // :
                   fav.shops?.shop_address_in_langs && fav.shops.shop_address_in_langs[locale as keyof typeof translations]
                  || t.favorites.unknownLocation
                 }

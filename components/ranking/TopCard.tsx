@@ -13,7 +13,7 @@ export function TopCard({ item, index }: any) {
   const t = getT(locale as string);
 
   return (
-    <Link href={`/shop/${item.shopId}`}>
+  <Link href={`/${locale}/shop/${item.shopId}`}>
       <div className="w-full h-full p-4 sm:p-5 rounded-2xl border shadow-sm hover:shadow-md transition cursor-pointer bg-white flex flex-col justify-between">
 
         {/* TOP */}
@@ -26,9 +26,9 @@ export function TopCard({ item, index }: any) {
           {/* Name */}
           <h2 className="font-semibold text-indigo-600 text-base sm:text-lg line-clamp-1">
             {
-              locale === "jp" ?
-              item.shop?.shop_name
-              :
+              // locale === "jp" ?
+              // item.shop?.shop_name
+              // :
              item.shop?.shop_name_in_langs && item.shop?.shop_name_in_langs[locale as keyof typeof translations]
             }
           </h2>
@@ -58,9 +58,9 @@ export function TopCard({ item, index }: any) {
           {item.shop?.shop_address && (
             <p className="text-[11px] sm:text-xs text-muted-foreground mt-2 flex items-center gap-1 line-clamp-1">
               <MapPin size={12} /> {
-                locale === "jp" ?
-                item.shop.shop_address
-                :
+                // locale === "jp" ?
+                // item.shop.shop_address
+                // :
                item.shop.shop_address_in_langs && item.shop.shop_address_in_langs[locale as keyof typeof translations]
               }
             </p>
@@ -70,9 +70,9 @@ export function TopCard({ item, index }: any) {
           {item.shop?.description && (
             <p className="text-[11px] sm:text-xs mt-2 text-muted-foreground line-clamp-2">
               {
-                locale === "jp" ?
-                item.shop.description
-                :
+                // locale === "jp" ?
+                // item.shop.description
+                // :
                item.shop.shop_desc_in_langs && item.shop.shop_desc_in_langs[locale as keyof typeof translations]
               }
             </p>

@@ -40,6 +40,7 @@ export async function PATCH(req: Request, { params }: any) {
   delete body.onepiece;
   delete body.videos;
 
+  
   // -------- update shop --------
   const { data: shop, error } = await supabaseAdmin
     .from("shops")

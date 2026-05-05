@@ -45,12 +45,12 @@ export default function RankingLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="mx-auto pb-10 pt-4">
-      <div className="max-w-6xl px-10">
+      <div className="max-w-6xl px-4 sm:px-10">
         <div className="flex items-center justify-between mb-4">
           
           {/* Back Button */}
           <button
-            onClick={() => router.push('/map')}
+            onClick={() => router.push('map')}
             className="flex items-center gap-2 text-sm text-gray-600 hover:text-black"
           >
             <ArrowLeft size={16} />
@@ -59,10 +59,10 @@ export default function RankingLayout({ children }: { children: ReactNode }) {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-10 flex justify-center items-center mt-8 gap-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-10 flex justify-center items-center mt-8 gap-6">
         {/* Content */}
         <div className="md:col-span-3">
-          <Card className="p-6">{children}</Card>
+          <Card className="p-3 sm:p-6">{children}</Card>
         </div>
       </div>
     </div>
