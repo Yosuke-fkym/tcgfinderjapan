@@ -58,6 +58,7 @@ export async function POST(req: Request) {
       x_account_url: r.x_account_url,
       business_hours: parseBusinessHours(r),
       holiday_hours: parseHoliday(r),
+      area: r.area?.toLowerCase(),
     };
 
     // 🟢 insert shop
