@@ -65,7 +65,6 @@ const [area, setArea] = useState(initialData?.area || "");
 
  const { locale } = useParams();
   const t = getT(locale as string);
-// console.log(area);
 
 const days = [
   "monday",
@@ -124,7 +123,7 @@ const PRODUCT_TAG_KEYS = ["vintage", "psa", "box", "pokémon", "onepiece"];
     initialData?.shop_product_flags?.map((f: any) => f.product_flags.name) ||
     [];
 
-  // ✅ reel handlers
+  // reel handlers
   const handleReelChange = (index: number, value: string) => {
     setReels((prev) => {
       const updated = [...prev];
@@ -138,7 +137,7 @@ const PRODUCT_TAG_KEYS = ["vintage", "psa", "box", "pokémon", "onepiece"];
     setReels((prev) => [...prev, ""]);
   };
 
-  // ✅ FIXED: always keep 1 input
+  //  FIXED: always keep 1 input
   const removeReelField = (index: number) => {
     const updated = reels.filter((_, i) => i !== index);
     setReels(updated.length ? updated : [""]);
@@ -180,7 +179,7 @@ const PRODUCT_TAG_KEYS = ["vintage", "psa", "box", "pokémon", "onepiece"];
 
     const formData = new FormData(e.target);
 
-    // ✅ FIXED: clean reels + add shop_id
+    //  FIXED: clean reels + add shop_id
     const body = {
       ...Object.fromEntries(formData),
       business_hours: businessHours,
@@ -234,7 +233,7 @@ const PRODUCT_TAG_KEYS = ["vintage", "psa", "box", "pokémon", "onepiece"];
           : "ショップの作成に成功しました"
       );
 
-      // ✅ FIXED: reset reels
+      // FIXED: reset reels
       if (mode === "create") {
         e.target.reset();
         setReels([""]);
@@ -414,7 +413,7 @@ const PRODUCT_TAG_KEYS = ["vintage", "psa", "box", "pokémon", "onepiece"];
 </div>
             {/* DETAILS */}
 
-            <div className="space-y-4">
+            {/* <div className="space-y-4">
               <h3 className="font-semibold text-gray-800 flex items-center gap-2">
                 <Globe size={16} />
                 {t.admin.shopForm.sections.details}
@@ -430,7 +429,7 @@ const PRODUCT_TAG_KEYS = ["vintage", "psa", "box", "pokémon", "onepiece"];
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="space-y-4">
               <h3 className="font-semibold text-gray-800">

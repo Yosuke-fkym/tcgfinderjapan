@@ -53,7 +53,7 @@ export async function POST(req: Request) {
       latitude: parseFloat(r.latitude),
       longitude: parseFloat(r.longitude),
       website: r.website,
-      language_support: r.language_support,
+      // language_support: r.language_support,
       description: r.description,
       x_account_url: r.x_account_url,
       business_hours: parseBusinessHours(r),

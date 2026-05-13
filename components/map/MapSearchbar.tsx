@@ -177,7 +177,7 @@ useEffect(() => {
             </div>
 
             {/* 🌐 Language */}
-           <div>
+           {/* <div>
   <p className="text-sm font-medium mb-2">
     {t.map.filters.language}
   </p>
@@ -201,7 +201,7 @@ useEffect(() => {
       </span>
     </div>
   ))}
-</div>
+</div> */}
 
             {/* ⏰ Open Now */}
             <div className="flex items-center gap-2">
