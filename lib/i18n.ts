@@ -643,6 +643,7 @@ languagePlaceholder: "Japanese, English",
       legal: {
         privacy: "Privacy Policy",
         terms: "Terms of Service",
+        about: "About Us",
       },
 
       bottom: {
@@ -1446,6 +1447,7 @@ languagePlaceholder: "日本語・英語",
       legal: {
         privacy: "プライバシーポリシー",
         terms: "利用規約",
+        about: "当サイトについて",
       },
 
       bottom: {

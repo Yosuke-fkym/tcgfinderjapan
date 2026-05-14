@@ -78,6 +78,12 @@ export default function Footer() {
                 {t.footer.legal.terms}
               </Link>
             </li>
+            <li>
+              <Link href={`/${locale}/about`} className="hover:text-gray-400">
+                {t.footer.legal.about}
+              </Link>
+
+            </li>
           </ul>
         </div>
       </div>
