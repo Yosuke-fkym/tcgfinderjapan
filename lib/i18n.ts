@@ -598,24 +598,24 @@ languagePlaceholder: "Japanese, English",
   subtitle:
     "Information about the operation and purpose of TCG Finder Japan.",
 
-  operatorLabel: "Operator",
-  operator: "TCG Finder Japan",
+  operatorLabel: "Operator:",
+  operator: "TCG Finder Japan Manangement Office",
 
-  websiteLabel: "Website",
+  websiteLabel: "Website:",
 
-  purposeLabel: "Purpose",
+  purposeLabel: "Purpose:",
   purpose:
     "This website aims to collect and organize information about trading card game (TCG) shops across Japan, especially to help collectors and players visiting Japan from overseas easily find the card shops they are looking for.",
 
-  activitiesLabel: "Activities",
+  activitiesLabel: "Activities:",
   activities:
     "We provide easy-to-understand map-based information about TCG shop locations throughout Japan, supported card categories (such as Pokémon and One Piece), PSA graded products, sealed box availability, and more. We strive to keep the information as up to date as possible.",
 
-  contactLabel: "Contact",
+  contactLabel: "Contact:",
   contactButton: "Contact Form",
   contactDesc: "For inquiries regarding this website, correction requests, advertising opportunities, or general feedback, please contact us through the contact form below.",
 
-  disclaimerLabel: "Disclaimer",
+  disclaimerLabel: "Disclaimer:",
   disclaimer:
     "While we make every effort to ensure the accuracy of the information provided on this website, details such as store locations and business hours may change over time. Please also check each store’s official website or social media accounts for the latest information.",
 },
@@ -1403,24 +1403,24 @@ languagePlaceholder: "日本語・英語",
   subtitle:
     "TCG Finder Japanについての運営情報ページです。",
 
-  operatorLabel: "運営者",
-  operator: "TCG Finder Japan",
+  operatorLabel: "運営者:",
+  operator: "TCG Finder Japan 運営事務局",
 
-  websiteLabel: "サイトURL",
+  websiteLabel: "サイトURL:",
 
-  purposeLabel: "目的",
+  purposeLabel: "目的:",
   purpose:
     "当サイトは、日本国内のトレーディングカードゲーム（TCG）ショップ情報を集約し、特に海外から日本を訪れるコレクターやプレイヤーが、目当てのカードショップへ迷わず辿り着けるようサポートすることを目的としています。",
 
-  activitiesLabel: "活動内容",
+  activitiesLabel: "活動内容:",
   activities:
     "日本各地のTCGショップの所在地、取り扱いカード種別（Pokémon, One Piece等）、PSA鑑定品や未開封BOXの販売状況などを地図上で分かりやすく提供しています。情報は可能な限り最新の状態を保つよう努めております。",
 
-  contactLabel: "お問い合わせ",
+  contactLabel: "お問い合わせ:",
   contactButton: "お問い合わせフォームはこちら",
   contactDesc:"当サイトに関するご意見、情報の修正依頼、広告掲載などのお問い合わせは、以下の[お問い合わせフォーム]よりご連絡ください。",
 
-  disclaimerLabel: "免責事項",
+  disclaimerLabel: "免責事項:",
   disclaimer:
     // "掲載情報は細心の注意を払っておりますが、店舗の移転や営業時間変更などにより現状と異なる場合があります。最新の情報は各店舗の公式サイトやSNSをご確認ください。",
     "掲載情報は細心の注意を払っておりますが、店舗の移転や営業時間変更などにより現状と異なる場合があります。最新の情報は各店舗の公式サイトやSNSを併せてご確認ください。",

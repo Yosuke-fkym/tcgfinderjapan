@@ -30,14 +30,14 @@ export default async function AboutPage({
           <p>
             <span className="font-semibold text-white">
              {t.about.operatorLabel}
-            </span>{" "}
+            </span><br />
             {t.about.operator}
           </p>
 
           <p>
             <span className="font-semibold text-white">
               {t.about.websiteLabel}
-            </span>{" "}
+            </span><br />
             <a
               href="https://www.tcgfinderjapan.com"
               target="_blank"
@@ -50,22 +50,22 @@ export default async function AboutPage({
           <p>
             <span className="font-semibold text-white">
              {t.about.purposeLabel}
-            </span>{" "}
+            </span><br />
             {t.about.purpose}
           </p>
 
           <p>
             <span className="font-semibold text-white">
               {t.about.activitiesLabel}
-            </span>{" "}
+            </span><br />
             {t.about.activities}
           </p>
 
           <div>
             <span className="font-semibold text-white">
               {t.about.contactLabel}
-            </span>
-            {" "} {t.about.contactDesc}
+            </span> <br/>
+            {t.about.contactDesc}
 
             <div className="mt-2">
               <Link
@@ -80,7 +80,7 @@ export default async function AboutPage({
           <p>
             <span className="font-semibold text-white">
               {t.about.disclaimerLabel}
-            </span>{" "}
+            </span><br />
             {t.about.disclaimer}
           </p>
 
