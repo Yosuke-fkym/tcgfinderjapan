@@ -64,14 +64,17 @@ const t = getT(locale);
             <p>
               {t.privacy.sections.ads.desc3}
             </p>
+            <p>
+              {t.privacy.sections.ads.desc4}
+            </p>
 
-            <a
+            {/* <a
               href="https://www.aboutads.info/"
               target="_blank"
               className="text-blue-400 hover:underline break-all"
             >
               https://www.aboutads.info/
-            </a>
+            </a> */}
           </div>
         </section>
 

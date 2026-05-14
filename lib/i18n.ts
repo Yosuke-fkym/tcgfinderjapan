@@ -689,8 +689,8 @@ languagePlaceholder: "Japanese, English",
         "Third-party vendors including Google use cookies to display personalized advertisements based on users’ previous visits to this and other websites.",
 
       desc3:
-        "Users can disable personalized ads through Google Ad Settings.",
-
+        "By using cookies for advertising, Google and its partners can display appropriate advertisements to users based on their visits to this and other sites.",
+      desc4:"Users can disable personalized advertising through Google Ad Settings. In addition, users can disable cookies used for personalized advertising by third-party vendors by visiting www.aboutads.info.",
       link: "https://www.aboutads.info/",
     },
 
@@ -1360,15 +1360,15 @@ languagePlaceholder: "日本語・英語",
         "Googleなどの第三者配信事業者は、Cookie（クッキー）を使用して、ユーザーが当サービスや他のウェブサイトに過去にアクセスした際の情報に基づき、適切な広告を配信します。",
 
       desc3:
-        "ユーザーはGoogle広告設定からパーソナライズ広告を無効にできます。",
-
-      link: "https://www.aboutads.info/",
+        "Googleが広告配信にCookieを使用することにより、Googleやそのパートナーは、ユーザーが当サービスや他のサイトにアクセスした際の情報に基づいて、適切な広告をユーザーに表示できます。",
+      desc4: "ユーザーは、Google広告設定でパーソナライズ広告を無効にできます。また、www.aboutads.info にアクセスすることで、第三者配信事業者がパーソナライズ広告の掲載で使用するCookieを無効にできます。",
+      // link: "https://www.aboutads.info/",
     },
 
     analytics: {
       title: "4. アクセス解析ツールについて",
       desc:
-        "当サービスでは、Googleアナリティクスを利用しています。GoogleアナリティクスはCookieを使用して匿名のトラフィックデータを収集します。",
+        "当サービスでは、サイトの利用状況を把握するためにGoogleによるアクセス解析ツール「Googleアナリティクス」を利用しています。このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており、個人を特定するものではありません。",
     },
 
     thirdParty: {
@@ -1392,7 +1392,7 @@ languagePlaceholder: "日本語・英語",
     changes: {
       title: "8. ポリシーの変更",
       desc:
-        "本ポリシーは必要に応じて変更される場合があります。変更後は本ページに掲載した時点で効力を生じます。",
+        "本ポリシーは必要に応じて変更される場合があります。変更後は本ページに掲載した時点より効力を生じるものとします。",
     },
   },
 },
