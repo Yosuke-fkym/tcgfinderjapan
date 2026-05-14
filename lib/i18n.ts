@@ -593,6 +593,31 @@ languagePlaceholder: "Japanese, English",
       error: "Failed to send message. Please try again.",
       required: "Please fill all fields",
     },
+    about: {
+  title: "About Us",
+  subtitle:
+    "Information about the operation and purpose of TCG Finder Japan.",
+
+  operatorLabel: "Operator",
+  operator: "TCG Finder Japan",
+
+  websiteLabel: "Website",
+
+  purposeLabel: "Purpose",
+  purpose:
+    "This website helps collectors and players discover TCG shops across Japan, especially for international visitors.",
+
+  activitiesLabel: "Activities",
+  activities:
+    "We provide map-based information about TCG shops, product categories, PSA products, and sealed boxes across Japan.",
+
+  contactLabel: "Contact",
+  contactButton: "Contact Form",
+
+  disclaimerLabel: "Disclaimer",
+  disclaimer:
+    "While we strive to keep information updated, store details such as location and business hours may change. Please verify with official store sources.",
+},
     footer: {
       brand: {
         title: "TCG Finder Japan",
@@ -635,34 +660,70 @@ languagePlaceholder: "Japanese, English",
         viewedHistory: "Viewed History",
       },
     },
-    privacy: {
-      title: "Privacy Policy",
-      intro:
-        'TCG Finder Japan ("we", "our", "us") respects your privacy and is committed to protecting your personal information.',
+  privacy: {
+  title: "Privacy Policy",
 
-      sections: {
-        collect: {
-          title: "Information We Collect",
-          desc: "We may collect basic account information such as email address, as well as usage data including pages visited and interactions on the site.",
-        },
-        usage: {
-          title: "How We Use Information",
-          desc: "We use collected data to improve our services, personalize user experience, and maintain platform functionality.",
-        },
-        thirdParty: {
-          title: "Third-Party Services",
-          desc: "We use third-party services such as Google Maps and advertising providers, which may collect anonymized usage data.",
-        },
-        protection: {
-          title: "Data Protection",
-          desc: "We take reasonable measures to protect your data, but cannot guarantee absolute security.",
-        },
-        changes: {
-          title: "Changes",
-          desc: "We may update this policy from time to time. Continued use of the service means you accept those changes.",
-        },
-      },
+  intro:
+    "TCG Finder Japan respects your privacy and is committed to protecting your personal information.",
+
+  sections: {
+    collect: {
+      title: "1. Information We Collect",
+      desc:
+        "We may collect personal information such as email addresses submitted through contact forms, as well as usage data including visited pages and interaction history.",
     },
+
+    usage: {
+      title: "2. Purpose of Use",
+      desc:
+        "Collected information is used to respond to inquiries, improve the service, enhance user experience, and maintain platform functionality.",
+    },
+
+    ads: {
+      title: "3. Advertising (Google AdSense)",
+      desc1:
+        "This service uses the third-party advertising service Google AdSense.",
+
+      desc2:
+        "Third-party vendors including Google use cookies to display personalized advertisements based on users’ previous visits to this and other websites.",
+
+      desc3:
+        "Users can disable personalized ads through Google Ad Settings.",
+
+      link: "https://www.aboutads.info/",
+    },
+
+    analytics: {
+      title: "4. Analytics Tools",
+      desc:
+        "This service uses Google Analytics to analyze traffic and usage trends. Anonymous traffic data may be collected using cookies.",
+    },
+
+    thirdParty: {
+      title: "5. Third-Party Services",
+      desc:
+        "We use third-party services such as Google Maps API, which may also collect anonymized usage data.",
+    },
+
+    protection: {
+      title: "6. Data Protection",
+      desc:
+        "We take appropriate measures to protect user information, although complete security cannot be guaranteed.",
+    },
+
+    disclaimer: {
+      title: "7. Disclaimer",
+      desc:
+        "While we strive to keep information accurate, we are not responsible for actions taken based on information provided on this service. TCG inventory and prices may change frequently, so please confirm final details directly with each store.",
+    },
+
+    changes: {
+      title: "8. Policy Changes",
+      desc:
+        "This policy may be updated when necessary. Changes become effective once published on this page.",
+    },
+  },
+},
     terms: {
       title: "Terms of Service",
       intro:
@@ -1269,6 +1330,97 @@ languagePlaceholder: "日本語・英語",
         error: "問題が発生しました",
       },
     },
+    privacy: {
+  title: "プライバシーポリシー",
+
+  intro:
+    "TCG Finder Japan（以下「当サービス」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。",
+
+  sections: {
+    collect: {
+      title: "1. 収集する情報",
+      desc:
+        "当サービスでは、お問い合わせ時のメールアドレスなどの個人情報や、閲覧したページ、操作履歴などの利用データを収集する場合があります。",
+    },
+
+    usage: {
+      title: "2. 情報の利用目的",
+      desc:
+        "収集した情報は、お問い合わせへの回答、サービスの改善、ユーザー体験の向上、および機能の維持のために利用されます。",
+    },
+
+    ads: {
+      title: "3. 広告の配信について（Google AdSense）",
+
+      desc1:
+        "当サービスでは、第三者配信の広告サービス「Google AdSense」を利用しています。",
+
+      desc2:
+        "Googleなどの第三者配信事業者は、Cookie（クッキー）を使用して、ユーザーが当サービスや他のウェブサイトに過去にアクセスした際の情報に基づき、適切な広告を配信します。",
+
+      desc3:
+        "ユーザーはGoogle広告設定からパーソナライズ広告を無効にできます。",
+
+      link: "https://www.aboutads.info/",
+    },
+
+    analytics: {
+      title: "4. アクセス解析ツールについて",
+      desc:
+        "当サービスでは、Googleアナリティクスを利用しています。GoogleアナリティクスはCookieを使用して匿名のトラフィックデータを収集します。",
+    },
+
+    thirdParty: {
+      title: "5. 第三者サービス",
+      desc:
+        "当サービスでは、Google Maps API等の第三者サービスを利用しており、匿名の利用データが収集される場合があります。",
+    },
+
+    protection: {
+      title: "6. データの保護",
+      desc:
+        "当サービスは、ユーザー情報を保護するために適切な対策を講じていますが、完全な安全性を保証するものではありません。",
+    },
+
+    disclaimer: {
+      title: "7. 免責事項",
+      desc:
+        "当サービスに掲載されている情報の正確性には万全を期していますが、利用者が本サービスの情報を用いて行う一切の行為について責任を負いません。また、TCG在庫や価格は常に変動するため、最終情報は各店舗にてご確認ください。",
+    },
+
+    changes: {
+      title: "8. ポリシーの変更",
+      desc:
+        "本ポリシーは必要に応じて変更される場合があります。変更後は本ページに掲載した時点で効力を生じます。",
+    },
+  },
+},
+    about: {
+  title: "当サイトについて",
+
+  subtitle:
+    "TCG Finder Japanについての運営情報ページです。",
+
+  operatorLabel: "運営者",
+  operator: "TCG Finder Japan",
+
+  websiteLabel: "サイトURL",
+
+  purposeLabel: "目的",
+  purpose:
+    "当サイトは、日本国内のトレーディングカードゲーム（TCG）ショップ情報を集約し、特に海外から日本を訪れるコレクターやプレイヤーが、目当てのカードショップへ迷わず辿り着けるようサポートすることを目的としています。",
+
+  activitiesLabel: "活動内容",
+  activities:
+    "日本各地のTCGショップの所在地、取り扱いカード種別、PSA鑑定品や未開封BOXの販売状況などを地図上で分かりやすく提供しています。",
+
+  contactLabel: "お問い合わせ",
+  contactButton: "お問い合わせフォームはこちら",
+
+  disclaimerLabel: "免責事項",
+  disclaimer:
+    "掲載情報は細心の注意を払っておりますが、店舗の移転や営業時間変更などにより現状と異なる場合があります。最新の情報は各店舗の公式サイトやSNSをご確認ください。",
+},
     footer: {
       brand: {
         title: "TCG Finder Japan",
@@ -1309,34 +1461,6 @@ languagePlaceholder: "日本語・英語",
         myPage: "マイページ",
         favorites: "お気に入り店舗",
         viewedHistory: "閲覧履歴",
-      },
-    },
-    privacy: {
-      title: "プライバシーポリシー",
-      intro:
-        "TCG Finder Japan（以下「当サービス」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。",
-
-      sections: {
-        collect: {
-          title: "収集する情報",
-          desc: "当サービスでは、メールアドレスなどの基本的なアカウント情報や、閲覧したページや操作履歴などの利用データを収集する場合があります。",
-        },
-        usage: {
-          title: "情報の利用目的",
-          desc: "収集した情報は、サービスの改善、ユーザー体験の向上、および機能の維持のために利用されます。",
-        },
-        thirdParty: {
-          title: "第三者サービス",
-          desc: "当サービスでは、Google Mapsや広告配信サービスなどの第三者サービスを利用しており、匿名の利用データが収集される場合があります。",
-        },
-        protection: {
-          title: "データの保護",
-          desc: "当サービスは、ユーザーの情報を保護するために適切な対策を講じていますが、完全な安全性を保証するものではありません。",
-        },
-        changes: {
-          title: "ポリシーの変更",
-          desc: "本ポリシーは必要に応じて変更される場合があります。サービスの継続利用により、変更内容に同意したものとみなされます。",
-        },
       },
     },
     terms: {
