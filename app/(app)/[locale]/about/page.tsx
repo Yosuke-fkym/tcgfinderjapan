@@ -65,6 +65,7 @@ export default async function AboutPage({
             <span className="font-semibold text-white">
               {t.about.contactLabel}
             </span>
+            {" "} {t.about.contactDesc}
 
             <div className="mt-2">
               <Link
