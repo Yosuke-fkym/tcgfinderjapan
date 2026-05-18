@@ -146,16 +146,21 @@ function AdminRecentShops() {
             <TableRow key={shop.shop_id} className="hover:bg-gray-50">
               <TableCell className="font-medium">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Store size={16} className="text-gray-500" />
-                    {
-                      truncateText(
-                      //   locale === "jp" ?
-                      // shop.shop_name
-                      // :
-                     shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name, 25)
-                    }
-                  </div>
+                  <div className="flex items-center gap-2 min-w-0">
+  <Store size={16} className="text-gray-500 shrink-0" />
+
+  <span className="truncate min-w-0 block max-w-[180px]">
+    {
+      truncateText(
+        shop.shop_name_in_langs &&
+        shop.shop_name_in_langs[
+          locale as keyof typeof translations
+        ] || shop.shop_name,
+        25
+      )
+    }
+  </span>
+</div>
 
                   {shop.business_hours && isShopOpen(shop) ? (
                     <Badge className="bg-green-50 text-green-700">{t.admin.recentShops.table.open}</Badge>
@@ -166,16 +171,21 @@ function AdminRecentShops() {
               </TableCell>
 
               <TableCell className="text-gray-600">
-                <div className="flex items-center gap-2">
-                  <MapPin size={14} />
-                  {
-                    truncateText(
-                    //   locale === "jp" ?
-                    // shop.shop_address
-                    // :
-                    shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address, 35) || t.admin.recentShops.table.unknown
-                  }
-                </div>
+               <div className="flex items-center gap-2 min-w-0">
+  <MapPin size={14} className="shrink-0" />
+
+  <span className="truncate min-w-0 block max-w-[260px]">
+    {
+      truncateText(
+        shop.shop_address_in_langs &&
+        shop.shop_address_in_langs[
+          locale as keyof typeof translations
+        ] || shop.shop_address,
+        30
+      ) || t.admin.recentShops.table.unknown
+    }
+  </span>
+</div>
               </TableCell>
 
               <TableCell>{shop.reviews[0]?.count as unknown as any || 0}</TableCell>
@@ -235,7 +245,7 @@ function AdminRecentShops() {
               //   locale === "jp" ?
               // shop.shop_address 
               // :
-              shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address, 35 ) 
+              shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address, 25) 
             }
           </div>
 

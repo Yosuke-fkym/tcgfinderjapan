@@ -121,8 +121,10 @@ export default function ShopsTable({ shops, refresh }: any) {
             <TableRow key={shop.shop_id} className="hover:bg-gray-50 transition">
               <TableCell className="font-medium text-base lg:text-lg py-4">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 line-clamp-1">
-                    <Store size={18} className="text-gray-500" />
+                 <div className="flex items-center gap-2 min-w-0">
+  <Store size={18} className="text-gray-500 shrink-0" />
+
+  <span className="truncate min-w-0 max-w-[180px] block">
                     {
                       truncateText(
                       //   locale === "jp" ?
@@ -130,6 +132,7 @@ export default function ShopsTable({ shops, refresh }: any) {
                       // :
                      shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name, 25) || t.admin.recentShops.table.unknown
                     }
+                      </span>
                   </div>
 
                   {shop.business_hours && isShopOpen(shop) ? (
@@ -144,15 +147,19 @@ export default function ShopsTable({ shops, refresh }: any) {
                 </div>
               </TableCell>
 
-              <TableCell className="text-sm lg:text-base truncate text-gray-600 py-4">
-                {
-                  truncateText(
-                  //   locale === "jp" ?
-                  // shop.shop_address
-                  // :
-                  shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address, 35) || t.admin.recentShops.table.unknown
-                }
-              </TableCell>
+             <TableCell className="py-4">
+  <div className="max-w-[220px] min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-sm lg:text-base text-gray-600">
+    {
+      truncateText(
+        shop.shop_address_in_langs &&
+        shop.shop_address_in_langs[
+          locale as keyof typeof translations
+        ] || shop.shop_address,
+        35
+      ) || t.admin.recentShops.table.unknown
+    }
+  </div>
+</TableCell>
 
               <TableCell className="text-sm lg:text-base">
                 {shop.reviews?.[0]?.count ?? 0}
