@@ -192,7 +192,7 @@ export default function ShopsTable({ shops, refresh }: any) {
 
                     <DropdownMenuItem asChild>
                       <Link
-                        href={`/admin/shops/edit/${shop.shop_id}`}
+                        href={`/${locale}/admin/shops/edit/${shop.shop_id}`}
                         className="flex items-center gap-2"
                       >
                         <Pencil className="h-4 w-4" />
@@ -299,7 +299,7 @@ export default function ShopsTable({ shops, refresh }: any) {
             </Link>
 
             <Link
-              href={`/admin/shops/edit/${shop.shop_id}`}
+              href={`/${locale}/admin/shops/edit/${shop.shop_id}`}
               className="flex-1 text-center bg-indigo-600 text-white hover:bg-indigo-700 py-2 rounded-md text-sm"
             >
               {t.reviews.card.edit}
