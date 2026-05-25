@@ -63,7 +63,7 @@ function AdminRecentShops() {
       console.error("Error fetching recent shops:", error);
     }
   };
-
+  
   return (
     <div className="bg-white shadow-sm border rounded-xl p-4 sm:p-6 flex flex-col gap-6 w-full">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">

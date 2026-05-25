@@ -8,8 +8,8 @@ export function isShopOpen(shop: Shop): boolean {
     })
   );
 
-  // 🗓️ Japanese weekdays
-  const days = [
+  // 🇯🇵 Japanese weekdays
+  const jpDays = [
     "日曜日",
     "月曜日",
     "火曜日",
@@ -19,22 +19,39 @@ export function isShopOpen(shop: Shop): boolean {
     "土曜日",
   ];
 
-  const todayKey = days[japanTime.getDay()];
+  // 🇺🇸 English weekdays
+  const enDays = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+  ];
+
+  const dayIndex = japanTime.getDay();
+
+  const jpKey = jpDays[dayIndex];
+  const enKey = enDays[dayIndex];
 
   const currentTime = japanTime.toTimeString().slice(0, 5); // "HH:MM"
 
-  // 🧠 TODO: holiday logic in future
+  //  TODO: holiday logic in future
   const isHoliday = false;
 
   let open = "";
   let close = "";
 
   if (isHoliday && shop.holiday_hours) {
-    // 🎌 Holiday hours override
+    //  Holiday hours override
     open = shop.holiday_hours.open;
     close = shop.holiday_hours.close;
   } else {
-    const today = shop.business_hours?.[todayKey];
+    // Support both JP + EN keys
+    const today =
+      shop.business_hours?.[jpKey] ||
+      shop.business_hours?.[enKey];
 
     if (!today || today.closed) return false;
 
@@ -47,6 +64,6 @@ export function isShopOpen(shop: Shop): boolean {
     return currentTime >= open || currentTime <= close;
   }
 
-  // ✅ Normal case
+  // Normal case
   return currentTime >= open && currentTime <= close;
 }

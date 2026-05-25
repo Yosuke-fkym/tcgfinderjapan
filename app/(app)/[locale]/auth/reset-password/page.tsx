@@ -35,7 +35,6 @@ export default function ResetPasswordPage() {
     setLoading(false);
 
     if (error) {
-      console.log("hello");
       
         console.log(error);
         
