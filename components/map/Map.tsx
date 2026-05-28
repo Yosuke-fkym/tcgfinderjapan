@@ -79,7 +79,8 @@ mapRef.current.fitBounds(bounds);
   const validShops = useMemo(() => {
     return shops.filter((shop) => shop.latitude && shop.longitude);
   }, [shops]);
-
+  
+  const selectedIsOpen = selected ? isShopOpen(selected) : false;
   if (loadError) return <div>{t.common.somethingWrong}</div>;
   if (!isLoaded) return <div>{t.map.loading}</div>;
 
@@ -101,8 +102,8 @@ mapRef.current.fitBounds(bounds);
         const lng = Number(shop.longitude);
 
         const isSelected = selected?.shop_id === shop.shop_id;
-        const isOpen = shop.isOpen ?? isShopOpen(shop);
-
+        const isOpen = isShopOpen(shop);
+        
         return (
           <Marker
             aria-label={t.buttons.viewDetails}
@@ -176,15 +177,15 @@ icon={
               }
             </p>
 
-            <p
-              className={`text-xs font-medium ${
-                selected.isOpen ? "text-green-600" : "text-red-500"
-              }`}
-            >
-              {selected.isOpen
-                ? t.shopDetails.header.open
-                : t.shopDetails.header.closed}
-            </p>
+          <p
+  className={`text-xs font-medium ${
+    selectedIsOpen ? "text-green-600" : "text-red-500"
+  }`}
+>
+  {selectedIsOpen
+    ? t.shopDetails.header.open
+    : t.shopDetails.header.closed}
+</p>
 
             <p
               className="text-xs text-blue-600 cursor-pointer mt-1"
