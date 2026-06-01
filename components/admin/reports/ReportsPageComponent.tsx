@@ -164,10 +164,7 @@ export default function AdminReportsPageComponent() {
               </div>
 
               <div className="bg-muted/50 rounded-xl p-4 space-y-2">
-                <p>{
-                   locale === 'jp'
-                   ? r.review.comment
-                   : r.review.review_text_in_langs?.[locale as keyof typeof r.review.review_text_in_langs] 
+                <p>{ r.review.comment
                   }</p>
 
                 <div className="flex gap-1">

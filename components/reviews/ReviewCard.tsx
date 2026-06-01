@@ -149,11 +149,7 @@ export default function ReviewCard({
           {review.is_flagged ? (
             <div className="relative">
               <p className="text-sm text-gray-500 blur-sm select-none">
-                {
-                  locale === "jp"
-                    ? review.comment
-                    : review.review_text_in_langs && review.review_text_in_langs[locale as keyof typeof translations]
-                }
+                   {review.comment}
               </p>
 
               <div className="absolute inset-0 flex items-center justify-center">
@@ -164,9 +160,7 @@ export default function ReviewCard({
             </div>
           ) : (
             <p className="text-sm text-gray-700">{
-              locale === "jp"
-                ? review.comment
-                : review.review_text_in_langs && review.review_text_in_langs[locale as keyof typeof translations]
+               review.comment
             }</p>
           )}
 
