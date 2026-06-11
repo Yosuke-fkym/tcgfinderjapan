@@ -1,5 +1,7 @@
 import { supabaseAdmin } from "@/lib/supabase/admin";
 
+
+//upload photos to bucket and save the url to shop_photos table
 export async function POST(req: Request) {
   const formData = await req.formData();
 

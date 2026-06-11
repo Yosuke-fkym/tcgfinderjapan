@@ -2,6 +2,7 @@
 import React from "react";
 import {
   BarChart2Icon,
+  File,
   Home,
   Import,
   ShapesIcon,
@@ -51,6 +52,12 @@ function AdminAsideNav() {
           name={t.admin.sidebar.importCsv}
           path={`/${locale}/admin/csv-import`}
           key="csv-import"
+        />
+        <AdminNavButton
+          icon={File}
+          name={"Articles"}
+          path={`/${locale}/admin/articles`}
+          key="articles"
         />
       </nav>
     </aside>
