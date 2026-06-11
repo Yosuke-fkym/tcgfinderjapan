@@ -30,7 +30,7 @@ type Article = {
 };
 
 async function fetchArticle(slug: string): Promise<Article | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const res = await fetch(`${baseUrl}/api/admin/articles/${slug}`, {
     cache: "no-store",
   });

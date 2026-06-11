@@ -24,7 +24,7 @@ type Props = {
 // ---------------------------------------------------------------------------
 
 async function fetchCategory(slug: string): Promise<Category | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const res = await fetch(`${baseUrl}/api/admin/articles/category/${slug}`, {
     cache: "no-store",
   });
@@ -34,7 +34,7 @@ async function fetchCategory(slug: string): Promise<Category | null> {
 }
 
 async function fetchArticlesByCategory(categorySlug: string): Promise<ArticleCardData[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const res = await fetch(
     `${baseUrl}/api/admin/articles?status=published&category=${categorySlug}&orderBy=published_at&order=desc`,
     { cache: "no-store" }
