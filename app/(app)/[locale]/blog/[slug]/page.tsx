@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import Link from "next/link";
 import PasswordGate from "@/components/admin/articles/PasswordGate";
+import { getT } from "@/lib/getT";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -135,6 +136,8 @@ export default async function ArticleDetailPage({ params }: Props) {
   const article = await fetchArticle(slug);
   if (!article) notFound();
 
+const t = getT(locale as string);
+
   // ── Gate check (server-side) ──────────────────────────────────────────────
   if (article.is_protected) {
     // Guard: if hash is missing despite is_protected=true, block access
@@ -175,7 +178,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             href={`/${locale}/blog`}
             className="inline-flex items-center gap-1.5 text-white/65 text-xs font-medium tracking-widest uppercase mb-5 hover:text-white transition-colors"
           >
-            ← Back to Articles
+            ← {t.blogArticle.hero.backToArticles}
           </Link>
 
           {article.blog_categories && (
@@ -195,14 +198,14 @@ export default async function ArticleDetailPage({ params }: Props) {
             </h1>
             {article.is_protected && (
               <span className="flex-shrink-0 mt-1.5 inline-flex items-center gap-1 bg-white/10 text-white/70 text-[0.65rem] font-medium tracking-wider uppercase px-2 py-0.5 rounded border border-white/20">
-                🔒 Protected
+                🔒 {t.blogArticle.hero.protected}
               </span>
             )}
           </div>
 
           {article.published_at && (
             <div className="flex items-center gap-2 text-white/50 text-[0.8rem] font-normal tracking-wide">
-              <span>Published</span>
+              <span>{t.blogArticle.hero.published}</span>
               <span className="w-[3px] h-[3px] rounded-full bg-current" />
               <span>{formatDate(article.published_at)}</span>
             </div>
@@ -219,7 +222,7 @@ export default async function ArticleDetailPage({ params }: Props) {
           aria-label="Breadcrumb"
         >
           <Link href={`/${locale}/blog`} className="hover:text-[#C8861A] transition-colors">
-            Articles
+            {t.blogArticle.breadcrumb.articles}
           </Link>
           {article.blog_categories && (
             <>
@@ -259,7 +262,7 @@ export default async function ArticleDetailPage({ params }: Props) {
         {tags.length > 0 && (
           <div className="bg-white border border-[#E8E3DB] rounded-xl px-8 py-6 shadow-sm">
             <div className="flex items-center gap-2 text-[0.72rem] font-semibold tracking-[0.09em] uppercase text-[#9A9489] mb-4">
-              <span>Tags</span>
+              <span>{t.blogArticle.tags.title}</span>
               <span className="flex-1 h-px bg-[#E8E3DB]" />
             </div>
             <div className="flex flex-wrap gap-2">

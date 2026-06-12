@@ -79,7 +79,7 @@ export const translations = {
         website: "Website",
         mondayHours: "Monday hours",
         closed: "Closed",
-          shopVideo: "Shop video",
+        shopVideo: "Shop video",
       },
 
       success: "CSV imported successfully",
@@ -138,7 +138,7 @@ export const translations = {
         shops: "Shops",
         reports: "Reports",
         importCsv: "Import CSV",
-        articles: "Articles"
+        articles: "Articles",
       },
 
       dashboard: {
@@ -242,8 +242,8 @@ export const translations = {
           x_account_url: "X (Twitter) Account URL",
           language: "Language support",
           namePlaceholder: "Tokyo Card Haven",
-addressPlaceholder: "Shibuya, Tokyo",
-languagePlaceholder: "Japanese, English",
+          addressPlaceholder: "Shibuya, Tokyo",
+          languagePlaceholder: "Japanese, English",
           descriptionPlaceholder: "Enter a short description of the shop",
         },
 
@@ -268,7 +268,7 @@ languagePlaceholder: "Japanese, English",
             psa: "PSA",
             box: "BOX",
             pokémon: "Pokémon",
-            onepiece: "ONE PIECE"
+            onepiece: "ONE PIECE",
           },
         },
       },
@@ -595,31 +595,32 @@ languagePlaceholder: "Japanese, English",
       required: "Please fill all fields",
     },
     about: {
-  title: "About Us",
-  subtitle:
-    "Information about the operation and purpose of TCG Finder Japan.",
+      title: "About Us",
+      subtitle:
+        "Information about the operation and purpose of TCG Finder Japan.",
 
-  operatorLabel: "Operator:",
-  operator: "TCG Finder Japan Manangement Office",
+      operatorLabel: "Operator:",
+      operator: "TCG Finder Japan Manangement Office",
 
-  websiteLabel: "Website:",
+      websiteLabel: "Website:",
 
-  purposeLabel: "Purpose:",
-  purpose:
-    "This website aims to collect and organize information about trading card game (TCG) shops across Japan, especially to help collectors and players visiting Japan from overseas easily find the card shops they are looking for.",
+      purposeLabel: "Purpose:",
+      purpose:
+        "This website aims to collect and organize information about trading card game (TCG) shops across Japan, especially to help collectors and players visiting Japan from overseas easily find the card shops they are looking for.",
 
-  activitiesLabel: "Activities:",
-  activities:
-    "We provide easy-to-understand map-based information about TCG shop locations throughout Japan, supported card categories (such as Pokémon and One Piece), PSA graded products, sealed box availability, and more. We strive to keep the information as up to date as possible.",
+      activitiesLabel: "Activities:",
+      activities:
+        "We provide easy-to-understand map-based information about TCG shop locations throughout Japan, supported card categories (such as Pokémon and One Piece), PSA graded products, sealed box availability, and more. We strive to keep the information as up to date as possible.",
 
-  contactLabel: "Contact:",
-  contactButton: "Contact Form",
-  contactDesc: "For inquiries regarding this website, correction requests, advertising opportunities, or general feedback, please contact us through the contact form below.",
+      contactLabel: "Contact:",
+      contactButton: "Contact Form",
+      contactDesc:
+        "For inquiries regarding this website, correction requests, advertising opportunities, or general feedback, please contact us through the contact form below.",
 
-  disclaimerLabel: "Disclaimer:",
-  disclaimer:
-    "While we make every effort to ensure the accuracy of the information provided on this website, details such as store locations and business hours may change over time. Please also check each store’s official website or social media accounts for the latest information.",
-},
+      disclaimerLabel: "Disclaimer:",
+      disclaimer:
+        "While we make every effort to ensure the accuracy of the information provided on this website, details such as store locations and business hours may change over time. Please also check each store’s official website or social media accounts for the latest information.",
+    },
     footer: {
       brand: {
         title: "TCG Finder Japan",
@@ -663,70 +664,64 @@ languagePlaceholder: "Japanese, English",
         viewedHistory: "Viewed History",
       },
     },
-  privacy: {
-  title: "Privacy Policy",
+    privacy: {
+      title: "Privacy Policy",
 
-  intro:
-    "TCG Finder Japan respects your privacy and is committed to protecting your personal information.",
+      intro:
+        "TCG Finder Japan respects your privacy and is committed to protecting your personal information.",
 
-  sections: {
-    collect: {
-      title: "1. Information We Collect",
-      desc:
-        "We may collect personal information such as email addresses submitted through contact forms, as well as usage data including visited pages and interaction history.",
+      sections: {
+        collect: {
+          title: "1. Information We Collect",
+          desc: "We may collect personal information such as email addresses submitted through contact forms, as well as usage data including visited pages and interaction history.",
+        },
+
+        usage: {
+          title: "2. Purpose of Use",
+          desc: "Collected information is used to respond to inquiries, improve the service, enhance user experience, and maintain platform functionality.",
+        },
+
+        ads: {
+          title: "3. Advertising (Google AdSense)",
+          desc1:
+            "This service uses the third-party advertising service Google AdSense.",
+
+          desc2:
+            "Third-party vendors including Google use cookies to display personalized advertisements based on users’ previous visits to this and other websites.",
+
+          desc3:
+            "By using cookies for advertising, Google and its partners can display appropriate advertisements to users based on their visits to this and other sites.",
+          desc4:
+            "Users can disable personalized advertising through Google Ad Settings. In addition, users can disable cookies used for personalized advertising by third-party vendors by visiting www.aboutads.info.",
+          link: "https://www.aboutads.info/",
+        },
+
+        analytics: {
+          title: "4. Analytics Tools",
+          desc: "This service uses Google Analytics to analyze traffic and usage trends. Anonymous traffic data may be collected using cookies.",
+        },
+
+        thirdParty: {
+          title: "5. Third-Party Services",
+          desc: "We use third-party services such as Google Maps API, which may also collect anonymized usage data.",
+        },
+
+        protection: {
+          title: "6. Data Protection",
+          desc: "We take appropriate measures to protect user information, although complete security cannot be guaranteed.",
+        },
+
+        disclaimer: {
+          title: "7. Disclaimer",
+          desc: "While we strive to keep information accurate, we are not responsible for actions taken based on information provided on this service. TCG inventory and prices may change frequently, so please confirm final details directly with each store.",
+        },
+
+        changes: {
+          title: "8. Policy Changes",
+          desc: "This policy may be updated when necessary. Changes become effective once published on this page.",
+        },
+      },
     },
-
-    usage: {
-      title: "2. Purpose of Use",
-      desc:
-        "Collected information is used to respond to inquiries, improve the service, enhance user experience, and maintain platform functionality.",
-    },
-
-    ads: {
-      title: "3. Advertising (Google AdSense)",
-      desc1:
-        "This service uses the third-party advertising service Google AdSense.",
-
-      desc2:
-        "Third-party vendors including Google use cookies to display personalized advertisements based on users’ previous visits to this and other websites.",
-
-      desc3:
-        "By using cookies for advertising, Google and its partners can display appropriate advertisements to users based on their visits to this and other sites.",
-      desc4:"Users can disable personalized advertising through Google Ad Settings. In addition, users can disable cookies used for personalized advertising by third-party vendors by visiting www.aboutads.info.",
-      link: "https://www.aboutads.info/",
-    },
-
-    analytics: {
-      title: "4. Analytics Tools",
-      desc:
-        "This service uses Google Analytics to analyze traffic and usage trends. Anonymous traffic data may be collected using cookies.",
-    },
-
-    thirdParty: {
-      title: "5. Third-Party Services",
-      desc:
-        "We use third-party services such as Google Maps API, which may also collect anonymized usage data.",
-    },
-
-    protection: {
-      title: "6. Data Protection",
-      desc:
-        "We take appropriate measures to protect user information, although complete security cannot be guaranteed.",
-    },
-
-    disclaimer: {
-      title: "7. Disclaimer",
-      desc:
-        "While we strive to keep information accurate, we are not responsible for actions taken based on information provided on this service. TCG inventory and prices may change frequently, so please confirm final details directly with each store.",
-    },
-
-    changes: {
-      title: "8. Policy Changes",
-      desc:
-        "This policy may be updated when necessary. Changes become effective once published on this page.",
-    },
-  },
-},
     terms: {
       title: "Terms of Service",
       intro:
@@ -756,45 +751,250 @@ languagePlaceholder: "Japanese, English",
       },
     },
     passwordGate: {
-  protectedArticle: "Protected Article",
-  description:
-    "This article requires a password to access. Enter the password below to unlock it.",
+      protectedArticle: "Protected Article",
+      description:
+        "This article requires a password to access. Enter the password below to unlock it.",
 
-  passwordLabel: "Password",
-  passwordPlaceholder: "Enter password...",
+      passwordLabel: "Password",
+      passwordPlaceholder: "Enter password...",
 
-  hidePassword: "Hide password",
-  showPassword: "Show password",
+      hidePassword: "Hide password",
+      showPassword: "Show password",
 
-  incorrectPassword: "Incorrect password. Please try again.",
-  somethingWentWrong: "Something went wrong. Please try again.",
+      incorrectPassword: "Incorrect password. Please try again.",
+      somethingWentWrong: "Something went wrong. Please try again.",
 
-  verifying: "Verifying...",
-  unlockArticle: "Unlock Article",
+      verifying: "Verifying...",
+      unlockArticle: "Unlock Article",
 
-  footerText: "Password provided upon purchase.",
-  needHelp: "Need help?",
+      footerText: "Password provided upon purchase.",
+      needHelp: "Need help?",
+    },
+    blogCategory: {
+      breadcrumb: {
+        blog: "Blog",
+      },
+
+      hero: {
+        categoryLabel: "Category",
+        articles: "Articles",
+        description:
+          "Browse all articles related to {category} cards, market insights, store guides, and community updates.",
+      },
+
+      stats: {
+        articles: "Articles",
+      },
+
+      grid: {
+        emptyMessage:
+          "No articles have been published in {category} yet. Check back soon.",
+      },
+    },
+    blogTag: {
+      breadcrumb: {
+        blog: "Blog",
+        tag: "Tag",
+      },
+
+      hero: {
+        label: "Tag",
+        articles: "Articles",
+        description: "Browse all articles tagged with {tag}.",
+      },
+
+      stats: {
+        articles: "Articles",
+      },
+
+      grid: {
+        emptyMessage:
+          "No articles have been tagged with {tag} yet. Check back soon.",
+      },
+    },
+    blogList: {
+      hero: {
+        eyebrow: "TCG Finder Japan",
+        title: {
+          line1: "Blog &",
+          line2: "Insights",
+        },
+        description:
+          "Trading card news, store guides, market analysis, and community updates from across Japan.",
+      },
+      stats: {
+        articles: "Articles",
+      },
+      grid: {
+        ariaLabel: "Article listing",
+        emptyMessage:
+          "New articles on trading cards, store guides, and market insights are on their way.",
+      },
+    },
+    blogArticle: {
+      hero: {
+        backToArticles: "Back to Articles",
+        protected: "Protected",
+        published: "Published",
+      },
+      breadcrumb: {
+        articles: "Articles",
+      },
+
+      tags: {
+        title: "Tags",
+      },
+    },
+    blogArticlesTable: {
+      noArticlesFound: "No articles found",
+      createFirstArticle: "Create your first article.",
+
+      article: "Article",
+      category: "Category",
+      status: "Status",
+      published: "Published",
+      actions: "Actions",
+
+      publishedStatus: "Published",
+      draftStatus: "Draft",
+
+      viewArticle: "View Article",
+      edit: "Edit",
+      delete: "Delete",
+      view: "View",
+
+      deleteArticle: "Delete Article",
+      deleteConfirm: "Are you sure you want to delete this article?",
+      cannotUndo: "This action cannot be undone.",
+
+      cancel: "Cancel",
+
+      deleteFailed: "Failed to delete article",
+      deleteSuccess: "Article deleted successfully",
+
+      publishedLabel: "Published:",
+    },
+    articleForm: {
+title: {
+create: "Create Article",
+edit: "Edit Article",
 },
-blogCategory: {
-  breadcrumb: {
-    blog: "Blog",
-  },
 
-  hero: {
-    categoryLabel: "Category",
-    articles: "Articles",
-    description:
-      "Browse all articles related to {category} cards, market insights, store guides, and community updates.",
-  },
+description: {
+create: "Write and publish a new blog or column article.",
+edit: "Update the article details below.",
+},
 
-  stats: {
-    articles: "Articles",
-  },
+sections: {
+basicInformation: "Basic Information",
+thumbnail: "Thumbnail",
+content: "Content",
+category: "Category",
+tags: "Tags",
+accessProtection: "Access Protection",
+},
 
-  grid: {
-    emptyMessage:
-      "No articles have been published in {category} yet. Check back soon.",
-  },
+labels: {
+title: "Title",
+slug: "Slug",
+excerpt: "Excerpt",
+articleBody: "Article Body",
+category: "Category",
+tags: "Tags",
+password: "Password",
+newPassword: "New Password",
+protectedArticle: "Password Protected Article",
+},
+
+placeholders: {
+title: "e.g. Pokemon Card Investment Guide",
+slug: "pokemon-card-investment-guide",
+excerpt: "A short summary of the article shown in listings...",
+content: "Write your article content here...",
+password: "Enter a secure password...",
+searchCategories: "Search categories...",
+searchTags: "Search tags...",
+},
+
+messages: {
+slugHelper:
+"Auto-generated from the title. You can edit it manually.",
+thumbnailUpload:
+"Click to upload thumbnail",
+thumbnailFormats:
+"PNG, JPG, WEBP supported",
+passwordProtected:
+"Readers must enter a password to view this article.",
+passwordAlreadySet:
+"A password is already set for this article.",
+passwordStorage:
+"Passwords are hashed before storage and never exposed in plain text.",
+noCategories:
+"No categories found.",
+noTags:
+"No tags found.",
+},
+
+thumbnail: {
+replace: "Replace",
+remove: "Remove thumbnail",
+notSaved: "Not yet saved",
+previewAlt: "Thumbnail preview",
+},
+
+tagsSelector: {
+select: "Select tags",
+selected: "tag selected",
+selectedPlural: "tags selected",
+remove: "Remove",
+},
+
+categorySelector: {
+select: "Select category",
+},
+
+protection: {
+changePassword: "Change Password",
+cancelPasswordChange: "Cancel",
+showPassword: "Show password",
+hidePassword: "Hide password",
+},
+
+validation: {
+titleRequired: "Title is required.",
+slugRequired: "Slug is required.",
+excerptRequired: "Excerpt is required.",
+contentRequired: "Content is required.",
+categoryRequired: "Category is required.",
+passwordRequired:
+"Password is required for protected articles.",
+},
+
+actions: {
+cancel: "Cancel",
+saveDraft: "Save Draft",
+savingDraft: "Saving...",
+publish: "Publish",
+publishing: "Publishing...",
+update: "Update",
+updating: "Updating...",
+},
+
+toast: {
+publishSuccess: "Article published successfully.",
+draftSuccess: "Article saved as draft.",
+updateSuccess: "Article updated successfully.",
+saveError:
+"Failed to save article. Please try again.",
+genericError: "Something went wrong.",
+thumbnailUploadError:
+"Thumbnail upload failed.",
+},
+
+dynamic: {
+tagsSelected: (count: number) =>
+`${count} tag${count > 1 ? "s" : ""} selected`,
+},
 },
   },
 
@@ -804,7 +1004,7 @@ blogCategory: {
       home: "ホーム",
       ranking: "ランキング",
       contact: "お問い合わせ",
-  blog: "ブログ",
+      blog: "ブログ",
       myPage: "マイページ",
       favorites: "お気に入り",
       viewedHistory: "閲覧履歴",
@@ -936,7 +1136,7 @@ blogCategory: {
         shops: "店舗",
         reports: "レポート",
         importCsv: "CSVインポート",
-        articles: "記事"
+        articles: "記事",
       },
 
       dashboard: {
@@ -1046,8 +1246,8 @@ blogCategory: {
           language: "対応言語",
           description: "説明",
           namePlaceholder: "東京カードショップ",
-addressPlaceholder: "東京都渋谷区",
-languagePlaceholder: "日本語・英語",
+          addressPlaceholder: "東京都渋谷区",
+          languagePlaceholder: "日本語・英語",
           descriptionPlaceholder: "店舗の説明を入力してください",
         },
 
@@ -1072,7 +1272,7 @@ languagePlaceholder: "日本語・英語",
             psa: "PSA鑑定",
             box: "ボックス",
             pokémon: "ポケモン",
-            onepiece: "ワンピース"
+            onepiece: "ワンピース",
           },
         },
       },
@@ -1376,98 +1576,92 @@ languagePlaceholder: "日本語・英語",
       },
     },
     privacy: {
-  title: "プライバシーポリシー",
+      title: "プライバシーポリシー",
 
-  intro:
-    "TCG Finder Japan（以下「当サービス」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。",
+      intro:
+        "TCG Finder Japan（以下「当サービス」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。",
 
-  sections: {
-    collect: {
-      title: "1. 収集する情報",
-      desc:
-        "当サービスでは、お問い合わせ時のメールアドレスなどの個人情報や、閲覧したページ、操作履歴などの利用データを収集する場合があります。",
+      sections: {
+        collect: {
+          title: "1. 収集する情報",
+          desc: "当サービスでは、お問い合わせ時のメールアドレスなどの個人情報や、閲覧したページ、操作履歴などの利用データを収集する場合があります。",
+        },
+
+        usage: {
+          title: "2. 情報の利用目的",
+          desc: "収集した情報は、お問い合わせへの回答、サービスの改善、ユーザー体験の向上、および機能の維持のために利用されます。",
+        },
+
+        ads: {
+          title: "3. 広告の配信について（Google AdSense）",
+
+          desc1:
+            "当サービスでは、第三者配信の広告サービス「Google AdSense」を利用しています。",
+
+          desc2:
+            "Googleなどの第三者配信事業者は、Cookie（クッキー）を使用して、ユーザーが当サービスや他のウェブサイトに過去にアクセスした際の情報に基づき、適切な広告を配信します。",
+
+          desc3:
+            "Googleが広告配信にCookieを使用することにより、Googleやそのパートナーは、ユーザーが当サービスや他のサイトにアクセスした際の情報に基づいて、適切な広告をユーザーに表示できます。",
+          desc4:
+            "ユーザーは、Google広告設定でパーソナライズ広告を無効にできます。また、www.aboutads.info にアクセスすることで、第三者配信事業者がパーソナライズ広告の掲載で使用するCookieを無効にできます。",
+          // link: "https://www.aboutads.info/",
+        },
+
+        analytics: {
+          title: "4. アクセス解析ツールについて",
+          desc: "当サービスでは、サイトの利用状況を把握するためにGoogleによるアクセス解析ツール「Googleアナリティクス」を利用しています。このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており、個人を特定するものではありません。",
+        },
+
+        thirdParty: {
+          title: "5. 第三者サービス",
+          desc: "当サービスでは、Google Maps API等の第三者サービスを利用しており、匿名の利用データが収集される場合があります。",
+        },
+
+        protection: {
+          title: "6. データの保護",
+          desc: "当サービスは、ユーザー情報を保護するために適切な対策を講じていますが、完全な安全性を保証するものではありません。",
+        },
+
+        disclaimer: {
+          title: "7. 免責事項",
+          desc: "当サービスに掲載されている情報の正確性には万全を期していますが、利用者が本サービスの情報を用いて行う一切の行為について責任を負いません。また、TCG在庫や価格は常に変動するため、最終情報は各店舗にてご確認ください。",
+        },
+
+        changes: {
+          title: "8. ポリシーの変更",
+          desc: "本ポリシーは必要に応じて変更される場合があります。変更後は本ページに掲載した時点より効力を生じるものとします。",
+        },
+      },
     },
-
-    usage: {
-      title: "2. 情報の利用目的",
-      desc:
-        "収集した情報は、お問い合わせへの回答、サービスの改善、ユーザー体験の向上、および機能の維持のために利用されます。",
-    },
-
-    ads: {
-      title: "3. 広告の配信について（Google AdSense）",
-
-      desc1:
-        "当サービスでは、第三者配信の広告サービス「Google AdSense」を利用しています。",
-
-      desc2:
-        "Googleなどの第三者配信事業者は、Cookie（クッキー）を使用して、ユーザーが当サービスや他のウェブサイトに過去にアクセスした際の情報に基づき、適切な広告を配信します。",
-
-      desc3:
-        "Googleが広告配信にCookieを使用することにより、Googleやそのパートナーは、ユーザーが当サービスや他のサイトにアクセスした際の情報に基づいて、適切な広告をユーザーに表示できます。",
-      desc4: "ユーザーは、Google広告設定でパーソナライズ広告を無効にできます。また、www.aboutads.info にアクセスすることで、第三者配信事業者がパーソナライズ広告の掲載で使用するCookieを無効にできます。",
-      // link: "https://www.aboutads.info/",
-    },
-
-    analytics: {
-      title: "4. アクセス解析ツールについて",
-      desc:
-        "当サービスでは、サイトの利用状況を把握するためにGoogleによるアクセス解析ツール「Googleアナリティクス」を利用しています。このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており、個人を特定するものではありません。",
-    },
-
-    thirdParty: {
-      title: "5. 第三者サービス",
-      desc:
-        "当サービスでは、Google Maps API等の第三者サービスを利用しており、匿名の利用データが収集される場合があります。",
-    },
-
-    protection: {
-      title: "6. データの保護",
-      desc:
-        "当サービスは、ユーザー情報を保護するために適切な対策を講じていますが、完全な安全性を保証するものではありません。",
-    },
-
-    disclaimer: {
-      title: "7. 免責事項",
-      desc:
-        "当サービスに掲載されている情報の正確性には万全を期していますが、利用者が本サービスの情報を用いて行う一切の行為について責任を負いません。また、TCG在庫や価格は常に変動するため、最終情報は各店舗にてご確認ください。",
-    },
-
-    changes: {
-      title: "8. ポリシーの変更",
-      desc:
-        "本ポリシーは必要に応じて変更される場合があります。変更後は本ページに掲載した時点より効力を生じるものとします。",
-    },
-  },
-},
     about: {
-  title: "当サイトについて",
+      title: "当サイトについて",
 
-  subtitle:
-    "TCG Finder Japanについての運営情報ページです。",
+      subtitle: "TCG Finder Japanについての運営情報ページです。",
 
-  operatorLabel: "運営者:",
-  operator: "TCG Finder Japan 運営事務局",
+      operatorLabel: "運営者:",
+      operator: "TCG Finder Japan 運営事務局",
 
-  websiteLabel: "サイトURL:",
+      websiteLabel: "サイトURL:",
 
-  purposeLabel: "目的:",
-  purpose:
-    "当サイトは、日本国内のトレーディングカードゲーム（TCG）ショップ情報を集約し、特に海外から日本を訪れるコレクターやプレイヤーが、目当てのカードショップへ迷わず辿り着けるようサポートすることを目的としています。",
+      purposeLabel: "目的:",
+      purpose:
+        "当サイトは、日本国内のトレーディングカードゲーム（TCG）ショップ情報を集約し、特に海外から日本を訪れるコレクターやプレイヤーが、目当てのカードショップへ迷わず辿り着けるようサポートすることを目的としています。",
 
-  activitiesLabel: "活動内容:",
-  activities:
-    "日本各地のTCGショップの所在地、取り扱いカード種別（Pokémon, One Piece等）、PSA鑑定品や未開封BOXの販売状況などを地図上で分かりやすく提供しています。情報は可能な限り最新の状態を保つよう努めております。",
+      activitiesLabel: "活動内容:",
+      activities:
+        "日本各地のTCGショップの所在地、取り扱いカード種別（Pokémon, One Piece等）、PSA鑑定品や未開封BOXの販売状況などを地図上で分かりやすく提供しています。情報は可能な限り最新の状態を保つよう努めております。",
 
-  contactLabel: "お問い合わせ:",
-  contactButton: "お問い合わせフォームはこちら",
-  contactDesc:"当サイトに関するご意見、情報の修正依頼、広告掲載などのお問い合わせは、以下の[お問い合わせフォーム]よりご連絡ください。",
+      contactLabel: "お問い合わせ:",
+      contactButton: "お問い合わせフォームはこちら",
+      contactDesc:
+        "当サイトに関するご意見、情報の修正依頼、広告掲載などのお問い合わせは、以下の[お問い合わせフォーム]よりご連絡ください。",
 
-  disclaimerLabel: "免責事項:",
-  disclaimer:
-    // "掲載情報は細心の注意を払っておりますが、店舗の移転や営業時間変更などにより現状と異なる場合があります。最新の情報は各店舗の公式サイトやSNSをご確認ください。",
-    "掲載情報は細心の注意を払っておりますが、店舗の移転や営業時間変更などにより現状と異なる場合があります。最新の情報は各店舗の公式サイトやSNSを併せてご確認ください。",
-},
+      disclaimerLabel: "免責事項:",
+      disclaimer:
+        // "掲載情報は細心の注意を払っておりますが、店舗の移転や営業時間変更などにより現状と異なる場合があります。最新の情報は各店舗の公式サイトやSNSをご確認ください。",
+        "掲載情報は細心の注意を払っておりますが、店舗の移転や営業時間変更などにより現状と異なる場合があります。最新の情報は各店舗の公式サイトやSNSを併せてご確認ください。",
+    },
     footer: {
       brand: {
         title: "TCG Finder Japan",
@@ -1552,49 +1746,255 @@ languagePlaceholder: "日本語・英語",
       required: "すべての項目を入力してください",
     },
     passwordGate: {
-  protectedArticle: "限定記事",
-  description:
-    "この記事を閲覧するにはパスワードが必要です。下記にパスワードを入力してください。",
+      protectedArticle: "限定記事",
+      description:
+        "この記事を閲覧するにはパスワードが必要です。下記にパスワードを入力してください。",
 
-  passwordLabel: "パスワード",
-  passwordPlaceholder: "パスワードを入力してください",
+      passwordLabel: "パスワード",
+      passwordPlaceholder: "パスワードを入力してください",
 
-  hidePassword: "パスワードを非表示",
-  showPassword: "パスワードを表示",
+      hidePassword: "パスワードを非表示",
+      showPassword: "パスワードを表示",
 
-  incorrectPassword:
-    "パスワードが正しくありません。もう一度お試しください。",
-  somethingWentWrong:
-    "問題が発生しました。もう一度お試しください。",
+      incorrectPassword:
+        "パスワードが正しくありません。もう一度お試しください。",
+      somethingWentWrong: "問題が発生しました。もう一度お試しください。",
 
-  verifying: "認証中...",
-  unlockArticle: "記事を閲覧する",
+      verifying: "認証中...",
+      unlockArticle: "記事を閲覧する",
 
-  footerText: "パスワードは購入後に提供されます。",
-  needHelp: "お困りですか？",
+      footerText: "パスワードは購入後に提供されます。",
+      needHelp: "お困りですか？",
+    },
+    blogCategory: {
+      breadcrumb: {
+        blog: "ブログ",
+      },
+
+      hero: {
+        categoryLabel: "カテゴリー",
+        articles: "記事",
+        description:
+          "{category}に関するカード情報、市場動向、ショップガイド、コミュニティの最新情報をご覧いただけます。",
+      },
+
+      stats: {
+        articles: "記事",
+      },
+
+      grid: {
+        emptyMessage:
+          "{category}に関する公開記事はまだありません。しばらくしてから再度ご確認ください。",
+      },
+    },
+    blogTag: {
+      breadcrumb: {
+        blog: "ブログ",
+        tag: "タグ",
+      },
+
+      hero: {
+        label: "タグ",
+        articles: "記事",
+        description: "{tag}タグが付けられた記事一覧です。",
+      },
+
+      stats: {
+        articles: "記事",
+      },
+
+      grid: {
+        emptyMessage:
+          "{tag}タグの記事はまだありません。しばらくしてから再度ご確認ください。",
+      },
+    },
+    blogList: {
+      hero: {
+        eyebrow: "TCG Finder Japan",
+
+        title: {
+          line1: "ブログ＆",
+          line2: "インサイト",
+        },
+
+        description:
+          "日本全国のトレーディングカードニュース、ショップガイド、市場分析、コミュニティ情報をご覧いただけます。",
+      },
+
+      stats: {
+        articles: "記事",
+      },
+
+      grid: {
+        emptyMessage:
+          "トレーディングカード情報、ショップガイド、市場分析の記事を準備中です。",
+      },
+    },
+    blogArticle: {
+      hero: {
+        backToArticles: "記事一覧へ戻る",
+        protected: "保護記事",
+        published: "公開日",
+      },
+
+      breadcrumb: {
+        articles: "記事一覧",
+      },
+
+      tags: {
+        title: "タグ",
+      },
+    },
+    blogArticlesTable: {
+      noArticlesFound: "記事が見つかりません",
+      createFirstArticle: "最初の記事を作成してください。",
+
+      article: "記事",
+      category: "カテゴリー",
+      status: "ステータス",
+      published: "公開日",
+      actions: "操作",
+
+      publishedStatus: "公開中",
+      draftStatus: "下書き",
+
+      viewArticle: "記事を見る",
+      edit: "編集",
+      delete: "削除",
+      view: "表示",
+
+      deleteArticle: "記事を削除",
+      deleteConfirm: "この記事を削除してもよろしいですか？",
+      cannotUndo: "この操作は元に戻せません。",
+
+      cancel: "キャンセル",
+
+      deleteFailed: "記事の削除に失敗しました",
+      deleteSuccess: "記事を削除しました",
+
+      publishedLabel: "公開日:",
+    },
+    articleForm: {
+title: {
+create: "記事を作成",
+edit: "記事を編集",
 },
- blogCategory: {
 
-  breadcrumb: {
-    blog: "ブログ",
-  },
+description: {
+create: "新しいブログ記事やコラム記事を作成・公開します。",
+edit: "記事の内容を更新します。",
+},
 
-  hero: {
-    categoryLabel: "カテゴリー",
-    articles: "記事",
-    description:
-      "{category}に関するカード情報、市場動向、ショップガイド、コミュニティの最新情報をご覧いただけます。",
-  },
+sections: {
+basicInformation: "基本情報",
+thumbnail: "サムネイル",
+content: "本文",
+category: "カテゴリー",
+tags: "タグ",
+accessProtection: "アクセス保護",
+},
 
-  stats: {
-    articles: "記事",
-  },
+labels: {
+title: "タイトル",
+slug: "スラッグ",
+excerpt: "概要",
+articleBody: "記事本文",
+category: "カテゴリー",
+tags: "タグ",
+password: "パスワード",
+newPassword: "新しいパスワード",
+protectedArticle: "パスワード保護記事",
+},
 
-  grid: {
-    emptyMessage:
-      "{category}に関する公開記事はまだありません。しばらくしてから再度ご確認ください。",
+placeholders: {
+title: "例: ポケモンカード投資ガイド",
+slug: "pokemon-card-investment-guide",
+excerpt: "記事一覧に表示される短い説明を入力してください...",
+content: "記事本文を入力してください...",
+password: "安全なパスワードを入力してください...",
+searchCategories: "カテゴリーを検索...",
+searchTags: "タグを検索...",
+},
+
+messages: {
+slugHelper:
+"タイトルから自動生成されます。手動で編集することもできます。",
+thumbnailUpload:
+"クリックしてサムネイルをアップロード",
+thumbnailFormats:
+"PNG、JPG、WEBP対応",
+passwordProtected:
+"読者は記事を閲覧するためにパスワードの入力が必要です。",
+passwordAlreadySet:
+"この記事には既にパスワードが設定されています。",
+passwordStorage:
+"パスワードはハッシュ化して保存され、平文では保存されません。",
+noCategories:
+"カテゴリーが見つかりません。",
+noTags:
+"タグが見つかりません。",
+},
+
+thumbnail: {
+replace: "変更",
+remove: "サムネイルを削除",
+notSaved: "未保存",
+previewAlt: "サムネイルプレビュー",
+},
+
+tagsSelector: {
+select: "タグを選択",
+selected: "件のタグを選択中",
+selectedPlural: "件のタグを選択中",
+remove: "削除",
+},
+
+categorySelector: {
+select: "カテゴリーを選択",
+},
+
+protection: {
+changePassword: "パスワードを変更",
+cancelPasswordChange: "キャンセル",
+showPassword: "パスワードを表示",
+hidePassword: "パスワードを非表示",
+},
+
+validation: {
+titleRequired: "タイトルは必須です。",
+slugRequired: "スラッグは必須です。",
+excerptRequired: "概要は必須です。",
+contentRequired: "本文は必須です。",
+categoryRequired: "カテゴリーは必須です。",
+passwordRequired:
+"保護された記事にはパスワードが必要です。",
+},
+
+actions: {
+cancel: "キャンセル",
+saveDraft: "下書き保存",
+savingDraft: "保存中...",
+publish: "公開",
+publishing: "公開中...",
+update: "更新",
+updating: "更新中...",
+},
+
+toast: {
+publishSuccess: "記事を公開しました。",
+draftSuccess: "記事を下書きとして保存しました。",
+updateSuccess: "記事を更新しました。",
+saveError:
+"記事の保存に失敗しました。もう一度お試しください。",
+genericError: "エラーが発生しました。",
+thumbnailUploadError:
+"サムネイルのアップロードに失敗しました。",
+},
+
+dynamic: {
+tagsSelected: (count: number) =>
+`${count}件のタグを選択中`,
+},
+},
   },
-}
-  },
-  
 };

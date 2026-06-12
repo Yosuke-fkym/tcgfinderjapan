@@ -111,12 +111,12 @@ export default function ArticlesTable({ articles, refresh }: Props) {
     const response = await res.json();
 
     if (!response.success) {
-      toast("Failed to delete article", { position: "top-right" });
+      toast(t.blogArticlesTable.deleteFailed, { position: "top-right" });
 
       return;
     }
 
-    toast("Article deleted successfully", { position: "top-right" });
+    toast(t.blogArticlesTable.deleteSuccess, { position: "top-right" });
 
     setOpen(false);
 
@@ -128,9 +128,9 @@ export default function ArticlesTable({ articles, refresh }: Props) {
       <div className="bg-white border flex flex-col justify-center items-center rounded-xl p-10 text-center text-gray-500">
         <FileText className="mx-auto mb-3 opacity-60" size={28} />
 
-        <div className="text-lg font-semibold mb-2">No articles found</div>
+        <div className="text-lg font-semibold mb-2">{t.blogArticlesTable.noArticlesFound}</div>
 
-        <div className="text-gray-500">Create your first article.</div>
+        <div className="text-gray-500">{t.blogArticlesTable.createFirstArticle}</div>
       </div>
     );
   }
@@ -143,23 +143,23 @@ export default function ArticlesTable({ articles, refresh }: Props) {
             <TableHeader>
               <TableRow className="bg-gray-50">
                 <TableHead className="text-sm lg:text-base font-semibold py-4">
-                  Article
+                  {t.blogArticlesTable.article}
                 </TableHead>
 
                 <TableHead className="text-sm lg:text-base font-semibold py-4">
-                  Category
+                  {t.blogArticlesTable.category}
                 </TableHead>
 
                 <TableHead className="text-sm lg:text-base font-semibold py-4">
-                  Status
+                  {t.blogArticlesTable.status}
                 </TableHead>
 
                 <TableHead className="text-sm lg:text-base font-semibold py-4">
-                  Published
+                  {t.blogArticlesTable.published}
                 </TableHead>
 
                 <TableHead className="text-right text-sm lg:text-base font-semibold">
-                  Actions
+                  {t.blogArticlesTable.actions}
                 </TableHead>
               </TableRow>
             </TableHeader>
@@ -189,11 +189,11 @@ export default function ArticlesTable({ articles, refresh }: Props) {
                   <TableCell className="py-4">
                     {article.status === "published" ? (
                       <Badge className="bg-green-50 text-green-700">
-                        Published
+                        {t.blogArticlesTable.publishedStatus}
                       </Badge>
                     ) : (
                       <Badge className="bg-yellow-50 text-yellow-700">
-                        Draft
+                        {t.blogArticlesTable.draftStatus}
                       </Badge>
                     )}
                   </TableCell>
@@ -219,7 +219,7 @@ export default function ArticlesTable({ articles, refresh }: Props) {
                             className="flex items-center gap-2"
                           >
                             <ArrowUpRightFromSquareIcon className="h-4 w-4" />
-                            View Article
+                            {t.blogArticlesTable.viewArticle}
                           </Link>
                         </DropdownMenuItem>
 
@@ -231,7 +231,7 @@ export default function ArticlesTable({ articles, refresh }: Props) {
                             className="flex items-center gap-2"
                           >
                             <Pencil className="h-4 w-4" />
-                            Edit
+                            {t.blogArticlesTable.edit}
                           </Link>
                         </DropdownMenuItem>
 
@@ -240,7 +240,7 @@ export default function ArticlesTable({ articles, refresh }: Props) {
                           onClick={() => openDeleteDialog(article)}
                         >
                           <Trash2 className="h-4 w-4" />
-                          Delete
+                          {t.blogArticlesTable.delete}
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
@@ -254,24 +254,24 @@ export default function ArticlesTable({ articles, refresh }: Props) {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>Delete Article</DialogTitle>
+              <DialogTitle>{t.blogArticlesTable.deleteArticle}</DialogTitle>
 
               <DialogDescription>
-                Are you sure you want to delete this article?
+                {t.blogArticlesTable.deleteConfirm}
                 <span className="font-semibold"> {selectedArticle?.title}</span>
                 ?
                 <br />
-                This action cannot be undone.
+                {t.blogArticlesTable.cannotUndo}
               </DialogDescription>
             </DialogHeader>
 
             <DialogFooter>
               <Button variant="outline" onClick={() => setOpen(false)}>
-                Cancel
+                {t.blogArticlesTable.cancel}
               </Button>
 
               <Button variant="destructive" onClick={deleteArticle}>
-                Delete
+                {t.blogArticlesTable.delete}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -294,7 +294,7 @@ export default function ArticlesTable({ articles, refresh }: Props) {
 
                 {article.status === "published" ? (
                   <Badge className="bg-green-50 text-green-700">
-                    Published
+                    {t.blogArticlesTable.publishedLabel}
                   </Badge>
                 ) : (
                   <Badge className="bg-yellow-50 text-yellow-700">Draft</Badge>
@@ -319,21 +319,22 @@ export default function ArticlesTable({ articles, refresh }: Props) {
                   href={`/${locale}/blog/${article.slug}`}
                   className="flex-1 text-center bg-gray-100 hover:bg-gray-200 py-2 rounded-md text-sm"
                 >
-                  View
+                  {t.blogArticlesTable.view}
                 </Link>
 
                 <Link
                   href={`/${locale}/admin/articles/edit/${article.id}`}
                   className="flex-1 text-center bg-indigo-600 text-white hover:bg-indigo-700 py-2 rounded-md text-sm"
                 >
-                  Edit
+                  {t.blogArticlesTable.edit}
                 </Link>
 
                 <button
                   onClick={() => openDeleteDialog(article)}
                   className="flex-1 bg-red-500 text-white hover:bg-red-600 py-2 rounded-md text-sm"
                 >
-                  Delete
+                  
+                  {t.blogArticlesTable.delete}
                 </button>
               </div>
             </div>

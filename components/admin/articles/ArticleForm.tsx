@@ -1,7 +1,4 @@
 // components/admin/ArticleForm.tsx
-// Shared form used by both Create (/admin/articles/create) and
-// Edit (/admin/articles/edit/[slug]) pages. Pass mode="edit" + initialData
-// to prefill all fields and switch submission to PATCH.
 
 "use client";
 
@@ -37,6 +34,7 @@ import { Check, ChevronsUpDown, X } from "lucide-react";
 import { toast } from "sonner";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/supabase";
+import { getT } from "@/lib/getT";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -116,6 +114,8 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
   const router = useRouter();
   const params = useParams();
   const locale = (params?.locale as string) ?? "";
+
+const t = getT(locale as string);
 
   // Form state
   const [title,      setTitle]      = useState(initialData?.title      ?? "");
@@ -229,7 +229,7 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
       body: formData,
     });
     const result = await res.json();
-    if (!res.ok || result.error) throw new Error(result.error || "Thumbnail upload failed.");
+    if (!res.ok || result.error) throw new Error(result.error || t.articleForm.toast.thumbnailUploadError);
     return result.url as string;
   };
 
@@ -252,12 +252,6 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
   // ---------------------------------------------------------------------------
 
   const handleSubmit = async (submitStatus: ArticleStatus) => {
-  //    if(mode === "edit" && isProtected && password.trim()){
-  //     console.log('hello');
-      
-  //   setChangePassword(true);
-  //  }
-  // console.log("below set: ",changePassword);
     const currentErrors = validate({
       title,
       slug,
@@ -269,7 +263,6 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
       mode,
     });
 
-    console.log("currenterrors: ", currentErrors);
     
     if (Object.keys(currentErrors).length > 0) { setErrors(currentErrors); return; }
 
@@ -304,7 +297,7 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
         if (newFile) await uploadThumbnail(articleId);
 
         toast.success(
-          submitStatus === "published" ? "Article published successfully." : "Article saved as draft."
+          submitStatus === "published" ? t.articleForm.toast.publishSuccess : t.articleForm.toast.draftSuccess
         );
 
         router.push(`/${locale}/admin/articles`);
@@ -347,13 +340,13 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
         });
 
         const result = await res.json();
-        if (!res.ok || result.error) throw new Error(result.error || "Something went wrong.");
+        if (!res.ok || result.error) throw new Error(result.error || t.articleForm.toast.genericError);
 
-        toast.success("Article updated successfully.");
+        toast.success(t.articleForm.toast.updateSuccess);
         router.push(`/${locale}/admin/articles`);
       }
     } catch (err: any) {
-      toast.error(err?.message || "Failed to save article. Please try again.");
+      toast.error(err?.message || t.articleForm.toast.saveError);
     } finally {
       setSubmitting(null);
     }
@@ -383,12 +376,12 @@ const showPasswordInput =
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-xl">
             <FileText size={20} />
-            {mode === "edit" ? "Edit Article" : "Create Article"}
+            {mode === "edit" ? t.articleForm.title.edit : t.articleForm.title.create}
           </CardTitle>
           <CardDescription>
             {mode === "edit"
-              ? "Update the article details below."
-              : "Write and publish a new blog or column article."}
+              ? t.articleForm.description.edit
+              : t.articleForm.description.create}
           </CardDescription>
         </CardHeader>
 
@@ -397,41 +390,41 @@ const showPasswordInput =
 
             {/* BASIC INFORMATION */}
             <div className="space-y-4">
-              <h3 className="font-semibold text-gray-800">Basic Information</h3>
+              <h3 className="font-semibold text-gray-800">{t.articleForm.sections.basicInformation}</h3>
               <div className="grid gap-4">
 
                 <div className="grid gap-2">
-                  <Label htmlFor="title">Title <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="title">{t.articleForm.labels.title} <span className="text-red-500">*</span></Label>
                   <Input
                     id="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    placeholder="e.g. Pokemon Card Investment Guide"
+                    placeholder={t.articleForm.placeholders.title}
                   />
                   {errors.title && <p className="text-sm text-red-500">{errors.title}</p>}
                 </div>
 
                 <div className="grid gap-2">
-                  <Label htmlFor="slug">Slug <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="slug">{t.articleForm.labels.slug} <span className="text-red-500">*</span></Label>
                   <Input
                     id="slug"
                     value={slug}
                     onChange={(e) => handleSlugChange(e.target.value)}
-                    placeholder="pokemon-card-investment-guide"
+                    placeholder={t.articleForm.placeholders.slug}
                   />
                   <p className="text-xs text-muted-foreground">
-                    Auto-generated from the title. You can edit it manually.
+                    {t.articleForm.messages.slugHelper}
                   </p>
                   {errors.slug && <p className="text-sm text-red-500">{errors.slug}</p>}
                 </div>
 
                 <div className="grid gap-2">
-                  <Label htmlFor="excerpt">Excerpt <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="excerpt">{t.articleForm.labels.excerpt} <span className="text-red-500">*</span></Label>
                   <Textarea
                     id="excerpt"
                     value={excerpt}
                     onChange={(e) => setExcerpt(e.target.value)}
-                    placeholder="A short summary of the article shown in listings..."
+                    placeholder={t.articleForm.placeholders.excerpt}
                     rows={3}
                   />
                   {errors.excerpt && <p className="text-sm text-red-500">{errors.excerpt}</p>}
@@ -442,13 +435,13 @@ const showPasswordInput =
 
             {/* THUMBNAIL */}
             <div className="space-y-4">
-              <h3 className="font-semibold text-gray-800">Thumbnail</h3>
+              <h3 className="font-semibold text-gray-800">{t.articleForm.sections.thumbnail}</h3>
 
               {!thumbnailToShow && (
                 <label className="border-2 border-dashed rounded-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-muted/50 transition">
                   <ImageIcon className="mb-2 text-gray-500" />
-                  <p className="font-medium">Click to upload thumbnail</p>
-                  <p className="text-sm text-muted-foreground mt-1">PNG, JPG, WEBP supported</p>
+                  <p className="font-medium">{t.articleForm.messages.thumbnailUpload}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{t.articleForm.messages.thumbnailFormats}</p>
                   <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
                 </label>
               )}
@@ -456,24 +449,24 @@ const showPasswordInput =
               {thumbnailToShow && (
                 <div className="relative w-full max-w-sm aspect-video rounded-xl border overflow-hidden bg-muted group">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={thumbnailToShow} alt="Thumbnail preview" className="w-full h-full object-cover" />
+                  <img src={thumbnailToShow} alt={t.articleForm.thumbnail.previewAlt} className="w-full h-full object-cover" />
                   <button
                     type="button"
                     onClick={preview ? removeNewFile : removeExistingThumbnail}
                     className="absolute top-2 right-2 bg-white rounded-full p-1.5 shadow hover:bg-red-50 hover:text-red-600 transition cursor-pointer"
-                    aria-label="Remove thumbnail"
+                    aria-label={t.articleForm.thumbnail.remove}
                   >
                     <Trash2 size={15} />
                   </button>
                   <label className="absolute bottom-2 right-2 cursor-pointer">
                     <span className="bg-white text-xs font-medium px-2 py-1 rounded shadow hover:bg-gray-50 transition">
-                      Replace
+                      {t.articleForm.thumbnail.replace}
                     </span>
                     <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
                   </label>
                   {preview && (
                     <span className="absolute top-2 left-2 bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-0.5 rounded">
-                      Not yet saved
+                      {t.articleForm.thumbnail.notSaved}
                     </span>
                   )}
                 </div>
@@ -483,15 +476,15 @@ const showPasswordInput =
             {/* CONTENT */}
             <div className="space-y-4">
               <h3 className="font-semibold text-gray-800 flex items-center gap-2">
-                <BookOpen size={16} /> Content
+                <BookOpen size={16} /> {t.articleForm.sections.content}
               </h3>
               <div className="grid gap-2">
-                <Label htmlFor="content">Article Body <span className="text-red-500">*</span></Label>
+                <Label htmlFor="content">{t.articleForm.labels.articleBody} <span className="text-red-500">*</span></Label>
                 <Textarea
                   id="content"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
-                  placeholder="Write your article content here..."
+                  placeholder={t.articleForm.labels.articleBody}
                   rows={16}
                   className="resize-y font-mono text-sm"
                 />
@@ -501,20 +494,20 @@ const showPasswordInput =
 
             {/* CATEGORY */}
             <div className="space-y-4">
-              <h3 className="font-semibold text-gray-800">Category</h3>
+              <h3 className="font-semibold text-gray-800">{t.articleForm.sections.category}</h3>
               <div className="grid gap-2">
-                <Label>Category <span className="text-red-500">*</span></Label>
+                <Label>{t.articleForm.labels.category} <span className="text-red-500">*</span></Label>
                 <Popover open={categoryOpen} onOpenChange={setCategoryOpen}>
                   <PopoverTrigger asChild>
                     <Button variant="outline" role="combobox" className="justify-between">
-                      {selectedCategory ? selectedCategory.name : "Select category"}
+                      {selectedCategory ? selectedCategory.name : t.articleForm.categorySelector.select}
                       <ChevronsUpDown className="ml-2 h-4 w-4 opacity-50" />
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="p-0 w-64">
                     <Command>
-                      <CommandInput placeholder="Search categories..." />
-                      <CommandEmpty>No categories found.</CommandEmpty>
+                      <CommandInput placeholder={t.articleForm.placeholders.searchCategories} />
+                      <CommandEmpty>{t.articleForm.messages.noCategories}</CommandEmpty>
                       <CommandList>
                         <CommandGroup>
                           {categories.map((cat) => (
@@ -538,23 +531,23 @@ const showPasswordInput =
             {/* TAGS */}
             <div className="space-y-4">
               <h3 className="font-semibold text-gray-800 flex items-center gap-2">
-                <Tag size={16} /> Tags
+                <Tag size={16} /> {t.articleForm.sections.tags}
               </h3>
               <div className="grid gap-2">
-                <Label>Tags</Label>
+                <Label>{t.articleForm.labels.tags}</Label>
                 <Popover open={tagOpen} onOpenChange={setTagOpen}>
                   <PopoverTrigger asChild>
                     <Button variant="outline" role="combobox" className="justify-between">
                       {selectedTagIds.length > 0
-                        ? `${selectedTagIds.length} tag${selectedTagIds.length > 1 ? "s" : ""} selected`
-                        : "Select tags"}
+                        ? (t.articleForm.dynamic.tagsSelected(selectedTagIds.length))
+                        : t.articleForm.tagsSelector.select}
                       <ChevronsUpDown className="ml-2 h-4 w-4 opacity-50" />
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="p-0 w-64">
                     <Command>
-                      <CommandInput placeholder="Search tags..." />
-                      <CommandEmpty>No tags found.</CommandEmpty>
+                      <CommandInput placeholder={t.articleForm.placeholders.searchTags} />
+                      <CommandEmpty>{t.articleForm.messages.noTags}</CommandEmpty>
                       <CommandList>
                         <CommandGroup>
                           {tags.map((tag) => (
@@ -578,7 +571,7 @@ const showPasswordInput =
                           type="button"
                           onClick={() => removeTag(tag.id)}
                           className="ml-1 hover:text-destructive transition-colors"
-                          aria-label={`Remove ${tag.name}`}
+                          aria-label={`${t.articleForm.tagsSelector.remove} ${tag.name}`}
                         >
                           <X size={12} />
                         </button>
@@ -592,7 +585,7 @@ const showPasswordInput =
             {/* ── ACCESS PROTECTION ── */}
             <div className="space-y-4">
               <h3 className="font-semibold text-gray-800 flex items-center gap-2">
-                <Lock size={16} /> Access Protection
+                <Lock size={16} /> {t.articleForm.sections.accessProtection}
               </h3>
 
               <div className="border rounded-xl p-5 space-y-4 bg-muted/30">
@@ -601,10 +594,10 @@ const showPasswordInput =
                 <div className="flex items-center justify-between">
                   <div>
                     <Label htmlFor="is-protected" className="font-medium cursor-pointer">
-                      Password Protected Article
+                      {t.articleForm.labels.protectedArticle}
                     </Label>
                     <p className="text-xs text-muted-foreground mt-0.5">
-                      Readers must enter a password to view this article.
+                      {t.articleForm.messages.passwordProtected}
                     </p>
                   </div>
                   <Switch
@@ -622,7 +615,7 @@ const showPasswordInput =
                     {mode === "edit" && initialData?.is_protected && !changePassword && (
                       <div className="flex items-center justify-between">
                         <p className="text-sm text-muted-foreground">
-                          A password is already set for this article.
+                          {t.articleForm.messages.passwordAlreadySet}
                         </p>
                         <Button
                           type="button"
@@ -630,7 +623,7 @@ const showPasswordInput =
                           size="sm"
                           onClick={() => setChangePassword(true)}
                         >
-                          Change Password
+                          {t.articleForm.protection.changePassword}
                         </Button>
                       </div>
                     )}
@@ -639,7 +632,7 @@ const showPasswordInput =
                     {showPasswordInput && (
                       <div className="grid gap-2">
                         <Label htmlFor="article-password">
-                          {mode === "edit" ? "New Password" : "Password"}
+                          {mode === "edit" ? (t.articleForm.labels.newPassword) : (t.articleForm.labels.password)}
                           <span className="text-red-500"> *</span>
                         </Label>
                         <div className="relative">
@@ -648,7 +641,7 @@ const showPasswordInput =
                             type={showPassword ? "text" : "password"}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Enter a secure password..."
+                            placeholder={t.articleForm.placeholders.password}
                             className="pr-10"
                             autoComplete="new-password"
                           />
@@ -656,7 +649,7 @@ const showPasswordInput =
                             type="button"
                             onClick={() => setShowPassword((v) => !v)}
                             className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                            aria-label={showPassword ? "Hide password" : "Show password"}
+                            aria-label={showPassword ? (t.articleForm.protection.hidePassword) : (t.articleForm.protection.showPassword)}
                           >
                             {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
                           </button>
@@ -672,14 +665,14 @@ const showPasswordInput =
                             className="w-fit text-muted-foreground"
                             onClick={() => { setChangePassword(false); setPassword(""); }}
                           >
-                            Cancel
+                            {t.articleForm.protection.cancelPasswordChange}
                           </Button>
                         )}
                       </div>
                     )}
 
                     <p className="text-xs text-muted-foreground">
-                      Passwords are hashed before storage and never exposed in plain text.
+                      {t.articleForm.messages.passwordStorage}
                     </p>
                   </div>
                 )}
@@ -689,7 +682,7 @@ const showPasswordInput =
             {/* ACTIONS */}
             <div className="flex justify-end gap-4 pt-4 border-t">
               <Button type="button" variant="outline" onClick={() => router.back()} disabled={isLoading}>
-                Cancel
+                {t.articleForm.actions.cancel}
               </Button>
 
               <Button
@@ -698,7 +691,7 @@ const showPasswordInput =
                 onClick={() => handleSubmit("draft")}
                 disabled={isLoading}
               >
-                {submitting === "draft" ? "Saving..." : "Save Draft"}
+                {submitting === "draft" ? (t.articleForm.actions.savingDraft) : (t.articleForm.actions.saveDraft)}
               </Button>
 
               <Button
@@ -707,8 +700,8 @@ const showPasswordInput =
                 disabled={isLoading}
               >
                 {submitting === "published"
-                  ? (mode === "edit" ? "Updating..." : "Publishing...")
-                  : (mode === "edit" ? "Update" : "Publish")}
+                  ? (mode === "edit" ? (t.articleForm.actions.updating) : (t.articleForm.actions.publishing))
+                  : (mode === "edit" ? (t.articleForm.actions.update) : (t.articleForm.actions.publish))}
               </Button>
             </div>
 

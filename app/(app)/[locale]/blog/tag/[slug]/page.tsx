@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArticleCardData, ArticleGrid } from "@/components/admin/articles/ArticleCard";
+import { getT } from "@/lib/getT";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -74,6 +75,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function TagPage({ params }: Props) {
   const { slug, locale } = await params;
 
+const t = getT(locale as string);
+
   const [tag, articles] = await Promise.all([
     fetchTag(slug),
     fetchArticlesByTag(slug),
@@ -96,10 +99,10 @@ export default async function TagPage({ params }: Props) {
             aria-label="Breadcrumb"
           >
             <Link href={`/${locale}/blog`} className="hover:text-amber-600 transition-colors">
-              Blog
+              {t.blogTag.breadcrumb.blog}
             </Link>
             <span aria-hidden="true">›</span>
-            <span className="text-stone-500">Tag</span>
+            <span className="text-stone-500">{t.blogTag.breadcrumb.tag}</span>
             <span aria-hidden="true">›</span>
             <span className="text-stone-600 font-medium">{tag.name}</span>
           </nav>
@@ -110,7 +113,7 @@ export default async function TagPage({ params }: Props) {
                        uppercase text-amber-600 mb-5"
           >
             <span className="block w-7 h-px bg-amber-600" aria-hidden="true" />
-            Tag
+            {t.blogTag.hero.label}
           </p>
 
           <h1
@@ -118,11 +121,11 @@ export default async function TagPage({ params }: Props) {
                        leading-[1.1] tracking-tight mb-4"
           >
             {tag.name}<br />
-            <span className="text-stone-300">Articles</span>
+            <span className="text-stone-300">{t.blogTag.hero.articles}</span>
           </h1>
 
           <p className="text-sm sm:text-base text-stone-500 leading-relaxed max-w-md">
-            Browse all articles tagged with {tag.name}.
+            {t.blogTag.hero.description.replace("{tag}", tag.name)}
           </p>
         </div>
 
@@ -135,7 +138,7 @@ export default async function TagPage({ params }: Props) {
             {String(articles.length).padStart(2, "0")}
           </span>
           <span className="text-[0.68rem] font-semibold tracking-[0.1em] uppercase text-stone-400">
-            Articles
+            {t.blogCategory.stats.articles}
           </span>
         </div>
       </header>
@@ -149,7 +152,7 @@ export default async function TagPage({ params }: Props) {
           <ArticleGrid
             articles={articles}
             locale={locale}
-            emptyMessage={`No articles have been tagged with ${tag.name} yet. Check back soon.`}
+            emptyMessage={t.blogTag.grid.emptyMessage.replace("{tag}", tag.name)}
           />
         </div>
       </section>

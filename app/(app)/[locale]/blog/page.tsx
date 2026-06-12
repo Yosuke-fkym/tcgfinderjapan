@@ -2,6 +2,7 @@
 // Updated to use shared ArticleCard + ArticleGrid components.
 
 import { ArticleCardData, ArticleGrid } from "@/components/admin/articles/ArticleCard";
+import { getT } from "@/lib/getT";
 import { Metadata } from "next";
 
 type Props = {
@@ -35,6 +36,8 @@ export default async function BlogListPage({ params }: Props) {
   const { locale } = await params;
   const articles = await fetchPublishedArticles();
 
+const t = getT(locale as string);
+
   return (
     <main className="min-h-screen bg-[#FAF8F4]">
 
@@ -49,19 +52,18 @@ export default async function BlogListPage({ params }: Props) {
                        uppercase text-amber-600 mb-5"
           >
             <span className="block w-7 h-px bg-amber-600" aria-hidden="true" />
-            TCG Finder Japan
+            {t.blogList.hero.eyebrow}
           </p>
 
           <h1
             className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-900
                        leading-[1.1] tracking-tight mb-4"
           >
-            Blog &amp;<br />Insights
+            {t.blogList.hero.title.line1}<br />{t.blogList.hero.title.line2}
           </h1>
 
           <p className="text-sm sm:text-base text-stone-500 leading-relaxed max-w-md">
-            Trading card news, store guides, market analysis, and community updates from across
-            Japan.
+            {t.blogList.hero.description}
           </p>
         </div>
 
@@ -74,7 +76,7 @@ export default async function BlogListPage({ params }: Props) {
               {String(articles.length).padStart(2, "0")}
             </span>
             <span className="text-[0.68rem] font-semibold tracking-[0.1em] uppercase text-stone-400">
-              Articles
+              {t.blogList.stats.articles}
             </span>
           </div>
         )}
@@ -89,7 +91,7 @@ export default async function BlogListPage({ params }: Props) {
           <ArticleGrid
             articles={articles}
             locale={locale}
-            emptyMessage="New articles on trading cards, store guides, and market insights are on their way."
+            emptyMessage="{t.blogList.grid.emptyMessage}"
           />
         </div>
       </section>
