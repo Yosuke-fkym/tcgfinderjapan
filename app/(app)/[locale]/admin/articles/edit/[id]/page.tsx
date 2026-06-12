@@ -21,6 +21,7 @@ type RawArticle = {
   thumbnail_url: string | null;
   category_id: string;
   status: "draft" | "published";
+  is_protected: boolean;          // ← ADD
   article_tags: ArticleTag[];
 };
 
@@ -95,6 +96,7 @@ export default function EditArticlePage() {
         thumbnail_url: article.thumbnail_url,
         category_id:   article.category_id,
         status:        article.status,
+        is_protected:  article.is_protected,  // ← ADD
         tag_ids,
       }}
     />

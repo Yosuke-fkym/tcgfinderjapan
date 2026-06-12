@@ -55,7 +55,7 @@ function AdminAsideNav() {
         />
         <AdminNavButton
           icon={File}
-          name={"Articles"}
+          name={t.admin.sidebar.articles}
           path={`/${locale}/admin/articles`}
           key="articles"
         />

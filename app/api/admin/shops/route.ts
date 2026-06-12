@@ -1,22 +1,35 @@
 import { supabaseAdmin } from "@/lib/supabase/admin";
 
 // GET /api/admin/shops
-export async function GET() {
-  const { data, error } = await supabaseAdmin
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+
+  const page = Number(searchParams.get("page") ?? "1");
+  const pageSize = Number(searchParams.get("pageSize") ?? "20");
+
+  const from = (page - 1) * pageSize;
+  const to = from + pageSize - 1;
+
+  const { data, error, count } = await supabaseAdmin
     .from("shops")
-    .select(`
+    .select(
+      `
       *,
       reviews(count)
-    `)
-    .order("created_at", { ascending: false });
+    `,
+      { count: "exact" }
+    )
+    .order("created_at", { ascending: false })
+    .range(from, to);
 
-  // 🔥 flatten count
-  const formatted = data?.map((shop: any) => ({
-    ...shop,
-    // reviews_count: shop.reviews?.[0]?.count || 0,
-  }));
-
-  return Response.json({ data: formatted, error });
+  return Response.json({
+    data,
+    count,
+    page,
+    pageSize,
+    totalPages: Math.ceil((count ?? 0) / pageSize),
+    error,
+  });
 }
 
 // POST /api/admin/shops

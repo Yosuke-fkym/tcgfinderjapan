@@ -10,7 +10,7 @@ export const translations = {
       home: "Home",
       ranking: "Ranking",
       contact: "Contact",
-
+      blog: "Blog",
       myPage: "My Page",
       favorites: "Favorites",
       viewedHistory: "Viewed History",
@@ -138,6 +138,7 @@ export const translations = {
         shops: "Shops",
         reports: "Reports",
         importCsv: "Import CSV",
+        articles: "Articles"
       },
 
       dashboard: {
@@ -754,6 +755,47 @@ languagePlaceholder: "Japanese, English",
         },
       },
     },
+    passwordGate: {
+  protectedArticle: "Protected Article",
+  description:
+    "This article requires a password to access. Enter the password below to unlock it.",
+
+  passwordLabel: "Password",
+  passwordPlaceholder: "Enter password...",
+
+  hidePassword: "Hide password",
+  showPassword: "Show password",
+
+  incorrectPassword: "Incorrect password. Please try again.",
+  somethingWentWrong: "Something went wrong. Please try again.",
+
+  verifying: "Verifying...",
+  unlockArticle: "Unlock Article",
+
+  footerText: "Password provided upon purchase.",
+  needHelp: "Need help?",
+},
+blogCategory: {
+  breadcrumb: {
+    blog: "Blog",
+  },
+
+  hero: {
+    categoryLabel: "Category",
+    articles: "Articles",
+    description:
+      "Browse all articles related to {category} cards, market insights, store guides, and community updates.",
+  },
+
+  stats: {
+    articles: "Articles",
+  },
+
+  grid: {
+    emptyMessage:
+      "No articles have been published in {category} yet. Check back soon.",
+  },
+},
   },
 
   jp: {
@@ -762,7 +804,7 @@ languagePlaceholder: "Japanese, English",
       home: "ホーム",
       ranking: "ランキング",
       contact: "お問い合わせ",
-
+  blog: "ブログ",
       myPage: "マイページ",
       favorites: "お気に入り",
       viewedHistory: "閲覧履歴",
@@ -894,6 +936,7 @@ languagePlaceholder: "Japanese, English",
         shops: "店舗",
         reports: "レポート",
         importCsv: "CSVインポート",
+        articles: "記事"
       },
 
       dashboard: {
@@ -1508,5 +1551,50 @@ languagePlaceholder: "日本語・英語",
       error: "送信に失敗しました。もう一度お試しください。",
       required: "すべての項目を入力してください",
     },
+    passwordGate: {
+  protectedArticle: "限定記事",
+  description:
+    "この記事を閲覧するにはパスワードが必要です。下記にパスワードを入力してください。",
+
+  passwordLabel: "パスワード",
+  passwordPlaceholder: "パスワードを入力してください",
+
+  hidePassword: "パスワードを非表示",
+  showPassword: "パスワードを表示",
+
+  incorrectPassword:
+    "パスワードが正しくありません。もう一度お試しください。",
+  somethingWentWrong:
+    "問題が発生しました。もう一度お試しください。",
+
+  verifying: "認証中...",
+  unlockArticle: "記事を閲覧する",
+
+  footerText: "パスワードは購入後に提供されます。",
+  needHelp: "お困りですか？",
+},
+ blogCategory: {
+
+  breadcrumb: {
+    blog: "ブログ",
   },
+
+  hero: {
+    categoryLabel: "カテゴリー",
+    articles: "記事",
+    description:
+      "{category}に関するカード情報、市場動向、ショップガイド、コミュニティの最新情報をご覧いただけます。",
+  },
+
+  stats: {
+    articles: "記事",
+  },
+
+  grid: {
+    emptyMessage:
+      "{category}に関する公開記事はまだありません。しばらくしてから再度ご確認ください。",
+  },
+}
+  },
+  
 };

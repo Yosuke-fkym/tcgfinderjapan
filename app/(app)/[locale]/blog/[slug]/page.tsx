@@ -1,18 +1,26 @@
 // app/[locale]/blog/[slug]/page.tsx
 
+import { createHash } from "crypto";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { cookies } from "next/headers";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import Link from "next/link";
+import PasswordGate from "@/components/admin/articles/PasswordGate";
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 type ArticleTag = {
   general_blog_tags: {
     id: string;
     name: string;
     slug: string;
-  };
+  } | null;
 };
 
-type Article = {
+// Supabase returns joined one-to-many as arrays even for FK relations —
+// we type them as arrays here and normalise after fetching.
+type RawArticle = {
   id: string;
   title: string;
   slug: string;
@@ -21,32 +29,80 @@ type Article = {
   thumbnail_url: string | null;
   published_at: string | null;
   status: string;
-  blog_categories: {
-    id: string;
-    name: string;
-    slug: string;
-  } | null;
+  password_hash: string | null;
+  is_protected: boolean;
+  blog_categories: { id: string; name: string; slug: string }[] | null;
   article_tags: ArticleTag[];
 };
 
+type Article = Omit<RawArticle, "blog_categories"> & {
+  blog_categories: { id: string; name: string; slug: string } | null;
+};
+
+// ─── Data fetching ────────────────────────────────────────────────────────────
+
 async function fetchArticle(slug: string): Promise<Article | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-  const res = await fetch(`${baseUrl}/api/admin/articles/${slug}`, {
-    cache: "no-store",
-  });
-  if (!res.ok) return null;
-  const { data } = await res.json();
-  return data ?? null;
+  const { data, error } = await supabaseAdmin
+    .from("articles")
+    .select(`
+      id, title, slug, excerpt, content,
+      thumbnail_url, published_at, status, is_protected, password_hash,
+      blog_categories:category_id ( id, name, slug ),
+      article_tags ( general_blog_tags ( id, name, slug ) )
+    `)
+    .eq("slug", slug)
+    .eq("status", "published")
+    .single();
+
+  if (error || !data) return null;
+
+  const raw = data as unknown as RawArticle;
+
+  // Normalise: Supabase may return blog_categories as an array — unwrap to object
+  const blog_categories = Array.isArray(raw.blog_categories)
+    ? (raw.blog_categories[0] ?? null)
+    : (raw.blog_categories ?? null);
+
+  return { ...raw, blog_categories };
 }
+
+// ─── Fingerprint ──────────────────────────────────────────────────────────────
+
+function makeFingerprint(passwordHash: string): string {
+  return createHash("sha256").update(passwordHash).digest("hex").slice(0, 16);
+}
+
+// ─── Access check ─────────────────────────────────────────────────────────────
+
+async function hasValidAccessCookie(slug: string, passwordHash: string): Promise<boolean> {
+  const cookieStore = await cookies();
+  const value       = cookieStore.get(`tcg_article_${slug}`)?.value;
+  if (!value) return false;
+
+  const expected = `granted:${slug}:${makeFingerprint(passwordHash)}`;
+  return value === expected;
+}
+
+// ─── Props ────────────────────────────────────────────────────────────────────
 
 type Props = {
   params: Promise<{ slug: string; locale: string }>;
 };
 
+// ─── SEO ─────────────────────────────────────────────────────────────────────
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = await fetchArticle(slug);
   if (!article) return { title: "Article Not Found" };
+
+  if (article.is_protected) {
+    return {
+      title: `${article.title} — Protected Article`,
+      description: "This article is password protected.",
+    };
+  }
+
   return {
     title: article.title,
     description: article.excerpt,
@@ -60,6 +116,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
 function formatDate(dateString: string | null): string {
   if (!dateString) return "";
   return new Date(dateString).toLocaleDateString("en-US", {
@@ -69,13 +127,30 @@ function formatDate(dateString: string | null): string {
   });
 }
 
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
 export default async function ArticleDetailPage({ params }: Props) {
   const { slug, locale } = await params;
 
   const article = await fetchArticle(slug);
   if (!article) notFound();
 
-  const tags = article.article_tags?.map((at) => at.general_blog_tags).filter(Boolean) ?? [];
+  // ── Gate check (server-side) ──────────────────────────────────────────────
+  if (article.is_protected) {
+    // Guard: if hash is missing despite is_protected=true, block access
+    const unlocked = article.password_hash
+      ? await hasValidAccessCookie(slug, article.password_hash)
+      : false;
+
+    if (!unlocked) {
+      return <PasswordGate slug={slug} articleTitle={article.title} />;
+    }
+  }
+
+  // ── Render article ────────────────────────────────────────────────────────
+  const tags = article.article_tags
+    ?.map((at) => at.general_blog_tags)
+    .filter(Boolean) ?? [];
 
   return (
     <main className="bg-[#FAF8F4] min-h-screen font-sans text-[#0F0F0F]">
@@ -93,10 +168,8 @@ export default async function ArticleDetailPage({ params }: Props) {
           <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f0f0f]" />
         )}
 
-        {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/80" />
 
-        {/* Hero content */}
         <div className="absolute bottom-0 left-0 right-0 px-[clamp(1.25rem,5vw,4rem)] pb-10 max-w-[900px] mx-auto">
           <Link
             href={`/${locale}/blog`}
@@ -116,9 +189,16 @@ export default async function ArticleDetailPage({ params }: Props) {
             </div>
           )}
 
-          <h1 className="font-serif text-[clamp(1.75rem,4vw,2.75rem)] font-bold text-white leading-tight tracking-tight mb-4">
-            {article.title}
-          </h1>
+          <div className="flex items-center gap-3 mb-4 mt-2">
+            <h1 className="font-serif text-[clamp(1.75rem,4vw,2.75rem)] font-bold text-white leading-tight tracking-tight">
+              {article.title}
+            </h1>
+            {article.is_protected && (
+              <span className="flex-shrink-0 mt-1.5 inline-flex items-center gap-1 bg-white/10 text-white/70 text-[0.65rem] font-medium tracking-wider uppercase px-2 py-0.5 rounded border border-white/20">
+                🔒 Protected
+              </span>
+            )}
+          </div>
 
           {article.published_at && (
             <div className="flex items-center gap-2 text-white/50 text-[0.8rem] font-normal tracking-wide">
@@ -185,11 +265,11 @@ export default async function ArticleDetailPage({ params }: Props) {
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (
                 <Link
-                  key={tag.id}
-                  href={`/${locale}/blog/tag/${tag.slug}`}
+                  key={tag!.id}
+                  href={`/${locale}/blog/tag/${tag!.slug}`}
                   className="inline-block px-3.5 py-1.5 text-[0.75rem] font-medium text-[#6B7C6E] border border-[#E8E3DB] rounded-full bg-transparent hover:border-[#C8861A] hover:text-[#C8861A] hover:bg-[#C8861A]/[0.06] transition-all duration-150 tracking-[0.01em]"
                 >
-                  {tag.name}
+                  {tag!.name}
                 </Link>
               ))}
             </div>

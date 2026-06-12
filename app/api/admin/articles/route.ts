@@ -1,7 +1,9 @@
 // app/api/admin/articles/route.ts
 // GET supports: ?status= &category= &tag= &orderBy= &order=
+// POST — creates a new article. Hashes password if is_protected=true.
 
 import { supabaseAdmin } from "@/lib/supabase/admin";
+import bcrypt from "bcryptjs";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -23,6 +25,7 @@ export async function GET(req: Request) {
       thumbnail_url,
       published_at,
       status,
+      is_protected,
       category_id,
       blog_categories:category_id (
         id,
@@ -39,9 +42,7 @@ export async function GET(req: Request) {
     `)
     .order(orderBy, { ascending });
 
-  if (status)   query = query.eq("status", status);
-
-  // Category filter — PostgREST joined column filter
+  if (status)       query = query.eq("status", status);
   if (categorySlug) query = query.eq("blog_categories.slug", categorySlug);
 
   const { data, error } = await query;
@@ -52,19 +53,18 @@ export async function GET(req: Request) {
 
   let result = data ?? [];
 
-  // PostgREST returns all rows with null on non-matching joins — filter out
   if (categorySlug) {
     result = result.filter((a: any) => a.blog_categories !== null);
   }
 
-  // Tag filter — done in JS since it's a many-to-many through article_tags
   if (tagSlug) {
     result = result.filter((a: any) =>
-      a.article_tags?.some(
-        (at: any) => at.general_blog_tags?.slug === tagSlug
-      )
+      a.article_tags?.some((at: any) => at.general_blog_tags?.slug === tagSlug)
     );
   }
+
+  // Never expose password_hash in list responses
+  result = result.map(({ password_hash, ...rest }: any) => rest);
 
   return Response.json({ data: result });
 }
@@ -83,6 +83,8 @@ export async function POST(req: Request) {
       category_id,
       status,
       tag_ids,
+      is_protected = false,
+      password_hash,
     }: {
       title: string;
       slug: string;
@@ -92,7 +94,22 @@ export async function POST(req: Request) {
       category_id: string;
       status: "draft" | "published";
       tag_ids?: string[];
+      is_protected?: boolean;
+      password_hash?: string;
     } = body;
+
+    // Validate: protected articles must provide a password
+    if (is_protected && !password_hash?.trim()) {
+      return Response.json(
+        { error: "Password is required for protected articles." },
+        { status: 400 }
+      );
+    }
+
+    // Hash the password server-side — never store plain text
+    const hashedPassword = is_protected && password_hash
+      ? await bcrypt.hash(password_hash.trim(), 12)
+      : null;
 
     const { data: article, error: articleError } = await supabaseAdmin
       .from("articles")
@@ -105,13 +122,15 @@ export async function POST(req: Request) {
         category_id,
         status,
         published_at: status === "published" ? new Date().toISOString() : null,
+        is_protected,
+        password_hash: hashedPassword,
       })
       .select()
       .single();
 
     if (articleError || !article) {
       return Response.json(
-        { error: articleError?.message || "Article creation failed" },
+        { error: articleError?.message || "Article creation failed." },
         { status: 400 }
       );
     }
@@ -119,16 +138,18 @@ export async function POST(req: Request) {
     if (tag_ids && tag_ids.length > 0) {
       const { error: tagError } = await supabaseAdmin
         .from("article_tags")
-        .insert(tag_ids.map((tag_id) => ({ article_id: article.id, general_blog_tag_id: tag_id })));
-
-      if (tagError) {
-        console.error("Failed to insert article_tags:", tagError.message);
-      }
+        .insert(
+          tag_ids.map((tag_id) => ({ article_id: article.id, general_blog_tag_id: tag_id }))
+        );
+      if (tagError) console.error("Failed to insert article_tags:", tagError.message);
     }
 
-    return Response.json({ success: true, article }, { status: 200 });
+    // Strip password_hash from response
+    const { password_hash: _ph, ...safeArticle } = article;
+
+    return Response.json({ success: true, article: safeArticle }, { status: 200 });
   } catch (err) {
     console.error("POST /api/admin/articles error:", err);
-    return Response.json({ error: "Server error" }, { status: 500 });
+    return Response.json({ error: "Server error." }, { status: 500 });
   }
 }

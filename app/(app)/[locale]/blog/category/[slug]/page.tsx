@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArticleCardData, ArticleGrid } from "@/components/admin/articles/ArticleCard";
+import { getT } from "@/lib/getT";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -71,6 +72,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CategoryPage({ params }: Props) {
   const { slug, locale } = await params;
 
+  // const {locale}  =  useParams();
+  const t = getT(locale as string)
+
   const [category, articles] = await Promise.all([
     fetchCategory(slug),
     fetchArticlesByCategory(slug),
@@ -96,7 +100,7 @@ export default async function CategoryPage({ params }: Props) {
               href={`/${locale}/blog`}
               className="hover:text-amber-600 transition-colors"
             >
-              Blog
+              {t.blogCategory.breadcrumb.blog}
             </Link>
             <span aria-hidden="true">›</span>
             <span className="text-stone-600 font-medium">{category.name}</span>
@@ -108,7 +112,7 @@ export default async function CategoryPage({ params }: Props) {
                        uppercase text-amber-600 mb-5"
           >
             <span className="block w-7 h-px bg-amber-600" aria-hidden="true" />
-            Category
+            {t.blogCategory.hero.categoryLabel}
           </p>
 
           <h1
@@ -116,12 +120,11 @@ export default async function CategoryPage({ params }: Props) {
                        leading-[1.1] tracking-tight mb-4"
           >
             {category.name}<br />
-            <span className="text-stone-300">Articles</span>
+            <span className="text-stone-300">{t.blogCategory.hero.articles}</span>
           </h1>
 
           <p className="text-sm sm:text-base text-stone-500 leading-relaxed max-w-md">
-            Browse all articles related to {category.name} cards, market insights, store guides,
-            and community updates.
+            {t.blogCategory.hero.description.replace("{category}", category.name)}
           </p>
         </div>
 
@@ -134,7 +137,7 @@ export default async function CategoryPage({ params }: Props) {
             {String(articles.length).padStart(2, "0")}
           </span>
           <span className="text-[0.68rem] font-semibold tracking-[0.1em] uppercase text-stone-400">
-            Articles
+            {t.blogCategory.stats.articles}
           </span>
         </div>
       </header>
@@ -148,7 +151,7 @@ export default async function CategoryPage({ params }: Props) {
           <ArticleGrid
             articles={articles}
             locale={locale}
-            emptyMessage={`No articles have been published in ${category.name} yet. Check back soon.`}
+            emptyMessage={`t.blogCategory.grid.emptyMessage.replace("{category}", category.name)`}
           />
         </div>
       </section>

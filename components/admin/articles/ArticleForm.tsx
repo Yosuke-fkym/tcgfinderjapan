@@ -6,12 +6,13 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { FileText, Tag, BookOpen, ImageIcon, Trash2 } from "lucide-react";
+import { FileText, Tag, BookOpen, ImageIcon, Trash2, Lock, Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
 import {
   Card,
   CardContent,
@@ -47,7 +48,7 @@ type Tag      = { id: string; name: string; slug: string };
 type ArticleStatus = "draft" | "published";
 
 type FormErrors = Partial<
-  Record<"title" | "slug" | "excerpt" | "content" | "category_id", string>
+  Record<"title" | "slug" | "excerpt" | "content" | "category_id" | "password_hash", string>
 >;
 
 type ExistingThumbnail = { url: string } | null;
@@ -64,6 +65,7 @@ type ArticleFormProps = {
     category_id: string;
     status: ArticleStatus;
     tag_ids?: string[];
+    is_protected?: boolean;
   };
 };
 
@@ -86,6 +88,9 @@ function validate(fields: {
   excerpt: string;
   content: string;
   category_id: string;
+  is_protected: boolean;
+  password_hash: string;
+  mode: "create" | "edit";
 }): FormErrors {
   const errors: FormErrors = {};
   if (!fields.title.trim())     errors.title       = "Title is required.";
@@ -93,6 +98,13 @@ function validate(fields: {
   if (!fields.excerpt.trim())   errors.excerpt     = "Excerpt is required.";
   if (!fields.content.trim())   errors.content     = "Content is required.";
   if (!fields.category_id)      errors.category_id = "Category is required.";
+
+  // Password required when protection is enabled on create,
+  // or when protection is being newly enabled on edit.
+  if (fields.is_protected && fields.mode === "create" && !fields.password_hash.trim()) {
+    errors.password_hash = "Password is required for protected articles.";
+  }
+
   return errors;
 }
 
@@ -106,20 +118,27 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
   const locale = (params?.locale as string) ?? "";
 
   // Form state
-  const [title,    setTitle]    = useState(initialData?.title    ?? "");
-  const [slug,     setSlug]     = useState(initialData?.slug     ?? "");
-  const [excerpt,  setExcerpt]  = useState(initialData?.excerpt  ?? "");
-  const [content,  setContent]  = useState(initialData?.content  ?? "");
+  const [title,      setTitle]      = useState(initialData?.title      ?? "");
+  const [slug,       setSlug]       = useState(initialData?.slug       ?? "");
+  const [excerpt,    setExcerpt]    = useState(initialData?.excerpt    ?? "");
+  const [content,    setContent]    = useState(initialData?.content    ?? "");
   const [categoryId, setCategoryId] = useState(initialData?.category_id ?? "");
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>(initialData?.tag_ids ?? []);
+
+  // Protection state
+  const [isProtected,    setIsProtected]    = useState(initialData?.is_protected ?? false);
+  const [password,       setPassword]       = useState("");
+  const [showPassword,   setShowPassword]   = useState(false);
+  // In edit mode: track whether the admin wants to change the password
+  const [changePassword, setChangePassword] = useState(false);
 
   // Slug — only auto-generate in create mode until user edits manually
   const [slugManuallyEdited, setSlugManuallyEdited] = useState(mode === "edit");
 
   // Thumbnail
-  const [newFile,            setNewFile]            = useState<File | null>(null);
-  const [preview,            setPreview]            = useState<string | null>(null);
-  const [existingThumbnail,  setExistingThumbnail]  = useState<ExistingThumbnail>(
+  const [newFile,           setNewFile]           = useState<File | null>(null);
+  const [preview,           setPreview]           = useState<string | null>(null);
+  const [existingThumbnail, setExistingThumbnail] = useState<ExistingThumbnail>(
     initialData?.thumbnail_url ? { url: initialData.thumbnail_url } : null
   );
 
@@ -128,13 +147,13 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
   const [tags,       setTags]       = useState<Tag[]>([]);
 
   // UI
-  const [submitting,    setSubmitting]    = useState<ArticleStatus | null>(null);
-  const [categoryOpen,  setCategoryOpen]  = useState(false);
-  const [tagOpen,       setTagOpen]       = useState(false);
-  const [errors,        setErrors]        = useState<FormErrors>({});
+  const [submitting,   setSubmitting]   = useState<ArticleStatus | null>(null);
+  const [categoryOpen, setCategoryOpen] = useState(false);
+  const [tagOpen,      setTagOpen]      = useState(false);
+  const [errors,       setErrors]       = useState<FormErrors>({});
 
   // ---------------------------------------------------------------------------
-  // Load categories + tags (public read — client supabase is fine)
+  // Load categories + tags
   // ---------------------------------------------------------------------------
 
   useEffect(() => {
@@ -163,6 +182,19 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
   const handleSlugChange = (value: string) => {
     setSlugManuallyEdited(true);
     setSlug(value);
+  };
+
+  // ---------------------------------------------------------------------------
+  // Protection toggle
+  // ---------------------------------------------------------------------------
+
+  const handleProtectionToggle = (checked: boolean) => {
+    setIsProtected(checked);
+    if (!checked) {
+      // Disabling protection — clear password fields
+      setPassword("");
+      setChangePassword(false);
+    }
   };
 
   // ---------------------------------------------------------------------------
@@ -220,7 +252,25 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
   // ---------------------------------------------------------------------------
 
   const handleSubmit = async (submitStatus: ArticleStatus) => {
-    const currentErrors = validate({ title, slug, excerpt, content, category_id: categoryId });
+  //    if(mode === "edit" && isProtected && password.trim()){
+  //     console.log('hello');
+      
+  //   setChangePassword(true);
+  //  }
+  // console.log("below set: ",changePassword);
+    const currentErrors = validate({
+      title,
+      slug,
+      excerpt,
+      content,
+      category_id: categoryId,
+      is_protected: isProtected,
+      password_hash: password,
+      mode,
+    });
+
+    console.log("currenterrors: ", currentErrors);
+    
     if (Object.keys(currentErrors).length > 0) { setErrors(currentErrors); return; }
 
     setErrors({});
@@ -241,6 +291,9 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
             category_id: categoryId,
             status: submitStatus,
             tag_ids: selectedTagIds,
+            is_protected: isProtected,
+            // Only send password if protection is enabled
+            ...(isProtected && password.trim() && { password_hash: password.trim() }),
           }),
         });
 
@@ -259,15 +312,19 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
 
       // ── EDIT ─────────────────────────────────────────────────────────────────
       if (mode === "edit" && initialData?.id) {
-        // Determine thumbnail change
+        console.log("below edit: ",changePassword);
+        
+        console.log("edit check: ", (isProtected && changePassword && password.trim() && { password_hash: password.trim() }));
         let thumbnailUrl: string | null | undefined = undefined;
         if (newFile) {
           thumbnailUrl = await uploadThumbnail(initialData.id);
         } else if (!existingThumbnail) {
-          thumbnailUrl = null; // user removed it
+          thumbnailUrl = null;
         }
-        // undefined = untouched, don't send
+        
 
+      
+    
         const res = await fetch(`/api/admin/articles/edit/${initialData.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -281,6 +338,11 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
             category_id: categoryId,
             status: submitStatus,
             tag_ids: selectedTagIds,
+            is_protected: isProtected,
+            // Send password only when: protection on AND (create-like or admin chose to change it)
+            ...(isProtected && password.trim().length > 1 && { password_hash: password.trim() }),
+            // Signal to clear the hash if protection was disabled
+            ...(!isProtected && { clear_password: true }),
           }),
         });
 
@@ -301,10 +363,15 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
   // Derived
   // ---------------------------------------------------------------------------
 
-  const selectedCategory  = categories.find((c) => c.id === categoryId);
-  const selectedTags      = tags.filter((t) => selectedTagIds.includes(t.id));
-  const isLoading         = submitting !== null;
-  const thumbnailToShow   = preview ?? existingThumbnail?.url ?? null;
+  const selectedCategory = categories.find((c) => c.id === categoryId);
+  const selectedTags     = tags.filter((t) => selectedTagIds.includes(t.id));
+  const isLoading        = submitting !== null;
+  const thumbnailToShow  = preview ?? existingThumbnail?.url ?? null;
+
+  // In edit mode, password is required only when admin clicks "Change Password"
+// ✅ NAYA — sahi
+const showPasswordInput =
+  isProtected && (mode === "create" || changePassword || !initialData?.is_protected);
 
   // ---------------------------------------------------------------------------
   // Render
@@ -390,7 +457,6 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
                 <div className="relative w-full max-w-sm aspect-video rounded-xl border overflow-hidden bg-muted group">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={thumbnailToShow} alt="Thumbnail preview" className="w-full h-full object-cover" />
-
                   <button
                     type="button"
                     onClick={preview ? removeNewFile : removeExistingThumbnail}
@@ -399,14 +465,12 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
                   >
                     <Trash2 size={15} />
                   </button>
-
                   <label className="absolute bottom-2 right-2 cursor-pointer">
                     <span className="bg-white text-xs font-medium px-2 py-1 rounded shadow hover:bg-gray-50 transition">
                       Replace
                     </span>
                     <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
                   </label>
-
                   {preview && (
                     <span className="absolute top-2 left-2 bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-0.5 rounded">
                       Not yet saved
@@ -520,6 +584,103 @@ export default function ArticleForm({ mode = "create", initialData }: ArticleFor
                         </button>
                       </Badge>
                     ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* ── ACCESS PROTECTION ── */}
+            <div className="space-y-4">
+              <h3 className="font-semibold text-gray-800 flex items-center gap-2">
+                <Lock size={16} /> Access Protection
+              </h3>
+
+              <div className="border rounded-xl p-5 space-y-4 bg-muted/30">
+
+                {/* Toggle row */}
+                <div className="flex items-center justify-between">
+                  <div>
+                    <Label htmlFor="is-protected" className="font-medium cursor-pointer">
+                      Password Protected Article
+                    </Label>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      Readers must enter a password to view this article.
+                    </p>
+                  </div>
+                  <Switch
+                    id="is-protected"
+                    checked={isProtected}
+                    onCheckedChange={handleProtectionToggle}
+                  />
+                </div>
+
+                {/* Password fields — only when protection is ON */}
+                {isProtected && (
+                  <div className="space-y-3 pt-2 border-t border-border">
+
+                    {/* Edit mode: show "change password" option when article already has a password */}
+                    {mode === "edit" && initialData?.is_protected && !changePassword && (
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm text-muted-foreground">
+                          A password is already set for this article.
+                        </p>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setChangePassword(true)}
+                        >
+                          Change Password
+                        </Button>
+                      </div>
+                    )}
+
+                    {/* Password input: always in create mode, or when changing in edit mode */}
+                    {showPasswordInput && (
+                      <div className="grid gap-2">
+                        <Label htmlFor="article-password">
+                          {mode === "edit" ? "New Password" : "Password"}
+                          <span className="text-red-500"> *</span>
+                        </Label>
+                        <div className="relative">
+                          <Input
+                            id="article-password"
+                            type={showPassword ? "text" : "password"}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Enter a secure password..."
+                            className="pr-10"
+                            autoComplete="new-password"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword((v) => !v)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                            aria-label={showPassword ? "Hide password" : "Show password"}
+                          >
+                            {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
+                          </button>
+                        </div>
+                        {errors.password_hash && (
+                          <p className="text-sm text-red-500">{errors.password_hash}</p>
+                        )}
+                        {mode === "edit" && (
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            className="w-fit text-muted-foreground"
+                            onClick={() => { setChangePassword(false); setPassword(""); }}
+                          >
+                            Cancel
+                          </Button>
+                        )}
+                      </div>
+                    )}
+
+                    <p className="text-xs text-muted-foreground">
+                      Passwords are hashed before storage and never exposed in plain text.
+                    </p>
                   </div>
                 )}
               </div>
