@@ -63,6 +63,7 @@ type ArticleFormProps = {
     category_id: string;
     status: ArticleStatus;
     tag_ids?: string[];
+    is_featured?: boolean,
     is_protected?: boolean;
   };
 };
@@ -88,6 +89,7 @@ function validate(fields: {
   category_id: string;
   is_protected: boolean;
   password_hash: string;
+  is_featured: boolean;
   mode: "create" | "edit";
 }): FormErrors {
   const errors: FormErrors = {};
@@ -123,6 +125,7 @@ const t = getT(locale as string);
   const [excerpt,    setExcerpt]    = useState(initialData?.excerpt    ?? "");
   const [content,    setContent]    = useState(initialData?.content    ?? "");
   const [categoryId, setCategoryId] = useState(initialData?.category_id ?? "");
+  const [isFeatured, setIsFeatured] = useState(initialData?.is_featured ?? false);
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>(initialData?.tag_ids ?? []);
 
   // Protection state
@@ -211,6 +214,8 @@ const t = getT(locale as string);
     e.target.value = "";
   };
 
+
+
   const removeNewFile = () => {
     if (preview) URL.revokeObjectURL(preview);
     setNewFile(null);
@@ -247,6 +252,11 @@ const t = getT(locale as string);
     setSelectedTagIds((prev) => prev.filter((id) => id !== tagId));
   }, []);
 
+  const handleFeaturedArticle = (checked: boolean)=> {
+    setIsFeatured(checked)
+    
+  }
+
   // ---------------------------------------------------------------------------
   // Submit
   // ---------------------------------------------------------------------------
@@ -261,6 +271,7 @@ const t = getT(locale as string);
       is_protected: isProtected,
       password_hash: password,
       mode,
+      is_featured: isFeatured
     });
 
     
@@ -284,6 +295,7 @@ const t = getT(locale as string);
             category_id: categoryId,
             status: submitStatus,
             tag_ids: selectedTagIds,
+            is_featured: isFeatured,
             is_protected: isProtected,
             // Only send password if protection is enabled
             ...(isProtected && password.trim() && { password_hash: password.trim() }),
@@ -305,9 +317,7 @@ const t = getT(locale as string);
 
       // ── EDIT ─────────────────────────────────────────────────────────────────
       if (mode === "edit" && initialData?.id) {
-        console.log("below edit: ",changePassword);
         
-        console.log("edit check: ", (isProtected && changePassword && password.trim() && { password_hash: password.trim() }));
         let thumbnailUrl: string | null | undefined = undefined;
         if (newFile) {
           thumbnailUrl = await uploadThumbnail(initialData.id);
@@ -329,6 +339,7 @@ const t = getT(locale as string);
             content: content.trim(),
             ...(thumbnailUrl !== undefined && { thumbnail_url: thumbnailUrl }),
             category_id: categoryId,
+            is_featured: isFeatured,
             status: submitStatus,
             tag_ids: selectedTagIds,
             is_protected: isProtected,
@@ -581,6 +592,20 @@ const showPasswordInput =
                 )}
               </div>
             </div>
+ <div className="border rounded-xl p-5 space-y-4 bg-muted/30">
+            <div className="flex items-center justify-between">
+                  <div>
+                    <Label htmlFor="is-protected" className="font-medium cursor-pointer">
+                      Pin this Article as Featured one
+                    </Label>
+                  </div>
+                  <Switch
+                    id="is-featured"
+                    checked={isFeatured}
+                    onCheckedChange={handleFeaturedArticle}
+                  />
+                </div>
+                    </div>
 
             {/* ── ACCESS PROTECTION ── */}
             <div className="space-y-4">

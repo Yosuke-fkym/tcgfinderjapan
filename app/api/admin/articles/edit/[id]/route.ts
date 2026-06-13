@@ -29,6 +29,7 @@ export async function GET(
         thumbnail_url,
         published_at,
         status,
+        is_featured,
         is_protected,
         category_id,
         blog_categories:category_id (
@@ -75,6 +76,7 @@ export async function PATCH(
       excerpt,
       content,
       thumbnail_url,
+      is_featured,
       category_id,
       status,
       published_at,
@@ -83,7 +85,6 @@ export async function PATCH(
       password_hash,       // present only when admin explicitly sets / changes password
       clear_password, // true when admin disables protection
     } = body;
-console.log("hash: ", password_hash, "clear:", clear_password, "is_protected:", is_protected);
 
     // ── Resolve password_hash update ─────────────────────────────────────────
 
@@ -112,6 +113,7 @@ console.log("hash: ", password_hash, "clear:", clear_password, "is_protected:", 
         ...(category_id   !== undefined && { category_id }),
         ...(status        !== undefined && { status }),
         ...(is_protected  !== undefined && { is_protected }),
+        ...(is_featured   !== undefined && {is_featured}),
         ...(status === "published" && {
           published_at: published_at ?? new Date().toISOString(),
         }),

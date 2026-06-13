@@ -1,20 +1,20 @@
 // app/[locale]/blog/page.tsx
-// Updated to support ?category= filtering via a server-side fetch + CategoryFilter dropdown.
+// Supports ?category= filtering + featured articles editorial section.
 
 import { ArticleCardData, ArticleGrid } from "@/components/admin/articles/ArticleCard";
 import { CategoryFilter, CategoryOption } from "@/components/admin/articles/CategoryFilter";
+import { FeaturedArticlesSection } from "@/components/admin/articles/FeaturedArticles";
 import { getT } from "@/lib/getT";
 import { Metadata } from "next";
 
-// ─── Types ──────────────────────────────────────────────────────────────────
+// ─── Types ───────────────────────────────────────────────────────────────────
 
 type Props = {
   params: Promise<{ locale: string }>;
-  /** Next.js App Router automatically provides searchParams for page.tsx files. */
   searchParams: Promise<{ category?: string }>;
 };
 
-// ─── Metadata ───────────────────────────────────────────────────────────────
+// ─── Metadata ────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
   title: "Blog | TCG Finder Japan",
@@ -28,11 +28,10 @@ export const metadata: Metadata = {
   },
 };
 
-// ─── Data fetchers ───────────────────────────────────────────────────────────
+// ─── Data fetchers ────────────────────────────────────────────────────────────
 
 async function fetchPublishedArticles(categorySlug?: string): Promise<ArticleCardData[]> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-
   const query = new URLSearchParams({
     status: "published",
     orderBy: "published_at",
@@ -48,32 +47,19 @@ async function fetchPublishedArticles(categorySlug?: string): Promise<ArticleCar
   return Array.isArray(json) ? json : (json.data ?? []);
 }
 
-/**
- * Fetches all categories that have at least one published article.
- * Adjust the endpoint path if your project exposes categories differently.
- */
 async function fetchCategories(): Promise<CategoryOption[]> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-
-  // Reuse the articles endpoint to derive unique categories, OR call a dedicated
-  // /api/admin/categories endpoint if one exists. The approach below derives
-  // categories from the published articles list so it never shows an empty bucket.
-  const res = await fetch(
-    `${baseUrl}/api/admin/articles/category`,
-    { cache: "no-store" }
-  );
+  const res = await fetch(`${baseUrl}/api/admin/articles/category`, {
+    cache: "no-store",
+  });
   if (!res.ok) return [];
   const json = await res.json();
-
- // The API returns { data: [...] } — pull the array out directly.
   const raw: { id: string; name: string; slug: string }[] =
     Array.isArray(json) ? json : (json.data ?? []);
- 
-  // Map to the CategoryOption shape { slug, name } that CategoryFilter expects.
   return raw.map(({ slug, name }) => ({ slug, name }));
 }
 
-// ─── Locale-aware filter labels ──────────────────────────────────────────────
+// ─── Locale helpers ───────────────────────────────────────────────────────────
 
 function getFilterLabels(locale: string) {
   if (locale === "ja") {
@@ -82,13 +68,16 @@ function getFilterLabels(locale: string) {
   return { all: "All Categories", placeholder: "Category" };
 }
 
-// ─── Page ────────────────────────────────────────────────────────────────────
+function getFeaturedHeading(locale: string) {
+  return locale === "ja" ? "特集記事" : "Featured";
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function BlogListPage({ params, searchParams }: Props) {
   const { locale } = await params;
   const { category: categorySlug } = await searchParams;
 
-  // Parallel fetches — categories list never depends on the selected category.
   const [articles, categories] = await Promise.all([
     fetchPublishedArticles(categorySlug),
     fetchCategories(),
@@ -96,6 +85,17 @@ export default async function BlogListPage({ params, searchParams }: Props) {
 
   const t = getT(locale as string);
   const filterLabels = getFilterLabels(locale);
+
+  // Split articles into featured vs normal.
+  // When a category filter is active, suppress the featured section:
+  // a filtered view should show all matching results uniformly.
+  const isCategoryFiltered = Boolean(categorySlug);
+  const featuredArticles = isCategoryFiltered
+    ? []
+    : articles.filter((a) => (a as any).is_featured === true).slice(0, 3);
+  const normalArticles = isCategoryFiltered
+    ? articles
+    : articles.filter((a) => !(a as any).is_featured);
 
   return (
     <main className="min-h-screen bg-[#FAF8F4]">
@@ -107,18 +107,20 @@ export default async function BlogListPage({ params, searchParams }: Props) {
       >
         <div>
           <p
-            className="flex items-center gap-3 text-[0.72rem] font-semibold tracking-[0.12em]
-                       uppercase text-amber-600 mb-5"
+            className="flex items-center gap-3 text-[0.72rem] font-semibold
+                       tracking-[0.12em] uppercase text-amber-600 mb-5"
           >
             <span className="block w-7 h-px bg-amber-600" aria-hidden="true" />
             {t.blogList.hero.eyebrow}
           </p>
 
           <h1
-            className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-900
-                       leading-[1.1] tracking-tight mb-4"
+            className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold
+                       text-stone-900 leading-[1.1] tracking-tight mb-4"
           >
-            {t.blogList.hero.title.line1}<br />{t.blogList.hero.title.line2}
+            {t.blogList.hero.title.line1}
+            <br />
+            {t.blogList.hero.title.line2}
           </h1>
 
           <p className="text-sm sm:text-base text-stone-500 leading-relaxed max-w-md">
@@ -129,25 +131,40 @@ export default async function BlogListPage({ params, searchParams }: Props) {
         {articles.length > 0 && (
           <div className="hidden sm:block text-right pb-1 flex-shrink-0">
             <span
-              className="block font-serif text-7xl font-bold text-stone-900 opacity-[0.07]
-                         leading-none tracking-tight select-none"
+              className="block font-serif text-7xl font-bold text-stone-900
+                         opacity-[0.07] leading-none tracking-tight select-none"
             >
               {String(articles.length).padStart(2, "0")}
             </span>
-            <span className="text-[0.68rem] font-semibold tracking-[0.1em] uppercase text-stone-400">
+            <span
+              className="text-[0.68rem] font-semibold tracking-[0.1em]
+                         uppercase text-stone-400"
+            >
               {t.blogList.stats.articles}
             </span>
           </div>
         )}
       </header>
 
-      {/* ── Category Filter Bar ── */}
+      {/* ── Featured Articles ── */}
       {/*
-        Sits between the hero and the article grid.
-        The border-b of the hero provides the visual separation above;
-        a light top-padding here creates breathing room below the rule.
+        Hidden when a category filter is active (uniform filtered results are
+        better UX than a mixed featured + grid layout in that state).
       */}
-      <div className="max-w-6xl mx-auto px-5 sm:px-10 pt-6 sm:pt-8">
+      {featuredArticles.length > 0 && (
+        <FeaturedArticlesSection
+          articles={featuredArticles}
+          locale={locale}
+          heading={getFeaturedHeading(locale)}
+        />
+      )}
+
+      {/* ── Category Filter Bar ── */}
+      <div
+        className={`max-w-6xl mx-auto px-5 sm:px-10 ${
+          featuredArticles.length > 0 ? "pt-10 sm:pt-14" : "pt-6 sm:pt-8"
+        }`}
+      >
         <CategoryFilter
           categories={categories}
           selectedSlug={categorySlug}
@@ -155,15 +172,31 @@ export default async function BlogListPage({ params, searchParams }: Props) {
         />
       </div>
 
-      {/* ── Grid ── */}
+      {/* ── All Articles Grid ── */}
       <section
         className="max-w-6xl mx-auto px-5 sm:px-10 py-10 sm:py-14"
         aria-label="Article listing"
       >
+        {/*
+          Section label only shown when there are featured articles above,
+          so readers understand this is the "everything else" section.
+        */}
+        {featuredArticles.length > 0 && !isCategoryFiltered && (
+          <div className="flex items-center gap-4 mb-7">
+            <span
+              className="text-[0.68rem] font-semibold tracking-[0.14em]
+                         uppercase text-stone-400"
+            >
+              {locale === "ja" ? "すべての記事" : "All Articles"}
+            </span>
+            <span className="flex-1 h-px bg-stone-200" aria-hidden="true" />
+          </div>
+        )}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <ArticleGrid
           noArticles={t.blogList.grid.noArticlesYet}
-            articles={articles}
+            articles={normalArticles}
             locale={locale}
             emptyMessage={t.blogList.grid.emptyMessage}
           />

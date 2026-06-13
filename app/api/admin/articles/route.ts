@@ -25,6 +25,7 @@ export async function GET(req: Request) {
       thumbnail_url,
       published_at,
       status,
+      is_featured,
       is_protected,
       category_id,
       blog_categories:category_id (
@@ -40,6 +41,7 @@ export async function GET(req: Request) {
         )
       )
     `)
+    .order("is_featured", { ascending: false })
     .order(orderBy, { ascending });
 
   if (status)       query = query.eq("status", status);
@@ -85,6 +87,7 @@ export async function POST(req: Request) {
       tag_ids,
       is_protected = false,
       password_hash,
+      is_featured
     }: {
       title: string;
       slug: string;
@@ -95,6 +98,7 @@ export async function POST(req: Request) {
       status: "draft" | "published";
       tag_ids?: string[];
       is_protected?: boolean;
+      is_featured: boolean;
       password_hash?: string;
     } = body;
 
@@ -120,6 +124,7 @@ export async function POST(req: Request) {
         content,
         thumbnail_url: thumbnail_url || null,
         category_id,
+        is_featured,
         status,
         published_at: status === "published" ? new Date().toISOString() : null,
         is_protected,
