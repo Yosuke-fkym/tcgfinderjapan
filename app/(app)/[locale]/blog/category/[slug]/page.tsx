@@ -149,6 +149,7 @@ export default async function CategoryPage({ params }: Props) {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <ArticleGrid
+          noArticles={t.blogList.grid.noArticlesYet}
             articles={articles}
             locale={locale}
             emptyMessage={`t.blogCategory.grid.emptyMessage.replace("{category}", category.name)`}

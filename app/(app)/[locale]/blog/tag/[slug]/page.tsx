@@ -150,6 +150,7 @@ const t = getT(locale as string);
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <ArticleGrid
+          noArticles={t.blogList.grid.noArticlesYet}
             articles={articles}
             locale={locale}
             emptyMessage={t.blogTag.grid.emptyMessage.replace("{tag}", tag.name)}
