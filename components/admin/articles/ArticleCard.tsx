@@ -104,10 +104,12 @@ export function ArticleGrid({
   articles,
   locale,
   emptyMessage = "No articles found.",
+  noArticles
 }: {
   articles: ArticleCardData[];
   locale: string;
   emptyMessage?: string;
+  noArticles: string
 }) {
   if (articles.length === 0) {
     return (
@@ -115,7 +117,7 @@ export function ArticleGrid({
         <span className="text-6xl text-stone-200 font-serif select-none leading-none mb-2">
           文
         </span>
-        <h3 className="font-serif text-xl font-semibold text-stone-800">No articles yet</h3>
+        <h3 className="font-serif text-xl font-semibold text-stone-800">{noArticles}</h3>
         <p className="text-sm text-stone-400 leading-relaxed max-w-sm">{emptyMessage}</p>
       </div>
     );

@@ -829,6 +829,7 @@ export const translations = {
         ariaLabel: "Article listing",
         emptyMessage:
           "New articles on trading cards, store guides, and market insights are on their way.",
+           noArticlesYet: "No Articles Yet."
       },
     },
     blogArticle: {
@@ -1806,8 +1807,8 @@ tagsSelected: (count: number) =>
       grid: {
         emptyMessage:
           "{tag}タグの記事はまだありません。しばらくしてから再度ご確認ください。",
+        },
       },
-    },
     blogList: {
       hero: {
         eyebrow: "TCG Finder Japan",
@@ -1816,16 +1817,17 @@ tagsSelected: (count: number) =>
           line1: "ブログ＆",
           line2: "インサイト",
         },
-
+        
         description:
-          "日本全国のトレーディングカードニュース、ショップガイド、市場分析、コミュニティ情報をご覧いただけます。",
+        "日本全国のトレーディングカードニュース、ショップガイド、市場分析、コミュニティ情報をご覧いただけます。",
       },
-
+      
       stats: {
         articles: "記事",
       },
-
+      
       grid: {
+        noArticlesYet: "まだ記事がありません",
         emptyMessage:
           "トレーディングカード情報、ショップガイド、市場分析の記事を準備中です。",
       },
