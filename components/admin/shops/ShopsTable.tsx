@@ -179,7 +179,7 @@ export default function ShopsTable({ shops, refresh }: any) {
 
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem asChild>
-                      <Link
+                      <Link target="_blank"
                         href={`/${locale}/shop/${shop.shop_id}`}
                         className="flex items-center gap-2"
                       >
@@ -192,6 +192,7 @@ export default function ShopsTable({ shops, refresh }: any) {
 
                     <DropdownMenuItem asChild>
                       <Link
+                      target="_blank"
                         href={`/${locale}/admin/shops/edit/${shop.shop_id}`}
                         className="flex items-center gap-2"
                       >

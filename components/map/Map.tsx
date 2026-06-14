@@ -13,6 +13,7 @@ import { useRouter, useParams } from "next/navigation";
 import { Heart } from "lucide-react";
 import { getT } from "@/lib/getT";
 import { translations } from "@/lib/i18n";
+import Link from "next/link";
 
 const containerStyle = { width: "100%", height: "100%" };
 const center = { lat: 35.6762, lng: 139.6503 };
@@ -186,13 +187,11 @@ icon={
     ? t.shopDetails.header.open
     : t.shopDetails.header.closed}
 </p>
-
-            <p
-              className="text-xs text-blue-600 cursor-pointer mt-1"
-              onClick={() =>router.push(`/${locale}/shop/${selected.shop_id}`)}
-            >
-              {t.buttons.viewDetails} →
-            </p>
+<Link href={`/${locale}/shop/${selected.shop_id}`} target="_blank">
+  <p className="text-xs text-blue-600 cursor-pointer mt-1">
+    {t.buttons.viewDetails} →
+  </p>
+</Link>
           </div>
         </InfoWindow>
       )}
