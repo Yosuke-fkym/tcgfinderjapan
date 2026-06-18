@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import Script from "next/script";
 
 
 const noto_sans_jp = Noto_Sans_JP({
@@ -56,6 +57,13 @@ export default function RootLayout({
         {children}
         <Toaster position="bottom-right"/>
       </body>
+       <Script
+        id="google-adsense"
+        strategy="afterInteractive"
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9123296248060105"
+        crossOrigin="anonymous"
+      />
     </html>
   );
 }
