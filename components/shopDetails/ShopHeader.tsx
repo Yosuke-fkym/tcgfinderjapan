@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
 import { translations } from "@/lib/i18n";
+import Image from "next/image";
 
 interface ShopHeaderProps {
   shop: Shop;
@@ -18,18 +19,28 @@ export default function ShopHeader({ shop }: ShopHeaderProps) {
     <div className="space-y-3">
 
       <div className="flex items-start justify-between gap-3">
+        <div className="space-y-1 flex gap-x-2 items-start md:items-center">
+{shop.shop_icon_url && (
+  <Image
+    src={shop.shop_icon_url}
+    alt={shop.shop_name}
+    width={60}
+    height={60}
+    className="rounded-full object-cover h-[60px] border"
+  />
+)}
+<div className="flex flex-col">
 
-        <div className="space-y-1">
-          <h1 className="text-xl font-semibold text-white">
+          <h1 className="text-sm sm:text-base md:text-xl font-semibold text-white">
             {
               // locale === "jp" ?
               // shop.shop_name
               // :
-             shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
+              shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
             }
           </h1>
 
-          <p className="text-sm text-gray-500">
+          <p className="text-xs md:text-sm text-gray-500">
             {
               // locale === "jp" ?
               // shop.shop_address
@@ -37,6 +48,7 @@ export default function ShopHeader({ shop }: ShopHeaderProps) {
               shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
             }
           </p>
+            </div>
         </div>
 
         <div className="shrink-0">

@@ -11,7 +11,7 @@ const RankingRow = dynamic(
   () => import("./RankingRow").then((mod) => mod.RankingRow)
 );
 import RankingFilter from "@/components/ranking/RankingFilter";
-import AdBanner from "../ads/AdBanner";
+import AdBanner from "../ads/VerticalAdBanner";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
 import { AREA_OPTIONS } from "@/lib/helpers/areas";
@@ -26,6 +26,7 @@ interface RankedShop {
     name: string;
     area: string
     description?: string;
+    shop_icon_url: string;
   };
 }
 

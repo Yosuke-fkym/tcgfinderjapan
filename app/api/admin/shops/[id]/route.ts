@@ -31,7 +31,8 @@ export async function PATCH(req: Request, { params }: any) {
 
   // -------- extract videos --------
   const videos: string[] = body.videos || [];
-
+  const removeIcon = body.removeIcon;
+  
   // remove flags + videos from shop body
   delete body.vintage;
   delete body.psa;
@@ -39,12 +40,18 @@ export async function PATCH(req: Request, { params }: any) {
   delete body.pokémon;
   delete body.onepiece;
   delete body.videos;
+  delete body.removeIcon;
 
   
   // -------- update shop --------
   const { data: shop, error } = await supabaseAdmin
     .from("shops")
-    .update(body)
+    .update({
+    ...body,
+    ...(removeIcon && {
+      shop_icon_url: null,
+    }),
+  })
     .eq("shop_id", id)
     .select()
     .single();

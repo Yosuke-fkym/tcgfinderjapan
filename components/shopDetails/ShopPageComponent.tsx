@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import ReviewsSection from "@/components/reviews/ReviewSection";
 import { ShopVideosSection } from "@/components/shopDetails/ShopVideoSection";
 import { fetchShop } from "@/lib/helpers/getShopById";
-import AdBanner from "../ads/AdBanner";
+import AdBanner from "../ads/VerticalAdBanner";
 import dynamic from "next/dynamic";
 import { checkUser } from "@/lib/helpers/getUser";
 import { Spinner } from "../ui/spinner";

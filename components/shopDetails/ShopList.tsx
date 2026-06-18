@@ -3,9 +3,10 @@ import { isShopOpen } from "@/lib/helpers/getShopStatus";
 import { Shop } from "@/types/types";
 import { Badge } from "../ui/badge";
 import { useRouter, useParams } from "next/navigation";
-import { Heart } from "lucide-react";
+import { Heart, Store } from "lucide-react";
 import { getT } from "@/lib/getT";
 import { translations } from "@/lib/i18n";
+import Image from "next/image";
 
 interface ShopListProps {
   onSelect: (shop: Shop) => void;
@@ -61,25 +62,33 @@ export default function ShopList({
             }`}
           >
             {/* LEFT */}
-            <div className="flex flex-col gap-1">
-              <div className="font-medium text-base text-white">
-                {
-                  // locale === "jp" ?
-                  // shop.shop_name
-                  // :
-                 shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name
-                }
-              </div>
+            {/* LEFT */}
+<div className="flex items-start gap-3">
+  {/* SHOP ICON */}
+  <div className="w-10 h-10 rounded-full shrink-0 overflow-hidden bg-[#ffffff15] flex items-center justify-center mt-0.5">
+    {shop.shop_icon_url ? (
+      <Image
+        src={shop.shop_icon_url}
+        alt={shop.shop_name}
+        width={40}
+        height={40}
+        className="object-cover w-full h-full"
+      />
+    ) : (
+      <Store size={18} className="text-gray-400" />
+    )}
+  </div>
 
-              <div className="text-xs text-gray-500 line-clamp-1">
-                {
-                  // locale === "jp" ?
-                  // shop.shop_address
-                  // :
-                 shop.shop_address_in_langs && shop?.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address
-                }
-              </div>
-            </div>
+  {/* NAME + ADDRESS */}
+  <div className="flex flex-col gap-1">
+    <div className="font-medium text-base text-white">
+      {shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name}
+    </div>
+    <div className="text-xs text-gray-500 line-clamp-1">
+      {shop.shop_address_in_langs && shop?.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address}
+    </div>
+  </div>
+</div>
 
             
             <div className="flex flex-col items-end gap-2">

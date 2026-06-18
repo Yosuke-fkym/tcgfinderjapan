@@ -4,6 +4,7 @@
 import { ArticleCardData, ArticleGrid } from "@/components/admin/articles/ArticleCard";
 import { CategoryFilter, CategoryOption } from "@/components/admin/articles/CategoryFilter";
 import { FeaturedArticlesSection } from "@/components/admin/articles/FeaturedArticles";
+import VerticalAdBanner from "@/components/ads/VerticalAdBanner";
 import { getT } from "@/lib/getT";
 import { Metadata } from "next";
 
@@ -25,6 +26,13 @@ export const metadata: Metadata = {
     description:
       "Trading card news, guides, store information, and industry updates across Japan.",
     type: "website",
+    images: [
+        {
+          url: `/og.png`,
+          width: 1200,
+          height: 630,
+        },
+      ],
   },
 };
 
@@ -99,7 +107,6 @@ export default async function BlogListPage({ params, searchParams }: Props) {
 
   return (
     <main className="min-h-screen bg-[#FAF8F4]">
-
       {/* ── Hero ── */}
       <header
         className="max-w-6xl mx-auto px-5 sm:px-10 pt-16 sm:pt-24 pb-12 sm:pb-16
@@ -145,7 +152,9 @@ export default async function BlogListPage({ params, searchParams }: Props) {
           </div>
         )}
       </header>
-
+<div className="max-w-5xl mx-auto my-8">
+      <VerticalAdBanner position="center"/>
+      </div>
       {/* ── Featured Articles ── */}
       {/*
         Hidden when a category filter is active (uniform filtered results are
@@ -158,6 +167,10 @@ export default async function BlogListPage({ params, searchParams }: Props) {
           heading={getFeaturedHeading(locale)}
         />
       )}
+      <div className="max-w-5xl mx-auto my-8">
+      <VerticalAdBanner position="center"/>
+      </div>
+
 
       {/* ── Category Filter Bar ── */}
       <div

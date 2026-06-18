@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArticleCardData, ArticleGrid } from "@/components/admin/articles/ArticleCard";
 import { getT } from "@/lib/getT";
+import VerticalAdBanner from "@/components/ads/VerticalAdBanner";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -61,6 +62,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${category.name} Articles | TCG Finder Japan`,
       description: `Browse ${category.name}-related articles, guides, news, and insights on TCG Finder Japan.`,
       type: "website",
+      images: [
+        {
+          url: `/og.png`,
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
   };
 }
@@ -147,6 +155,9 @@ export default async function CategoryPage({ params }: Props) {
         className="max-w-6xl mx-auto px-5 sm:px-10 py-12 sm:py-16"
         aria-label={`${category.name} articles`}
       >
+        <div className="max-w-5xl mx-auto my-8">
+      <VerticalAdBanner position="center"/>
+      </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <ArticleGrid
           noArticles={t.blogList.grid.noArticlesYet}

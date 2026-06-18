@@ -17,6 +17,7 @@ export default async function EditShopPage( props: any) {
   const { id } = await props.params
   
   const shop = await getShop(id);
+  
   if (shop.error) {
     return null;
   }

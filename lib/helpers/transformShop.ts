@@ -15,6 +15,7 @@ export function transformShop(shop: any): Shop {
     productFlags:
       shop.shop_product_flags?.map((item: any) => item.product_flags?.name) || [],
     created_at: shop.created_at,
+    shop_icon_url: shop.shop_icon_url,
     business_hours: shop.business_hours,
     description: shop.description,
     area: shop.area || "",

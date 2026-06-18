@@ -27,7 +27,7 @@ export default function ArticlesPage() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-white w-full h-[90vh] flex justify-center items-center">Loading...</div>;
   }
 
   return (

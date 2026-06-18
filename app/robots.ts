@@ -12,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/auth"],
       },
     ],
-    sitemap: "/sitemap.xml",
+    sitemap: "https://www.tcgfinderjapan.com/sitemap.xml",
   };
 }

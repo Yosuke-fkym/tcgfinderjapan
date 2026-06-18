@@ -8,6 +8,7 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 import Link from "next/link";
 import PasswordGate from "@/components/admin/articles/PasswordGate";
 import { getT } from "@/lib/getT";
+import VerticalAdBanner from "@/components/ads/VerticalAdBanner";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -101,6 +102,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: `${article.title} — Protected Article`,
       description: "This article is password protected.",
+      openGraph:{
+        images: [
+        {
+          url: `/og.png`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      }
     };
   }
 
@@ -191,7 +201,6 @@ const t = getT(locale as string);
               </Link>
             </div>
           )}
-
           <div className="flex items-center gap-3 mb-4 mt-2">
             <h1 className="font-serif text-[clamp(1.75rem,4vw,2.75rem)] font-bold text-white leading-tight tracking-tight">
               {article.title}
@@ -241,6 +250,9 @@ const t = getT(locale as string);
           </span>
         </nav>
 
+<div className="max-w-5xl mx-auto my-8">
+      <VerticalAdBanner position="center"/>
+      </div>
         {/* Excerpt */}
         <blockquote className="font-serif text-[clamp(1rem,2.2vw,1.2rem)] font-normal text-[#6B7C6E] leading-[1.75] px-7 py-6 mb-10 border-l-[3px] border-[#C8861A] bg-[#C8861A]/[0.04] rounded-r-lg">
           {article.excerpt}
@@ -257,6 +269,9 @@ const t = getT(locale as string);
         <div className="text-[clamp(0.9rem,1.8vw,1rem)] leading-[1.85] text-[#2C2C2C] whitespace-pre-wrap bg-white border border-[#E8E3DB] rounded-xl px-[clamp(1.5rem,4vw,3rem)] py-10 shadow-sm mb-10">
           {article.content}
         </div>
+        <div className="max-w-5xl mx-auto my-8">
+      <VerticalAdBanner position="center"/>
+      </div>
 
         {/* Tags */}
         {tags.length > 0 && (

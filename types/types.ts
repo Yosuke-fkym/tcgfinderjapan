@@ -22,6 +22,7 @@ export type Shop = {
   latitude: number;
   area: string;
   longitude: number;
+  shop_icon_url: string,
   language_support: string[];
   description: string;
   website: string;

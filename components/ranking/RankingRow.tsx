@@ -6,6 +6,7 @@ import { RankBadge } from "./RankBadge";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
 import { translations } from "@/lib/i18n";
+import Image from "next/image";
 
 export function RankingRow({ item, index }: any) {
   const { locale } = useParams();
@@ -17,9 +18,22 @@ export function RankingRow({ item, index }: any) {
 
         <div className="flex items-center gap-4">
 
-          <RankBadge index={index} />
+  <RankBadge index={index} />
 
-          <div>
+  {/* Icon */}
+  {item.shop?.shop_icon_url ? (
+    <Image
+    width={48} height={48}
+      src={item.shop.shop_icon_url}
+      alt={item.shop.shop_name}
+      className="w-12 h-12 rounded-full object-cover border shrink-0"
+    />
+  ) : (
+    <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-400 font-bold border shrink-0">
+      {item.shop?.shop_name?.[0]}
+    </div>
+  )}
+<div>
             <p className="font-medium text-indigo-600">
               {
                 // locale === "jp" ?
@@ -37,8 +51,10 @@ export function RankingRow({ item, index }: any) {
               />
               {item.avg.toFixed(1)} ({item.count} {t.ranking.row.reviews})
             </div>
-
-            {/* Breakdown */}
+  <div>
+    </div>
+    {/* ...baaki sab same */}
+        {/* Breakdown */}
             <div className="text-xs text-muted-foreground mt-1 flex gap-3">
               <span className="inline-flex items-center">
                 {t.ranking.row.selection}: 
@@ -52,9 +68,8 @@ export function RankingRow({ item, index }: any) {
                 {item.avg_price.toFixed(1)}
               </span>
             </div>
-          </div>
-        </div>
-
+  </div>
+</div>
         {/* Score */}
         <div className="text-xs text-muted-foreground">
           {t.ranking.row.score}: {item.score.toFixed(2)}
