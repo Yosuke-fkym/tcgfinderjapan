@@ -50,6 +50,7 @@ import { Badge } from "@/components/ui/badge";
 import { useParams } from "next/navigation";
 
 import { getT } from "@/lib/getT";
+import { categoryColors } from "@/lib/getArticleCategoryColor";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -353,8 +354,9 @@ export default function ArticlesTable({ articles, refresh }: Props) {
 
                   {/* Category */}
                   <TableCell className="py-4">
-                    <div className="max-w-55 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-sm lg:text-base text-gray-600">
+                    <div className={`w-fit overflow-hidden text-ellipsis whitespace-nowrap text-sm lg:text-[14px] text-gray-600 ${article.blog_categories?.name != undefined && categoryColors[article.blog_categories.name as keyof typeof categoryColors]} px-4 py-1 rounded-md`}>
                       {article.blog_categories?.name || "—"}
+
                     </div>
                   </TableCell>
 

@@ -35,6 +35,7 @@ import { toast } from "sonner";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/supabase";
 import { getT } from "@/lib/getT";
+import TiptapEditor from "./TipTapEditor";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -96,7 +97,7 @@ function validate(fields: {
   if (!fields.title.trim())     errors.title       = "Title is required.";
   if (!fields.slug.trim())      errors.slug        = "Slug is required.";
   if (!fields.excerpt.trim())   errors.excerpt     = "Excerpt is required.";
-  if (!fields.content.trim())   errors.content     = "Content is required.";
+  if (!fields.content.replace(/<[^>]*>/g, "").trim()) errors.content = "...";
   if (!fields.category_id)      errors.category_id = "Category is required.";
 
   // Password required when protection is enabled on create,
@@ -491,14 +492,13 @@ const showPasswordInput =
               </h3>
               <div className="grid gap-2">
                 <Label htmlFor="content">{t.articleForm.labels.articleBody} <span className="text-red-500">*</span></Label>
-                <Textarea
-                  id="content"
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  placeholder={t.articleForm.labels.articleBody}
-                  rows={16}
-                  className="resize-y font-mono text-sm"
-                />
+              <TiptapEditor
+              value={content}
+              onChange={setContent}
+              uploadEndpoint="/api/admin/articles/media/upload"
+              placeholder={t.articleForm.placeholders.content}
+              minHeight={420}
+/>
                 {errors.content && <p className="text-sm text-red-500">{errors.content}</p>}
               </div>
             </div>

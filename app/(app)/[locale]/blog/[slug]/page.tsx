@@ -9,6 +9,7 @@ import Link from "next/link";
 import PasswordGate from "@/components/admin/articles/PasswordGate";
 import { getT } from "@/lib/getT";
 import VerticalAdBanner from "@/components/ads/VerticalAdBanner";
+import { categoryColors } from "@/lib/getArticleCategoryColor";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -165,6 +166,24 @@ const t = getT(locale as string);
     ?.map((at) => at.general_blog_tags)
     .filter(Boolean) ?? [];
 
+    // page.tsx me ye helper add karo (fetchArticle ke neeche)
+function sanitizeContent(html: string): string {
+  // Tiptap <pre><code> ke andar jo <p> tags inject ho jaate hain unhe newlines se replace karo
+  return html
+    .replace(/<pre><code([^>]*)>([\s\S]*?)<\/code><\/pre>/g, (_, attrs, inner) => {
+      const cleaned = inner
+        .replace(/<p>/g, "")
+        .replace(/<\/p>/g, "\n")
+        .replace(/<br\s*\/?>/g, "\n")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&amp;/g, "&")
+        .replace(/&quot;/g, '"')
+        .trim();
+      return `<pre><code${attrs}>${cleaned}</code></pre>`;
+    });
+}
+
   return (
     <main className="bg-[#FAF8F4] min-h-screen font-sans text-[#0F0F0F]">
 
@@ -195,7 +214,9 @@ const t = getT(locale as string);
             <div>
               <Link
                 href={`/${locale}/blog/category/${article.blog_categories.slug}`}
-                className="inline-block bg-[#C8861A] text-white text-[0.7rem] font-semibold tracking-[0.09em] uppercase px-3 py-1 rounded-[2px] mb-4"
+                className={`inline-block text-[0.7rem] font-semibold tracking-[0.09em] uppercase px-3 py-1 rounded-[2px] mb-4 ${categoryColors[
+  article.blog_categories.name as keyof typeof categoryColors
+]}`}
               >
                 {article.blog_categories.name}
               </Link>
@@ -223,7 +244,7 @@ const t = getT(locale as string);
       </div>
 
       {/* ── Body ── */}
-      <div className="max-w-[900px] mx-auto px-[clamp(1.25rem,5vw,4rem)] pb-20">
+      <div className="max-w-[1100px] mx-auto px-[clamp(1.25rem,5vw,4rem)] pb-20">
 
         {/* Breadcrumb */}
         <nav
@@ -266,8 +287,20 @@ const t = getT(locale as string);
         </div>
 
         {/* Content */}
-        <div className="text-[clamp(0.9rem,1.8vw,1rem)] leading-[1.85] text-[#2C2C2C] whitespace-pre-wrap bg-white border border-[#E8E3DB] rounded-xl px-[clamp(1.5rem,4vw,3rem)] py-10 shadow-sm mb-10">
-          {article.content}
+        <div className="text-[clamp(0.9rem,1.8vw,1rem)] leading-[1.85] p-0 text-[#2C2C2C] whitespace-pre-wrap bg-white border border-[#E8E3DB] rounded-xl px-[clamp(1.5rem,4vw,3rem)] py-10 shadow-sm mb-10">
+          <div
+  className="p-[0!important] border-0 shadow-[none!important] prose prose-stone max-w-none
+             prose-headings:font-serif prose-headings:text-[#0F0F0F] prose-headings:tracking-tight
+             prose-p:text-[#2C2C2C] prose-p:leading-[1.85]
+             prose-a:text-[#C8861A] prose-a:no-underline hover:prose-a:underline
+             prose-blockquote:border-l-[#C8861A] prose-blockquote:text-[#6B7C6E] prose-blockquote:bg-[#C8861A]/[0.04] prose-blockquote:rounded-r-lg
+     prose-pre:bg-[#0d1117] prose-pre:text-[#e6edf3] prose-pre:rounded-none prose-pre:px-5 prose-pre:py-2 prose-pre:overflow-x-auto prose-pre:leading-relaxed prose-pre:text-sm prose-pre:my-0 prose-pre:border-0 prose-pre:shadow-none
+prose-code:bg-[#F4F1EC] prose-code:text-[#C8861A] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-[0.85em] prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
+             prose-hr:border-[#E8E3DB]
+             prose-strong:text-[#0F0F0F]
+             bg-white border border-[#E8E3DB] rounded-xl px-[clamp(1.5rem,4vw,3rem)] py-10 shadow-sm mb-10"
+ dangerouslySetInnerHTML={{ __html: sanitizeContent(article.content) }}
+/>
         </div>
         <div className="max-w-5xl mx-auto my-8">
       <VerticalAdBanner position="center"/>

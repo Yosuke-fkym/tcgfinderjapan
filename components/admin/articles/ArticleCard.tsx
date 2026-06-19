@@ -1,6 +1,7 @@
 // components/blog/ArticleCard.tsx
 // Extracted from Blog List page — shared by BlogListPage and CategoryPage.
 
+import { categoryColors } from "@/lib/getArticleCategoryColor";
 import Link from "next/link";
 
 export type ArticleCardData = {
@@ -29,7 +30,8 @@ function formatDate(dateString: string | null): string {
 }
 
 function estimateReadingTime(content: string): number {
-  const words = content.trim().split(/\s+/).length;
+  const plainText = content.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  const words = plainText ? plainText.split(" ").length : 0;
   return Math.max(1, Math.ceil(words / 200));
 }
 
@@ -68,8 +70,10 @@ export function ArticleCard({
 
         {article.blog_categories && (
           <span
-            className="absolute top-3 left-3 bg-amber-600 text-white text-[0.65rem] font-semibold
-                       tracking-widest uppercase px-2.5 py-1 rounded-sm pointer-events-none"
+            className={`absolute top-3 left-3  text-[0.65rem] font-semibold
+                       tracking-widest uppercase px-2.5 py-1 rounded-sm pointer-events-none ${categoryColors[
+                         article.blog_categories.name as keyof typeof categoryColors
+                       ]}`}
           >
             {article.blog_categories.name}
           </span>
