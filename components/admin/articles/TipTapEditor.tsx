@@ -138,7 +138,7 @@ function ToolbarAction({ onClick, disabled, tooltip, children, active }:ToolbarA
 export default function TiptapEditor({
   value = "",
   onChange,
-  placeholder = "Yahan likhna shuru karo...",
+  placeholder,
   uploadEndpoint = "/api/upload-image",
   minHeight = 320,
   className,
@@ -197,11 +197,11 @@ export default function TiptapEditor({
     async (file: File | undefined) => {
       if (!file) return;
       if (!file.type.startsWith("image/")) {
-        setUploadError("Sirf image files upload ki ja sakti hain.");
+        setUploadError("Only Image files can be uploaded.");
         return;
       }
       if (file.size > 5 * 1024 * 1024) {
-        setUploadError("Image 5MB se chhoti honi chahiye.");
+        setUploadError("Max Image size should be less than 5MB.");
         return;
       }
 
@@ -218,7 +218,7 @@ export default function TiptapEditor({
         const data = await res.json();
         editor?.chain().focus().setImage({ src: data.url, alt: file.name }).run();
       } catch {
-        setUploadError("Image upload nahi hui. Dobara try karo.");
+        setUploadError("Could not upload image, please try again.");
       } finally {
         setUploading(false);
         if (fileInputRef.current) fileInputRef.current.value = "";
@@ -420,7 +420,7 @@ export default function TiptapEditor({
         <ToolbarAction
           onClick={() => fileInputRef.current?.click()}
           disabled={uploading}
-          tooltip="Image Upload karo"
+          tooltip="Upload Images"
         >
           {uploading ? (
             <Loader2 className="h-3.5 w-3.5 animate-spin" />
