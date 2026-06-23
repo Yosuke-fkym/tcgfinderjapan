@@ -239,10 +239,10 @@ export const translations = {
           closed: "Closed",
           website: "Website",
           shopIcon: "Shop Icon",
-uploadIcon: "Upload Icon",
-iconHint: "Square image recommended. PNG, JPG, WebP accepted.",
-removeIcon: "Remove Icon",
-changeIcon: "Change Icon",
+          uploadIcon: "Upload Icon",
+          iconHint: "Square image recommended. PNG, JPG, WebP accepted.",
+          removeIcon: "Remove Icon",
+          changeIcon: "Change Icon",
           description: "Description",
           x_account_url: "X (Twitter) Account URL",
           language: "Language support",
@@ -274,6 +274,9 @@ changeIcon: "Change Icon",
             box: "BOX",
             pokémon: "Pokémon",
             onepiece: "ONE PIECE",
+            dragonball: "DRAGON BALL",
+            cashonly: "Cash only",
+            cardsaccepted: "Cards accepted",
           },
         },
       },
@@ -834,7 +837,7 @@ changeIcon: "Change Icon",
         ariaLabel: "Article listing",
         emptyMessage:
           "New articles on trading cards, store guides, and market insights are on their way.",
-           noArticlesYet: "No Articles Yet."
+        noArticlesYet: "No Articles Yet.",
       },
     },
     blogArticle: {
@@ -881,127 +884,118 @@ changeIcon: "Change Icon",
       publishedLabel: "Published:",
     },
     articleForm: {
-title: {
-create: "Create Article",
-edit: "Edit Article",
-},
+      title: {
+        create: "Create Article",
+        edit: "Edit Article",
+      },
 
-description: {
-create: "Write and publish a new blog or column article.",
-edit: "Update the article details below.",
-},
+      description: {
+        create: "Write and publish a new blog or column article.",
+        edit: "Update the article details below.",
+      },
 
-sections: {
-basicInformation: "Basic Information",
-thumbnail: "Thumbnail",
-content: "Content",
-category: "Category",
-tags: "Tags",
-accessProtection: "Access Protection",
-},
+      sections: {
+        basicInformation: "Basic Information",
+        thumbnail: "Thumbnail",
+        content: "Content",
+        category: "Category",
+        tags: "Tags",
+        accessProtection: "Access Protection",
+      },
 
-labels: {
-title: "Title",
-slug: "Slug",
-excerpt: "Excerpt",
-articleBody: "Article Body",
-category: "Category",
-tags: "Tags",
-password: "Password",
-newPassword: "New Password",
-protectedArticle: "Password Protected Article",
-},
+      labels: {
+        title: "Title",
+        slug: "Slug",
+        excerpt: "Excerpt",
+        articleBody: "Article Body",
+        category: "Category",
+        tags: "Tags",
+        password: "Password",
+        newPassword: "New Password",
+        protectedArticle: "Password Protected Article",
+      },
 
-placeholders: {
-title: "e.g. Pokemon Card Investment Guide",
-slug: "pokemon-card-investment-guide",
-excerpt: "A short summary of the article shown in listings...",
-content: "Write your article content here...",
-password: "Enter a secure password...",
-searchCategories: "Search categories...",
-searchTags: "Search tags...",
-},
+      placeholders: {
+        title: "e.g. Pokemon Card Investment Guide",
+        slug: "pokemon-card-investment-guide",
+        excerpt: "A short summary of the article shown in listings...",
+        content: "Write your article content here...",
+        password: "Enter a secure password...",
+        searchCategories: "Search categories...",
+        searchTags: "Search tags...",
+      },
 
-messages: {
-slugHelper:
-"Auto-generated from the title. You can edit it manually.",
-thumbnailUpload:
-"Click to upload thumbnail",
-thumbnailFormats:
-"PNG, JPG, WEBP supported",
-passwordProtected:
-"Readers must enter a password to view this article.",
-passwordAlreadySet:
-"A password is already set for this article.",
-passwordStorage:
-"Passwords are hashed before storage and never exposed in plain text.",
-noCategories:
-"No categories found.",
-noTags:
-"No tags found.",
-},
+      messages: {
+        slugHelper: "Auto-generated from the title. You can edit it manually.",
+        thumbnailUpload: "Click to upload thumbnail",
+        thumbnailFormats: "PNG, JPG, WEBP supported",
+        passwordProtected:
+          "Readers must enter a password to view this article.",
+        passwordAlreadySet: "A password is already set for this article.",
+        passwordStorage:
+          "Passwords are hashed before storage and never exposed in plain text.",
+        noCategories: "No categories found.",
+        noTags: "No tags found.",
+      },
 
-thumbnail: {
-replace: "Replace",
-remove: "Remove thumbnail",
-notSaved: "Not yet saved",
-previewAlt: "Thumbnail preview",
-},
+      thumbnail: {
+        replace: "Replace",
+        remove: "Remove thumbnail",
+        notSaved: "Not yet saved",
+        previewAlt: "Thumbnail preview",
+      },
 
-tagsSelector: {
-select: "Select tags",
-selected: "tag selected",
-selectedPlural: "tags selected",
-remove: "Remove",
-},
+      tagsSelector: {
+        select: "Select tags",
+        selected: "tag selected",
+        selectedPlural: "tags selected",
+        remove: "Remove",
+      },
 
-categorySelector: {
-select: "Select category",
-},
+      categorySelector: {
+        select: "Select category",
+      },
 
-protection: {
-changePassword: "Change Password",
-cancelPasswordChange: "Cancel",
-showPassword: "Show password",
-hidePassword: "Hide password",
-},
+      protection: {
+        changePassword: "Change Password",
+        cancelPasswordChange: "Cancel",
+        showPassword: "Show password",
+        hidePassword: "Hide password",
+      },
 
-validation: {
-titleRequired: "Title is required.",
-slugRequired: "Slug is required.",
-excerptRequired: "Excerpt is required.",
-contentRequired: "Content is required.",
-categoryRequired: "Category is required.",
-passwordRequired:
-"Password is required for protected articles.",
-},
+      validation: {
+        titleRequired: "Title is required.",
+        slugRequired: "Slug is required.",
+        excerptRequired: "Excerpt is required.",
+        contentRequired: "Content is required.",
+        categoryRequired: "Category is required.",
+        passwordRequired: "Password is required for protected articles.",
+      },
 
-actions: {
-cancel: "Cancel",
-saveDraft: "Save Draft",
-savingDraft: "Saving...",
-publish: "Publish",
-publishing: "Publishing...",
-update: "Update",
-updating: "Updating...",
-},
+      actions: {
+        cancel: "Cancel",
+        saveDraft: "Save Draft",
+        savingDraft: "Saving...",
+        publish: "Publish",
+        publishing: "Publishing...",
+        update: "Update",
+        updating: "Updating...",
+      },
 
-toast: {
-publishSuccess: "Article published successfully.",
-draftSuccess: "Article saved as draft.",
-updateSuccess: "Article updated successfully.",
-saveError:
-"Failed to save article. Please try again.",
-genericError: "Something went wrong.",
-thumbnailUploadError:
-"Thumbnail upload failed.",
-},
+      toast: {
+        publishSuccess: "Article published successfully.",
+        draftSuccess: "Article saved as draft.",
+        updateSuccess: "Article updated successfully.",
+        saveError: "Failed to save article. Please try again.",
+        genericError: "Something went wrong.",
+        thumbnailUploadError: "Thumbnail upload failed.",
+      },
 
-dynamic: {
-tagsSelected: (count: number) =>
-`${count} tag${count > 1 ? "s" : ""} selected`,
-},
-},
+      dynamic: {
+        tagsSelected: (count: number) =>
+          `${count} tag${count > 1 ? "s" : ""} selected`,
+      },
+    },
   },
 
   jp: {
@@ -1252,10 +1246,11 @@ tagsSelected: (count: number) =>
           language: "対応言語",
           description: "説明",
           shopIcon: "店舗アイコン",
-uploadIcon: "アイコンをアップロード",
-iconHint: "正方形の画像を推奨します。PNG、JPG、WebP形式に対応しています。",
-removeIcon: "アイコンを削除",
-changeIcon: "アイコンを変更",
+          uploadIcon: "アイコンをアップロード",
+          iconHint:
+            "正方形の画像を推奨します。PNG、JPG、WebP形式に対応しています。",
+          removeIcon: "アイコンを削除",
+          changeIcon: "アイコンを変更",
           namePlaceholder: "東京カードショップ",
           addressPlaceholder: "東京都渋谷区",
           languagePlaceholder: "日本語・英語",
@@ -1284,6 +1279,9 @@ changeIcon: "アイコンを変更",
             box: "ボックス",
             pokémon: "ポケモン",
             onepiece: "ワンピース",
+            dragonball: "ドラゴンボール",
+            cashonly: "現金のみ",
+            cardsaccepted: "カード決済対応",
           },
         },
       },
@@ -1817,8 +1815,8 @@ changeIcon: "アイコンを変更",
       grid: {
         emptyMessage:
           "{tag}タグの記事はまだありません。しばらくしてから再度ご確認ください。",
-        },
       },
+    },
     blogList: {
       hero: {
         eyebrow: "TCG Finder Japan",
@@ -1827,15 +1825,15 @@ changeIcon: "アイコンを変更",
           line1: "ブログ＆",
           line2: "インサイト",
         },
-        
+
         description:
-        "日本全国のトレーディングカードニュース、ショップガイド、市場分析、コミュニティ情報をご覧いただけます。",
+          "日本全国のトレーディングカードニュース、ショップガイド、市場分析、コミュニティ情報をご覧いただけます。",
       },
-      
+
       stats: {
         articles: "記事",
       },
-      
+
       grid: {
         noArticlesYet: "まだ記事がありません",
         emptyMessage:
@@ -1887,126 +1885,117 @@ changeIcon: "アイコンを変更",
       publishedLabel: "公開日:",
     },
     articleForm: {
-title: {
-create: "記事を作成",
-edit: "記事を編集",
-},
+      title: {
+        create: "記事を作成",
+        edit: "記事を編集",
+      },
 
-description: {
-create: "新しいブログ記事やコラム記事を作成・公開します。",
-edit: "記事の内容を更新します。",
-},
+      description: {
+        create: "新しいブログ記事やコラム記事を作成・公開します。",
+        edit: "記事の内容を更新します。",
+      },
 
-sections: {
-basicInformation: "基本情報",
-thumbnail: "サムネイル",
-content: "本文",
-category: "カテゴリー",
-tags: "タグ",
-accessProtection: "アクセス保護",
-},
+      sections: {
+        basicInformation: "基本情報",
+        thumbnail: "サムネイル",
+        content: "本文",
+        category: "カテゴリー",
+        tags: "タグ",
+        accessProtection: "アクセス保護",
+      },
 
-labels: {
-title: "タイトル",
-slug: "スラッグ",
-excerpt: "概要",
-articleBody: "記事本文",
-category: "カテゴリー",
-tags: "タグ",
-password: "パスワード",
-newPassword: "新しいパスワード",
-protectedArticle: "パスワード保護記事",
-},
+      labels: {
+        title: "タイトル",
+        slug: "スラッグ",
+        excerpt: "概要",
+        articleBody: "記事本文",
+        category: "カテゴリー",
+        tags: "タグ",
+        password: "パスワード",
+        newPassword: "新しいパスワード",
+        protectedArticle: "パスワード保護記事",
+      },
 
-placeholders: {
-title: "例: ポケモンカード投資ガイド",
-slug: "pokemon-card-investment-guide",
-excerpt: "記事一覧に表示される短い説明を入力してください...",
-content: "記事本文を入力してください...",
-password: "安全なパスワードを入力してください...",
-searchCategories: "カテゴリーを検索...",
-searchTags: "タグを検索...",
-},
+      placeholders: {
+        title: "例: ポケモンカード投資ガイド",
+        slug: "pokemon-card-investment-guide",
+        excerpt: "記事一覧に表示される短い説明を入力してください...",
+        content: "記事本文を入力してください...",
+        password: "安全なパスワードを入力してください...",
+        searchCategories: "カテゴリーを検索...",
+        searchTags: "タグを検索...",
+      },
 
-messages: {
-slugHelper:
-"タイトルから自動生成されます。手動で編集することもできます。",
-thumbnailUpload:
-"クリックしてサムネイルをアップロード",
-thumbnailFormats:
-"PNG、JPG、WEBP対応",
-passwordProtected:
-"読者は記事を閲覧するためにパスワードの入力が必要です。",
-passwordAlreadySet:
-"この記事には既にパスワードが設定されています。",
-passwordStorage:
-"パスワードはハッシュ化して保存され、平文では保存されません。",
-noCategories:
-"カテゴリーが見つかりません。",
-noTags:
-"タグが見つかりません。",
-},
+      messages: {
+        slugHelper:
+          "タイトルから自動生成されます。手動で編集することもできます。",
+        thumbnailUpload: "クリックしてサムネイルをアップロード",
+        thumbnailFormats: "PNG、JPG、WEBP対応",
+        passwordProtected:
+          "読者は記事を閲覧するためにパスワードの入力が必要です。",
+        passwordAlreadySet: "この記事には既にパスワードが設定されています。",
+        passwordStorage:
+          "パスワードはハッシュ化して保存され、平文では保存されません。",
+        noCategories: "カテゴリーが見つかりません。",
+        noTags: "タグが見つかりません。",
+      },
 
-thumbnail: {
-replace: "変更",
-remove: "サムネイルを削除",
-notSaved: "未保存",
-previewAlt: "サムネイルプレビュー",
-},
+      thumbnail: {
+        replace: "変更",
+        remove: "サムネイルを削除",
+        notSaved: "未保存",
+        previewAlt: "サムネイルプレビュー",
+      },
 
-tagsSelector: {
-select: "タグを選択",
-selected: "件のタグを選択中",
-selectedPlural: "件のタグを選択中",
-remove: "削除",
-},
+      tagsSelector: {
+        select: "タグを選択",
+        selected: "件のタグを選択中",
+        selectedPlural: "件のタグを選択中",
+        remove: "削除",
+      },
 
-categorySelector: {
-select: "カテゴリーを選択",
-},
+      categorySelector: {
+        select: "カテゴリーを選択",
+      },
 
-protection: {
-changePassword: "パスワードを変更",
-cancelPasswordChange: "キャンセル",
-showPassword: "パスワードを表示",
-hidePassword: "パスワードを非表示",
-},
+      protection: {
+        changePassword: "パスワードを変更",
+        cancelPasswordChange: "キャンセル",
+        showPassword: "パスワードを表示",
+        hidePassword: "パスワードを非表示",
+      },
 
-validation: {
-titleRequired: "タイトルは必須です。",
-slugRequired: "スラッグは必須です。",
-excerptRequired: "概要は必須です。",
-contentRequired: "本文は必須です。",
-categoryRequired: "カテゴリーは必須です。",
-passwordRequired:
-"保護された記事にはパスワードが必要です。",
-},
+      validation: {
+        titleRequired: "タイトルは必須です。",
+        slugRequired: "スラッグは必須です。",
+        excerptRequired: "概要は必須です。",
+        contentRequired: "本文は必須です。",
+        categoryRequired: "カテゴリーは必須です。",
+        passwordRequired: "保護された記事にはパスワードが必要です。",
+      },
 
-actions: {
-cancel: "キャンセル",
-saveDraft: "下書き保存",
-savingDraft: "保存中...",
-publish: "公開",
-publishing: "公開中...",
-update: "更新",
-updating: "更新中...",
-},
+      actions: {
+        cancel: "キャンセル",
+        saveDraft: "下書き保存",
+        savingDraft: "保存中...",
+        publish: "公開",
+        publishing: "公開中...",
+        update: "更新",
+        updating: "更新中...",
+      },
 
-toast: {
-publishSuccess: "記事を公開しました。",
-draftSuccess: "記事を下書きとして保存しました。",
-updateSuccess: "記事を更新しました。",
-saveError:
-"記事の保存に失敗しました。もう一度お試しください。",
-genericError: "エラーが発生しました。",
-thumbnailUploadError:
-"サムネイルのアップロードに失敗しました。",
-},
+      toast: {
+        publishSuccess: "記事を公開しました。",
+        draftSuccess: "記事を下書きとして保存しました。",
+        updateSuccess: "記事を更新しました。",
+        saveError: "記事の保存に失敗しました。もう一度お試しください。",
+        genericError: "エラーが発生しました。",
+        thumbnailUploadError: "サムネイルのアップロードに失敗しました。",
+      },
 
-dynamic: {
-tagsSelected: (count: number) =>
-`${count}件のタグを選択中`,
-},
-},
+      dynamic: {
+        tagsSelected: (count: number) => `${count}件のタグを選択中`,
+      },
+    },
   },
 };

@@ -66,6 +66,7 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
   );
   const [areaOpen, setAreaOpen] = useState(false);
   const [area, setArea] = useState(initialData?.area || "");
+  
 
   // ─── Shop Icon State ────────────────────────────────────────────────────────
   // iconFile   : the File object the user selected (null if none)
@@ -112,7 +113,7 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
     日曜日: "sunday",
   };
 
-  const PRODUCT_TAG_KEYS = ["vintage", "psa", "box", "pokémon", "onepiece"];
+  const PRODUCT_TAG_KEYS = ["vintage", "psa", "box", "pokémon", "onepiece", "cashonly", "dragonball", "cardsaccepted"];
 
   const [businessHours, setBusinessHours] = useState<BusinessHoursType>(
     days.reduce((acc: BusinessHoursType, day) => {
@@ -151,6 +152,8 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
     initialData?.shop_product_flags?.map((f: any) => f.product_flags.name) ||
     [];
 
+    console.log(activeFlags);
+    
   // ─── Reel Handlers ──────────────────────────────────────────────────────────
   const handleReelChange = (index: number, value: string) => {
     setReels((prev) => {

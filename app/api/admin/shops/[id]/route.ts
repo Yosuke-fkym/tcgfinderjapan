@@ -26,6 +26,9 @@ export async function PATCH(req: Request, { params }: any) {
   if (body.box) flags.push("BOX");
   if (body.pokémon) flags.push("Pokémon");
   if (body.onepiece) flags.push("ONE PIECE");
+  if (body.cashonly) flags.push("Cash only");
+    if (body.dragonball) flags.push("DRAGON BALL");
+    if (body.cardsaccepted) flags.push("Cards accepted");
 
   const uniqueFlags = [...new Set(flags)];
 
@@ -39,6 +42,9 @@ export async function PATCH(req: Request, { params }: any) {
   delete body.box;
   delete body.pokémon;
   delete body.onepiece;
+  delete body.cashonly;
+  delete body.dragonball;
+  delete body.cardsaccepted;
   delete body.videos;
   delete body.removeIcon;
 

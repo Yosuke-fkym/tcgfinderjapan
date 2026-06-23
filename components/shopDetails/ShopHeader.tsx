@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
 import { translations } from "@/lib/i18n";
 import Image from "next/image";
+import { tagColors } from "@/lib/getStoreTagColor";
 
 interface ShopHeaderProps {
   shop: Shop;
@@ -69,9 +70,10 @@ export default function ShopHeader({ shop }: ShopHeaderProps) {
           {shop.productFlags.map((flag) => (
             <Badge
               key={flag}
-              className="bg-indigo-600 text-white"
+              className={`${tagColors[flag.toLocaleLowerCase().replace(" ", '')]}`}
             >
               {t.admin.shopForm.extras.productTags[flag.replace(" ", '').toLowerCase() as keyof typeof t.admin.shopForm.extras.productTags]}
+              {/* {flag} */}
             </Badge>
           ))}
         </div>

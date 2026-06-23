@@ -4,13 +4,14 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
 
+  const area = searchParams.get("area");
   const page = Number(searchParams.get("page") ?? "1");
   const pageSize = Number(searchParams.get("pageSize") ?? "20");
 
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
 
-  const { data, error, count } = await supabaseAdmin
+  let query = supabaseAdmin
     .from("shops")
     .select(
       `
@@ -18,7 +19,14 @@ export async function GET(req: Request) {
       reviews(count)
     `,
       { count: "exact" }
-    )
+    );
+
+  // Area filter
+  if (area && area !== "ALL") {
+    query = query.eq("area", area);
+  }
+
+  const { data, error, count } = await query
     .order("created_at", { ascending: false })
     .range(from, to);
 
@@ -31,7 +39,6 @@ export async function GET(req: Request) {
     error,
   });
 }
-
 // POST /api/admin/shops
 export async function POST(req: Request) {
   try {
@@ -45,8 +52,10 @@ export async function POST(req: Request) {
     if (body.box) flags.push("BOX");
     if (body.pokémon) flags.push("Pokémon");
     if (body.onepiece) flags.push("ONE PIECE");
+    if (body.cashonly) flags.push("Cash only");
+    if (body.dragonball) flags.push("DRAGON BALL");
+    if (body.cardsaccepted) flags.push("Cards accepted");
 
-    // console.log("body: ", body.area);
     
     // ✅ 1. Create shop
     const { data: shop, error: shopError } = await supabaseAdmin

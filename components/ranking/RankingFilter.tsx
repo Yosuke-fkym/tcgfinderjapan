@@ -18,7 +18,6 @@ import { Check, ChevronsUpDown } from "lucide-react";
 import React from "react";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
-import { translations } from "@/lib/i18n";
 
 interface RankingFilterType{
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
