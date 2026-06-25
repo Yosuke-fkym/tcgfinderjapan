@@ -55,7 +55,7 @@ export async function POST(req: Request) {
       website: r.website,
       // language_support: r.language_support,
       description: r.description,
-      x_account_url: r.x_account_url,
+      x_account_username: r.x_account_username,
       business_hours: parseBusinessHours(r),
       holiday_hours: parseHoliday(r),
       area: r.area?.toLowerCase(),
