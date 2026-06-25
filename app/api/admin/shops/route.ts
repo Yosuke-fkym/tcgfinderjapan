@@ -71,6 +71,7 @@ export async function POST(req: Request) {
         business_hours: body.business_hours,
         holiday_hours: body.holiday_hours,
         area: body.area,
+        x_account_username: body.x_account_username
       })
       .select()
       .single();

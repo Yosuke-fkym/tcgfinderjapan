@@ -307,6 +307,7 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
         : "/api/admin/shops";
 
     const method = mode === "edit" ? "PATCH" : "POST";
+    
 
     try {
       const res = await fetch(endpoint, {
