@@ -244,7 +244,7 @@ export const translations = {
           removeIcon: "Remove Icon",
           changeIcon: "Change Icon",
           description: "Description",
-          x_account_url: "X (Twitter) Account URL",
+          x_account_username: "X (Twitter) Account Username",
           language: "Language support",
           namePlaceholder: "Tokyo Card Haven",
           addressPlaceholder: "Shibuya, Tokyo",
@@ -564,6 +564,11 @@ export const translations = {
         open: "Open",
         closed: "Closed",
       },
+xProfile: {
+  title: "Official X Updates",
+  description: "Follow the latest updates from this shop on X.",
+  openOnX: "Open on X",
+},
 
       list: {
         empty: "No matching shops found",
@@ -1242,7 +1247,7 @@ export const translations = {
           area: "エリア",
           longitude: "経度",
           closed: "休業",
-          x_account_url: "X（旧Twitter）アカウントURL",
+          x_account_username: "X（旧Twitter）アカウントユーザー名",
           language: "対応言語",
           description: "説明",
           shopIcon: "店舗アイコン",
@@ -1554,6 +1559,11 @@ export const translations = {
       related: {
         title: "関連店舗",
       },
+xProfile: {
+  title: "公式Xの最新情報",
+  description: "この店舗の最新情報をXでご確認いただけます。",
+  openOnX: "Xで見る",
+},
 
       header: {
         open: "営業中",

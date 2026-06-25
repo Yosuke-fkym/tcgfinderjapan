@@ -140,6 +140,7 @@ export async function PATCH(req: Request) {
         website: body.website,
         business_hours: body.business_hours,
         holiday_hours: body.holiday_hours,
+        x_account_username: body.x_account_username,
         area: body.area,
       })
       .eq("shop_id", shop_id);

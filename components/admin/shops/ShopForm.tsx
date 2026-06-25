@@ -152,7 +152,6 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
     initialData?.shop_product_flags?.map((f: any) => f.product_flags.name) ||
     [];
 
-    console.log(activeFlags);
     
   // ─── Reel Handlers ──────────────────────────────────────────────────────────
   const handleReelChange = (index: number, value: string) => {
@@ -443,11 +442,11 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
                 </div>
 
                 <div className="grid gap-2">
-                  <Label>{t.admin.shopForm.fields.x_account_url}</Label>
+                  <Label>{t.admin.shopForm.fields.x_account_username}</Label>
                   <Input
-                    name="x_account_url"
-                    defaultValue={initialData?.x_account_url}
-                    placeholder="https://x.com/yourshop"
+                    name="x_account_username"
+                    defaultValue={initialData?.x_account_username}
+                    placeholder="@yourshop"
                   />
                 </div>
               </div>

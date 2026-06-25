@@ -19,7 +19,7 @@ export function transformShop(shop: any): Shop {
     business_hours: shop.business_hours,
     description: shop.description,
     area: shop.area || "",
-    x_account_url: shop.x_account_url || null,
+    x_account_username: shop.x_account_username || null,
     holiday_hours: shop.holiday_hours,
     website: shop.website,
     images: shop.shop_photos?.map((p: any) => p.image_url) || [],

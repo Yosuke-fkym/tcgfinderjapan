@@ -227,14 +227,14 @@ useEffect(() => {
         </div>
       )}
 
-{shop.x_account_url && (
+{shop.x_account_username && (
   <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 mt-4">
     <h3 className="text-sm font-semibold text-white mb-2">
       {t.shopDetails.tweetCard.title}
       
     </h3>
 
-    <TweetEmbed url={shop.x_account_url} />
+    <TweetEmbed username={shop.x_account_username} />
   </div>
 )}
 
