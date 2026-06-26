@@ -3,6 +3,7 @@ import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 
 const noto_sans_jp = Noto_Sans_JP({
@@ -15,6 +16,9 @@ const noto_sans_jp = Noto_Sans_JP({
 
 
 export const metadata:Metadata = {
+  verification: {
+    google: "gHCyD5HRoztBlUJ-2e6i_LJS_iDaM9WAE94eaU5nkyg",
+  },
   title: "Japan Card Shop Map | Find Trading Card Shops Near You",
   description:
     "Explore trading card shops across Japan using an interactive map. Discover Pokémon card stores, filter by area, and find top-rated shops.",
@@ -56,7 +60,7 @@ export default function RootLayout({
       >
         {children}
         <Toaster position="bottom-right"/>
-      </body>
+      <GoogleAnalytics gaId="G-62REGN1YQB" />
        <Script
         id="google-adsense"
         strategy="afterInteractive"
@@ -64,6 +68,7 @@ export default function RootLayout({
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9123296248060105"
         crossOrigin="anonymous"
       />
+      </body>
     </html>
   );
 }
