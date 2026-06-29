@@ -12,6 +12,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useParams } from "next/navigation";
+import { getT } from "@/lib/getT";
 
 interface AffiliateHtmlModalProps {
   open: boolean;
@@ -25,7 +27,11 @@ export function AffiliateHtmlModal({
   editor,
 }: AffiliateHtmlModalProps) {
   const [html, setHtml] = useState("");
-
+  const params = useParams();
+    const locale = (params?.locale as string) ?? "";
+  
+  const t = getT(locale as string);
+  
   const handleInsert = () => {
     if (!html.trim()) return;
     editor.chain().focus().insertContent(html).run();
@@ -44,12 +50,12 @@ export function AffiliateHtmlModal({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle>Insert Affiliate HTML</DialogTitle>
+          <DialogTitle>{t.articleForm.contentEditorAffiliateHTML.insertAffiliateHtml}</DialogTitle>
         </DialogHeader>
 
         <div className="flex flex-col gap-2 py-1">
           <Label htmlFor="affiliate-html" className="text-sm text-muted-foreground">
-            Paste your affiliate HTML snippet (e.g. AccessTrade SSL link code)
+            {t.articleForm.contentEditorAffiliateHTML.affiliateHtmlDescription}
           </Label>
           <Textarea
             id="affiliate-html"
@@ -61,16 +67,16 @@ export function AffiliateHtmlModal({
             spellCheck={false}
           />
           {isEmpty && html !== "" && (
-            <p className="text-xs text-destructive">Please enter an HTML snippet before inserting.</p>
+            <p className="text-xs text-destructive">{t.articleForm.contentEditorAffiliateHTML.affiliateHtmlRequired}</p>
           )}
         </div>
 
         <DialogFooter>
           <Button variant="ghost" onClick={handleCancel}>
-            Cancel
-          </Button>
+            {t.articleForm.contentEditorAffiliateButton.cancel}
+                      </Button>
           <Button onClick={handleInsert} disabled={isEmpty}>
-            Insert
+             {t.articleForm.contentEditorAffiliateButton.insert}
           </Button>
         </DialogFooter>
       </DialogContent>

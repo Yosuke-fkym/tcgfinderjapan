@@ -889,6 +889,30 @@ xProfile: {
       publishedLabel: "Published:",
     },
     articleForm: {
+      contentEditorAffiliateHTML:{
+          insertAffiliateHtml: "Insert Affiliate HTML",
+    affiliateHtmlDescription:
+      "Paste your affiliate HTML snippet (e.g. AccessTrade SSL link code).",
+    affiliateHtmlRequired:
+      "Please enter an HTML snippet before inserting.",
+      },
+      contentEditorAffiliateButton:{
+ insertAffiliateButton: "Insert Affiliate Button",
+
+    buttonText: "Button Text",
+    destinationUrl: "Destination URL",
+
+    buttonTextPlaceholder: "e.g. Buy Now",
+    destinationUrlPlaceholder: "https://h.accesstrade.net/...",
+
+    preview: "Preview",
+
+    invalidUrl:
+      "Please enter a valid URL (must start with http:// or https://).",
+
+    cancel: "Cancel",
+    insert: "Insert",
+      },
       title: {
         create: "Create Article",
         edit: "Edit Article",
@@ -898,6 +922,7 @@ xProfile: {
         create: "Write and publish a new blog or column article.",
         edit: "Update the article details below.",
       },
+
 
       sections: {
         basicInformation: "Basic Information",
@@ -1895,6 +1920,31 @@ xProfile: {
       publishedLabel: "公開日:",
     },
     articleForm: {
+            contentEditorAffiliateHTML:{
+               insertAffiliateHtml: "アフィリエイトHTMLを挿入",
+    affiliateHtmlDescription:
+      "アフィリエイトHTMLコード（例：AccessTradeのSSLリンクコード）を貼り付けてください。",
+    affiliateHtmlRequired:
+      "挿入する前にアフィリエイトHTMLコードを入力してください。",
+            },
+            contentEditorAffiliateButton:{
+   insertAffiliateButton: "アフィリエイトボタンを挿入",
+
+    buttonText: "ボタンテキスト",
+    destinationUrl: "リンク先URL",
+
+    buttonTextPlaceholder: "例：今すぐ購入",
+    destinationUrlPlaceholder: "https://h.accesstrade.net/...",
+
+    preview: "プレビュー",
+
+    invalidUrl:
+      "有効なURLを入力してください（http:// または https:// から始まる必要があります）。",
+
+    cancel: "キャンセル",
+    insert: "挿入",
+            },
+
       title: {
         create: "記事を作成",
         edit: "記事を編集",

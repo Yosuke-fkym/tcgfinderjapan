@@ -12,6 +12,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useParams } from "next/navigation";
+import { getT } from "@/lib/getT";
 
 interface AffiliateButtonModalProps {
   open: boolean;
@@ -50,6 +52,11 @@ export function AffiliateButtonModal({
   onOpenChange,
   editor,
 }: AffiliateButtonModalProps) {
+    const params = useParams();
+  const locale = (params?.locale as string) ?? "";
+
+const t = getT(locale as string);
+
   const [buttonText, setButtonText] = useState("");
   const [url, setUrl] = useState("");
   const [urlTouched, setUrlTouched] = useState(false);
@@ -80,20 +87,20 @@ export function AffiliateButtonModal({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Insert Affiliate Button</DialogTitle>
+          <DialogTitle> {t.articleForm.contentEditorAffiliateButton.insertAffiliateButton}</DialogTitle>
         </DialogHeader>
 
         <div className="flex flex-col gap-4 py-1">
           {/* Button Text */}
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="affiliate-button-text">
-              Button Text <span className="text-destructive">*</span>
+               {t.articleForm.contentEditorAffiliateButton.buttonText} <span className="text-destructive">*</span>
             </Label>
             <Input
               id="affiliate-button-text"
               value={buttonText}
               onChange={(e) => setButtonText(e.target.value)}
-              placeholder="e.g. Buy Now"
+              placeholder= {t.articleForm.contentEditorAffiliateButton.buttonTextPlaceholder}
               autoFocus
             />
           </div>
@@ -101,7 +108,7 @@ export function AffiliateButtonModal({
           {/* Destination URL */}
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="affiliate-button-url">
-              Destination URL <span className="text-destructive">*</span>
+               {t.articleForm.contentEditorAffiliateButton.destinationUrl} <span className="text-destructive">*</span>
             </Label>
             <Input
               id="affiliate-button-url"
@@ -113,14 +120,14 @@ export function AffiliateButtonModal({
               className={urlError ? "border-destructive focus-visible:ring-destructive" : ""}
             />
             {urlError && (
-              <p className="text-xs text-destructive">Please enter a valid URL (must start with http:// or https://).</p>
+              <p className="text-xs text-destructive"> {t.articleForm.contentEditorAffiliateButton.invalidUrl}</p>
             )}
           </div>
 
           {/* Preview */}
           {canInsert && (
             <div className="flex flex-col gap-1.5">
-              <Label className="text-muted-foreground">Preview</Label>
+              <Label className="text-muted-foreground"> {t.articleForm.contentEditorAffiliateButton.preview}</Label>
               <div className="rounded-lg border border-border bg-muted/30 px-4 py-3 flex items-center">
                 <span
                   className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white select-none"
@@ -134,10 +141,10 @@ export function AffiliateButtonModal({
 
         <DialogFooter>
           <Button variant="ghost" onClick={handleCancel}>
-            Cancel
+             {t.articleForm.contentEditorAffiliateButton.cancel}
           </Button>
           <Button onClick={handleInsert} disabled={!canInsert}>
-            Insert
+             {t.articleForm.contentEditorAffiliateButton.insert}
           </Button>
         </DialogFooter>
       </DialogContent>
