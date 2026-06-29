@@ -46,7 +46,11 @@ import {
   AlertCircle,
   Loader2,
   Upload,
+  FileCode,
+  MousePointerClick,
 } from "lucide-react";
+import { AffiliateButtonModal } from "./AffiliateButtonModal";
+import { AffiliateHtmlModal } from "./AffiliateHTMLModal";
 
 
 interface ToolbarToggleProps {
@@ -149,6 +153,8 @@ export default function TiptapEditor({
   const [linkUrl, setLinkUrl] = useState("");
   const [showLinkInput, setShowLinkInput] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
+  const [showAffiliateDialog, setShowAffiliateDialog] = useState(false);
+  const [showAffiliateButtonDialog, setShowAffiliateButtonDialog] = useState(false);
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -438,6 +444,22 @@ export default function TiptapEditor({
 
         <Separator orientation="vertical" className="h-6 mx-1" />
 
+        {/* Affiliate HTML + Affiliate Button — grouped together */}
+        <ToolbarAction
+          onClick={() => setShowAffiliateDialog(true)}
+          tooltip="Insert Affiliate HTML"
+        >
+          <FileCode className="h-3.5 w-3.5" />
+        </ToolbarAction>
+        <ToolbarAction
+          onClick={() => setShowAffiliateButtonDialog(true)}
+          tooltip="Insert Affiliate Button"
+        >
+          <MousePointerClick className="h-3.5 w-3.5" />
+        </ToolbarAction>
+
+        <Separator orientation="vertical" className="h-6 mx-1" />
+
         {/* Undo / Redo */}
         <ToolbarAction
           onClick={() => editor.chain().focus().undo().run()}
@@ -551,6 +573,20 @@ export default function TiptapEditor({
           </button>
         </p>
       </div>
+
+      {/* ── Affiliate HTML Dialog ── */}
+      <AffiliateHtmlModal
+        open={showAffiliateDialog}
+        onOpenChange={setShowAffiliateDialog}
+        editor={editor}
+      />
+
+      {/* ── Affiliate Button Dialog ── */}
+      <AffiliateButtonModal
+        open={showAffiliateButtonDialog}
+        onOpenChange={setShowAffiliateButtonDialog}
+        editor={editor}
+      />
     </div>
   );
 }
