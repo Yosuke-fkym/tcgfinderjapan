@@ -87,7 +87,8 @@ export async function POST(req: Request) {
       tag_ids,
       is_protected = false,
       password_hash,
-      is_featured
+      is_featured,
+      shopify_url
     }: {
       title: string;
       slug: string;
@@ -100,6 +101,7 @@ export async function POST(req: Request) {
       is_protected?: boolean;
       is_featured: boolean;
       password_hash?: string;
+      shopify_url?: string | null;
     } = body;
 
     // Validate: protected articles must provide a password
@@ -126,6 +128,7 @@ export async function POST(req: Request) {
         category_id,
         is_featured,
         status,
+        shopify_url: shopify_url || null,
         published_at: status === "published" ? new Date().toISOString() : null,
         is_protected,
         password_hash: hashedPassword,

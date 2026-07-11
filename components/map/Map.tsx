@@ -16,7 +16,10 @@ import { translations } from "@/lib/i18n";
 import Link from "next/link";
 
 const containerStyle = { width: "100%", height: "100%" };
-const center = { lat: 35.6762, lng: 139.6503 };
+const center = {
+  lat: 35.6984,
+  lng: 139.7730,
+}
 
 const libraries: ("places")[] = ["places"];
 
@@ -91,7 +94,7 @@ mapRef.current.fitBounds(bounds);
       onUnmount={onUnmount}
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={13}
+      zoom={15}
       options={{
         disableDefaultUI: true,
         zoomControl: true,

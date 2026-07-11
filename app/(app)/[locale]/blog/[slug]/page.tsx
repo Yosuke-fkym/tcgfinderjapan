@@ -33,6 +33,7 @@ type RawArticle = {
   published_at: string | null;
   status: string;
   password_hash: string | null;
+  shopify_url: string | null; // Add Shopify URL to the RawArticle type
   is_protected: boolean;
   blog_categories: { id: string; name: string; slug: string }[] | null;
   article_tags: ArticleTag[];
@@ -40,6 +41,7 @@ type RawArticle = {
 
 type Article = Omit<RawArticle, "blog_categories"> & {
   blog_categories: { id: string; name: string; slug: string } | null;
+  shopify_url: string | null; // Add Shopify URL to the Article type
 };
 
 // ─── Data fetching ────────────────────────────────────────────────────────────
@@ -49,7 +51,7 @@ async function fetchArticle(slug: string): Promise<Article | null> {
     .from("articles")
     .select(`
       id, title, slug, excerpt, content,
-      thumbnail_url, published_at, status, is_protected, password_hash,
+      thumbnail_url, published_at, status, is_protected, password_hash, shopify_url,
       blog_categories:category_id ( id, name, slug ),
       article_tags ( general_blog_tags ( id, name, slug ) )
     `)
@@ -60,6 +62,8 @@ async function fetchArticle(slug: string): Promise<Article | null> {
   if (error || !data) return null;
 
   const raw = data as unknown as RawArticle;
+  console.log(raw);
+  
 
   // Normalise: Supabase may return blog_categories as an array — unwrap to object
   const blog_categories = Array.isArray(raw.blog_categories)
@@ -157,7 +161,7 @@ const t = getT(locale as string);
       : false;
 
     if (!unlocked) {
-      return <PasswordGate slug={slug} articleTitle={article.title} />;
+      return <PasswordGate slug={slug} articleTitle={article.title} shopifyUrl={article.shopify_url as string} />;
     }
   }
 

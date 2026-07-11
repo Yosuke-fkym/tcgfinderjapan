@@ -47,7 +47,7 @@ type Tag      = { id: string; name: string; slug: string };
 type ArticleStatus = "draft" | "published";
 
 type FormErrors = Partial<
-  Record<"title" | "slug" | "excerpt" | "content" | "category_id" | "password_hash", string>
+  Record<"title" | "slug" | "excerpt" | "content" | "category_id" | "password_hash" | "shopify_url", string>
 >;
 
 type ExistingThumbnail = { url: string } | null;
@@ -66,6 +66,7 @@ type ArticleFormProps = {
     tag_ids?: string[];
     is_featured?: boolean,
     is_protected?: boolean;
+    shopify_url?: string;
   };
 };
 
@@ -91,6 +92,7 @@ function validate(fields: {
   is_protected: boolean;
   password_hash: string;
   is_featured: boolean;
+  shopify_url?: string;
   mode: "create" | "edit";
 }): FormErrors {
   const errors: FormErrors = {};
@@ -99,6 +101,9 @@ function validate(fields: {
   if (!fields.excerpt.trim())   errors.excerpt     = "Excerpt is required.";
   if (!fields.content.replace(/<[^>]*>/g, "").trim()) errors.content = "...";
   if (!fields.category_id)      errors.category_id = "Category is required.";
+  if (fields.shopify_url && !/^https?:\/\/.+/.test(fields.shopify_url)) {
+    errors.shopify_url = "Shopify URL must be a valid URL.";
+  }
 
   // Password required when protection is enabled on create,
   // or when protection is being newly enabled on edit.
@@ -128,6 +133,7 @@ const t = getT(locale as string);
   const [categoryId, setCategoryId] = useState(initialData?.category_id ?? "");
   const [isFeatured, setIsFeatured] = useState(initialData?.is_featured ?? false);
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>(initialData?.tag_ids ?? []);
+  const [shopifyUrl, setShopifyUrl] = useState(initialData?.shopify_url ?? "");
 
   // Protection state
   const [isProtected,    setIsProtected]    = useState(initialData?.is_protected ?? false);
@@ -171,7 +177,7 @@ const t = getT(locale as string);
     }
     loadData();
   }, []);
-
+  
   // Cleanup object URL on unmount
   useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
 
@@ -272,7 +278,8 @@ const t = getT(locale as string);
       is_protected: isProtected,
       password_hash: password,
       mode,
-      is_featured: isFeatured
+      is_featured: isFeatured,
+      shopify_url: shopifyUrl,
     });
 
     
@@ -298,6 +305,7 @@ const t = getT(locale as string);
             tag_ids: selectedTagIds,
             is_featured: isFeatured,
             is_protected: isProtected,
+            shopify_url: shopifyUrl.trim(),
             // Only send password if protection is enabled
             ...(isProtected && password.trim() && { password_hash: password.trim() }),
           }),
@@ -344,6 +352,7 @@ const t = getT(locale as string);
             status: submitStatus,
             tag_ids: selectedTagIds,
             is_protected: isProtected,
+            shopify_url: shopifyUrl.trim(),
             // Send password only when: protection on AND (create-like or admin chose to change it)
             ...(isProtected && password.trim().length > 1 && { password_hash: password.trim() }),
             // Signal to clear the hash if protection was disabled
@@ -655,6 +664,7 @@ const showPasswordInput =
 
                     {/* Password input: always in create mode, or when changing in edit mode */}
                     {showPasswordInput && (
+                      <>
                       <div className="grid gap-2">
                         <Label htmlFor="article-password">
                           {mode === "edit" ? (t.articleForm.labels.newPassword) : (t.articleForm.labels.password)}
@@ -694,11 +704,37 @@ const showPasswordInput =
                           </Button>
                         )}
                       </div>
-                    )}
-
-                    <p className="text-xs text-muted-foreground">
+                       <p className="text-xs text-muted-foreground">
                       {t.articleForm.messages.passwordStorage}
                     </p>
+                      <div className="grid gap-2">
+  <Label htmlFor="shopify-url">
+    {t.articleForm.labels.shopifyUrl}
+    <span className="text-red-500"> *</span>
+  </Label>
+
+  <Input
+    id="shopify-url"
+    type="url"
+    value={shopifyUrl}
+    onChange={(e) => setShopifyUrl(e.target.value)}
+    placeholder={t.articleForm.placeholders.shopifyUrl}
+    autoComplete="off"
+  />
+
+  <p className="text-xs text-muted-foreground">
+    {t.articleForm.messages.shopifyUrlDescription}
+  </p>
+
+  {errors.shopify_url && (
+    <p className="text-sm text-red-500">
+      {errors.shopify_url}
+    </p>
+  )}
+</div>
+                      </>
+                    )}
+
                   </div>
                 )}
               </div>

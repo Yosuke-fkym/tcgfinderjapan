@@ -32,6 +32,7 @@ export async function GET(
         is_featured,
         is_protected,
         category_id,
+        shopify_url,
         blog_categories:category_id (
           id,
           name,
@@ -82,6 +83,7 @@ export async function PATCH(
       published_at,
       tag_ids,
       is_protected,
+      shopify_url,
       password_hash,       // present only when admin explicitly sets / changes password
       clear_password, // true when admin disables protection
     } = body;
@@ -114,6 +116,7 @@ export async function PATCH(
         ...(status        !== undefined && { status }),
         ...(is_protected  !== undefined && { is_protected }),
         ...(is_featured   !== undefined && {is_featured}),
+        ...(shopify_url   !== undefined && {shopify_url}),
         ...(status === "published" && {
           published_at: published_at ?? new Date().toISOString(),
         }),

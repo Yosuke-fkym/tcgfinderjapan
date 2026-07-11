@@ -22,6 +22,7 @@ type RawArticle = {
   category_id: string;
   status: "draft" | "published";
   is_protected: boolean;          // ← ADD
+  shopify_url: string;   
   is_featured: boolean,
   article_tags: ArticleTag[];
 };
@@ -99,6 +100,7 @@ export default function EditArticlePage() {
         status:        article.status,
         is_featured: article.is_featured,
         is_protected:  article.is_protected,  // ← ADD
+        shopify_url: article.shopify_url,
         tag_ids,
       }}
     />

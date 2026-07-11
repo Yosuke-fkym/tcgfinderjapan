@@ -13,16 +13,16 @@ import { getT } from "@/lib/getT";
 type Props = {
   slug: string;
   articleTitle: string;
+  shopifyUrl: string;
 };
 
-export default function PasswordGate({ slug, articleTitle }: Props) {
+export default function PasswordGate({ slug, articleTitle, shopifyUrl }: Props) {
   const [password,    setPassword]    = useState("");
   const [showPw,      setShowPw]      = useState(false);
   const [loading,     setLoading]     = useState(false);
   const [error,       setError]       = useState<string | null>(null);
   const {locale}  =  useParams();
   const t = getT(locale as string)
-  console.log(t);
 
   const handleSubmit = async (e: React.FormEvent) => {
     
@@ -151,6 +151,30 @@ export default function PasswordGate({ slug, articleTitle }: Props) {
 
           </form>
         </div>
+        {shopifyUrl && (
+  <div className="mt-6 border-t border-[#E8E3DB] pt-6">
+    <p className="text-center text-sm text-[#6B665D] mb-4">
+      {t.passwordGate.purchaseDescription}
+    </p>
+
+    <a
+      href={shopifyUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        w-full h-11 inline-flex items-center justify-center gap-2
+        rounded-lg border border-[#C8861A]
+        bg-[#FFF8EC]
+        text-[#C8861A]
+        text-sm font-semibold
+        hover:bg-[#FFF2D6]
+        transition-colors
+      "
+    >
+      🛒 {t.passwordGate.purchaseButton}
+    </a>
+  </div>
+)}
 
         {/* Footer hint — Shopify-ready copy */}
         <p className="text-center text-xs text-[#9A9489] mt-6 leading-relaxed">

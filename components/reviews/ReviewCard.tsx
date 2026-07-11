@@ -22,6 +22,7 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
 import { translations } from "@/lib/i18n";
+import { detectLang } from "@/lib/langTranslation/util";
 
 interface Props {
   review: Review;
@@ -42,10 +43,52 @@ export default function ReviewCard({
 }: Props) {
   const [open, setOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
+  const [translatedText, setTranslatedText] = useState<string | null>(null);
+const [showTranslation, setShowTranslation] = useState(false);
+const [isTranslating, setIsTranslating] = useState(false);
   const [previewImg, setPreviewImg] = useState<string | null>(null);
 
   const { locale } = useParams();
   const t = getT(locale as string);
+  const reviewLang = detectLang(review.comment || "");
+  const shouldShowTranslate = reviewLang !== locale;
+  console.log(shouldShowTranslate);
+  
+
+  const handleTranslate = async () => {
+  // Already translated
+  if (translatedText) {
+    setShowTranslation((prev) => !prev);
+    return;
+  }
+
+  try {
+    setIsTranslating(true);
+
+    const res = await fetch(`/api/shops/${review.shop_id}/review/${review.id}/translate`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        target: locale,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!data.success) {
+      throw new Error(data.error);
+    }
+
+    setTranslatedText(data.translatedText);
+    setShowTranslation(true);
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setIsTranslating(false);
+  }
+};
 
   const likeCount = review.likeCount ?? 0;
   const likedByMe = review.likedByMe ?? false;
@@ -159,9 +202,34 @@ export default function ReviewCard({
               </div>
             </div>
           ) : (
-            <p className="text-sm text-gray-700">{
-               review.comment
-            }</p>
+            <div className="space-y-2">
+  <p className="text-sm text-gray-700">
+    {review.comment}
+  </p>
+
+  { showTranslation && translatedText && (
+    <div className="border-l-2 border-blue-500 pl-3">
+      <p className="text-sm text-gray-600 italic">
+        {translatedText}
+      </p>
+    </div>
+  )}
+
+ {
+  shouldShowTranslate && (
+  <button
+    onClick={handleTranslate}
+    disabled={isTranslating}
+    className="text-xs text-blue-600 hover:underline disabled:opacity-50"
+  >
+    {isTranslating
+      ? "Translating..."
+      : showTranslation
+      ? "Hide translation"
+      : "Translate"}
+  </button>
+  )}
+</div>
           )}
 
           {/* IMAGES */}

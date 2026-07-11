@@ -190,6 +190,16 @@ export const translations = {
           open: "Open",
           closed: "Closed",
           unknown: "Unknown",
+           translation: "Translation",
+  translating: "Translating...",
+  reTranslate: "Re-translate",
+  translate: "Translate",
+  reTranslatedSuccessfully: "Re-translated successfully.",
+  translatedSuccessfully: "Translated successfully.",
+  translationFailed: "Translation failed. Please try again.",
+  notTranslated: "Not Translated",
+  failed: "Failed",
+  translated: "Translated"
         },
 
         actions: {
@@ -773,6 +783,8 @@ xProfile: {
 
       hidePassword: "Hide password",
       showPassword: "Show password",
+      purchaseDescription: "Don't have the password yet? Purchase it from Shopify to unlock this article.",
+  purchaseButton: "Purchase Password",
 
       incorrectPassword: "Incorrect password. Please try again.",
       somethingWentWrong: "Something went wrong. Please try again.",
@@ -868,7 +880,7 @@ xProfile: {
       status: "Status",
       published: "Published",
       actions: "Actions",
-
+      featured: "Featured",
       publishedStatus: "Published",
       draftStatus: "Draft",
 
@@ -941,6 +953,7 @@ xProfile: {
         category: "Category",
         tags: "Tags",
         password: "Password",
+         shopifyUrl: "Shopify Product URL",
         newPassword: "New Password",
         protectedArticle: "Password Protected Article",
       },
@@ -952,6 +965,7 @@ xProfile: {
         content: "Write your article content here...",
         password: "Enter a secure password...",
         searchCategories: "Search categories...",
+        shopifyUrl: "https://your-store.myshopify.com/products/...",
         searchTags: "Search tags...",
       },
 
@@ -959,6 +973,7 @@ xProfile: {
         slugHelper: "Auto-generated from the title. You can edit it manually.",
         thumbnailUpload: "Click to upload thumbnail",
         thumbnailFormats: "PNG, JPG, WEBP supported",
+        shopifyUrlDescription: "Customers will be redirected to this Shopify page to purchase the password for this article.",
         passwordProtected:
           "Readers must enter a password to view this article.",
         passwordAlreadySet: "A password is already set for this article.",
@@ -1219,6 +1234,16 @@ xProfile: {
           open: "営業中",
           closed: "休業中",
           unknown: "不明",
+           translation: "翻訳",
+  translating: "翻訳中...",
+  reTranslate: "再翻訳",
+  translate: "翻訳する",
+  reTranslatedSuccessfully: "再翻訳が完了しました。",
+  translatedSuccessfully: "翻訳が完了しました。",
+  translationFailed: "翻訳に失敗しました。もう一度お試しください。",
+  notTranslated: "未翻訳",
+  failed: "失敗",
+  translated: "翻訳済み"
         },
 
         actions: {
@@ -1798,6 +1823,8 @@ xProfile: {
       passwordPlaceholder: "パスワードを入力してください",
 
       hidePassword: "パスワードを非表示",
+        purchaseDescription: "まだパスワードをお持ちでない場合は、Shopifyからご購入ください。",
+  purchaseButton: "パスワードを購入する",
       showPassword: "パスワードを表示",
 
       incorrectPassword:
@@ -1899,6 +1926,7 @@ xProfile: {
       status: "ステータス",
       published: "公開日",
       actions: "操作",
+      featured: "注目",
 
       publishedStatus: "公開中",
       draftStatus: "下書き",
@@ -1968,6 +1996,7 @@ xProfile: {
         title: "タイトル",
         slug: "スラッグ",
         excerpt: "概要",
+        shopifyUrl: "Shopify商品URL",
         articleBody: "記事本文",
         category: "カテゴリー",
         tags: "タグ",
@@ -1982,6 +2011,7 @@ xProfile: {
         excerpt: "記事一覧に表示される短い説明を入力してください...",
         content: "記事本文を入力してください...",
         password: "安全なパスワードを入力してください...",
+        shopifyUrl: "https://your-store.myshopify.com/products/...",
         searchCategories: "カテゴリーを検索...",
         searchTags: "タグを検索...",
       },
@@ -1996,6 +2026,7 @@ xProfile: {
         passwordAlreadySet: "この記事には既にパスワードが設定されています。",
         passwordStorage:
           "パスワードはハッシュ化して保存され、平文では保存されません。",
+           shopifyUrlDescription: "この記事のパスワードを購入するためのShopify商品ページURLを設定してください。",
         noCategories: "カテゴリーが見つかりません。",
         noTags: "タグが見つかりません。",
       },

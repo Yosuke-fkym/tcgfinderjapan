@@ -27,7 +27,8 @@ export async function GET(
       published_at,
       status,
       is_protected,
-      password_hash
+      password_hash,
+      shopify_url,
       blog_categories:category_id (
         id,
         name,

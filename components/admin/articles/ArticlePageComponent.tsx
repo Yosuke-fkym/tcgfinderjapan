@@ -322,7 +322,7 @@ export default function ArticlesTable({ articles, refresh }: Props) {
                 </TableHead>
                 {/* Featured column */}
                 <TableHead className="text-sm lg:text-base font-semibold py-4">
-                  Featured
+                  {t.blogArticlesTable.featured}
                 </TableHead>
                 <TableHead className="text-sm lg:text-base font-semibold py-4">
                   {t.blogArticlesTable.status}

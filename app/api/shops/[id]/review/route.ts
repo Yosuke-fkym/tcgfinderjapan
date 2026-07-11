@@ -1,5 +1,6 @@
 import { createAuthClient } from "@/lib/supabase/serverAuth";
 import { NextRequest, NextResponse } from "next/server";
+import { detectLang } from "@/lib/langTranslation/util";
 
 // ✅ GET → fetch reviews for a shop
 export async function GET(
@@ -72,6 +73,8 @@ export async function POST(
 
   let result;
 
+  const lang = detectLang(comment || "");
+
   if (existing) {
     result = await supabase
       .from("reviews")
@@ -81,6 +84,9 @@ export async function POST(
         rating,
         selection_rating: finalSelection,
         price_rating: finalPrice,
+        review_text_in_langs: {
+      [lang]: comment,
+    },
       })
       .eq("id", existing.id)
       .select()
@@ -96,6 +102,9 @@ export async function POST(
         comment,
         selection_rating: finalSelection,
         price_rating: finalPrice,
+         review_text_in_langs: {
+      [lang]: comment,
+    },
       })
       .select()
       .single();
