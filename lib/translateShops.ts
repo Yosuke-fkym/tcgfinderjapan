@@ -28,7 +28,6 @@ export async function translateShop(
 
   const base = shop.shop_name || "";
   const lang = detectLang(base);
-  console.log(lang);
   
 
   const existingName = shop.shop_name_in_langs || {};
@@ -52,7 +51,6 @@ export async function translateShop(
         ? base
         : await safeTranslate(base, "jp")
       : existingName.jp;
-      console.log("jp: ", jp);
       
       
   // =========================
@@ -68,7 +66,6 @@ export async function translateShop(
     overwrite || !existingDesc.jp
       ? await safeTranslate(shop.description || "", "jp")
       : existingDesc.jp;
-      console.log("jp: ", desc_jp);
       
       // =========================
   // 📍 ADDRESS
@@ -83,7 +80,6 @@ export async function translateShop(
     overwrite || !existingAddress.jp
       ? await safeTranslate(shop.shop_address || "", "jp")
       : existingAddress.jp;
-      console.log("jp: ", addr_jp);
 
   const { error } = await supabaseAdmin
     .from("shops")
