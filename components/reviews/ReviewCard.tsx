@@ -52,7 +52,6 @@ const [isTranslating, setIsTranslating] = useState(false);
   const t = getT(locale as string);
   const reviewLang = detectLang(review.comment || "");
   const shouldShowTranslate = reviewLang !== locale;
-  console.log(shouldShowTranslate);
   
 
   const handleTranslate = async () => {

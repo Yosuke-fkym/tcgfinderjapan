@@ -95,6 +95,7 @@ function Navbar() {
     { label: t.navbar.home, path: `/${locale}` },
     { label: t.navbar.ranking, path: `/${locale}/ranking` },
     { label: t.navbar.blog, path: `/${locale}/blog` },
+    { label: t.navbar.cards, path: `/${locale}/cards` },
     { label: t.navbar.contact, path: `/${locale}/contact` },
   ];
 
@@ -183,6 +184,13 @@ function Navbar() {
   }
 >
   {t.navbar.favorites}
+</DropdownMenuItem>
+<DropdownMenuItem
+  onClick={() =>
+    router.push(`/${locale}/accounts/me/favourite-cards`)
+  }
+>
+  {t.navbar.favoriteCards}
 </DropdownMenuItem>
 
 <DropdownMenuItem

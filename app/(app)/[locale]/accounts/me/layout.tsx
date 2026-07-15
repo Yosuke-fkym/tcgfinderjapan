@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { ClockArrowUpIcon, Store, User2 } from "lucide-react";
+import { ClockArrowUpIcon, CreditCardIcon, Store, User2 } from "lucide-react";
 import { ChevronRight, ArrowLeft } from "lucide-react";
 import { Spinner } from "@/components/ui/spinner";
 import { getT } from "@/lib/getT";
@@ -47,6 +47,11 @@ export default function AccountLayout({ children }: { children: ReactNode }) {
       label: t.accountLayout.breadcrumb.favorites,
       icon: Store,
       href: `/${locale}/accounts/me/favourite-shops`,
+    },
+    {
+      label: t.accountLayout.breadcrumb.favouritesCard,
+      icon: CreditCardIcon,
+      href: `/${locale}/accounts/me/favourite-cards`,
     },
     {
       label: t.accountLayout.breadcrumb.viewedHistory,
@@ -95,7 +100,7 @@ export default function AccountLayout({ children }: { children: ReactNode }) {
     <div className="mx-auto pt-4 pb-10">
       {/* Top section */}
       <div className="max-w-6xl px-4 sm:px-6 md:px-10">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+        <div className="flex flex-col sm:items-start  gap-3 mb-4">
           
           {/* Back Button */}
           <button

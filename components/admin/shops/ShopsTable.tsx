@@ -197,7 +197,7 @@ function MobileTranslateButton({
 export default function ShopsTable({ shops, refresh }: any) {
   const [open, setOpen] = useState(false);
   const [selectedShop, setSelectedShop] = useState<any>(null);
-  console.log(shops[5].isTranslated);
+
   
 
   const { locale } = useParams();

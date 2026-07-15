@@ -62,7 +62,6 @@ async function fetchArticle(slug: string): Promise<Article | null> {
   if (error || !data) return null;
 
   const raw = data as unknown as RawArticle;
-  console.log(raw);
   
 
   // Normalise: Supabase may return blog_categories as an array — unwrap to object

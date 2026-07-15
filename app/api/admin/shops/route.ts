@@ -65,7 +65,6 @@ export async function POST(req: Request) {
         shop_address: body.shop_address,
         latitude: body.latitude,
         longitude: body.longitude,
-        // language_support: body.language_support,
         description: body.description,
         website: body.website,
         business_hours: body.business_hours,

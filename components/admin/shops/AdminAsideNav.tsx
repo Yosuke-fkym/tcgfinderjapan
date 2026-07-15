@@ -5,6 +5,7 @@ import {
   File,
   Home,
   Import,
+  LucideCreditCard,
   ShapesIcon,
 } from "lucide-react";
 import AdminNavButton from "./AdminNavButton";
@@ -59,6 +60,13 @@ function AdminAsideNav() {
           path={`/${locale}/admin/articles`}
           key="articles"
         />
+        <AdminNavButton
+          icon={LucideCreditCard}
+          name={t.admin.sidebar.cards}
+          path={`/${locale}/admin/cards`}
+          key="cards"
+        />
+        
       </nav>
     </aside>
   );

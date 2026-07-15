@@ -18,7 +18,6 @@ export async function POST(
   head: true
 });
 
-console.log(count);
     const { target } = await req.json();
 
     if (!target || !["en", "jp"].includes(target)) {
@@ -78,8 +77,6 @@ console.log(count);
       [target]: translated,
     };
 
-    console.log("review.id =", review.id);
-console.log("reviewId =", reviewId);
     const { data, error: updateError } = await supabaseAdmin
       .from("reviews")
       .update({
@@ -88,7 +85,6 @@ console.log("reviewId =", reviewId);
       .eq("id", review.id)
       .select();
 
-      console.log("logss: ", data, updateError);
       
 
 

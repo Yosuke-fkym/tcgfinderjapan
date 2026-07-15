@@ -11,9 +11,11 @@ export const translations = {
       ranking: "Ranking",
       contact: "Contact",
       blog: "Blog",
+      cards: "Cards",
       myPage: "My Page",
       favorites: "Favorites",
       viewedHistory: "Viewed History",
+      favoriteCards: "Favorite Cards",
       logout: "Logout",
       login: "Login",
     },
@@ -139,6 +141,7 @@ export const translations = {
         reports: "Reports",
         importCsv: "Import CSV",
         articles: "Articles",
+        cards: "Cards"
       },
 
       dashboard: {
@@ -190,16 +193,16 @@ export const translations = {
           open: "Open",
           closed: "Closed",
           unknown: "Unknown",
-           translation: "Translation",
-  translating: "Translating...",
-  reTranslate: "Re-translate",
-  translate: "Translate",
-  reTranslatedSuccessfully: "Re-translated successfully.",
-  translatedSuccessfully: "Translated successfully.",
-  translationFailed: "Translation failed. Please try again.",
-  notTranslated: "Not Translated",
-  failed: "Failed",
-  translated: "Translated"
+          translation: "Translation",
+          translating: "Translating...",
+          reTranslate: "Re-translate",
+          translate: "Translate",
+          reTranslatedSuccessfully: "Re-translated successfully.",
+          translatedSuccessfully: "Translated successfully.",
+          translationFailed: "Translation failed. Please try again.",
+          notTranslated: "Not Translated",
+          failed: "Failed",
+          translated: "Translated",
         },
 
         actions: {
@@ -290,6 +293,96 @@ export const translations = {
           },
         },
       },
+      cardsPage: {
+        title: "Card Management",
+        addCard: "Add Card",
+        loading: "Loading",
+        error: "Something went wrong. Please try again.",
+        retry: "Retry",
+        empty: "No cards found.",
+        searchPlaceholder: "Search cards...",
+        table: {
+          image: "Image",
+          nameEn: "English Name",
+          nameJa: "Japanese Name",
+          cardNumber: "Card Number",
+          rarity: "Rarity",
+          pack: "Pack",
+          createdAt: "Created",
+          actions: "Actions",
+        },
+      },
+cardForm: {
+  editTitle: "Edit Card",
+  createTitle: "Create Card",
+
+  editDesc: "Update this card's details.",
+  createDesc: "Add a new card to the database.",
+
+  sections: {
+    cardInfo: "Card Information",
+    packInfo: "Pack Information",
+    cardImage: "Card Image",
+    relatedBlog: "Related Blog",
+    affiliateKeywords: "Affiliate Search Keywords",
+  },
+
+  fields: {
+    cardName: "Card Name",
+    slug: "Slug",
+    cardNumber: "Card Number",
+    rarity: "Rarity",
+    illustratorName: "Illustrator Name",
+    packName: "Pack Name",
+    packCode: "Pack Code",
+    keyword: "Keyword",
+  },
+
+  placeholders: {
+    cardName: "e.g. Charizard",
+    slug: "e.g. charizard",
+    cardNumber: "e.g. 006/165",
+    rarity: "e.g. SAR, SR, RR",
+    illustratorName: "Illustrator (English only)",
+    packName: "e.g. Scarlet & Violet",
+    packCode: "e.g. SV1a",
+    keyword: "Keyword",
+  },
+
+  image: {
+    upload: "Upload Image",
+    change: "Change Image",
+    remove: "Remove Image",
+    hint: "PNG or JPG, square crop recommended.",
+    alt: "Card Image",
+  },
+
+  slugHelper:
+    "This slug is generated automatically, but you can edit it manually.",
+
+  relatedBlog: {
+    loading: "Loading articles...",
+    select: "Select an article",
+    search: "Search articles...",
+    empty: "No article found",
+    clear: "Clear selection",
+  },
+
+  actions: {
+    create: "Create Card",
+    creating: "Creating...",
+    update: "Update Card",
+    updating: "Updating...",
+  },
+
+  toast: {
+     createSuccess: "Card created successfully.",
+  updateSuccess: "Card updated successfully.",
+  successDelete: "Card deleted successfully.",
+  saveError: "Failed to save card.",
+  uploadError: "Image upload failed.",
+  },
+},
       deleteDialog: {
         title: "Delete Shop",
         description: "Are you sure you want to delete",
@@ -574,11 +667,11 @@ export const translations = {
         open: "Open",
         closed: "Closed",
       },
-xProfile: {
-  title: "Official X Updates",
-  description: "Follow the latest updates from this shop on X.",
-  openOnX: "Open on X",
-},
+      xProfile: {
+        title: "Official X Updates",
+        description: "Follow the latest updates from this shop on X.",
+        openOnX: "Open on X",
+      },
 
       list: {
         empty: "No matching shops found",
@@ -684,6 +777,7 @@ xProfile: {
         account: "Account",
         myPage: "My Page",
         favorites: "Favorite Shops",
+        favouritesCard: "Favorite Cards",
         viewedHistory: "Viewed History",
       },
     },
@@ -783,8 +877,9 @@ xProfile: {
 
       hidePassword: "Hide password",
       showPassword: "Show password",
-      purchaseDescription: "Don't have the password yet? Purchase it from Shopify to unlock this article.",
-  purchaseButton: "Purchase Password",
+      purchaseDescription:
+        "Don't have the password yet? Purchase it from Shopify to unlock this article.",
+      purchaseButton: "Purchase Password",
 
       incorrectPassword: "Incorrect password. Please try again.",
       somethingWentWrong: "Something went wrong. Please try again.",
@@ -901,29 +996,28 @@ xProfile: {
       publishedLabel: "Published:",
     },
     articleForm: {
-      contentEditorAffiliateHTML:{
-          insertAffiliateHtml: "Insert Affiliate HTML",
-    affiliateHtmlDescription:
-      "Paste your affiliate HTML snippet (e.g. AccessTrade SSL link code).",
-    affiliateHtmlRequired:
-      "Please enter an HTML snippet before inserting.",
+      contentEditorAffiliateHTML: {
+        insertAffiliateHtml: "Insert Affiliate HTML",
+        affiliateHtmlDescription:
+          "Paste your affiliate HTML snippet (e.g. AccessTrade SSL link code).",
+        affiliateHtmlRequired: "Please enter an HTML snippet before inserting.",
       },
-      contentEditorAffiliateButton:{
- insertAffiliateButton: "Insert Affiliate Button",
+      contentEditorAffiliateButton: {
+        insertAffiliateButton: "Insert Affiliate Button",
 
-    buttonText: "Button Text",
-    destinationUrl: "Destination URL",
+        buttonText: "Button Text",
+        destinationUrl: "Destination URL",
 
-    buttonTextPlaceholder: "e.g. Buy Now",
-    destinationUrlPlaceholder: "https://h.accesstrade.net/...",
+        buttonTextPlaceholder: "e.g. Buy Now",
+        destinationUrlPlaceholder: "https://h.accesstrade.net/...",
 
-    preview: "Preview",
+        preview: "Preview",
 
-    invalidUrl:
-      "Please enter a valid URL (must start with http:// or https://).",
+        invalidUrl:
+          "Please enter a valid URL (must start with http:// or https://).",
 
-    cancel: "Cancel",
-    insert: "Insert",
+        cancel: "Cancel",
+        insert: "Insert",
       },
       title: {
         create: "Create Article",
@@ -934,7 +1028,6 @@ xProfile: {
         create: "Write and publish a new blog or column article.",
         edit: "Update the article details below.",
       },
-
 
       sections: {
         basicInformation: "Basic Information",
@@ -953,7 +1046,7 @@ xProfile: {
         category: "Category",
         tags: "Tags",
         password: "Password",
-         shopifyUrl: "Shopify Product URL",
+        shopifyUrl: "Shopify Product URL",
         newPassword: "New Password",
         protectedArticle: "Password Protected Article",
       },
@@ -973,7 +1066,8 @@ xProfile: {
         slugHelper: "Auto-generated from the title. You can edit it manually.",
         thumbnailUpload: "Click to upload thumbnail",
         thumbnailFormats: "PNG, JPG, WEBP supported",
-        shopifyUrlDescription: "Customers will be redirected to this Shopify page to purchase the password for this article.",
+        shopifyUrlDescription:
+          "Customers will be redirected to this Shopify page to purchase the password for this article.",
         passwordProtected:
           "Readers must enter a password to view this article.",
         passwordAlreadySet: "A password is already set for this article.",
@@ -1041,6 +1135,83 @@ xProfile: {
           `${count} tag${count > 1 ? "s" : ""} selected`,
       },
     },
+    cardPage:{
+       home: "Home",
+  cardEncyclopedia: "Card Encyclopedia",
+  searchTradingCards: "Search trading cards available in Japan.",
+  cardsFound: "cards found",
+  cardFound: "card found",
+  pagination:{
+    cardListPagination: "Card list pagination",
+previous: "Previous",
+next: "Next",
+page: "Page",
+of: "of",
+  },
+  cardEmpty:{
+    noCardsFound: "No cards found.",
+tryDifferentSearch: "Try a different search term or adjust your filters.",
+clearFilters: "Clear Filters",
+  },
+  cardItem:{
+    viewDetails: "View Details",
+cardNumber: "Card Number",
+expansionPack: "Expansion Pack",
+cardArt: "card art",
+  },
+  cardFilter:{
+    filterByRarity: "Filter by rarity",
+allRarities: "All Rarities",
+rarity: "Rarity",
+
+sortCards: "Sort cards",
+sort: "Sort",
+
+newest: "Newest",
+nameAsc: "Name A–Z",
+nameDesc: "Name Z–A",
+  },
+  cardDetails:{
+    cardNumber: "Card Number",
+packCode: "Pack Code",
+expansionPack: "Expansion Pack",
+illustrator: "Illustrator",
+
+clickImageToEnlarge: "Click the image to enlarge",
+
+fromTheBlog: "From the Blog",
+
+relatedShops: "Related Shops",
+  },
+  affiliateBtns:{
+    affiliateSection: "Where to buy",
+buyOnEbay: "Buy on eBay",
+buyOnMercari: "Buy on Mercari",
+  },
+  relatedShops: {
+  title: "Related Shops",
+  subtitle: "Shops that carry this product.",
+
+  sortByDistance: "Sort by Distance",
+  locating: "Locating...",
+
+  geolocationNotSupported: "Geolocation is not supported.",
+  locationAccessError: "Unable to access your current location.",
+
+  kmAway: "km away",
+
+  viewShop: "View Shop",
+},
+favoriteCards: {
+  title: "Favorite Cards",
+  subtitle: "Cards you've saved for quick access.",
+
+  emptyTitle: "No Favorite Cards",
+  emptyDescription: "You haven't added any favorite cards yet.",
+
+  browseCards: "Browse Cards",
+},
+    }
   },
 
   jp: {
@@ -1050,8 +1221,10 @@ xProfile: {
       ranking: "ランキング",
       contact: "お問い合わせ",
       blog: "ブログ",
+      cards: "カード",
       myPage: "マイページ",
       favorites: "お気に入り",
+      favoritesCard: "お気に入りカード",
       viewedHistory: "閲覧履歴",
       logout: "ログアウト",
       login: "ログイン",
@@ -1182,6 +1355,7 @@ xProfile: {
         reports: "レポート",
         importCsv: "CSVインポート",
         articles: "記事",
+        cards: "カード"
       },
 
       dashboard: {
@@ -1234,16 +1408,16 @@ xProfile: {
           open: "営業中",
           closed: "休業中",
           unknown: "不明",
-           translation: "翻訳",
-  translating: "翻訳中...",
-  reTranslate: "再翻訳",
-  translate: "翻訳する",
-  reTranslatedSuccessfully: "再翻訳が完了しました。",
-  translatedSuccessfully: "翻訳が完了しました。",
-  translationFailed: "翻訳に失敗しました。もう一度お試しください。",
-  notTranslated: "未翻訳",
-  failed: "失敗",
-  translated: "翻訳済み"
+          translation: "翻訳",
+          translating: "翻訳中...",
+          reTranslate: "再翻訳",
+          translate: "翻訳する",
+          reTranslatedSuccessfully: "再翻訳が完了しました。",
+          translatedSuccessfully: "翻訳が完了しました。",
+          translationFailed: "翻訳に失敗しました。もう一度お試しください。",
+          notTranslated: "未翻訳",
+          failed: "失敗",
+          translated: "翻訳済み",
         },
 
         actions: {
@@ -1340,6 +1514,96 @@ xProfile: {
           },
         },
       },
+      cardsPage: {
+  title: "カード管理",
+  addCard: "カードを追加",
+  loading: "読み込み中",
+  error: "問題が発生しました。もう一度お試しください。",
+  retry: "再試行",
+  empty: "カードが見つかりません。",
+  searchPlaceholder: "カードを検索...",
+  table: {
+    image: "画像",
+    nameEn: "カード名",
+    nameJa: "カード名（日本語）",
+    cardNumber: "カード番号",
+    rarity: "レアリティ",
+    pack: "収録パック",
+    createdAt: "作成日",
+    actions: "操作",
+  },
+},
+cardForm: {
+  editTitle: "カード編集",
+  createTitle: "カード作成",
+
+  editDesc: "カード情報を更新します。",
+  createDesc: "新しいカードをデータベースに追加します。",
+
+  sections: {
+    cardInfo: "カード情報",
+    packInfo: "パック情報",
+    cardImage: "カード画像",
+    relatedBlog: "関連ブログ",
+    affiliateKeywords: "アフィリエイト検索キーワード",
+  },
+
+  fields: {
+    cardName: "カード名",
+    slug: "スラッグ",
+    cardNumber: "カード番号",
+    rarity: "レアリティ",
+    illustratorName: "イラストレーター",
+    packName: "パック名",
+    packCode: "パックコード",
+    keyword: "キーワード",
+  },
+
+  placeholders: {
+    cardName: "例: Charizard",
+    slug: "例: charizard",
+    cardNumber: "例: 006/165",
+    rarity: "例: SAR, SR, RR",
+    illustratorName: "イラストレーター名（英語）",
+    packName: "例: Scarlet & Violet",
+    packCode: "例: SV1a",
+    keyword: "キーワード",
+  },
+
+  image: {
+    upload: "画像をアップロード",
+    change: "画像を変更",
+    remove: "画像を削除",
+    hint: "PNGまたはJPG（正方形推奨）",
+    alt: "カード画像",
+  },
+
+  slugHelper:
+    "スラッグは自動生成されますが、手動で編集することもできます。",
+
+  relatedBlog: {
+    loading: "記事を読み込み中...",
+    select: "記事を選択",
+    search: "記事を検索...",
+    empty: "記事が見つかりません",
+    clear: "選択を解除",
+  },
+
+  actions: {
+    create: "カードを作成",
+    creating: "作成中...",
+    update: "カードを更新",
+    updating: "更新中...",
+  },
+
+  toast: {
+    createSuccess: "カードを作成しました。",
+  updateSuccess: "カードを更新しました。",
+  successDelete: "カードを削除しました。",
+  saveError: "カードの保存に失敗しました。",
+  uploadError: "画像のアップロードに失敗しました。",
+  },
+},
       footer: "TCG Finder Japan 管理画面",
     },
     reviews: {
@@ -1609,11 +1873,11 @@ xProfile: {
       related: {
         title: "関連店舗",
       },
-xProfile: {
-  title: "公式Xの最新情報",
-  description: "この店舗の最新情報をXでご確認いただけます。",
-  openOnX: "Xで見る",
-},
+      xProfile: {
+        title: "公式Xの最新情報",
+        description: "この店舗の最新情報をXでご確認いただけます。",
+        openOnX: "Xで見る",
+      },
 
       header: {
         open: "営業中",
@@ -1771,6 +2035,7 @@ xProfile: {
         account: "アカウント",
         myPage: "マイページ",
         favorites: "お気に入り店舗",
+        favouritesCard: "お気に入りカード",
         viewedHistory: "閲覧履歴",
       },
     },
@@ -1823,8 +2088,9 @@ xProfile: {
       passwordPlaceholder: "パスワードを入力してください",
 
       hidePassword: "パスワードを非表示",
-        purchaseDescription: "まだパスワードをお持ちでない場合は、Shopifyからご購入ください。",
-  purchaseButton: "パスワードを購入する",
+      purchaseDescription:
+        "まだパスワードをお持ちでない場合は、Shopifyからご購入ください。",
+      purchaseButton: "パスワードを購入する",
       showPassword: "パスワードを表示",
 
       incorrectPassword:
@@ -1948,30 +2214,30 @@ xProfile: {
       publishedLabel: "公開日:",
     },
     articleForm: {
-            contentEditorAffiliateHTML:{
-               insertAffiliateHtml: "アフィリエイトHTMLを挿入",
-    affiliateHtmlDescription:
-      "アフィリエイトHTMLコード（例：AccessTradeのSSLリンクコード）を貼り付けてください。",
-    affiliateHtmlRequired:
-      "挿入する前にアフィリエイトHTMLコードを入力してください。",
-            },
-            contentEditorAffiliateButton:{
-   insertAffiliateButton: "アフィリエイトボタンを挿入",
+      contentEditorAffiliateHTML: {
+        insertAffiliateHtml: "アフィリエイトHTMLを挿入",
+        affiliateHtmlDescription:
+          "アフィリエイトHTMLコード（例：AccessTradeのSSLリンクコード）を貼り付けてください。",
+        affiliateHtmlRequired:
+          "挿入する前にアフィリエイトHTMLコードを入力してください。",
+      },
+      contentEditorAffiliateButton: {
+        insertAffiliateButton: "アフィリエイトボタンを挿入",
 
-    buttonText: "ボタンテキスト",
-    destinationUrl: "リンク先URL",
+        buttonText: "ボタンテキスト",
+        destinationUrl: "リンク先URL",
 
-    buttonTextPlaceholder: "例：今すぐ購入",
-    destinationUrlPlaceholder: "https://h.accesstrade.net/...",
+        buttonTextPlaceholder: "例：今すぐ購入",
+        destinationUrlPlaceholder: "https://h.accesstrade.net/...",
 
-    preview: "プレビュー",
+        preview: "プレビュー",
 
-    invalidUrl:
-      "有効なURLを入力してください（http:// または https:// から始まる必要があります）。",
+        invalidUrl:
+          "有効なURLを入力してください（http:// または https:// から始まる必要があります）。",
 
-    cancel: "キャンセル",
-    insert: "挿入",
-            },
+        cancel: "キャンセル",
+        insert: "挿入",
+      },
 
       title: {
         create: "記事を作成",
@@ -2026,7 +2292,8 @@ xProfile: {
         passwordAlreadySet: "この記事には既にパスワードが設定されています。",
         passwordStorage:
           "パスワードはハッシュ化して保存され、平文では保存されません。",
-           shopifyUrlDescription: "この記事のパスワードを購入するためのShopify商品ページURLを設定してください。",
+        shopifyUrlDescription:
+          "この記事のパスワードを購入するためのShopify商品ページURLを設定してください。",
         noCategories: "カテゴリーが見つかりません。",
         noTags: "タグが見つかりません。",
       },
@@ -2088,5 +2355,82 @@ xProfile: {
         tagsSelected: (count: number) => `${count}件のタグを選択中`,
       },
     },
+    cardPage:{
+       home: "ホーム",
+  cardEncyclopedia: "カード図鑑",
+  searchTradingCards: "日本で取り扱われているトレーディングカードを検索できます。",
+  cardsFound: "件のカードが見つかりました",
+  cardFound: "件のカードが見つかりました",
+  pagination:{
+    cardListPagination: "カード一覧ページネーション",
+previous: "前へ",
+next: "次へ",
+page: "ページ",
+of: "/",
+  },
+  cardEmpty: {
+    noCardsFound: "カードが見つかりませんでした。",
+tryDifferentSearch: "検索条件またはフィルターを変更してお試しください。",
+clearFilters: "フィルターをクリア",
+  },
+  cardItem:{
+    viewDetails: "詳細を見る",
+cardNumber: "カード番号",
+expansionPack: "収録パック",
+cardArt: "カード画像",
+  },
+  cardFilter:{
+    filterByRarity: "レアリティで絞り込み",
+allRarities: "すべてのレアリティ",
+rarity: "レアリティ",
+
+sortCards: "カードを並び替え",
+sort: "並び替え",
+
+newest: "新しい順",
+nameAsc: "名前順（A→Z）",
+nameDesc: "名前順（Z→A）",
+  },
+  cardDetails:{
+    cardNumber: "カード番号",
+packCode: "パックコード",
+expansionPack: "収録パック",
+illustrator: "イラストレーター",
+
+clickImageToEnlarge: "画像をクリックすると拡大表示されます",
+
+fromTheBlog: "関連ブログ",
+
+relatedShops: "関連店舗",
+  },
+  affiliateBtns:{
+    affiliateSection: "{{card}} の購入先",
+buyOnEbay: "eBayで購入",
+buyOnMercari: "メルカリで購入",
+  },
+  relatedShops: {
+  title: "関連店舗",
+  subtitle: "このカードを取り扱っている店舗です。",
+
+  sortByDistance: "現在地から近い順",
+  locating: "位置情報を取得中...",
+
+  geolocationNotSupported: "このブラウザでは位置情報がサポートされていません。",
+  locationAccessError: "現在地を取得できませんでした。",
+
+  kmAway: "km",
+
+  viewShop: "店舗を見る",
+},
+favoriteCards: {
+  title: "お気に入りカード",
+  subtitle: "すぐに確認できるよう保存したカードです。",
+
+  emptyTitle: "お気に入りのカードはありません",
+  emptyDescription: "まだお気に入りに追加したカードがありません。",
+
+  browseCards: "カード一覧を見る",
+},
+    }
   },
 };

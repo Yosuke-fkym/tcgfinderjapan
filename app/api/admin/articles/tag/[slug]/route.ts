@@ -19,7 +19,6 @@ export async function GET(
       .select("id, name, slug")
       .eq("slug", slug)
       .maybeSingle();
-console.log(slug);
 
     if (error || !data) {
       return Response.json({ error: "Tag not found" }, { status: 404 });
