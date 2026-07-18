@@ -12,6 +12,42 @@ interface RarityBadgeProps {
  * card-authenticity mark. Color and label vary by tier.
  */
 const RARITY_STYLES: Record<Rarity, { label: string; classes: string }> = {
+  C: {
+    label: "C",
+    classes: "bg-gray-100 text-gray-700 ring-gray-300",
+  },
+  U: {
+    label: "U",
+    classes: "bg-green-100 text-green-700 ring-green-300",
+  },
+  R: {
+    label: "R",
+    classes: "bg-blue-100 text-blue-700 ring-blue-300",
+  },
+  RR: {
+    label: "RR",
+    classes: "bg-indigo-100 text-indigo-700 ring-indigo-300",
+  },
+  AR: {
+    label: "AR",
+    classes: "bg-cyan-100 text-cyan-700 ring-cyan-300",
+  },
+  SR: {
+    label: "SR",
+    classes: "bg-yellow-100 text-yellow-800 ring-yellow-400",
+  },
+  SAR: {
+    label: "SAR",
+    classes: "bg-orange-100 text-orange-700 ring-orange-300",
+  },
+  UR: {
+    label: "UR",
+    classes: "bg-red-100 text-red-700 ring-red-300",
+  },
+  "ACE SPEC": {
+    label: "ACE SPEC",
+    classes: "bg-violet-100 text-violet-700 ring-violet-300",
+  },
   MUR: {
     label: "MUR",
     classes: "bg-rose-100 text-rose-700 ring-rose-300",
@@ -88,6 +124,8 @@ const RARITY_STYLES: Record<Rarity, { label: string; classes: string }> = {
 
 export function RarityBadge({ rarity, className }: RarityBadgeProps) {
   const style = RARITY_STYLES[rarity];
+  console.log(rarity);
+  
 
   return (
     <span

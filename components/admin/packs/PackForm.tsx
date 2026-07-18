@@ -185,21 +185,30 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
     }
   };
 
-  // ─── Validation (same spirit as CardForm: block obviously incomplete
-  // submissions before hitting the network) ───────────────────────────────
+// ─── Validation ─────────────────────────────────────────────────────────
+  // All fields (name_jp, name_en, slug, release_date, image) are required.
+  // A single, user-friendly toast is shown if anything is missing — no
+  // per-field toasts, per the spec.
   const validate = () => {
-    if (!nameEn.trim()) {
-      toast.error("英語名を入力してください");
+    const missing: string[] = [];
+
+    if (!nameJp.trim()) missing.push("name_jp");
+    if (!nameEn.trim()) missing.push("name_en");
+    if (!slug.trim()) missing.push("slug");
+    if (!releaseDate) missing.push("release_date");
+
+    // Image is "present" if there's a newly selected file OR an existing
+    // DB image that hasn't been marked for removal.
+    const hasImage = !removeImage && (!!imageFile || !!existingImage);
+    if (!hasImage) missing.push("image");
+
+    if (missing.length > 0) {
+      toast.error(t.admin.packForm.toast.validationErrorTitle, {
+        description: t.admin.packForm.toast.validationErrorDescription,
+      });
       return false;
     }
-    if (!nameJp.trim()) {
-      toast.error("日本語名を入力してください");
-      return false;
-    }
-    if (!slug.trim()) {
-      toast.error("スラッグを入力してください");
-      return false;
-    }
+
     return true;
   };
 
@@ -208,6 +217,10 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Guard against double-submits (e.g. rapid double-click) while a save
+    // is already in flight.
+    if (loading) return;
+
     if (!validate()) return;
 
     const body = {
@@ -215,9 +228,6 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
       name_en: nameEn.trim(),
       slug: slug.trim(),
       release_date: releaseDate || null,
-      // removeImage is always included so the backend can act on it. It is
-      // true only when the user explicitly removed the image and did NOT
-      // subsequently select a replacement file.
       removeImage,
     };
 
@@ -240,21 +250,19 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
       const result = await res.json();
 
       if (!res.ok || result.error) {
-        throw new Error(result.error?.message || "何か問題が発生しました");
+        throw new Error(result.error?.message || t.admin.packForm.toast.saveError);
       }
 
       const packId = result.pack?.id || result.data?.id || initialData?.id;
 
-      // Upload image BEFORE showing the success toast — if this throws,
-      // the catch block handles it and no success toast appears.
       if (imageFile && packId) {
         await uploadImage(packId);
       }
 
       toast.success(
         mode === "edit"
-          ? "パックの更新が完了しました"
-          : "パックの作成に成功しました"
+          ? t.admin.packForm.toast.updateSuccess
+          : t.admin.packForm.toast.createSuccess
       );
 
       if (mode === "create") {
@@ -267,7 +275,7 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
         resetImageState();
       }
     } catch (err: any) {
-      toast.error(err.message || "パックの保存に失敗しました");
+      toast.error(err.message || t.admin.packForm.toast.saveError);
     } finally {
       setLoading(false);
     }
@@ -381,7 +389,7 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
                       <ImageIcon size={14} />
                       {imageDisplaySrc
                         ? t.admin.packForm?.image?.change || "Change Image"
-                        : t.admin.packForm?.image?.remove || "Upload Image"}
+                        : t.admin.packForm?.image?.upload || "Upload Image"}
                     </span>
                     <input
                       ref={imageInputRef}

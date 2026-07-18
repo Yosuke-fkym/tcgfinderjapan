@@ -4,68 +4,59 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
-import { CardSearch } from "@/components/cards/CardSearch";
-import { CardFilters } from "@/components/cards/CardFilters";
-import { CardGrid } from "@/components/cards/CardGrid";
-import { CardPagination } from "@/components/cards/CardPagination";
-import type { Card, CardFilterState } from "@/types/card";
+import { PackSearch } from "@/components/packs/PackSearch";
+import { PackGrid } from "@/components/packs/PackGrid";
+import { PackPagination } from "@/components/packs/PackPagination";
+import type { Pack } from "@/types/pack";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
 
 const PAGE_SIZE = 8;
 
-const DEFAULT_FILTERS: CardFilterState = {
-  search: "",
-  rarity: "all",
-  sort: "newest",
-};
+export default function PackEncyclopediaPage() {
+  const { locale } = useParams();
+  const t = getT(locale as string);
 
-export default function CardEncyclopediaPage() {
-    const { locale } = useParams();
-    const t = getT(locale as string);
-  const [filters, setFilters] = useState<CardFilterState>(DEFAULT_FILTERS);
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  const [cards, setCards] = useState<Card[]>([]);
-const [loading, setLoading] = useState(true);
-const [totalPages, setTotalPages] = useState(1);
-const [totalCards, setTotalCards] = useState(0);
+  const [packs, setPacks] = useState<Pack[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalPacks, setTotalPacks] = useState(0);
 
-  function updateFilters(partial: Partial<CardFilterState>) {
-    setFilters((prev) => ({ ...prev, ...partial }));
+  function updateSearch(value: string) {
+    setSearch(value);
     setPage(1);
   }
 
-  async function fetchCards() {
-  setLoading(true);
-
-  const params = new URLSearchParams({
-    page: String(page),
-    pageSize: String(PAGE_SIZE),
-    search: filters.search,
-    rarity: filters.rarity,
-    sort: filters.sort,
-  });
-
-  const res = await fetch(`/api/cards?${params}`);
-
-  const result = await res.json();
-
-  setCards(result.cards ?? []);
-  setTotalPages(result.totalPages ?? 1);
-  setTotalCards(result.count ?? 0);
-
-  setLoading(false);
-}
-
   function clearFilters() {
-    setFilters(DEFAULT_FILTERS);
+    setSearch("");
     setPage(1);
+  }
+
+  async function fetchPacks() {
+    setLoading(true);
+
+    const params = new URLSearchParams({
+      page: String(page),
+      pageSize: String(PAGE_SIZE),
+      search,
+    });
+
+    const res = await fetch(`/api/packs?${params}`);
+    const result = await res.json();
+
+    setPacks(result.packs ?? []);
+    setTotalPages(result.totalPages ?? 1);
+    setTotalPacks(result.count ?? 0);
+
+    setLoading(false);
   }
 
   useEffect(() => {
-  fetchCards();
-}, [page, filters]);
-
+    fetchPacks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, search]);
 
   return (
     <main className="min-h-screen bg-[#FAF7F0]">
@@ -82,7 +73,7 @@ const [totalCards, setTotalCards] = useState(0);
               <ChevronRight className="h-3.5 w-3.5" />
             </li>
             <li className="font-medium text-stone-800" aria-current="page">
-              {t.cardPage.cardEncyclopedia}
+              {t.packPage.packEncyclopedia}
             </li>
           </ol>
         </nav>
@@ -90,39 +81,29 @@ const [totalCards, setTotalCards] = useState(0);
         {/* Header */}
         <header className="mb-10">
           <h1 className="font-serif text-3xl font-semibold tracking-tight text-stone-900 sm:text-4xl">
-            {t.cardPage.cardEncyclopedia}
+            {t.packPage.packEncyclopedia}
           </h1>
-          <p className="mt-2 text-stone-500">
-           {t.cardPage.searchTradingCards}
-          </p>
+          <p className="mt-2 text-stone-500">{t.packPage.searchExpansionPacks}</p>
         </header>
 
         {/* Search */}
-        <div className="mb-6">
-          <CardSearch
-            value={filters.search}
-            onChange={(value) => updateFilters({ search: value })}
-          />
-        </div>
-
-        {/* Filters */}
         <div className="mb-8">
-          <CardFilters filters={filters} onFilterChange={updateFilters} />
+          <PackSearch value={search} onChange={updateSearch} />
         </div>
 
         {/* Results count */}
-        <p className="mb-4 text-sm text-stone-400" aria-live="polite">
-          {totalCards} card{totalCards === 1 ? "" : "s"} found
-        </p>
+       <p className="mb-4 text-sm text-stone-400" aria-live="polite">
+  {t.packPage.packCountFound
+    .replace("{count}", totalPacks.toString())
+    .replace("{plural}", totalPacks === 1 ? "" : "s")}
+</p>
 
         {/* Grid */}
-        <CardGrid
-    cards={cards}
-    onClearFilters={clearFilters}
-/>
+        <PackGrid packs={packs} onClearFilters={clearFilters} />
+
         {/* Pagination */}
         <div className="mt-10">
-          <CardPagination
+          <PackPagination
             currentPage={page}
             totalPages={totalPages}
             onPrevious={() => setPage((p) => Math.max(1, p - 1))}

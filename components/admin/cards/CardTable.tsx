@@ -132,6 +132,7 @@ export default function CardsTable({ cards, refresh }: any) {
                           src={card.card_image}
                           alt={card.card_name?.en || "card"}
                           fill
+                          unoptimized
                           className="object-cover"
                         />
                       ) : (

@@ -211,40 +211,62 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
     }
   };
 
+// ─── Validation ─────────────────────────────────────────────────────────
+  // Checks controlled state (cardName, slug, rarity, image) plus uncontrolled
+  // inputs pulled from FormData (card_number, illustrator_name, pack_name,
+  // pack_code). Single friendly toast on any missing field — no per-field
+  // toasts, matching PackForm's behavior.
+  const validate = (formData: FormData) => {
+    const cardNumber = formData.get("card_number")?.toString().trim() ?? "";
+    const illustratorName = formData.get("illustrator_name")?.toString().trim() ?? "";
+    const packName = formData.get("pack_name")?.toString().trim() ?? "";
+    const packCode = formData.get("pack_code")?.toString().trim() ?? "";
+
+    const hasImage = !removeImage && (!!imageFile || !!existingImage);
+
+    const missing =
+      !cardName.trim() ||
+      !slug.trim() ||
+      !cardNumber ||
+      !rarity ||
+      !illustratorName ||
+      !packName ||
+      !packCode ||
+      !hasImage;
+
+    if (missing) {
+      toast.error(t.admin.cardForm.toast.validationErrorTitle, {
+        description: t.admin.cardForm.toast.validationErrorDescription,
+      });
+      return false;
+    }
+
+    return true;
+  };
 
   // ─── Form Submit (mirrors Shop's handleSubmit ordering: create/update →
   // then dependent uploads → success toast only after everything succeeds) ───
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
+    // Guard against double-submits (e.g. rapid double-click) while a save
+    // is already in flight.
+    if (loading) return;
+
     const formData = new FormData(e.target);
 
-    // const body = {
-    //   ...Object.fromEntries(
-    //     Array.from(formData.entries()).map(([key, value]) => [key, value])
-    //   ),
-    //   slug: slug.trim(),
-    //   card_number: raw.card_number,
-    //   rarity: raw.rarity,
-    //   illustrator_name: raw.illustrator_name,
-    //   pack_code: raw.pack_code,
-    //   article_id: articleId || null,
-    //   affiliate_keywords: keywords.filter((k) => k.trim() !== ""),
-    //   // removeImage is always included so the backend can act on it. It is
-    //   // true only when the user explicitly removed the image and did NOT
-    //   // subsequently select a replacement file.
-    //   removeImage,
-    // };
+    if (!validate(formData)) return;
+
     const body = {
-    ...Object.fromEntries(formData),
-    article_id: articleId || null,
-    rarity,
-     ebay_raw_url: ebayRawUrl,
-  ebay_slab_url: ebaySlabUrl,
-  mercari_raw_url: mercariRawUrl,
-  mercari_slab_url: mercariSlabUrl,
-    removeImage
-}
+      ...Object.fromEntries(formData),
+      article_id: articleId || null,
+      rarity,
+      ebay_raw_url: ebayRawUrl,
+      ebay_slab_url: ebaySlabUrl,
+      mercari_raw_url: mercariRawUrl,
+      mercari_slab_url: mercariSlabUrl,
+      removeImage,
+    };
 
     setLoading(true);
 
@@ -265,38 +287,37 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
       const result = await res.json();
 
       if (!res.ok || result.error) {
-        throw new Error(result.error?.message || "何か問題が発生しました");
+        throw new Error(result.error?.message || t.admin.cardForm.toast.saveError);
       }
 
       const cardId = result.card?.id || initialData?.id;
 
-      // Upload image BEFORE showing the success toast — if this throws,
-      // the catch block handles it and no success toast appears.
       if (imageFile) {
         await uploadImage(cardId);
       }
 
       toast.success(
         mode === "edit"
-          ? "カードの更新が完了しました"
-          : "カードの作成に成功しました"
+          ? t.admin.cardForm.toast.updateSuccess
+          : t.admin.cardForm.toast.createSuccess
       );
 
       if (mode === "create") {
         e.target.reset();
+        setCardName("");
         setSlug("");
         setSlugManuallyEdited(false);
-        setRarity("")
+        setRarity("");
         setSelectedTags([]);
         setArticleId("");
         setEbayRawUrl("");
-  setEbaySlabUrl("");
-  setMercariRawUrl("");
-  setMercariSlabUrl("");
+        setEbaySlabUrl("");
+        setMercariRawUrl("");
+        setMercariSlabUrl("");
         resetImageState();
       }
     } catch (err: any) {
-      toast.error(err.message || "カードの保存に失敗しました");
+      toast.error(err.message || t.admin.cardForm.toast.saveError);
     } finally {
       setLoading(false);
     }
@@ -442,7 +463,7 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
                   <label className="cursor-pointer">
                     <span className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md border border-input bg-background hover:bg-muted transition">
                       <ImageIcon size={14} />
-                      {imageDisplaySrc ? t.admin.cardForm.image.change : t.admin.cardForm.image.remove}
+                      {imageDisplaySrc ? t.admin.cardForm.image.change : t.admin.cardForm.image.upload}
                     </span>
                     <input
                       ref={imageInputRef}

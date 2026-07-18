@@ -3,6 +3,15 @@
  */
 
 export type Rarity =
+  | "C"
+  | "U"
+  | "R"
+  | "RR"
+  | "AR"
+  | "SR"
+  | "SAR"
+  | "UR"
+  | "ACE SPEC"
   | "MUR"
   | "FUR"
   | "MA"
@@ -57,7 +66,16 @@ export interface Card {
 /*                                   Filters                                  */
 /* -------------------------------------------------------------------------- */
 
-export const RARITY_OPTIONS: readonly Rarity[] = [
+export const RARITY_OPTIONS = [
+  "C",
+  "U",
+  "R",
+  "RR",
+  "AR",
+  "SR",
+  "SAR",
+  "UR",
+  "ACE SPEC",
   "MUR",
   "FUR",
   "MA",
@@ -76,7 +94,7 @@ export const RARITY_OPTIONS: readonly Rarity[] = [
   "H",
   "TR",
   "PROMO",
-];
+] as const;
 
 export const SORT_OPTIONS: ReadonlyArray<{
   value: SortOption;

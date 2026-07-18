@@ -87,7 +87,7 @@ export default function PackTable({ packs, refresh }: Props) {
       toast(t.admin.packsPage?.error || "削除に失敗しました", { position: "top-right" });
       return;
     }
-    toast(t.admin.packForm?.successDelete || "Deleted", { position: "top-right" });
+    toast(t.admin.packForm.toast.successDelete || "Deleted", { position: "top-right" });
     setOpen(false);
     refresh();
   };

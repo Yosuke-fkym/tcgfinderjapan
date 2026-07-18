@@ -389,6 +389,8 @@ mercariSlabUrl: "https://...",
   successDelete: "Card deleted successfully.",
   saveError: "Failed to save card.",
   uploadError: "Image upload failed.",
+    validationErrorTitle: "Validation Error",
+  validationErrorDescription: "Please fill in all required fields before saving the card.",
   },
 },
 packsPage: {
@@ -414,8 +416,15 @@ packForm: {
 
   createDesc: "Add a new pack to the database.",
   editDesc: "Update this pack's details.",
-
-  successDelete: "Pack deleted",
+toast: {
+  createSuccess: "Pack created successfully.",
+  updateSuccess: "Pack updated successfully.",
+  successDelete: "Pack deleted successfully.",
+  saveError: "Failed to save pack.",
+  uploadError: "Image upload failed.",
+   validationErrorTitle: "Validation Error",
+  validationErrorDescription: "Please fill in all required fields before saving the pack.",
+},
 
   fields: {
     nameJp: "Japanese Name",
@@ -1712,6 +1721,8 @@ mercariSlabUrl: "https://...",
   successDelete: "カードを削除しました。",
   saveError: "カードの保存に失敗しました。",
   uploadError: "画像のアップロードに失敗しました。",
+   validationErrorTitle: "入力エラー",
+  validationErrorDescription: "保存する前に、必須項目をすべて入力してください。",
   },
 },
 packsPage: {
@@ -1737,8 +1748,15 @@ packForm: {
 
   createDesc: "新しいパックをデータベースに追加します。",
   editDesc: "パック情報を更新します。",
-
-  successDelete: "パックを削除しました",
+toast: {
+  createSuccess: "パックを作成しました。",
+  updateSuccess: "パックを更新しました。",
+  successDelete: "パックを削除しました。",
+  saveError: "パックの保存に失敗しました。",
+  uploadError: "画像のアップロードに失敗しました。",
+validationErrorTitle: "入力エラー",
+  validationErrorDescription: "保存する前に、必須項目をすべて入力してください。",
+},
 
   fields: {
     nameJp: "日本語名",
