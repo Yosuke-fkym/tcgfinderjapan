@@ -28,6 +28,12 @@ export async function GET(_: Request, { params }: Params) {
     );
   }
 
+  const { data: pack } = await supabaseAdmin
+  .from("packs")
+  .select("slug")
+  .eq("name_en", card.pack_name)
+  .maybeSingle();
+
   // Product Flags
   const { data: cardFlags } = await supabaseAdmin
     .from("card_product_flags")
@@ -137,5 +143,6 @@ longitude
     productFlags: cardFlags?.map((item: any) => item.product_flag) ?? [],
     article,
     relatedShops: topShops,
+    pack_slug: pack?.slug ?? null,
   });
 }

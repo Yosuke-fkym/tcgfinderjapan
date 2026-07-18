@@ -41,48 +41,62 @@ import {
 } from "lucide-react";
 
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
 import { truncateText } from "@/lib/utils";
 
+interface Pack {
+  id: string;
+  slug: string;
+  name_en: string;
+  name_jp: string;
+  image_url: string | null;
+  release_date: string | null;
+  created_at?: string;
+}
+
+interface Props {
+  packs: Pack[];
+  refresh: () => void;
+}
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 
-export default function CardsTable({ cards, refresh }: any) {
+export default function PackTable({ packs, refresh }: Props) {
   const [open, setOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState<any>(null);
+  const [selectedPack, setSelectedPack] = useState<Pack | null>(null);
 
   const { locale } = useParams();
   const t = getT(locale as string);
 
-  const openDeleteDialog = (card: any) => {
-    setSelectedCard(card);
+  const openDeleteDialog = (pack: Pack) => {
+    setSelectedPack(pack);
     setOpen(true);
   };
 
-  const deleteCard = async () => {
-    if (!selectedCard) return;
-    const res = await fetch(`/api/admin/cards`, {
+  const deletePack = async () => {
+    if (!selectedPack) return;
+    const res = await fetch(`/api/admin/packs`, {
       method: "DELETE",
-      body: JSON.stringify({ card_id: selectedCard.id }),
+      body: JSON.stringify({ pack_id: selectedPack.id }),
       headers: { "Content-Type": "application/json" },
       next: { revalidate: 0 },
     });
     const response = await res.json();
     if (!response.success) {
-      toast(t.admin.cardsPage.error, { position: "top-right" });
+      toast(t.admin.packsPage?.error || "削除に失敗しました", { position: "top-right" });
       return;
     }
-    toast(t.admin.cardForm.toast.successDelete || "Deleted", { position: "top-right" });
+    toast(t.admin.packForm?.successDelete || "Deleted", { position: "top-right" });
     setOpen(false);
     refresh();
   };
 
-  if (!cards?.length) {
+  if (!packs?.length) {
     return (
       <div className="bg-white border flex flex-col justify-center items-center rounded-xl p-10 text-center text-gray-500">
         <ImageOff className="mx-auto mb-3 opacity-60" size={28} />
-        {t.admin.cardsPage.empty}
+        {t.admin.packsPage.empty || "No packs found."}
       </div>
     );
   }
@@ -96,44 +110,39 @@ export default function CardsTable({ cards, refresh }: any) {
           <Table>
             <TableHeader>
               <TableRow className="bg-gray-50">
-                <TableHead className="text-sm lg:text-base font-semibold py-4">
-                  {t.admin.cardsPage.table.image}
+                <TableHead className="text-sm mx-auto lg:text-base font-semibold py-4">
+                  {t.admin.packsPage?.table?.image || "Image"}
                 </TableHead>
                 <TableHead className="text-sm lg:text-base font-semibold py-4">
-                  {t.admin.cardsPage.table.nameEn}
+                  {t.admin.packsPage?.table?.nameJa || "Japanese Name"}
                 </TableHead>
                 <TableHead className="text-sm lg:text-base font-semibold py-4">
-                  {t.admin.cardsPage.table.cardNumber}
+                  {t.admin.packsPage?.table?.nameEn || "English Name"}
                 </TableHead>
                 <TableHead className="text-sm lg:text-base font-semibold py-4">
-                  {t.admin.cardsPage.table.rarity}
-                </TableHead>
-                <TableHead className="text-sm lg:text-base font-semibold py-4">
-                  {t.admin.cardsPage.table.pack}
-                </TableHead>
-                <TableHead className="text-sm lg:text-base font-semibold py-4">
-                  {t.admin.cardsPage.table.createdAt}
+                  {t.admin.packsPage?.table?.releaseDate || "Release Date"}
                 </TableHead>
                 <TableHead className="text-right text-sm lg:text-base font-semibold">
-                  {t.admin.cardsPage.table.actions}
+                  {t.admin.packsPage?.table?.actions || "Actions"}
                 </TableHead>
               </TableRow>
             </TableHeader>
 
             <TableBody>
-              {cards.map((card: any) => (
-                <TableRow key={card.id} className="hover:bg-gray-50 transition">
+              {packs.map((pack) => (
+                <TableRow key={pack.id} className="hover:bg-gray-50 transition">
 
                   {/* Image */}
                   <TableCell className="py-4">
-                    <div className="relative w-12 h-12 rounded-md overflow-hidden border bg-gray-50 shrink-0">
-                      {card.card_image ? (
-                        <Image
-                          src={card.card_image}
-                          alt={card.card_name?.en || "card"}
-                          fill
-                          className="object-cover"
-                        />
+                    <div className="relative h-20 w-14 overflow-hidden rounded-md border bg-gray-50">
+                      {pack.image_url ? (
+                       <Image
+    src={pack.image_url}
+    alt={pack.name_en}
+    fill
+    unoptimized
+    className="object-contain"
+  />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-gray-300">
                           <ImageOff size={16} />
@@ -142,33 +151,21 @@ export default function CardsTable({ cards, refresh }: any) {
                     </div>
                   </TableCell>
 
-                  {/* English name */}
+                  {/* Japanese name */}
                   <TableCell className="font-medium text-base py-4">
-                    {truncateText(card.card_name, 25) || t.admin.recentShops.table.unknown}
+                    {truncateText(pack.name_jp, 25) || "—"}
                   </TableCell>
 
-                  {/* Card number */}
+                  {/* English name */}
                   <TableCell className="text-sm lg:text-base">
-                    {card.card_number || "—"}
+                    {truncateText(pack.name_en, 25) || "—"}
                   </TableCell>
 
-                  {/* Rarity */}
-                  <TableCell className="text-sm lg:text-base">
-                    {card.rarity ? (
-                      <Badge className="bg-indigo-50 text-indigo-700">{card.rarity}</Badge>
-                    ) : (
-                      "—"
-                    )}
-                  </TableCell>
-
-                  {/* Pack */}
-                  <TableCell className="py-4 max-w-45 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-sm lg:text-base text-gray-600">
-                    {truncateText(card.pack_name, 30) || "—"}
-                  </TableCell>
-
-                  {/* Created at */}
+                  {/* Release date */}
                   <TableCell className="text-sm lg:text-base text-gray-500 py-4">
-                    {new Date(card.created_at).toLocaleDateString()}
+                    {pack.release_date
+                      ? new Date(pack.release_date).toLocaleDateString()
+                      : "—"}
                   </TableCell>
 
                   {/* Actions */}
@@ -183,18 +180,18 @@ export default function CardsTable({ cards, refresh }: any) {
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem asChild>
                           <Link
-                          target="_blank"
-                  href={`/${locale}/cards/${card.slug}`}
-                  className="flex-1 text-center bg-gray-100 hover:bg-gray-200 py-2 rounded-md text-sm"
-                >
-                   <ArrowUpRightFromSquareIcon className="h-4 w-4" />
-                  {t.buttons.viewDetails}
-                </Link>
+                            target="_blank"
+                            href={`/${locale}/packs/${pack.slug}`}
+                            className="flex-1 text-center bg-gray-100 hover:bg-gray-200 py-2 rounded-md text-sm"
+                          >
+                            <ArrowUpRightFromSquareIcon className="h-4 w-4" />
+                            {t.buttons.viewDetails}
+                          </Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem asChild>
                           <Link
                             target="_blank"
-                            href={`/${locale}/admin/cards/edit/${card.id}`}
+                            href={`/${locale}/admin/packs/edit/${pack.id}`}
                             className="flex items-center gap-2"
                           >
                             <Pencil className="h-4 w-4" />
@@ -206,7 +203,7 @@ export default function CardsTable({ cards, refresh }: any) {
 
                         <DropdownMenuItem
                           className="text-red-600"
-                          onClick={() => openDeleteDialog(card)}
+                          onClick={() => openDeleteDialog(pack)}
                         >
                           <Trash2 className="h-4 w-4" />
                           {t.reviews.card.delete}
@@ -227,7 +224,7 @@ export default function CardsTable({ cards, refresh }: any) {
               <DialogTitle>{t.admin.deleteDialog.title}</DialogTitle>
               <DialogDescription>
                 {t.admin.deleteDialog.description}
-                <span className="font-semibold"> {selectedCard?.card_name?.en}</span>？
+                <span className="font-semibold"> {selectedPack?.name_en}</span>？
                 <br />
                 {t.admin.deleteDialog.confirmText}
               </DialogDescription>
@@ -236,7 +233,7 @@ export default function CardsTable({ cards, refresh }: any) {
               <Button variant="outline" onClick={() => setOpen(false)}>
                 {t.admin.deleteDialog.cancel}
               </Button>
-              <Button variant="destructive" onClick={deleteCard}>
+              <Button variant="destructive" onClick={deletePack}>
                 {t.admin.deleteDialog.delete}
               </Button>
             </DialogFooter>
@@ -245,15 +242,15 @@ export default function CardsTable({ cards, refresh }: any) {
 
         {/* ── Mobile cards ──────────────────────────────────────────────────── */}
         <div className="md:hidden space-y-4 p-2">
-          {cards.map((card: any) => (
-            <div key={card.id} className="border rounded-xl p-4 shadow-sm space-y-3">
+          {packs.map((pack) => (
+            <div key={pack.id} className="border rounded-xl p-4 shadow-sm space-y-3">
               <div className="flex justify-between items-start gap-3">
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="relative w-12 h-12 rounded-md overflow-hidden border bg-gray-50 shrink-0">
-                    {card.card_image ? (
+                    {pack.image_url ? (
                       <Image
-                        src={card.card_image}
-                        alt={card.card_name?.en || "card"}
+                        src={pack.image_url}
+                        alt={pack.name_en || "pack"}
                         fill
                         className="object-cover"
                       />
@@ -264,33 +261,30 @@ export default function CardsTable({ cards, refresh }: any) {
                     )}
                   </div>
                   <div className="min-w-0">
-                    <div className="font-medium truncate">{card.card_name?.en}</div>
-                    <div className="text-xs text-gray-500 truncate">{card.card_name?.ja}</div>
+                    <div className="font-medium truncate">{pack.name_en}</div>
+                    <div className="text-xs text-gray-500 truncate">{pack.name_jp}</div>
                   </div>
                 </div>
-                {card.rarity && (
-                  <Badge className="bg-indigo-50 text-indigo-700 shrink-0">{card.rarity}</Badge>
-                )}
               </div>
 
               <div className="flex justify-between text-xs text-gray-500">
-                <span>{card.card_number || "—"}</span>
-                <span>{new Date(card.created_at).toLocaleDateString()}</span>
-              </div>
-
-              <div className="text-sm text-gray-600 truncate">
-                {card.pack_name?.en || "—"}
+                <span>{pack.slug || "—"}</span>
+                <span>
+                  {pack.release_date
+                    ? new Date(pack.release_date).toLocaleDateString()
+                    : "—"}
+                </span>
               </div>
 
               <div className="flex gap-2">
                 <Link
-                  href={`/${locale}/admin/cards/edit/${card.id}`}
+                  href={`/${locale}/admin/packs/${pack.id}`}
                   className="flex-1 text-center bg-indigo-600 text-white hover:bg-indigo-700 py-2 rounded-md text-sm"
                 >
                   {t.reviews.card.edit}
                 </Link>
                 <button
-                  onClick={() => openDeleteDialog(card)}
+                  onClick={() => openDeleteDialog(pack)}
                   className="flex-1 bg-red-500 text-white hover:bg-red-600 py-2 rounded-md text-sm"
                 >
                   {t.reviews.card.delete}

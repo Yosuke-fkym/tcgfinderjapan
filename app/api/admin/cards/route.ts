@@ -54,21 +54,24 @@ export async function POST(req: Request) {
 
 
     // ✅ Create card
-    const { data: card, error: cardError } = await supabaseAdmin
-      .from("cards")
-      .insert({
-        card_name: body.card_name,
-        pack_name: body.pack_name,
-        slug: body.slug,
-        card_number: body.card_number,
-        rarity: body.rarity,
-        illustrator_name: body.illustrator_name,
-        pack_code: body.pack_code,
-        article_id: body.article_id,
-        affiliate_keywords: body.affiliate_keywords,
-      })
-      .select()
-      .single();
+   const { data: card, error: cardError } = await supabaseAdmin
+  .from("cards")
+  .insert({
+    card_name: body.card_name,
+    pack_name: body.pack_name,
+    slug: body.slug,
+    card_number: body.card_number,
+    rarity: body.rarity,
+    illustrator_name: body.illustrator_name,
+    pack_code: body.pack_code,
+    article_id: body.article_id,
+    ebay_raw_url: body.ebay_raw_url,
+    ebay_slab_url: body.ebay_slab_url,
+    mercari_raw_url: body.mercari_raw_url,
+    mercari_slab_url: body.mercari_slab_url,
+  })
+  .select()
+  .single();
 
     if (cardError || !card) {
       return Response.json(

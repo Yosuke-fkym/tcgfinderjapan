@@ -12,10 +12,11 @@ export const translations = {
       contact: "Contact",
       blog: "Blog",
       cards: "Cards",
+      packs: "Packs",
       myPage: "My Page",
-      favorites: "Favorites",
+      favoritesShops: "Favorites Shops",
       viewedHistory: "Viewed History",
-      favoriteCards: "Favorite Cards",
+      favoritesCard: "Favorite Cards",
       logout: "Logout",
       login: "Login",
     },
@@ -141,7 +142,8 @@ export const translations = {
         reports: "Reports",
         importCsv: "Import CSV",
         articles: "Articles",
-        cards: "Cards"
+        cards: "Cards",
+        packs: "Packs"
       },
 
       dashboard: {
@@ -324,7 +326,7 @@ cardForm: {
     packInfo: "Pack Information",
     cardImage: "Card Image",
     relatedBlog: "Related Blog",
-    affiliateKeywords: "Affiliate Search Keywords",
+    affiliateLinks: "Affiliate Links", 
   },
 
   fields: {
@@ -335,7 +337,10 @@ cardForm: {
     illustratorName: "Illustrator Name",
     packName: "Pack Name",
     packCode: "Pack Code",
-    keyword: "Keyword",
+    ebayRawUrl: "Raw eBay URL",              
+ebaySlabUrl: "Slab eBay URL",
+mercariRawUrl: "Raw Mercari URL",
+mercariSlabUrl: "Slab Mercari URL",
   },
 
   placeholders: {
@@ -346,7 +351,10 @@ cardForm: {
     illustratorName: "Illustrator (English only)",
     packName: "e.g. Scarlet & Violet",
     packCode: "e.g. SV1a",
-    keyword: "Keyword",
+    ebayRawUrl: "https://...",               
+ebaySlabUrl: "https://...",
+mercariRawUrl: "https://...",
+mercariSlabUrl: "https://...",
   },
 
   image: {
@@ -381,6 +389,63 @@ cardForm: {
   successDelete: "Card deleted successfully.",
   saveError: "Failed to save card.",
   uploadError: "Image upload failed.",
+  },
+},
+packsPage: {
+  title: "Pack Management",
+  addPack: "Add Pack",
+  loading: "Loading",
+  error: "Something went wrong. Please try again.",
+  retry: "Retry",
+  empty: "No packs found.",
+  searchPlaceholder: "Search packs...",
+  table: {
+    image: "Image",
+    nameJa: "Japanese Name",
+    nameEn: "English Name",
+    releaseDate: "Release Date",
+    actions: "Actions",
+  },
+},
+packForm: {
+  packInfo: "Pack Info",
+  createTitle: "Create Pack",
+  editTitle: "Edit Pack",
+
+  createDesc: "Add a new pack to the database.",
+  editDesc: "Update this pack's details.",
+
+  successDelete: "Pack deleted",
+
+  fields: {
+    nameJp: "Japanese Name",
+    nameEn: "English Name",
+    slug: "Slug",
+    releaseDate: "Release Date",
+  },
+
+  placeholders: {
+    nameJp: "e.g. スカーレット&バイオレット",
+    nameEn: "e.g. Scarlet & Violet",
+    slug: "scarlet-violet",
+  },
+
+  slugHelper:
+    "Automatically generated from the English name until manually edited.",
+
+  image: {
+    upload: "Pack Image",
+    alt: "Pack image",
+    change: "Change Image",
+    remove: "Remove Image",
+    hint: "PNG or JPG, up to a few MB.",
+  },
+
+  actions: {
+    create: "Create Pack",
+    creating: "Creating...",
+    update: "Update Pack",
+    updating: "Updating...",
   },
 },
       deleteDialog: {
@@ -1153,6 +1218,15 @@ of: "of",
 tryDifferentSearch: "Try a different search term or adjust your filters.",
 clearFilters: "Clear Filters",
   },
+  cardNotFound: {
+  home: "Home",
+  cardEncyclopedia: "Card Encyclopedia",
+  notFound: "Not Found",
+  title: "Card Not Found",
+  description:
+    "We couldn't find a card at this address. It may have been renamed or never existed.",
+  backToCardEncyclopedia: "Back to Card Encyclopedia",
+},
   cardItem:{
     viewDetails: "View Details",
 cardNumber: "Card Number",
@@ -1185,8 +1259,10 @@ relatedShops: "Related Shops",
   },
   affiliateBtns:{
     affiliateSection: "Where to buy",
-buyOnEbay: "Buy on eBay",
-buyOnMercari: "Buy on Mercari",
+buyOnEbayRaw: "【Raw】 Buy on eBay",
+buyOnEbaySlab: "【Slab】 Buy on eBay",
+buyOnMercariRaw: "【Raw】 Buy on Mercari",
+buyOnMercariSlab: "【Slab】 Buy on Mercari",
   },
   relatedShops: {
   title: "Related Shops",
@@ -1211,7 +1287,33 @@ favoriteCards: {
 
   browseCards: "Browse Cards",
 },
-    }
+    },
+packPage: {
+  packEncyclopedia: "Pack Encyclopedia",
+  searchExpansionPacks: "Search expansion packs by name.",
+  searchPlaceholder: "Search packs...",
+packCountFound: "{count} pack{plural} found",
+  packItem: {
+    packArt: "Pack Art",
+    releaseDate: "Release Date",
+    viewDetails: "View Details",
+  },
+
+  packEmpty: {
+    title: "No packs found",
+    description: "Try a different search term.",
+    clearFilters: "Clear Search",
+  },
+
+  packDetails: {
+    expansionPack: "Expansion Pack",
+    nameJapanese: "Japanese Name",
+    nameEnglish: "English Name",
+    releaseDate: "Release Date",
+    cardsInThisPack: "Cards Included in This Pack",
+  },
+},
+
   },
 
   jp: {
@@ -1222,8 +1324,9 @@ favoriteCards: {
       contact: "お問い合わせ",
       blog: "ブログ",
       cards: "カード",
+      packs: "パック",
       myPage: "マイページ",
-      favorites: "お気に入り",
+      favoritesShops: "お気に入りショップ",
       favoritesCard: "お気に入りカード",
       viewedHistory: "閲覧履歴",
       logout: "ログアウト",
@@ -1355,7 +1458,8 @@ favoriteCards: {
         reports: "レポート",
         importCsv: "CSVインポート",
         articles: "記事",
-        cards: "カード"
+        cards: "カード",
+        packs: "パック"
       },
 
       dashboard: {
@@ -1545,7 +1649,7 @@ cardForm: {
     packInfo: "パック情報",
     cardImage: "カード画像",
     relatedBlog: "関連ブログ",
-    affiliateKeywords: "アフィリエイト検索キーワード",
+   affiliateLinks: "アフィリエイトリンク",
   },
 
   fields: {
@@ -1556,7 +1660,10 @@ cardForm: {
     illustratorName: "イラストレーター",
     packName: "パック名",
     packCode: "パックコード",
-    keyword: "キーワード",
+    ebayRawUrl: "eBay（未鑑定）URL",          
+ebaySlabUrl: "eBay（鑑定済み）URL",
+mercariRawUrl: "メルカリ（未鑑定）URL",
+mercariSlabUrl: "メルカリ（鑑定済み）URL",
   },
 
   placeholders: {
@@ -1567,7 +1674,10 @@ cardForm: {
     illustratorName: "イラストレーター名（英語）",
     packName: "例: Scarlet & Violet",
     packCode: "例: SV1a",
-    keyword: "キーワード",
+    ebayRawUrl: "https://...",              
+ebaySlabUrl: "https://...",
+mercariRawUrl: "https://...",
+mercariSlabUrl: "https://...",
   },
 
   image: {
@@ -1602,6 +1712,63 @@ cardForm: {
   successDelete: "カードを削除しました。",
   saveError: "カードの保存に失敗しました。",
   uploadError: "画像のアップロードに失敗しました。",
+  },
+},
+packsPage: {
+  title: "パック管理",
+  addPack: "パック追加",
+  loading: "読み込み中",
+  error: "エラーが発生しました。",
+  retry: "再試行",
+  empty: "パックが見つかりません。",
+  searchPlaceholder: "パックを検索...",
+  table: {
+    image: "画像",
+    nameJa: "日本語名",
+    nameEn: "英語名",
+    releaseDate: "発売日",
+    actions: "操作",
+  },
+},
+packForm: {
+  packInfo: "パック情報",
+  createTitle: "パック作成",
+  editTitle: "パック編集",
+
+  createDesc: "新しいパックをデータベースに追加します。",
+  editDesc: "パック情報を更新します。",
+
+  successDelete: "パックを削除しました",
+
+  fields: {
+    nameJp: "日本語名",
+    nameEn: "英語名",
+    slug: "スラッグ",
+    releaseDate: "発売日",
+  },
+
+  placeholders: {
+    nameJp: "例：スカーレット＆バイオレット",
+    nameEn: "e.g. Scarlet & Violet",
+    slug: "scarlet-violet",
+  },
+
+  slugHelper:
+    "英語名から自動生成されます（手動で編集すると自動生成は停止します）。",
+
+  image: {
+    upload: "パック画像",
+    alt: "パック画像",
+    change: "画像を変更",
+    remove: "画像を削除",
+    hint: "PNG または JPG（数MBまで）",
+  },
+
+  actions: {
+    create: "パックを作成",
+    creating: "作成中...",
+    update: "パックを更新",
+    updating: "更新中...",
   },
 },
       footer: "TCG Finder Japan 管理画面",
@@ -2373,6 +2540,15 @@ of: "/",
 tryDifferentSearch: "検索条件またはフィルターを変更してお試しください。",
 clearFilters: "フィルターをクリア",
   },
+  cardNotFound: {
+  home: "ホーム",
+  cardEncyclopedia: "カード図鑑",
+  notFound: "見つかりません",
+  title: "カードが見つかりません",
+  description:
+    "このページに対応するカードは見つかりませんでした。名前が変更されたか、存在しない可能性があります。",
+  backToCardEncyclopedia: "カード図鑑へ戻る",
+},
   cardItem:{
     viewDetails: "詳細を見る",
 cardNumber: "カード番号",
@@ -2405,8 +2581,10 @@ relatedShops: "関連店舗",
   },
   affiliateBtns:{
     affiliateSection: "{{card}} の購入先",
-buyOnEbay: "eBayで購入",
-buyOnMercari: "メルカリで購入",
+buyOnEbayRaw: "【未鑑定】eBayで購入",
+buyOnEbaySlab: "【鑑定済み】eBayで購入",
+buyOnMercariRaw: "【未鑑定】メルカリで購入",
+buyOnMercariSlab: "【鑑定済み】メルカリで購入",
   },
   relatedShops: {
   title: "関連店舗",
@@ -2431,6 +2609,33 @@ favoriteCards: {
 
   browseCards: "カード一覧を見る",
 },
-    }
+},
+packPage: {
+  packEncyclopedia: "パック図鑑",
+  packCountFound: "{count}件のパックが見つかりました",
+  searchExpansionPacks: "拡張パック名で検索",
+  searchPlaceholder: "パックを検索...",
+
+  packItem: {
+    packArt: "パック画像",
+    releaseDate: "発売日",
+    viewDetails: "詳細を見る",
+  },
+
+  packEmpty: {
+    title: "パックが見つかりません",
+    description: "別のキーワードで検索してください。",
+    clearFilters: "検索をクリア",
+  },
+
+  packDetails: {
+    expansionPack: "拡張パック",
+    nameJapanese: "日本語名",
+    nameEnglish: "英語名",
+    releaseDate: "発売日",
+    cardsInThisPack: "このパックに含まれるカード",
+  },
+},
+
   },
 };

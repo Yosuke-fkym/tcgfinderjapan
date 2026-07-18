@@ -3,15 +3,24 @@
  */
 
 export type Rarity =
-  | "C"
-  | "U"
-  | "R"
-  | "RR"
-  | "AR"
-  | "SR"
-  | "SAR"
-  | "UR"
-  | "ACE SPEC";
+  | "MUR"
+  | "FUR"
+  | "MA"
+  | "BWR"
+  | "SSR"
+  | "SSS"
+  | "Masterball"
+  | "Monsterball"
+  | "CSR"
+  | "CHR"
+  | "HR"
+  | "RRR"
+  | "K"
+  | "A"
+  | "PR"
+  | "H"
+  | "TR"
+  | "PROMO";
 
 export type SortOption =
   | "newest"
@@ -49,15 +58,24 @@ export interface Card {
 /* -------------------------------------------------------------------------- */
 
 export const RARITY_OPTIONS: readonly Rarity[] = [
-  "C",
-  "U",
-  "R",
-  "RR",
-  "AR",
-  "SR",
-  "SAR",
-  "UR",
-  "ACE SPEC",
+  "MUR",
+  "FUR",
+  "MA",
+  "BWR",
+  "SSR",
+  "SSS",
+  "Masterball",
+  "Monsterball",
+  "CSR",
+  "CHR",
+  "HR",
+  "RRR",
+  "K",
+  "A",
+  "PR",
+  "H",
+  "TR",
+  "PROMO",
 ];
 
 export const SORT_OPTIONS: ReadonlyArray<{

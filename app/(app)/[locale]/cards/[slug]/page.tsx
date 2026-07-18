@@ -62,7 +62,8 @@ if (!result) {
     notFound();
 }
 
-const { card, article, relatedShops } = result;
+const { card, article, relatedShops, pack_slug } = result;
+console.log(pack_slug);
 
   if (!card) {
     notFound();
@@ -148,7 +149,16 @@ const { card, article, relatedShops } = result;
                   {t.cardPage.cardDetails.expansionPack}
                 </dt>
                 <dd className="mt-1 text-sm text-stone-800">
-                  {card.pack_name}{" "}
+                  {pack_slug ? (
+                    <Link
+                      href={`/${locale}/packs/${pack_slug}`}
+                      className="inline-flex items-center gap-1 font-medium text-[#B23A2F] transition-colors hover:text-[#8f2e25] hover:underline underline-offset-2"
+                    >
+                      {card.pack_name}
+                    </Link>
+                  ) : (
+                    card.pack_name
+                  )}
                 </dd>
               </div>
 
@@ -161,7 +171,7 @@ const { card, article, relatedShops } = result;
             </dl>
 
             {/* Affiliate section */}
-            <AffiliateButtons locale={locale}  affiliateKeywords={card.affiliate_keywords ?? []} cardName={card.card_name} />
+            <AffiliateButtons locale={locale} ebayRawUrl={card.ebay_raw_url} ebaySlabUrl={card.ebay_slab_url} mercariRawUrl={card.mercari_raw_url} mercariSlabUrl={card.mercari_slab_url} cardName={card.card_name} />
           </div>
         </section>
 

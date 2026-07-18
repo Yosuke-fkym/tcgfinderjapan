@@ -1,4 +1,7 @@
+'use client'
 import { Button } from "@/components/ui/button";
+import { getT } from "@/lib/getT";
+import { useParams } from "next/navigation";
 
 interface CardEmptyProps {
   onClearFilters?: () => void;
@@ -6,6 +9,8 @@ interface CardEmptyProps {
 
 /** Shown when the current search/filter combination matches zero dummy cards. */
 export function CardEmpty({ onClearFilters }: CardEmptyProps) {
+    const { locale } = useParams();
+  const t = getT(locale as string);
   return (
     <div className="flex flex-col items-center justify-center gap-5 rounded-2xl border border-dashed border-stone-300 bg-stone-50/60 px-6 py-20 text-center">
       <svg
@@ -23,9 +28,9 @@ export function CardEmpty({ onClearFilters }: CardEmptyProps) {
       </svg>
 
       <div className="space-y-1">
-        <p className="text-lg font-semibold text-stone-800">No cards found.</p>
+        <p className="text-lg font-semibold text-stone-800">{t.cardPage.cardEmpty.noCardsFound}</p>
         <p className="text-sm text-stone-500">
-          Try a different search term or adjust your filters.
+        {t.cardPage.cardEmpty.tryDifferentSearch}
         </p>
       </div>
 
@@ -33,7 +38,7 @@ export function CardEmpty({ onClearFilters }: CardEmptyProps) {
         onClick={onClearFilters}
         className="rounded-full bg-[#B23A2F] px-6 text-white hover:bg-[#963026]"
       >
-        Clear Filters
+       {t.cardPage.cardEmpty.clearFilters}
       </Button>
     </div>
   );

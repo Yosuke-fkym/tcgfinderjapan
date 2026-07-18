@@ -4,6 +4,7 @@ import {
   BarChart2Icon,
   File,
   Home,
+  IdCardIcon,
   Import,
   LucideCreditCard,
   ShapesIcon,
@@ -65,6 +66,12 @@ function AdminAsideNav() {
           name={t.admin.sidebar.cards}
           path={`/${locale}/admin/cards`}
           key="cards"
+        />
+        <AdminNavButton
+          icon={IdCardIcon}
+          name={t.admin.sidebar.packs}
+          path={`/${locale}/admin/packs`}
+          key="packs"
         />
         
       </nav>

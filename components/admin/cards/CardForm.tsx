@@ -16,7 +16,13 @@ import { toast } from "sonner";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { getT } from "@/lib/getT";
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Popover,
   PopoverContent,
@@ -36,18 +42,10 @@ import { Check, ChevronsUpDown } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translations } from "@/lib/i18n";
 
-// NOTE: Replace with the real tag source once shared (likely a DB-backed
-// list, similar to how Shop's PRODUCT_TAG_KEYS map to translation keys).
-// Kept as a flat string list for now so the multi-select works end to end.
-const TAG_OPTIONS = [
-  "vintage",
-  "psa10",
-  "holo",
-  "reverse-holo",
-  "promo",
-  "first-edition",
-  "japanese-exclusive",
-  "graded",
+const RARITY_OPTIONS = [
+  "C", "U", "R", "RR", "AR", "SR", "SAR", "UR", "ACE SPEC", "MUR", "FUR",
+  "MA", "BWR", "SSR", "SSS", "Masterball", "Monsterball", "CSR", "CHR",
+  "HR", "RRR", "K", "A", "PR", "H", "TR", "PROMO",
 ];
 
 function generateSlug(value: string): string {
@@ -77,8 +75,13 @@ export default function CardForm({ initialData, mode = "create" }: any) {
   const [cardName, setCardName] = useState(initialData?.card_name ?? "");
 const [slug, setSlug] = useState(initialData?.slug ?? "");
 const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
+const [ebayRawUrl, setEbayRawUrl] = useState(initialData?.ebay_raw_url ?? "");
+const [ebaySlabUrl, setEbaySlabUrl] = useState(initialData?.ebay_slab_url ?? "");
+const [mercariRawUrl, setMercariRawUrl] = useState(initialData?.mercari_raw_url ?? "");
+const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_url ?? "");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [rarity, setRarity] = useState<string>(initialData?.rarity ?? "");
   const [existingImage, setExistingImage] = useState<string | null>(
     initialData?.card_image || null
   );
@@ -102,12 +105,6 @@ const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
   );
   const [articles, setArticles] = useState<Article[]>([]);
   const [articlesLoading, setArticlesLoading] = useState(true);
-
-  // ─── Affiliate search keywords (fixed 5 slots) ─────────────────────────────
-  const [keywords, setKeywords] = useState<string[]>(() => {
-    const existing: string[] = initialData?.affiliate_keywords || [];
-    return Array.from({ length: 5 }, (_, i) => existing[i] || "");
-  });
 
   const { locale } = useParams();
   const t = getT(locale as string);
@@ -215,15 +212,6 @@ const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
   };
 
 
-  // ─── Keyword Handlers ───────────────────────────────────────────────────────
-  const handleKeywordChange = (index: number, value: string) => {
-    setKeywords((prev) => {
-      const updated = [...prev];
-      updated[index] = value;
-      return updated;
-    });
-  };
-
   // ─── Form Submit (mirrors Shop's handleSubmit ordering: create/update →
   // then dependent uploads → success toast only after everything succeeds) ───
   const handleSubmit = async (e: any) => {
@@ -250,7 +238,11 @@ const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
     const body = {
     ...Object.fromEntries(formData),
     article_id: articleId || null,
-    affiliate_keywords: keywords.filter((k) => k.trim() !== ""),
+    rarity,
+     ebay_raw_url: ebayRawUrl,
+  ebay_slab_url: ebaySlabUrl,
+  mercari_raw_url: mercariRawUrl,
+  mercari_slab_url: mercariSlabUrl,
     removeImage
 }
 
@@ -294,9 +286,13 @@ const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
         e.target.reset();
         setSlug("");
         setSlugManuallyEdited(false);
+        setRarity("")
         setSelectedTags([]);
         setArticleId("");
-        setKeywords(["", "", "", "", ""]);
+        setEbayRawUrl("");
+  setEbaySlabUrl("");
+  setMercariRawUrl("");
+  setMercariSlabUrl("");
         resetImageState();
       }
     } catch (err: any) {
@@ -371,14 +367,21 @@ const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
                   />
                 </div>
 
-                <div className="grid gap-2">
-                  <Label>{t.admin.cardForm.fields.rarity}</Label>
-                  <Input
-                    name="rarity"
-                    defaultValue={initialData?.rarity}
-                    placeholder={t.admin.cardForm.placeholders.rarity}
-                  />
-                </div>
+              <div className="grid gap-2">
+  <Label>{t.admin.cardForm.fields.rarity}</Label>
+  <Select name="rarity" value={rarity} onValueChange={setRarity}>
+    <SelectTrigger>
+      <SelectValue placeholder="Select rarity" />
+    </SelectTrigger>
+    <SelectContent>
+      {RARITY_OPTIONS.map((option) => (
+        <SelectItem key={option} value={option}>
+          {option}
+        </SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+</div>
 
                 <div className="grid gap-2">
                   <Label>{t.admin.cardForm.fields.illustratorName}</Label>
@@ -556,25 +559,50 @@ const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
               </Popover>
             </div>
 
-            {/* AFFILIATE SEARCH KEYWORDS */}
-            <div className="space-y-4">
-              <h3 className="font-semibold text-gray-800">
-               {t.admin.cardForm.sections.affiliateKeywords}
-              </h3>
+{/* AFFILIATE LINKS */}
+<div className="space-y-4">
+  <h3 className="font-semibold text-gray-800">
+    {t.admin.cardForm.sections.affiliateLinks}
+  </h3>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                {keywords.map((kw, index) => (
-                  <div key={index} className="grid gap-2">
-                    <Label>{t.admin.cardForm.fields.keyword} {index + 1}</Label>
-                    <Input
-                      value={kw}
-                      onChange={(e) => handleKeywordChange(index, e.target.value)}
-                      placeholder={`${t.admin.cardForm.fields.keyword} ${index + 1}`}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+  <div className="grid md:grid-cols-2 gap-4">
+    <div className="grid gap-2">
+      <Label>{t.admin.cardForm.fields.ebayRawUrl}</Label>
+      <Input
+        value={ebayRawUrl}
+        onChange={(e) => setEbayRawUrl(e.target.value)}
+        placeholder={t.admin.cardForm.placeholders.ebayRawUrl}
+      />
+    </div>
+
+    <div className="grid gap-2">
+      <Label>{t.admin.cardForm.fields.ebaySlabUrl}</Label>
+      <Input
+        value={ebaySlabUrl}
+        onChange={(e) => setEbaySlabUrl(e.target.value)}
+        placeholder={t.admin.cardForm.placeholders.ebaySlabUrl}
+      />
+    </div>
+
+    <div className="grid gap-2">
+      <Label>{t.admin.cardForm.fields.mercariRawUrl}</Label>
+      <Input
+        value={mercariRawUrl}
+        onChange={(e) => setMercariRawUrl(e.target.value)}
+        placeholder={t.admin.cardForm.placeholders.mercariRawUrl}
+      />
+    </div>
+
+    <div className="grid gap-2">
+      <Label>{t.admin.cardForm.fields.mercariSlabUrl}</Label>
+      <Input
+        value={mercariSlabUrl}
+        onChange={(e) => setMercariSlabUrl(e.target.value)}
+        placeholder={t.admin.cardForm.placeholders.mercariSlabUrl}
+      />
+    </div>
+  </div>
+</div>           
 
             {/* ACTIONS */}
             <div className="flex justify-end gap-4 pt-4">

@@ -96,6 +96,7 @@ function Navbar() {
     { label: t.navbar.ranking, path: `/${locale}/ranking` },
     { label: t.navbar.blog, path: `/${locale}/blog` },
     { label: t.navbar.cards, path: `/${locale}/cards` },
+    { label: t.navbar.packs, path: `/${locale}/packs` },
     { label: t.navbar.contact, path: `/${locale}/contact` },
   ];
 
@@ -166,7 +167,7 @@ function Navbar() {
                 </button>
               </DropdownMenuTrigger>
 
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent className="w-[150px]" align="end">
                 {user?.isAdmin && (
   <DropdownMenuItem onClick={() => router.push(`/${locale}/admin`)}>
     {t.admin.sidebar.title}
@@ -183,14 +184,14 @@ function Navbar() {
     router.push(`/${locale}/accounts/me/favourite-shops`)
   }
 >
-  {t.navbar.favorites}
+  {t.navbar.favoritesShops}
 </DropdownMenuItem>
 <DropdownMenuItem
   onClick={() =>
     router.push(`/${locale}/accounts/me/favourite-cards`)
   }
 >
-  {t.navbar.favoriteCards}
+  {t.navbar.favoritesCard}
 </DropdownMenuItem>
 
 <DropdownMenuItem
