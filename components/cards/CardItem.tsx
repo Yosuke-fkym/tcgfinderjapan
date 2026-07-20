@@ -1,8 +1,7 @@
 "use client"
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import type { Card, Rarity } from "@/types/card";
-import { RarityBadge } from "@/components/cards/RarityBadge";
+import type { Card } from "@/types/card";
 import { FavoriteButton } from "./FavoriteButton";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
@@ -24,9 +23,9 @@ export function CardItem({ card, showFavoriteButton = false, onRemoved }: CardIt
   const t = getT(locale as string);
   return (
     <Link
-      href={`/cards/${card.slug}`}
+      href={`/${locale}/cards/${card.slug}`}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl focus-visible:-translate-y-1 focus-visible:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B23A2F]/50"
-      aria-label={`${card.card_name}, ${card.card_number}, ${card.rarity}`}
+      aria-label={`${card.card_name}, ${card.card_number}`}
     >
       <div className="relative aspect-5/7 w-full overflow-hidden bg-stone-100">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -45,10 +44,6 @@ export function CardItem({ card, showFavoriteButton = false, onRemoved }: CardIt
     <FavoriteButton slug={card.slug} onRemoved={() => onRemoved?.(card.slug)} />
           </div>
 )}
-        <RarityBadge
-          rarity={card.rarity as Rarity}
-          className="absolute right-3 top-3 bg-white/95"
-        />
       </div>
 
       <div className="flex flex-1 flex-col gap-2 p-4">

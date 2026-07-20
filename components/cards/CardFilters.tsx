@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { getT } from "@/lib/getT";
-import { RARITY_OPTIONS, SORT_OPTIONS, type CardFilterState, type Rarity, type SortOption } from "@/types/card";
+import { SORT_OPTIONS, type CardFilterState, type SortOption } from "@/types/card";
 import { useParams } from "next/navigation";
 
 interface CardFiltersProps {
@@ -17,7 +17,7 @@ interface CardFiltersProps {
 }
 
 /**
- * Four independent filters (Game, Rarity, Expansion Pack, Sort).
+ * Four independent filters (Game, Expansion Pack, Sort).
  * These only ever touch local dummy state — nothing here talks to a server.
  */
 export function CardFilters({ filters, onFilterChange }: CardFiltersProps) {
@@ -25,31 +25,6 @@ export function CardFilters({ filters, onFilterChange }: CardFiltersProps) {
   const t = getT(locale as string);
   return (
     <div className="flex flex-wrap gap-3">
-
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="filter-rarity" className="sr-only">
-         {t.cardPage.cardFilter.filterByRarity}
-        </label>
-        <Select
-          value={filters.rarity}
-          onValueChange={(value) => onFilterChange({ rarity: value as Rarity | "all" })}
-        >
-          <SelectTrigger
-            id="filter-rarity"
-            className="h-11 w-38 rounded-lg border-stone-300 bg-white text-sm"
-          >
-            <SelectValue placeholder="Rarity" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">{t.cardPage.cardFilter.allRarities}</SelectItem>
-            {RARITY_OPTIONS.map((rarity) => (
-              <SelectItem key={rarity} value={rarity}>
-                {rarity}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
 
       <div className="flex flex-col gap-1.5 sm:ml-auto">
         <label htmlFor="filter-sort" className="sr-only">

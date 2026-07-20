@@ -94,8 +94,8 @@ function Navbar() {
 
     { label: t.navbar.home, path: `/${locale}` },
     { label: t.navbar.ranking, path: `/${locale}/ranking` },
-    { label: t.navbar.blog, path: `/${locale}/blog` },
     { label: t.navbar.cards, path: `/${locale}/cards` },
+    { label: t.navbar.blog, path: `/${locale}/blog` },
     { label: t.navbar.contact, path: `/${locale}/contact` },
   ];
 

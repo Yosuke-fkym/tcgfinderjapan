@@ -12,7 +12,6 @@ export function transformCard(card: any): Card {
     pack_name: card.pack_name || "",
     pack_name_in_langs: card.pack_name_in_langs || undefined,
     card_number: card.card_number || undefined,
-    rarity: card.rarity || undefined,
     illustrator_name: card.illustrator_name || undefined,
     slug: card.slug || "",
     pack_code: card.pack_code || undefined,

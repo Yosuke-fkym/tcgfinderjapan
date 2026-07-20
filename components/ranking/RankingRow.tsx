@@ -13,7 +13,7 @@ export function RankingRow({ item, index }: any) {
   const t = getT(locale as string);
 
   return (
-    <Link href={`/shop/${item.shopId}`}>
+    <Link href={`/${locale}/shop/${item.shopId}`}>
       <div className="flex items-center justify-between p-4 my-4 rounded-xl bg-white shadow-sm border hover:shadow-md transition cursor-pointer">
 
         <div className="flex items-center gap-4">

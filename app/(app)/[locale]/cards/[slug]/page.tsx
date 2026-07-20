@@ -2,12 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 
-import { RarityBadge } from "@/components/cards/RarityBadge";
 import { CardImageDialog } from "@/components/cards/CardImageDialog";
 import { AffiliateButtons } from "@/components/cards/AffiliateButtons";
 import { RelatedBlogCard } from "@/components/cards/RelatedBlogCard";
 import { CardItem } from "@/components/cards/CardItem";
-import { Card, Rarity } from "@/types/card";
+import { Card } from "@/types/card";
 import { RelatedShops } from "@/components/cards/RelatedShops";
 import { FavoriteButton } from "@/components/cards/FavoriteButton";
 import { getT } from "@/lib/getT";
@@ -48,7 +47,7 @@ const result = await getCard(slug);
 
   return {
     title: `${card.card_name} | TCG Finder Japan`,
-    description: `${card.card_name} — ${card.card_number}, ${card.rarity}, from ${card.pack_name}.`,
+    description: `${card.card_name} — ${card.card_number}, from ${card.pack_name}.`,
   };
 }
 
@@ -63,7 +62,6 @@ if (!result) {
 }
 
 const { card, article, relatedShops, pack_slug } = result;
-console.log(pack_slug);
 
   if (!card) {
     notFound();
@@ -78,7 +76,7 @@ console.log(pack_slug);
         <nav aria-label="Breadcrumb" className="mb-8">
           <ol className="flex flex-wrap items-center gap-1.5 text-sm text-stone-500">
             <li>
-              <Link href="/" className="transition-colors hover:text-stone-800">
+              <Link href={`/${locale}/`} className="transition-colors hover:text-stone-800">
                 {t.cardPage.home}
               </Link>
             </li>
@@ -86,7 +84,7 @@ console.log(pack_slug);
               <ChevronRight className="h-3.5 w-3.5" />
             </li>
             <li>
-              <Link href="/cards" className="transition-colors hover:text-stone-800">
+              <Link href={`/${locale}/cards`} className="transition-colors hover:text-stone-800">
                {t.cardPage.cardEncyclopedia}
               </Link>
             </li>
@@ -110,12 +108,12 @@ console.log(pack_slug);
 
           <div className="flex flex-col gap-6">
             <div>
-              <div className="mb-3 flex items-center gap-3">
+              {/* <div className="mb-3 flex items-center gap-3">
                 <RarityBadge rarity={card.rarity as Rarity} className="h-11 w-11 text-xs" />
                 <span className="text-xs font-medium uppercase tracking-wide text-stone-400">
                   {card.rarity}
                 </span>
-              </div>
+              </div> */}
             <div className="flex items-start justify-between gap-4">
   <h1 className="font-serif text-3xl font-semibold tracking-tight text-stone-900 sm:text-4xl">
     {card.card_name}
@@ -140,7 +138,7 @@ console.log(pack_slug);
                  {t.cardPage.cardDetails.packCode}
                 </dt>
                 <dd className="mt-1 font-mono text-sm text-stone-800">
-                  {card.pack_name}
+                  {card.pack_code}
                 </dd>
               </div>
 
@@ -183,7 +181,7 @@ console.log(pack_slug);
           >
             {t.cardPage.cardDetails.fromTheBlog}
           </h2>
-          {article && ( <RelatedBlogCard post={article!} /> )}
+          {article && ( <RelatedBlogCard locale={locale} post={article!} /> )}
 
           {relatedShops?.length > 0 && (
   <section

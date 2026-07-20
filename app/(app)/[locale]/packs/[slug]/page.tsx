@@ -6,6 +6,7 @@ import { CardGrid } from "@/components/cards/CardGrid";
 import type { Pack } from "@/types/pack";
 import type { Card } from "@/types/card";
 import { getT } from "@/lib/getT";
+import { AffiliateButtons } from "@/components/cards/AffiliateButtons";
 
 interface PackDetailPageProps {
   params: Promise<{
@@ -151,6 +152,8 @@ export default async function PackDetailPage({ params }: PackDetailPageProps) {
                 </dd>
               </div>
             </dl>
+            {/* Affiliate section */}
+                        <AffiliateButtons locale={locale} ebayUrl={pack.ebay_url} mercariUrl={pack.mercari_url}  />
           </div>
         </section>
 

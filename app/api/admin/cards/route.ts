@@ -61,7 +61,6 @@ export async function POST(req: Request) {
     pack_name: body.pack_name,
     slug: body.slug,
     card_number: body.card_number,
-    rarity: body.rarity,
     illustrator_name: body.illustrator_name,
     pack_code: body.pack_code,
     article_id: body.article_id,

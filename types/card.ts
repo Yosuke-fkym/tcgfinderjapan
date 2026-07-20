@@ -51,7 +51,6 @@ export interface Card {
   card_name_in_langs: Record<string, string>;
   pack_name_in_langs: Record<string, string>;
   card_number?: string;
-  rarity?: Rarity;
   illustrator_name?: string;
   slug: string;
   pack_code?: string;

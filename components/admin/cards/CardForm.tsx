@@ -17,13 +17,6 @@ import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { getT } from "@/lib/getT";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -41,12 +34,6 @@ import {
 import { Check, ChevronsUpDown } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translations } from "@/lib/i18n";
-
-const RARITY_OPTIONS = [
-  "C", "U", "R", "RR", "AR", "SR", "SAR", "UR", "ACE SPEC", "MUR", "FUR",
-  "MA", "BWR", "SSR", "SSS", "Masterball", "Monsterball", "CSR", "CHR",
-  "HR", "RRR", "K", "A", "PR", "H", "TR", "PROMO",
-];
 
 function generateSlug(value: string): string {
   return value
@@ -81,7 +68,6 @@ const [mercariRawUrl, setMercariRawUrl] = useState(initialData?.mercari_raw_url 
 const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_url ?? "");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [rarity, setRarity] = useState<string>(initialData?.rarity ?? "");
   const [existingImage, setExistingImage] = useState<string | null>(
     initialData?.card_image || null
   );
@@ -212,7 +198,7 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
   };
 
 // ─── Validation ─────────────────────────────────────────────────────────
-  // Checks controlled state (cardName, slug, rarity, image) plus uncontrolled
+  // Checks controlled state (cardName, slug, image) plus uncontrolled
   // inputs pulled from FormData (card_number, illustrator_name, pack_name,
   // pack_code). Single friendly toast on any missing field — no per-field
   // toasts, matching PackForm's behavior.
@@ -228,7 +214,6 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
       !cardName.trim() ||
       !slug.trim() ||
       !cardNumber ||
-      !rarity ||
       !illustratorName ||
       !packName ||
       !packCode ||
@@ -260,7 +245,6 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
     const body = {
       ...Object.fromEntries(formData),
       article_id: articleId || null,
-      rarity,
       ebay_raw_url: ebayRawUrl,
       ebay_slab_url: ebaySlabUrl,
       mercari_raw_url: mercariRawUrl,
@@ -307,7 +291,6 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
         setCardName("");
         setSlug("");
         setSlugManuallyEdited(false);
-        setRarity("");
         setSelectedTags([]);
         setArticleId("");
         setEbayRawUrl("");
@@ -387,22 +370,6 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
                     placeholder={t.admin.cardForm.placeholders.cardNumber}
                   />
                 </div>
-
-              <div className="grid gap-2">
-  <Label>{t.admin.cardForm.fields.rarity}</Label>
-  <Select name="rarity" value={rarity} onValueChange={setRarity}>
-    <SelectTrigger>
-      <SelectValue placeholder="Select rarity" />
-    </SelectTrigger>
-    <SelectContent>
-      {RARITY_OPTIONS.map((option) => (
-        <SelectItem key={option} value={option}>
-          {option}
-        </SelectItem>
-      ))}
-    </SelectContent>
-  </Select>
-</div>
 
                 <div className="grid gap-2">
                   <Label>{t.admin.cardForm.fields.illustratorName}</Label>

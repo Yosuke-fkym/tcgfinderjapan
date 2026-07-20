@@ -34,6 +34,8 @@ type PackInitialData = {
   name_en?: string;
   name_jp?: string;
   image_url?: string | null;
+  ebay_url: string;
+  mercari_url: string;
   release_date?: string | null;
 };
 
@@ -50,6 +52,8 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
   const [nameJp, setNameJp] = useState(initialData?.name_jp ?? "");
   const [nameEn, setNameEn] = useState(initialData?.name_en ?? "");
   const [slug, setSlug] = useState(initialData?.slug ?? "");
+  const [ebayUrl, setEbayUrl] = useState(initialData?.ebay_url ?? "");
+  const [mercariUrl, setMercariUrl] = useState(initialData?.mercari_url ?? "");
   const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
   const [releaseDate, setReleaseDate] = useState(initialData?.release_date ?? "");
 
@@ -93,6 +97,8 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
         setSlug(pack?.slug ?? "");
         setReleaseDate(pack?.release_date ?? "");
         setExistingImage(pack?.image_url || null);
+        setEbayUrl(pack?.ebay_url ?? "");
+        setMercariUrl(pack?.mercari_url ?? "");
       } catch {
         toast.error("パック情報の取得に失敗しました");
       }
@@ -196,6 +202,8 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
     if (!nameEn.trim()) missing.push("name_en");
     if (!slug.trim()) missing.push("slug");
     if (!releaseDate) missing.push("release_date");
+    if(!ebayUrl) missing.push("ebay_url")
+    if(!mercariUrl) missing.push("mercari_url")
 
     // Image is "present" if there's a newly selected file OR an existing
     // DB image that hasn't been marked for removal.
@@ -229,6 +237,9 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
       slug: slug.trim(),
       release_date: releaseDate || null,
       removeImage,
+      mercari_url: mercariUrl,
+      ebay_url: ebayUrl
+
     };
 
     setLoading(true);
@@ -270,6 +281,8 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
         setNameJp("");
         setNameEn("");
         setSlug("");
+        setEbayUrl("")
+        setMercariUrl("")
         setSlugManuallyEdited(false);
         setReleaseDate("");
         resetImageState();
@@ -357,6 +370,27 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
                     name="release_date"
                     value={releaseDate ?? ""}
                     onChange={(e) => setReleaseDate(e.target.value)}
+                  />
+                </div>
+
+                <div className="grid gap-2">
+                  <Label>{t.admin.packForm?.fields?.ebayUrl || "Ebay URL"}</Label>
+                  <Input
+                    type="text"
+                    name="ebay_url"
+                    value={ebayUrl ?? ""}
+                    onChange={(e) => setEbayUrl(e.target.value)}
+                     placeholder={t.admin.packForm?.placeholders?.ebayUrl || "Ebay URL"}
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label>{t.admin.packForm?.fields?.mercariUrl || "Mercari URL"}</Label>
+                  <Input
+                    type="text"
+                    name="mercari_url"
+                    value={mercariUrl ?? ""}
+                    onChange={(e) => setMercariUrl(e.target.value)}
+                     placeholder={t.admin.packForm?.placeholders?.mercariUrl || "Mercari URL"}
                   />
                 </div>
               </div>

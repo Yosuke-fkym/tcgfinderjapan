@@ -11,7 +11,7 @@ export const translations = {
       ranking: "Ranking",
       contact: "Contact",
       blog: "Blog",
-      cards: "Cards",
+      cards: "Card List",
       packs: "Packs",
       myPage: "My Page",
       favoritesShops: "Favorites Shops",
@@ -431,12 +431,17 @@ toast: {
     nameEn: "English Name",
     slug: "Slug",
     releaseDate: "Release Date",
+    ebayUrl: "eBay URL",
+    mercariUrl: "Mercari URL",
   },
 
   placeholders: {
     nameJp: "e.g. スカーレット&バイオレット",
     nameEn: "e.g. Scarlet & Violet",
     slug: "scarlet-violet",
+    ebayUrl: "Enter eBay URL",
+    mercariUrl: "Enter Mercari URL",
+
   },
 
   slugHelper:
@@ -1272,10 +1277,12 @@ buyOnEbayRaw: "【Raw】 Buy on eBay",
 buyOnEbaySlab: "【Slab】 Buy on eBay",
 buyOnMercariRaw: "【Raw】 Buy on Mercari",
 buyOnMercariSlab: "【Slab】 Buy on Mercari",
+buyOnEbay: "Buy on eBay",
+buyOnMercari: "Buy on Mercari",
   },
   relatedShops: {
   title: "Related Shops",
-  subtitle: "Shops that carry this product.",
+  subtitle: "Shops that may carry this product.",
 
   sortByDistance: "Sort by Distance",
   locating: "Locating...",
@@ -1299,8 +1306,13 @@ favoriteCards: {
     },
 packPage: {
   packEncyclopedia: "Pack Encyclopedia",
-  searchExpansionPacks: "Search expansion packs by name.",
-  searchPlaceholder: "Search packs...",
+  searchExpansionPacks: "Search packs, cards, or illustrators.",
+  matchingPacks: "Matching Packs",
+matchingCards: "Matching Cards",
+searching: "Searching...",
+noMatchingPacks: "No matching packs found.",
+noMatchingCards: "No matching cards found.",
+searchPlaceholder: "Search packs, cards, or illustrators...",
 packCountFound: "{count} pack{plural} found",
   packItem: {
     packArt: "Pack Art",
@@ -1332,7 +1344,7 @@ packCountFound: "{count} pack{plural} found",
       ranking: "ランキング",
       contact: "お問い合わせ",
       blog: "ブログ",
-      cards: "カード",
+      cards: "カード一覧",
       packs: "パック",
       myPage: "マイページ",
       favoritesShops: "お気に入りショップ",
@@ -1763,12 +1775,16 @@ validationErrorTitle: "入力エラー",
     nameEn: "英語名",
     slug: "スラッグ",
     releaseDate: "発売日",
+       ebayUrl: "eBay URL",
+    mercariUrl: "メルカリURL",
   },
 
   placeholders: {
     nameJp: "例：スカーレット＆バイオレット",
     nameEn: "e.g. Scarlet & Violet",
     slug: "scarlet-violet",
+      ebayUrl: "eBay URLを入力してください",
+    mercariUrl: "メルカリURLを入力してください",
   },
 
   slugHelper:
@@ -2603,10 +2619,12 @@ buyOnEbayRaw: "【未鑑定】eBayで購入",
 buyOnEbaySlab: "【鑑定済み】eBayで購入",
 buyOnMercariRaw: "【未鑑定】メルカリで購入",
 buyOnMercariSlab: "【鑑定済み】メルカリで購入",
+buyOnEbay: "eBayで購入",
+buyOnMercari: "メルカリで購入",
   },
   relatedShops: {
   title: "関連店舗",
-  subtitle: "このカードを取り扱っている店舗です。",
+  subtitle: "この商品を取り扱っている可能性のある店舗",
 
   sortByDistance: "現在地から近い順",
   locating: "位置情報を取得中...",
@@ -2631,8 +2649,13 @@ favoriteCards: {
 packPage: {
   packEncyclopedia: "パック図鑑",
   packCountFound: "{count}件のパックが見つかりました",
-  searchExpansionPacks: "拡張パック名で検索",
-  searchPlaceholder: "パックを検索...",
+  searchExpansionPacks: "パック名・カード名・イラストレーター名で検索",
+  matchingPacks: "該当するパック",
+matchingCards: "該当するカード",
+searching: "検索中...",
+noMatchingPacks: "該当するパックが見つかりませんでした。",
+noMatchingCards: "該当するカードが見つかりませんでした。",
+searchPlaceholder: "パック名・カード名・イラストレーター名で検索",
 
   packItem: {
     packArt: "パック画像",

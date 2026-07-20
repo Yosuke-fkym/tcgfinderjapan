@@ -26,7 +26,7 @@ export function PackItem({ pack }: PackItemProps) {
 
   return (
     <Link
-      href={`/packs/${pack.slug}`}
+      href={`/${locale}/packs/${pack.slug}`}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl focus-visible:-translate-y-1 focus-visible:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B23A2F]/50"
       aria-label={`${pack.name_en}, ${pack.name_jp}`}
     >

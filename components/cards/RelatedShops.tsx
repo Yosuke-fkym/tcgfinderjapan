@@ -173,7 +173,7 @@ export function RelatedShops({ shops }: RelatedShopsProps) {
               </div>
 
               <Link
-                href={`/shop/${id}`}
+                href={`/${locale}/shop/${id}`}
                 target="_blank"
                 className="mt-auto inline-flex items-center justify-center rounded-lg border border-red-700 px-4 py-2 text-sm font-medium text-red-700 transition hover:bg-red-700 hover:text-white"
               >

@@ -4,7 +4,6 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
 
   const search = searchParams.get("search")?.trim() ?? "";
-  const rarity = searchParams.get("rarity") ?? "all";
   const pack = searchParams.get("pack") ?? "all";
   const sort = searchParams.get("sort") ?? "newest";
 
@@ -30,12 +29,6 @@ export async function GET(req: Request) {
       ].join(",")
     );
   }
-
-  // Rarity
-  if (rarity !== "all") {
-    query = query.eq("rarity", rarity);
-  }
-
   // Pack
   if (pack !== "all") {
     query = query.eq("pack_name", pack);

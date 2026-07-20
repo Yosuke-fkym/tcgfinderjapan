@@ -19,7 +19,7 @@ export function CardNotFound() {
         <nav aria-label="Breadcrumb" className="mb-10">
           <ol className="flex items-center gap-1.5 text-sm text-stone-500">
             <li>
-              <Link href="/" className="transition-colors hover:text-stone-800">
+              <Link href={`/${locale}/`} className="transition-colors hover:text-stone-800">
                 {t.cardPage.cardNotFound.home}
               </Link>
             </li>
@@ -27,7 +27,7 @@ export function CardNotFound() {
               <ChevronRight className="h-3.5 w-3.5" />
             </li>
             <li>
-              <Link href="/cards" className="transition-colors hover:text-stone-800">
+              <Link href={`/${locale}/cards`} className="transition-colors hover:text-stone-800">
                {t.cardPage.cardNotFound.cardEncyclopedia}
               </Link>
             </li>
@@ -62,7 +62,7 @@ export function CardNotFound() {
           </div>
 
           <Button asChild className="rounded-full bg-[#B23A2F] px-6 text-white hover:bg-[#963026]">
-            <Link href="/cards"> {t.cardPage.cardNotFound.backToCardEncyclopedia}</Link>
+            <Link href={`/${locale}/cards`}> {t.cardPage.cardNotFound.backToCardEncyclopedia}</Link>
           </Button>
         </div>
       </div>

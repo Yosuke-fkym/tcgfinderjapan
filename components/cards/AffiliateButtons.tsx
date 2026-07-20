@@ -7,6 +7,8 @@ interface AffiliateButtonsProps {
   ebaySlabUrl?: string | null;
   mercariRawUrl?: string | null;
   mercariSlabUrl?: string | null;
+  ebayUrl?: string | null;
+  mercariUrl?: string | null;
   cardName?: string;
   locale: string;
 }
@@ -20,13 +22,15 @@ export function AffiliateButtons({
   ebaySlabUrl,
   mercariRawUrl,
   mercariSlabUrl,
+  ebayUrl,
+  mercariUrl,
   cardName,
   locale,
 }: AffiliateButtonsProps) {
   const t = getT(locale);
 
   const hasAnyLink =
-    !!ebayRawUrl || !!ebaySlabUrl || !!mercariRawUrl || !!mercariSlabUrl;
+    !!ebayRawUrl || !!ebaySlabUrl || !!mercariRawUrl || !!mercariSlabUrl || !!mercariUrl || !!ebayUrl;
 
   if (!hasAnyLink) return null;
 
@@ -81,6 +85,29 @@ export function AffiliateButtons({
         >
           <a href={mercariSlabUrl} target="_blank" rel="noopener noreferrer">
             {t.cardPage.affiliateBtns.buyOnMercariSlab}
+            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+          </a>
+        </Button>
+      )}
+     {ebayUrl && (
+        <Button
+          asChild
+          className="h-14 w-full justify-between rounded-xl bg-stone-900 px-5 text-base font-medium text-white hover:bg-stone-800"
+        >
+          <a href={ebayUrl} target="_blank" rel="noopener noreferrer">
+            {t.cardPage.affiliateBtns.buyOnEbay}
+            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+          </a>
+        </Button>
+      )}
+      {mercariUrl && (
+        <Button
+          asChild
+          variant="outline"
+          className="h-14 w-full justify-between rounded-xl border-[#B23A2F]/40 bg-white px-5 text-base font-medium text-[#B23A2F] hover:bg-[#FBEAE7]"
+        >
+          <a href={mercariUrl} target="_blank" rel="noopener noreferrer">
+            {t.cardPage.affiliateBtns.buyOnMercari}
             <ExternalLink className="h-4 w-4" aria-hidden="true" />
           </a>
         </Button>

@@ -106,9 +106,6 @@ export default function CardsTable({ cards, refresh }: any) {
                   {t.admin.cardsPage.table.cardNumber}
                 </TableHead>
                 <TableHead className="text-sm lg:text-base font-semibold py-4">
-                  {t.admin.cardsPage.table.rarity}
-                </TableHead>
-                <TableHead className="text-sm lg:text-base font-semibold py-4">
                   {t.admin.cardsPage.table.pack}
                 </TableHead>
                 <TableHead className="text-sm lg:text-base font-semibold py-4">
@@ -153,14 +150,7 @@ export default function CardsTable({ cards, refresh }: any) {
                     {card.card_number || "—"}
                   </TableCell>
 
-                  {/* Rarity */}
-                  <TableCell className="text-sm lg:text-base">
-                    {card.rarity ? (
-                      <Badge className="bg-indigo-50 text-indigo-700">{card.rarity}</Badge>
-                    ) : (
-                      "—"
-                    )}
-                  </TableCell>
+               
 
                   {/* Pack */}
                   <TableCell className="py-4 max-w-45 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-sm lg:text-base text-gray-600">
@@ -269,9 +259,6 @@ export default function CardsTable({ cards, refresh }: any) {
                     <div className="text-xs text-gray-500 truncate">{card.card_name?.ja}</div>
                   </div>
                 </div>
-                {card.rarity && (
-                  <Badge className="bg-indigo-50 text-indigo-700 shrink-0">{card.rarity}</Badge>
-                )}
               </div>
 
               <div className="flex justify-between text-xs text-gray-500">

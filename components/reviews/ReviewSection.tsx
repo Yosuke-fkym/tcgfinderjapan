@@ -160,7 +160,7 @@ export default function ReviewsSection({ shop }: any) {
           </p>
 
           <button
-            onClick={() => window.location.href = "/auth/login"}
+            onClick={() => window.location.href = `/${locale}/auth/login`}
             className="text-sm font-medium text-blue-600"
           >
             {t.auth.login.button}

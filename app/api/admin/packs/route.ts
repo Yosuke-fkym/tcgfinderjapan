@@ -48,6 +48,8 @@ export async function POST(req: Request) {
         name_jp: body.name_jp,
         image_url: body.image_url,
         release_date: body.release_date,
+        ebay_url: body.ebay_url,
+        mercari_url: body.mercari_url
       })
       .select()
       .single();
