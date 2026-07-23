@@ -133,15 +133,6 @@ const { card, article, relatedShops, pack_slug } = result;
                 </dd>
               </div>
 
-              <div>
-                <dt className="text-xs uppercase tracking-wide text-stone-400">
-                 {t.cardPage.cardDetails.packCode}
-                </dt>
-                <dd className="mt-1 font-mono text-sm text-stone-800">
-                  {card.pack_code}
-                </dd>
-              </div>
-
               <div className="sm:col-span-2">
                 <dt className="text-xs uppercase tracking-wide text-stone-400">
                   {t.cardPage.cardDetails.expansionPack}

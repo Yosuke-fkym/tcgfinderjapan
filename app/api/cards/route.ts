@@ -25,7 +25,6 @@ export async function GET(req: Request) {
         `card_number.ilike.%${search}%`,
         `pack_name.ilike.%${search}%`,
         `illustrator_name.ilike.%${search}%`,
-        `pack_code.ilike.%${search}%`,
       ].join(",")
     );
   }

@@ -200,13 +200,12 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
 // ─── Validation ─────────────────────────────────────────────────────────
   // Checks controlled state (cardName, slug, image) plus uncontrolled
   // inputs pulled from FormData (card_number, illustrator_name, pack_name,
-  // pack_code). Single friendly toast on any missing field — no per-field
+  // . Single friendly toast on any missing field — no per-field
   // toasts, matching PackForm's behavior.
   const validate = (formData: FormData) => {
     const cardNumber = formData.get("card_number")?.toString().trim() ?? "";
     const illustratorName = formData.get("illustrator_name")?.toString().trim() ?? "";
     const packName = formData.get("pack_name")?.toString().trim() ?? "";
-    const packCode = formData.get("pack_code")?.toString().trim() ?? "";
 
     const hasImage = !removeImage && (!!imageFile || !!existingImage);
 
@@ -216,7 +215,6 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
       !cardNumber ||
       !illustratorName ||
       !packName ||
-      !packCode ||
       !hasImage;
 
     if (missing) {
@@ -384,7 +382,6 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
 
             {/* PACK INFO */}
             <div className="space-y-4">
-              <h3 className="font-semibold text-gray-800">{t.admin.cardForm.fields.packCode}</h3>
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="grid gap-2">
@@ -396,14 +393,6 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
                   />
                 </div>
 
-                <div className="grid gap-2">
-                  <Label>{t.admin.cardForm.fields.packCode}</Label>
-                  <Input
-                    name="pack_code"
-                    defaultValue={initialData?.pack_code}
-                    placeholder={t.admin.cardForm.placeholders.packCode}
-                  />
-                </div>
               </div>
             </div>
 

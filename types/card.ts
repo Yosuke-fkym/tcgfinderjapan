@@ -53,7 +53,6 @@ export interface Card {
   card_number?: string;
   illustrator_name?: string;
   slug: string;
-  pack_code?: string;
   card_image?: string | null;
   productFlags: string[];
   article_id?: string | number | null;

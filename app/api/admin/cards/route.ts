@@ -62,7 +62,6 @@ export async function POST(req: Request) {
     slug: body.slug,
     card_number: body.card_number,
     illustrator_name: body.illustrator_name,
-    pack_code: body.pack_code,
     article_id: body.article_id,
     ebay_raw_url: body.ebay_raw_url,
     ebay_slab_url: body.ebay_slab_url,

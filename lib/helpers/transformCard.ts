@@ -14,7 +14,6 @@ export function transformCard(card: any): Card {
     card_number: card.card_number || undefined,
     illustrator_name: card.illustrator_name || undefined,
     slug: card.slug || "",
-    pack_code: card.pack_code || undefined,
     article_id: card.article_id || undefined,
     affiliate_keywords: card.affiliate_keywords || undefined,
   };
