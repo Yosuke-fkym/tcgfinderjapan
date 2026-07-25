@@ -72,7 +72,7 @@ export default function RelatedShops({ shops }: RelatedShopsProps) {
                   //   ? shop.shop_address
                   //    :
                       shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
-                 || t.common.unknownLocation}
+                 || shop.shop_address}
               </p>
             </CardContent>
           </Card>

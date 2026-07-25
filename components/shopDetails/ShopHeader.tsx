@@ -37,7 +37,7 @@ export default function ShopHeader({ shop }: ShopHeaderProps) {
               // locale === "jp" ?
               // shop.shop_name
               // :
-              shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations]
+              shop.shop_name_in_langs ? shop.shop_name_in_langs[locale as keyof typeof translations] : shop.shop_name
             }
           </h1>
 
@@ -46,7 +46,7 @@ export default function ShopHeader({ shop }: ShopHeaderProps) {
               // locale === "jp" ?
               // shop.shop_address
               // :   
-              shop.shop_address_in_langs && shop.shop_address_in_langs[locale as keyof typeof translations]
+              shop.shop_address_in_langs ? shop.shop_address_in_langs[locale as keyof typeof translations] : shop.shop_address
             }
           </p>
             </div>

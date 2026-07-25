@@ -32,7 +32,7 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${isJP ? shop.shop_name : shop.shop_name_in_langs?.[locale as keyof typeof translations]} | Trading Card Shop in Japan`;
+  const title = `${shop.shop_name_in_langs?.[locale as keyof typeof translations] || shop.shop_name} | Trading Card Shop in Japan`;
   const description = `Visit ${shop.shop_name}. Check reviews, ratings, location, and available trading cards in Japan.`;
 
   return {

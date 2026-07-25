@@ -172,7 +172,7 @@ useEffect(() => {
               // params.locale === "jp" ?
               // shop.shop_name
               // :
-             shop.shop_name_in_langs && shop.shop_name_in_langs[params.locale as keyof typeof translations]
+             shop.shop_name_in_langs ? shop.shop_name_in_langs[params.locale as keyof typeof translations] : shop.shop_name
             }
           </span>
         </div>
@@ -221,7 +221,7 @@ useEffect(() => {
               // params.locale === "jp" ?
               // shop.description
               // :
-             shop.shop_desc_in_langs && shop.shop_desc_in_langs[params.locale as keyof typeof translations]
+             shop.shop_desc_in_langs ? shop.shop_desc_in_langs[params.locale as keyof typeof translations] : shop.description
             }
           </p>
         </div>
