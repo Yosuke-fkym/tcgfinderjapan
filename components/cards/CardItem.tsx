@@ -5,6 +5,7 @@ import type { Card } from "@/types/card";
 import { FavoriteButton } from "./FavoriteButton";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
+import placeholder from '@/assets/no-cards-placeholder.png'
 
 interface CardItemProps {
   card: Card;
@@ -30,7 +31,7 @@ export function CardItem({ card, showFavoriteButton = false, onRemoved }: CardIt
       <div className="relative aspect-5/7 w-full overflow-hidden bg-stone-100">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={card.card_image as string}
+          src={card.card_image ? card.card_image as string : placeholder.src}
           alt={`${card.card_name} ${t.cardPage.cardItem.cardArt}`}
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"

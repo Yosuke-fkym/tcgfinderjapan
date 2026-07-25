@@ -139,3 +139,17 @@ export type CSVRow = {
   // 🎥 Reels (pipe separated)
   reels?: string;
 };
+
+
+export interface CardCSVRow {
+  card_name?: string;
+  pack_name?: string;
+  card_number?: string;
+  illustrator_name?: string;
+  slug?: string;
+  ebay_raw_url?: string;
+  ebay_slab_url?: string;
+  mercari_raw_url?: string;
+  mercari_slab_url?: string;
+  [key: string]: string | undefined;
+}

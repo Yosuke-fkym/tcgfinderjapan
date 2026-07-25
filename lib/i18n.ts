@@ -64,30 +64,46 @@ export const translations = {
       viewedAt: "Viewed at",
     },
     csvImport: {
-      title: "CSV Import",
-      subtitle: "Upload a CSV file to bulk register shop data",
+  title: "CSV Import",
+  subtitle: "Upload CSV files to bulk import data.",
 
-      uploadTitle: "Upload CSV file",
-      uploadHint: "Drag & drop or click to select a file",
+  tabs: {
+    shops: "Shops",
+    cards: "Cards",
+  },
 
-      rowsDetected: "row detected",
-      uploading: "Uploading...",
-      importData: "Import Data",
+  uploadTitle: "Upload CSV file",
+  uploadHint: "Drag & drop or click to select a file",
 
-      previewNote: "Showing first 10 rows (preview)",
+  rowsDetected: "rows detected",
+  uploading: "Uploading...",
+  importData: "Import Data",
 
-      table: {
-        shopName: "Shop name",
-        address: "Address",
-        website: "Website",
-        mondayHours: "Monday hours",
-        closed: "Closed",
-        shopVideo: "Shop video",
-      },
+  previewNote: "Showing the first 10 rows (preview)",
 
-      success: "CSV imported successfully",
-      uploadFailed: "Upload failed",
-    },
+  table: {
+    shopName: "Shop Name",
+    address: "Address",
+    website: "Website",
+    mondayHours: "Monday Hours",
+    closed: "Closed",
+    shopVideo: "Shop Video",
+  },
+
+  cardTitle: "Card CSV Import",
+  cardSubtitle: "Upload and preview card data from a CSV file.",
+  comingSoon: "Card import backend coming soon.",
+
+  cardTable: {
+    cardName: "Card Name",
+    packName: "Pack Name",
+    cardNumber: "Card Number",
+    illustrator: "Illustrator",
+  },
+
+  success: "CSV imported successfully.",
+  uploadFailed: "Upload failed.",
+},
     adminReports: {
       title: "Review Management",
       filters: {
@@ -1398,31 +1414,47 @@ packCountFound: "{count} pack{plural} found",
       viewedAt: "閲覧日時",
     },
 
-    csvImport: {
-      title: "CSVインポート",
-      subtitle: "CSVファイルをアップロードして店舗データを一括登録",
+   csvImport: {
+  title: "CSVインポート",
+  subtitle: "CSVファイルをアップロードしてデータを一括登録します。",
 
-      uploadTitle: "CSVファイルをアップロード",
-      uploadHint: "ドラッグ＆ドロップまたはクリックして選択",
+  tabs: {
+    shops: "店舗",
+    cards: "カード",
+  },
 
-      rowsDetected: "行を検出",
-      uploading: "アップロード中...",
-      importData: "データをインポート",
+  uploadTitle: "CSVファイルをアップロード",
+  uploadHint: "ドラッグ＆ドロップまたはクリックして選択",
 
-      previewNote: "最初の10行を表示（プレビュー）",
+  rowsDetected: "件のデータを検出",
+  uploading: "アップロード中...",
+  importData: "データをインポート",
 
-      table: {
-        shopName: "店舗名",
-        address: "住所",
-        website: "ウェブサイト",
-        mondayHours: "月曜日の営業時間",
-        closed: "休業",
-        shopVideo: "ショップ動画",
-      },
+  previewNote: "最初の10件をプレビュー表示しています",
 
-      success: "CSVのインポートに成功しました",
-      uploadFailed: "アップロードに失敗しました",
-    },
+  table: {
+    shopName: "店舗名",
+    address: "住所",
+    website: "ウェブサイト",
+    mondayHours: "月曜日の営業時間",
+    closed: "休業",
+    shopVideo: "ショップ動画",
+  },
+
+  cardTitle: "カードCSVインポート",
+  cardSubtitle: "CSVファイルからカードデータをアップロードし、内容をプレビューします。",
+  comingSoon: "カードCSVインポート機能のバックエンドは現在実装中です。",
+
+  cardTable: {
+    cardName: "カード名",
+    packName: "パック名",
+    cardNumber: "カード番号",
+    illustrator: "イラストレーター",
+  },
+
+  success: "CSVのインポートに成功しました。",
+  uploadFailed: "アップロードに失敗しました。",
+},
 
     adminReports: {
       title: "レビュー管理",

@@ -7,6 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import placeholder from '@/assets/no-cards-placeholder.png'
 
 interface CardImageDialogProps {
   src: string;
@@ -26,7 +27,7 @@ export function CardImageDialog({ src, name }: CardImageDialogProps) {
           <div className="aspect-5/7 w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={src}
+              src={src ? src : placeholder.src}
               alt={`${name} card art`}
               className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
             />
@@ -44,7 +45,7 @@ export function CardImageDialog({ src, name }: CardImageDialogProps) {
         <div className="mt-2 max-h-[75vh] w-full overflow-hidden rounded-xl bg-stone-100">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={src}
+            src={src ? src : placeholder.src}
             alt={`${name} card art, enlarged`}
             className="h-full w-full object-contain"
           />
