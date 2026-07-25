@@ -1,7 +1,10 @@
 import { supabaseAdmin } from "@/lib/supabase/admin";
 
-function generateSlug(cardName?: string, cardNumber?: string) {
-  const base = `${cardName ?? ""}-${cardNumber ?? ""}`
+function generateSlug(cardName?: string) {
+    if(!cardName){
+        return;
+    }
+  const base = `${cardName.replace(" ", "-").toLocaleLowerCase()}`
     .toLowerCase()
     .trim()
     .replace(/[^a-z0-9]+/g, "-")
@@ -19,7 +22,7 @@ export async function POST(req: Request) {
       pack_name: r.pack_name,
       card_number: r.card_number,
       illustrator_name: r.illustrator_name,
-      slug: r.slug?.trim() || generateSlug(r.card_name, r.card_number),
+      slug: r.slug?.trim() || generateSlug(r.card_name),
       ebay_raw_url: r.ebay_raw_url || null,
       ebay_slab_url: r.ebay_slab_url || null,
       mercari_raw_url: r.mercari_raw_url || null,
