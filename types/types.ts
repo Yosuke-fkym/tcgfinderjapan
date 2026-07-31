@@ -155,7 +155,6 @@ export interface CardCSVRow {
 }
 
 export interface PackCSVRow {
-  slug?: string;
   name_en: string;
   name_jp?: string;
   image_url?: string;

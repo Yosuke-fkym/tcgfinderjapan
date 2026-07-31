@@ -18,7 +18,7 @@ export async function POST(req: Request) {
 
   for (const r of rows) {
     const body = {
-      slug: r.slug?.trim() || generateSlug(r.name_en),
+      slug: generateSlug(r.name_en),
       name_en: r.name_en,
       name_jp: r.name_jp || null,
       image_url: r.image_url || null,

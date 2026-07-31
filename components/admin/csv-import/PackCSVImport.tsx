@@ -75,7 +75,6 @@ export default function PackCSVImport() {
   const columns: CSVColumn<PackCSVRow>[] = [
     { key: "name_en", header: t.csvImport.packTable.nameEn },
     { key: "name_jp", header: t.csvImport.packTable.nameJp },
-    { key: "slug", header: t.csvImport.packTable.slug },
     { key: "release_date", header: t.csvImport.packTable.releaseDate },
     { key: "ebay_url", header: t.csvImport.packTable.ebayUrl},
     { key: "mercari_url", header: t.csvImport.packTable.mercariUrl}
