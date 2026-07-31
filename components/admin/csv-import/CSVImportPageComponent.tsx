@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
 import ShopCSVImport from "./ShopCSVImport";
 import CardCSVImport from "./CardCSVImport";
+import PackCSVImport from "./PackCSVImport";
 
 export default function CSVImportPageComponent() {
   const { locale } = useParams();
@@ -16,6 +17,7 @@ export default function CSVImportPageComponent() {
         <TabsList>
           <TabsTrigger value="shops">{t.csvImport.tabs.shops}</TabsTrigger>
           <TabsTrigger value="cards">{t.csvImport.tabs.cards}</TabsTrigger>
+          <TabsTrigger value="packs">{t.csvImport.tabs.packs}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="shops" className="mt-6">
@@ -24,6 +26,9 @@ export default function CSVImportPageComponent() {
 
         <TabsContent value="cards" className="mt-6">
           <CardCSVImport />
+        </TabsContent>
+        <TabsContent value="packs" className="mt-6">
+          <PackCSVImport />
         </TabsContent>
       </Tabs>
     </div>

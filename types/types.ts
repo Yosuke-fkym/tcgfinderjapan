@@ -153,3 +153,13 @@ export interface CardCSVRow {
   mercari_slab_url?: string;
   [key: string]: string | undefined;
 }
+
+export interface PackCSVRow {
+  slug?: string;
+  name_en: string;
+  name_jp?: string;
+  image_url?: string;
+  release_date?: string;
+  ebay_url?: string;
+  mercari_url?: string;
+}

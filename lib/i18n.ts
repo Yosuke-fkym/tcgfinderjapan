@@ -70,6 +70,7 @@ export const translations = {
   tabs: {
     shops: "Shops",
     cards: "Cards",
+    packs: "Packs"
   },
 
   uploadTitle: "Upload CSV file",
@@ -92,13 +93,24 @@ export const translations = {
 
   cardTitle: "Card CSV Import",
   cardSubtitle: "Upload and preview card data from a CSV file.",
-  comingSoon: "Card import backend coming soon.",
+  packTitle: "Pack CSV Import",
+packSubtitle: "Upload and preview pack data from a CSV file.",
 
   cardTable: {
     cardName: "Card Name",
     packName: "Pack Name",
     cardNumber: "Card Number",
     illustrator: "Illustrator",
+  },
+
+  packTable: {
+    nameEn: "Name (EN)",
+    nameJp: "Name (JP)",
+    slug: "Slug",
+    releaseDate: "Release Date",
+    imageUrl: "Image URL",
+    ebayUrl: "Ebay URL",
+    mercariUrl: "Mercari URL"
   },
 
   success: "CSV imported successfully.",
@@ -1421,6 +1433,7 @@ packCountFound: "{count} pack{plural} found",
   tabs: {
     shops: "店舗",
     cards: "カード",
+    packs: "パック"
   },
 
   uploadTitle: "CSVファイルをアップロード",
@@ -1443,7 +1456,8 @@ packCountFound: "{count} pack{plural} found",
 
   cardTitle: "カードCSVインポート",
   cardSubtitle: "CSVファイルからカードデータをアップロードし、内容をプレビューします。",
-  comingSoon: "カードCSVインポート機能のバックエンドは現在実装中です。",
+  packTitle: "パックCSVインポート",
+packSubtitle: "CSVファイルからパックデータをアップロードし、内容をプレビューします。",
 
   cardTable: {
     cardName: "カード名",
@@ -1451,6 +1465,16 @@ packCountFound: "{count} pack{plural} found",
     cardNumber: "カード番号",
     illustrator: "イラストレーター",
   },
+
+packTable: {
+  nameEn: "英語名",
+  nameJp: "日本語名",
+  slug: "スラッグ",
+  releaseDate: "発売日",
+  imageUrl: "画像URL",
+  ebayUrl: "eBay URL",
+mercariUrl: "Mercari URL",
+},
 
   success: "CSVのインポートに成功しました。",
   uploadFailed: "アップロードに失敗しました。",
