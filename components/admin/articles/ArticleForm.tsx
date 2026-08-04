@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
+import imageCompression from "browser-image-compression";
 import {
   Card,
   CardContent,
@@ -211,11 +212,18 @@ const t = getT(locale as string);
   // Thumbnail handlers
   // ---------------------------------------------------------------------------
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async(e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     if (preview) URL.revokeObjectURL(preview);
-    setNewFile(file);
+    
+      const IMAGE_OPTIONS = {
+          maxSizeMB: 1,
+          useWebWorker: true
+      }
+    
+        const compressedFile = await imageCompression(file, IMAGE_OPTIONS)
+    setNewFile(compressedFile);
     setPreview(URL.createObjectURL(file));
     setExistingThumbnail(null);
     e.target.value = "";

@@ -21,6 +21,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import imageCompression from "browser-image-compression";
 
 import {
   Command,
@@ -135,7 +136,7 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
   };
 
   // ─── Image Handlers (mirrors Shop's icon handlers 1:1) ─────────────────────
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async(e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -146,7 +147,12 @@ const [mercariSlabUrl, setMercariSlabUrl] = useState(initialData?.mercari_slab_u
     const blobUrl = URL.createObjectURL(file);
     imagePreviewUrlRef.current = blobUrl;
 
-    setImageFile(file);
+    const IMAGE_OPTIONS = {
+      maxSizeMB: 1,
+      useWebWorker: true
+    }
+    const compressedFile = await imageCompression(file, IMAGE_OPTIONS)
+    setImageFile(compressedFile);
     setImagePreview(blobUrl);
     // existingImage is NOT touched here — it stays as the DB URL.
 

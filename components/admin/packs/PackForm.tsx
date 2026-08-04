@@ -5,6 +5,7 @@ import { Package, ImageIcon, Trash } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import imageCompression from "browser-image-compression";
 import {
   Card,
   CardContent,
@@ -128,7 +129,7 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
   };
 
   // ─── Image Handlers (mirrors CardForm's image handlers 1:1) ───────────────
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async(e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -138,12 +139,15 @@ export default function PackForm({ initialData, mode = "create" }: PackFormProps
 
     const blobUrl = URL.createObjectURL(file);
     imagePreviewUrlRef.current = blobUrl;
-
-    setImageFile(file);
+    
+    const IMAGE_OPTIONS = {
+      maxSizeMB: 1,
+      useWebWorker: true
+    }
+    const compressedFile = await imageCompression(file, IMAGE_OPTIONS)
+    setImageFile(compressedFile);
     setImagePreview(blobUrl);
-    // existingImage is NOT touched here — it stays as the DB URL.
 
-    // Selecting a new image implicitly cancels a pending removal.
     setRemoveImage(false);
   };
 
