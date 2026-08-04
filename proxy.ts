@@ -61,7 +61,7 @@ export async function proxy(req: NextRequest) {
   //  Already logged in
   if (user && isAuthPage) {
     return NextResponse.redirect(
-      new URL(`/${locale}/map`, req.url)
+      new URL(`/${locale}/blog`, req.url)
     );
   }
 

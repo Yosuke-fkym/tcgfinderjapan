@@ -8,6 +8,7 @@ export const translations = {
     appName: "TCG Finder Japan",
     navbar: {
       home: "Home",
+      map: "Map",
       ranking: "Ranking",
       contact: "Contact",
       blog: "Blog",
@@ -1370,6 +1371,7 @@ packCountFound: "{count} pack{plural} found",
     navbar: {
       home: "ホーム",
       ranking: "ランキング",
+      map: "地図",
       contact: "お問い合わせ",
       blog: "ブログ",
       cards: "カード一覧",

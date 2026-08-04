@@ -21,6 +21,7 @@ import { ShopVideo } from "@/types/types";
 import Image from "next/image";
 import { getT } from "@/lib/getT";
 import { translations } from "@/lib/i18n";
+import imageCompression from 'browser-image-compression';
 import {
   Popover,
   PopoverContent,
@@ -174,7 +175,7 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
 
   // ─── Shop Icon Handlers ─────────────────────────────────────────────────────
 
-  const handleIconChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleIconChange = async(e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -187,13 +188,16 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
     const blobUrl = URL.createObjectURL(file);
     iconPreviewUrlRef.current = blobUrl;
 
-    setIconFile(file);
-    // FIX 3: iconPreview holds ONLY the blob URL for the newly selected file.
-    setIconPreview(blobUrl);
-    // FIX 3: existingIcon is NOT touched here — it stays as the DB URL.
+    const IMAGE_OPTIONS = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 40,
+      useWebWorker: true
+    }
 
-    // FIX 2 & 5: Selecting a new icon implicitly cancels a pending removal,
-    // because the user clearly wants an icon now.
+    const compressedFile = await imageCompression(file, IMAGE_OPTIONS)
+
+    setIconFile(compressedFile);
+    setIconPreview(blobUrl);
     setRemoveIcon(false);
   };
 

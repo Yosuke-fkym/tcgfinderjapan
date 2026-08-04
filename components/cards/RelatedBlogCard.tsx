@@ -16,7 +16,7 @@ export function RelatedBlogCard({ post, locale}: RelatedBlogCardProps) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={post.thumbnail_url as string}
-          alt=""
+          alt="related-blogs-thumbnail-image"
           className="h-full w-full object-cover"
         />
       </div>

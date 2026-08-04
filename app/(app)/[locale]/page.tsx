@@ -7,5 +7,5 @@ export default async function Home({
 })
 {
    const { locale } = await params;
-  redirect(`/${locale}/map`);
+  redirect(`/${locale}/blog`);
 }

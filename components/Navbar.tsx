@@ -93,11 +93,13 @@ function Navbar() {
   const navItems = [
 
     { label: t.navbar.home, path: `/${locale}` },
+    { label: t.navbar.map, path: `/${locale}/map` },
     { label: t.navbar.ranking, path: `/${locale}/ranking` },
     { label: t.navbar.cards, path: `/${locale}/cards` },
     { label: t.navbar.blog, path: `/${locale}/blog` },
     { label: t.navbar.contact, path: `/${locale}/contact` },
   ];
+
 
   return (
     <div className="relative">
@@ -123,7 +125,9 @@ function Navbar() {
                   path === item.path
                     ? "bg-white py-1.5 px-3 text-indigo-600 rounded-md font-semibold"
                     : ""
-                }`}
+                } 
+                
+                `}
               >
                 {item.label}
               </li>

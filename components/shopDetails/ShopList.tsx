@@ -81,12 +81,12 @@ export default function ShopList({
 
   {/* NAME + ADDRESS */}
   <div className="flex flex-col gap-1">
-    <div className="font-medium text-base text-white">
+    <h1 className="font-medium text-base text-white">
       {shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name}
-    </div>
-    <div className="text-xs text-gray-500 line-clamp-1">
+    </h1>
+    <p className="text-xs text-gray-500 line-clamp-1">
       {shop.shop_address_in_langs && shop?.shop_address_in_langs[locale as keyof typeof translations] || shop.shop_address}
-    </div>
+    </p>
   </div>
 </div>
 

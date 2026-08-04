@@ -61,7 +61,7 @@ export function AffiliateHtmlModal({
             id="affiliate-html"
             value={html}
             onChange={(e) => setHtml(e.target.value)}
-            placeholder={`<a href="https://...">\n  <img src="https://..." width="1" height="1" border="0" alt="" />\n</a>`}
+            placeholder={`<a href="https://...">\n  <img src="https://..." width="1" height="1" border="0" alt="affiliated-board" />\n</a>`}
             className="font-mono text-xs min-h-[160px] resize-y"
             autoFocus
             spellCheck={false}

@@ -41,9 +41,6 @@ export default function RelatedShops({ shops }: RelatedShopsProps) {
                 height={160}
                 width={256}
                 alt={
-                  // locale === "jp"
-                  // ? shop.shop_name
-                  //  : 
                    shop.shop_name_in_langs && shop.shop_name_in_langs[locale as keyof typeof translations] || shop.shop_name
                 }
                 src={
