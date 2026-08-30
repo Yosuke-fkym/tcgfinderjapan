@@ -8,7 +8,7 @@ export async  function GET(){
 
         const {data, error} = await supabase
         .from("shops")
-        .select(`*, shop_product_flags(product_flags(id, name))`);
+        .select(`*, shop_product_flags(product_flags(id, name)), shop_photos(image_url)`);
 
         if (error) {
             return Response.json({error: error.message}, {status: 400});

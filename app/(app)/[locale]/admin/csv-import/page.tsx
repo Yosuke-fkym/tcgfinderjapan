@@ -10,8 +10,7 @@ export async function generateMetadata({
 
   return {
     title: "CSV Import | Admin Dashboard",
-    description:
-      "Upload and import shop data using CSV files into the system.",
+    description: "Upload and import shop data using CSV files into the system.",
 
     robots: {
       index: false,
@@ -23,7 +22,7 @@ export async function generateMetadata({
 
       languages: {
         en: `${baseUrl}/en/admin/csv-import`,
-        jp: `${baseUrl}/jp/admin/csv-import`,
+        ja: `${baseUrl}/jp/admin/csv-import`,
       },
     },
   };

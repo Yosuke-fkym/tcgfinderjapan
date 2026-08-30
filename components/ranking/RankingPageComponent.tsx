@@ -11,7 +11,7 @@ const RankingRow = dynamic(
   () => import("./RankingRow").then((mod) => mod.RankingRow)
 );
 import RankingFilter from "@/components/ranking/RankingFilter";
-import AdBanner from "../ads/VerticalAdBanner";
+// import AdBanner from "../ads/VerticalAdBanner";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
 import { AREA_OPTIONS } from "@/lib/helpers/areas";
@@ -90,13 +90,13 @@ if (area !== "ALL") {
   };
 
   return (
-    <div className="px-4 sm:px-6 md:px-8 lg:px-10 py-6 w-full md:py-8 bg-muted/40 min-h-screen space-y-8 md:space-y-10">
+    <div className="px-4 sm:px-6 md:px-8 lg:px-10 py-6 w-full md:py-8 !!bg-transparent min-h-screen space-y-8 md:space-y-10">
 
       {/* HERO */}
       <div className="text-center space-y-3">
         <TrophyIcon className="mx-auto text-yellow-500" size={32} />
 
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-3xl font-bold text-white">
           {t.ranking.title}
         </h1>
 
@@ -164,7 +164,7 @@ if (area !== "ALL") {
             ))}
           </div>
 
-          <AdBanner position="center"/>
+          {/* <AdBanner position="center"/> */}
 
           <div className="space-y-3 md:space-y-4">
             {data.slice(3).map((item, index) => (

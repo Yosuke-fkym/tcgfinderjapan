@@ -28,12 +28,9 @@ export default async function AdminLayout({
   const { locale } = await params;
   const t = getT(locale);
 
-  
   return (
     <div className={`${inter.className} min-h-screen `}>
-      
       <div className="max-w-7xl mx-auto flex flex-col xl:flex-row gap-3 p-3">
-
         <div className="xl:w-64 w-full">
           <AdminAsideNav />
         </div>

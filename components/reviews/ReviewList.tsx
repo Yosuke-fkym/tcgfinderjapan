@@ -41,11 +41,11 @@ export default function ReviewList({
   }
 
   if (!reviews.length) return null;
-
+  
   return (
     <div className="relative">
       {/* Blur layer */}
-      {!isLoggedIn && (
+      {/* {!isLoggedIn && (
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center backdrop-blur-[3px] bg-white/60 rounded-2xl">
           <Lock className="text-gray-500 mb-2" size={20} />
           <p className="text-sm text-gray-700">
@@ -58,11 +58,12 @@ export default function ReviewList({
             {t.auth.login.button}
           </button>
         </div>
-      )}
+      )} */}
 
       {/* Reviews */}
-      <div className={!isLoggedIn ? "pointer-events-none opacity-60" : ""}>
+      <div>
         <div className="space-y-3">
+          
           {paginatedReviews.map((review: any) => (
             <ReviewCard
               currentUserId={currentUserId}

@@ -7,6 +7,7 @@ import { getT } from "@/lib/getT";
 import { translations } from "@/lib/i18n";
 import Image from "next/image";
 import { tagColors } from "@/lib/getStoreTagColor";
+import { Globe } from "lucide-react";
 
 interface ShopHeaderProps {
   shop: Shop;
@@ -27,7 +28,7 @@ export default function ShopHeader({ shop }: ShopHeaderProps) {
     alt={shop.shop_name}
     width={60}
     height={60}
-    className="rounded-full object-cover h-[60px] border"
+    className="rounded-full object-cover h-15 border"
   />
 )}
 <div className="flex flex-col">
@@ -49,6 +50,20 @@ export default function ShopHeader({ shop }: ShopHeaderProps) {
               shop.shop_address_in_langs ? shop.shop_address_in_langs[locale as keyof typeof translations] : shop.shop_address
             }
           </p>
+            {shop.website && (
+            <a
+              href={shop.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-1 text-xs md:text-sm text-indigo-400 hover:text-indigo-300 transition mt-0.5"
+            >
+              <Globe className="w-3.5 h-3.5" />
+              <span className="truncate max-w-45 sm:max-w-60">
+                {shop.website.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+              </span>
+            </a>
+          )}
             </div>
         </div>
 

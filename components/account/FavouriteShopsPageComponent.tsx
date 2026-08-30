@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { Card, CardContent } from "@/components/ui/card";
-import { Heart } from "lucide-react";
+import { Heart, MapPin } from "lucide-react";
 import { toast } from "sonner";
 import { checkUser } from "@/lib/helpers/getUser";
 import Image from "next/image";
@@ -54,23 +53,26 @@ export default function FavouriteShopsPageComponent() {
 
   if (isLoggedIn === null) {
     return (
-      <div className="text-sm text-gray-500 min-h-[80vh] flex justify-center items-center">
-        {t.common.loading} <Spinner className="inline-flex mx-0.5"/>
+      <div className="text-sm text-white/40 min-h-[50vh] flex justify-center items-center gap-2">
+        {t.common.loading} <Spinner className="inline-flex mx-0.5" />
       </div>
     );
   }
 
   if (favorites === null) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {Array.from({ length: 6 }).map((_, i) => (
-          <Card key={i} className="animate-pulse overflow-hidden">
-            <div className="h-40 bg-gray-200" />
-            <CardContent className="p-4 space-y-2">
-              <div className="h-4 bg-gray-200 rounded w-3/4" />
-              <div className="h-3 bg-gray-200 rounded w-1/2" />
-            </CardContent>
-          </Card>
+          <div
+            key={i}
+            className="animate-pulse overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]"
+          >
+            <div className="h-40 bg-white/[0.04]" />
+            <div className="p-4 space-y-2">
+              <div className="h-4 bg-white/[0.06] rounded w-3/4" />
+              <div className="h-3 bg-white/[0.04] rounded w-1/2" />
+            </div>
+          </div>
         ))}
       </div>
     );
@@ -78,11 +80,12 @@ export default function FavouriteShopsPageComponent() {
 
   if (favorites.length === 0) {
     return (
-      <div className="text-center py-20 text-gray-500">
-        <p className="text-lg font-medium">{t.favorites.emptyTitle}</p>
-        <p className="text-sm mt-1">
-          {t.favorites.emptyDesc}
-        </p>
+      <div className="flex flex-col items-center justify-center py-20 text-center gap-3">
+        <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center">
+          <Heart size={20} className="text-white/25" />
+        </div>
+        <p className="text-lg font-medium text-white">{t.favorites.emptyTitle}</p>
+        <p className="text-sm text-white/45">{t.favorites.emptyDesc}</p>
       </div>
     );
   }
@@ -90,67 +93,68 @@ export default function FavouriteShopsPageComponent() {
   return (
     <div className="flex flex-col gap-6">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-semibold text-gray-800">{t.favorites.title}</h1>
-        <p className="text-sm text-gray-500 mt-1">{t.favorites.subtitle}</p>
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600/20 to-indigo-600/[0.02] border border-indigo-500/25 flex items-center justify-center shrink-0">
+          <Heart size={17} className="text-indigo-400" />
+        </div>
+        <div>
+          <h1 className="text-2xl font-semibold text-white tracking-tight">
+            {t.favorites.title}
+          </h1>
+          <p className="text-sm text-white/45">{t.favorites.subtitle}</p>
+        </div>
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {favorites.map((fav) => (
-          <Card
+          <div
             key={fav.shops?.shop_id}
-            className="group cursor-pointer pt-0 overflow-hidden border shadow-sm hover:shadow-md transition"
+            className="group cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm hover:border-indigo-500/25 hover:bg-white/[0.035] transition-colors duration-300"
             onClick={() => router.push(`/${locale}/shop/${fav.shops?.shop_id}`)}
           >
-            <div className="relative">
-              {/* Image */}
+            <div className="relative overflow-hidden">
               <Image
-              height={160}
-              width={256}
-              alt={fav.shops?.shop_name}
+                height={160}
+                width={256}
+                alt={fav.shops?.shop_name}
                 src={
                   fav.shops?.shop_photos?.[0]?.image_url || "/placeholder.jpg"
                 }
-                className="h-40 w-full object-cover"
+                className="h-40 w-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-black/0 group-hover:from-black/60 transition-colors duration-300" />
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition" />
-
-              {/* ❤️ Remove button */}
+              {/* Remove button */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   removeFavorite(fav.shops?.shop_id);
                 }}
-                className="absolute top-2 right-2 bg-white/90 hover:bg-white p-2 rounded-full shadow"
+                className="absolute top-2.5 right-2.5 bg-black/50 backdrop-blur-sm border border-white/10 hover:bg-black/70 p-2 rounded-full transition-colors"
               >
-                <Heart className="text-red-500 fill-red-500" size={16} />
+                <Heart className="text-red-500 fill-red-500" size={15} />
               </button>
             </div>
 
-            <CardContent className="p-2 pt-0">
-              <p className="font-semibold text-indigo-600 line-clamp-1">
-                {
-                  // locale === "jp" ?
-                  // fav.shops?.shop_name
-                  // :
-                 fav.shops?.shop_name_in_langs && fav.shops.shop_name_in_langs[locale as keyof typeof translations]
-                }
+            <div className="p-4">
+              <p className="font-semibold text-white group-hover:text-indigo-400 transition-colors line-clamp-1">
+                {fav.shops?.shop_name_in_langs &&
+                  fav.shops.shop_name_in_langs[
+                    locale as keyof typeof translations
+                  ]}
               </p>
 
-              <p className="text-sm text-gray-500 mt-1 line-clamp-1">
-                {
-                  // locale === "jp" ?
-                  // fav.shops?.shop_address
-                  // :
-                  fav.shops?.shop_address_in_langs && fav.shops.shop_address_in_langs[locale as keyof typeof translations]
-                 || t.favorites.unknownLocation
-                }
+              <p className="flex items-center gap-1.5 text-sm text-white/45 mt-1.5 line-clamp-1">
+                <MapPin size={12} className="text-white/30 shrink-0" />
+                {(fav.shops?.shop_address_in_langs &&
+                  fav.shops.shop_address_in_langs[
+                    locale as keyof typeof translations
+                  ]) ||
+                  t.favorites.unknownLocation}
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         ))}
       </div>
     </div>

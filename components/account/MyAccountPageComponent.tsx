@@ -1,9 +1,8 @@
-"use client"; 
+"use client";
 
 import { useEffect, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Mail, User } from "lucide-react";
+import { Mail, CalendarClock, Heart, History, Sparkles } from "lucide-react";
 import { Spinner } from "@/components/ui/spinner";
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { checkUser } from "@/lib/helpers/getUser";
@@ -62,76 +61,82 @@ export default function MyAccountPageComponent() {
       });
   }, [isLoggedIn]);
 
-  if (isLoggedIn === null) {
+  if (isLoggedIn === null || !user) {
     return (
-      <div className="text-sm text-gray-500 min-h-[80vh] flex justify-center items-center">
-        {t.common.loading} <Spinner className="inline-flex mx-0.5"/>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return (
-      <div className="text-sm text-gray-500 min-h-[80vh] flex justify-center items-center">
-        {t.common.loading} <Spinner className="inline-flex mx-0.5"/>
+      <div className="text-sm text-white/40 min-h-[50vh] flex justify-center items-center gap-2">
+        {t.common.loading} <Spinner className="inline-flex mx-0.5" />
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-semibold text-gray-800">{t.account.title}</h1>
-        <p className="text-sm text-gray-500 mt-1">
-          {t.account.subtitle}
-        </p>
+    <div>
+      <div className="mb-5">
+        <h1 className="text-2xl font-semibold text-white tracking-tight">
+          {t.account.title}
+        </h1>
+        <p className="text-sm text-white/45 mt-1">{t.account.subtitle}</p>
       </div>
 
-      <Card className="border shadow-sm">
-        <CardContent className="p-6 flex items-center gap-3 sm:gap-6">
-          <Avatar className="h-16 w-16">
-            <AvatarFallback className="text-lg">
-              {user.user_metadata.name?.[0]?.toUpperCase() || "U"}
-            </AvatarFallback>
-          </Avatar>
+      {/* BENTO GRID */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-4">
+        {/* GREETING / PROFILE — large tile */}
+        <div className="lg:col-span-2 lg:row-span-2 relative overflow-hidden rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-600/[0.10] via-white/[0.02] to-transparent p-6 sm:p-8 flex flex-col justify-between min-h-[260px]">
+          {/* decorative glow */}
+          <div className="pointer-events-none absolute -top-10 -right-10 w-40 h-40 rounded-full bg-indigo-500/15 blur-3xl" />
+          <Sparkles className="absolute top-6 right-6 w-4 h-4 text-indigo-400/40" />
 
-          <div className="flex flex-col gap-1">
-            <p className="text-lg font-medium text-gray-800">
-              {user.user_metadata.name}
-            </p>
+          <div className="relative flex items-center gap-4 sm:gap-5">
+            <Avatar className="h-16 w-16 sm:h-20 sm:w-20 ring-2 ring-indigo-500/30 shrink-0">
+              <AvatarFallback className="text-xl sm:text-2xl bg-gradient-to-br from-indigo-600 to-indigo-800 text-white font-semibold">
+                {user.user_metadata.name?.[0]?.toUpperCase() || "U"}
+              </AvatarFallback>
+            </Avatar>
 
-            <div className="flex items-center gap-2 text-sm text-gray-500">
-              <Mail size={14} />
-              {user.email}
+            <div className="flex flex-col gap-1 min-w-0">
+              <p className="text-xl sm:text-2xl font-semibold text-white truncate">
+                {user.user_metadata.name}
+              </p>
+              <div className="flex items-center gap-2 text-sm text-white/50">
+                <Mail size={14} className="text-indigo-400 shrink-0" />
+                <span className="truncate">{user.email}</span>
+              </div>
             </div>
+          </div>
 
-            <div className="flex items-center gap-2 text-sm text-gray-500">
-              <User size={14} />
+          <div className="relative mt-6 pt-5 border-t border-white/10">
+            <div className="inline-flex items-center gap-2 text-xs text-white/45 bg-white/[0.03] border border-white/10 rounded-full px-3 py-1.5">
+              <CalendarClock size={13} className="text-indigo-400" />
               {t.account.joined} {userJoinedDate}
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
 
-      {/* Quick Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Card className="border shadow-sm">
-          <CardContent className="p-4">
-            <p className="text-sm text-gray-500">{t.stats.favoriteShops}</p>
-            <p className="text-xl text-indigo-600 font-semibold mt-1">
-              {favCount !== null ? favCount : "..."}
+        {/* FAVORITES — stat tile */}
+        <div className="rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm p-5 flex flex-col justify-between hover:border-white/15 hover:bg-white/[0.035] transition-colors duration-300">
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-600/20 to-indigo-600/[0.02] border border-indigo-500/25 flex items-center justify-center mb-4">
+            <Heart size={16} className="text-indigo-400" />
+          </div>
+          <div>
+            <p className="text-3xl text-white font-semibold tabular-nums leading-none">
+              {favCount !== null ? favCount : "···"}
             </p>
-          </CardContent>
-        </Card>
+            <p className="text-sm text-white/45 mt-2">{t.stats.favoriteShops}</p>
+          </div>
+        </div>
 
-        <Card className="border shadow-sm">
-          <CardContent className="p-4">
-            <p className="text-sm text-gray-500">{t.stats.recentlyViewedShops}</p>
-            <p className="text-xl text-indigo-600 font-semibold mt-1">
-              {historyCount !== null ? historyCount : "..."}
+        {/* HISTORY — stat tile */}
+        <div className="rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm p-5 flex flex-col justify-between hover:border-white/15 hover:bg-white/[0.035] transition-colors duration-300">
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-600/20 to-indigo-600/[0.02] border border-indigo-500/25 flex items-center justify-center mb-4">
+            <History size={16} className="text-indigo-400" />
+          </div>
+          <div>
+            <p className="text-3xl text-white font-semibold tabular-nums leading-none">
+              {historyCount !== null ? historyCount : "···"}
             </p>
-          </CardContent>
-        </Card>
+            <p className="text-sm text-white/45 mt-2">{t.stats.recentlyViewedShops}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -14,9 +14,9 @@ export function RankingRow({ item, index }: any) {
 
   return (
     <Link href={`/${locale}/shop/${item.shopId}`}>
-      <div className="flex items-center justify-between p-4 my-4 rounded-xl bg-white shadow-sm border hover:shadow-md transition cursor-pointer">
+      <div className="flex items-center justify-between p-4 my-4 rounded-xl sm:flex-row flex-col bg-white shadow-sm border hover:shadow-md transition cursor-pointer">
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 w-full">
 
   <RankBadge index={index} />
 
@@ -55,7 +55,7 @@ export function RankingRow({ item, index }: any) {
     </div>
     {/* ...baaki sab same */}
         {/* Breakdown */}
-            <div className="text-xs text-muted-foreground mt-1 flex gap-3">
+            <div className="text-xs text-muted-foreground mt-1 flex gap-x-3 flex-wrap">
               <span className="inline-flex items-center">
                 {t.ranking.row.selection}: 
                 <Star className="inline fill-yellow-500 text-yellow-500 mx-0.5" size={15}/>
@@ -67,11 +67,17 @@ export function RankingRow({ item, index }: any) {
                 <Star className="inline fill-yellow-500 text-yellow-500 mx-0.5" size={15}/> 
                 {item.avg_price.toFixed(1)}
               </span>
+
+              <span className="inline-flex sm:hidden items-center">
+                {t.ranking.row.score}
+                :
+                {item.score.toFixed(2)}
+              </span>
             </div>
   </div>
 </div>
         {/* Score */}
-        <div className="text-xs text-muted-foreground">
+        <div className="text-xs text-muted-foreground sm:flex hidden w-[75px]">
           {t.ranking.row.score}: {item.score.toFixed(2)}
         </div>
       </div>

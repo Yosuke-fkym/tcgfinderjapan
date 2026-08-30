@@ -142,7 +142,7 @@ const formatted = reviewsArray.map((r: any) => {
   const avgOverall = (avgSelection + avgPrice) / 2;
 
   useEffect(() => {
-    if (shopId && currentUserId !== null) {
+    if (shopId) {
       fetchReviews();
     }
   }, [shopId, currentUserId]);

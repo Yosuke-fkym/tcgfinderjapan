@@ -3,13 +3,9 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-   params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string }>;
 }) {
-  const {locale} = await params;
-  
-  return (
-    <div lang={locale}>
-      {children}
-    </div>
-  );
+  const { locale } = await params;
+
+  return <div lang={locale === "jp" ? "ja" : "en"}>{children}</div>;
 }

@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { Card, CardContent } from "@/components/ui/card";
-import { Clock } from "lucide-react";
+import { Clock, MapPin, History } from "lucide-react";
 import { checkUser } from "@/lib/helpers/getUser";
 import Image from "next/image";
 import { Spinner } from "../ui/spinner";
@@ -37,23 +36,26 @@ export default function ViewedHistoryPageComponent() {
 
   if (isLoggedIn === null) {
     return (
-      <div className="text-sm text-gray-500 min-h-[80vh] flex justify-center items-center">
-        {t.common.loading} <Spinner className="inline-flex mx-0.5"/>
+      <div className="text-sm text-white/40 min-h-[50vh] flex justify-center items-center gap-2">
+        {t.common.loading} <Spinner className="inline-flex mx-0.5" />
       </div>
     );
   }
 
   if (history === null) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {Array.from({ length: 6 }).map((_, i) => (
-          <Card key={i} className="animate-pulse overflow-hidden">
-            <div className="h-40 bg-gray-200" />
-            <CardContent className="p-4 space-y-2">
-              <div className="h-4 bg-gray-200 rounded w-3/4" />
-              <div className="h-3 bg-gray-200 rounded w-1/2" />
-            </CardContent>
-          </Card>
+          <div
+            key={i}
+            className="animate-pulse overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]"
+          >
+            <div className="h-40 bg-white/[0.04]" />
+            <div className="p-4 space-y-2">
+              <div className="h-4 bg-white/[0.06] rounded w-3/4" />
+              <div className="h-3 bg-white/[0.04] rounded w-1/2" />
+            </div>
+          </div>
         ))}
       </div>
     );
@@ -61,10 +63,12 @@ export default function ViewedHistoryPageComponent() {
 
   if (history.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-center text-gray-500">
-        <Clock size={40} className="mb-4 opacity-60" />
-        <p className="text-lg font-medium">{t.history.emptyTitle}</p>
-        <p className="text-sm mt-1">{t.history.emptyDesc}</p>
+      <div className="flex flex-col items-center justify-center py-20 text-center gap-3">
+        <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center">
+          <Clock size={20} className="text-white/25" />
+        </div>
+        <p className="text-lg font-medium text-white">{t.history.emptyTitle}</p>
+        <p className="text-sm text-white/45">{t.history.emptyDesc}</p>
       </div>
     );
   }
@@ -72,25 +76,27 @@ export default function ViewedHistoryPageComponent() {
   return (
     <div className="flex flex-col gap-6">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-semibold text-gray-800">
-          {t.history.title}
-        </h1>
-        <p className="text-sm text-gray-500 mt-1">
-          {t.history.subtitle}
-        </p>
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600/20 to-indigo-600/[0.02] border border-indigo-500/25 flex items-center justify-center shrink-0">
+          <History size={17} className="text-indigo-400" />
+        </div>
+        <div>
+          <h1 className="text-2xl font-semibold text-white tracking-tight">
+            {t.history.title}
+          </h1>
+          <p className="text-sm text-white/45">{t.history.subtitle}</p>
+        </div>
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {history.map((item) => (
-          <Card
+          <div
             key={item.id}
-            className="group pt-0 cursor-pointer overflow-hidden border shadow-sm hover:shadow-md transition"
+            className="group cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm hover:border-indigo-500/25 hover:bg-white/[0.035] transition-colors duration-300"
             onClick={() => router.push(`/${locale}/shop/${item.shop_id}`)}
           >
-            <div className="relative">
-              {/* Image */}
+            <div className="relative overflow-hidden">
               <Image
                 height={160}
                 width={256}
@@ -98,39 +104,34 @@ export default function ViewedHistoryPageComponent() {
                 src={
                   item.shops?.shop_photos?.[0]?.image_url || "/placeholder.jpg"
                 }
-                className="h-40 w-full object-cover"
+                className="h-40 w-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-black/0 group-hover:from-black/60 transition-colors duration-300" />
             </div>
 
-            <CardContent className="p-2 pt-0">
-              <p className="font-semibold text-indigo-600 line-clamp-1">
-                {
-                  // locale === "jp" ?
-                  // item.shops?.shop_name 
-                  // :
-                  item.shops?.shop_name_in_langs && item.shops.shop_name_in_langs[locale as keyof typeof translations]
-                }
+            <div className="p-4">
+              <p className="font-semibold text-white group-hover:text-indigo-400 transition-colors line-clamp-1">
+                {item.shops?.shop_name_in_langs &&
+                  item.shops.shop_name_in_langs[
+                    locale as keyof typeof translations
+                  ]}
               </p>
 
-              <p className="text-sm text-gray-500 mt-1 line-clamp-1">
-                {
-                  // locale === "jp" ?
-                  // item.shops?.shop_address
-                  // :
-                  item.shops?.shop_address_in_langs && item.shops.shop_address_in_langs[locale as keyof typeof translations]
-                || t.common.unknownLocation
-                } 
+              <p className="flex items-center gap-1.5 text-sm text-white/45 mt-1.5 line-clamp-1">
+                <MapPin size={12} className="text-white/30 shrink-0" />
+                {(item.shops?.shop_address_in_langs &&
+                  item.shops.shop_address_in_langs[
+                    locale as keyof typeof translations
+                  ]) ||
+                  t.common.unknownLocation}
               </p>
 
-              {/* Viewed time */}
-              <p className="text-xs text-gray-400 mt-2">
+              <p className="flex items-center gap-1.5 text-xs text-white/30 mt-3 pt-3 border-t border-white/[0.06]">
+                <Clock size={11} />
                 {t.history.viewedAt} {new Date(item.viewed_at).toLocaleString()}
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         ))}
       </div>
     </div>

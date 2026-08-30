@@ -22,24 +22,16 @@ export const metadata:Metadata = {
   title: "Japan Card Shop Map | Find Trading Card Shops Near You",
   description:
     "Explore trading card shops across Japan using an interactive map. Discover Pokémon card stores, filter by area, and find top-rated shops.",
-
-  alternates: {
-    canonical: "https://map-card.vercel.app/map",
-    languages: {
-      en: "https://map-card.vercel.app/map",
-    },
-  },
-
   openGraph: {
     title: "Japan Card Shop Map | Find Trading Card Shops Near You",
     description:
       "Explore trading card shops across Japan using an interactive map. Discover Pokémon card stores, filter by area, and find top-rated shops.",
-    url: "https://map-card.vercel.app",
+    url: "https://tcgfinderjapan.com",
     siteName: "TCG Finder Japan",
     locale: "en_US",
     images: [
     {
-      url: "https://map-card.vercel.app/og.png",
+      url: "https://tcgfinderjapan.com/og.png",
       width: 1200,
       height: 630,
     },

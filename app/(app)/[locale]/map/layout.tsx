@@ -6,7 +6,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const isJP = locale === "jp";
-  
+
   return {
     metadataBase: new URL(baseUrl!), // 🔥 IMPORTANT LINE
     title: "Japan Card Shop Map | Find Trading Card Shops Near You",
@@ -17,7 +17,7 @@ export async function generateMetadata({
       canonical: `${baseUrl}/${locale}/map`,
       languages: {
         en: `${baseUrl}/en/map`,
-        jp: `${baseUrl}/jp/map`,
+        ja: `${baseUrl}/jp/map`,
       },
     },
 
@@ -40,17 +40,11 @@ export async function generateMetadata({
   };
 }
 
-export default function MapLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function MapLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-1">
-        <div className="mx-auto px-2 ">
-          {children}
-        </div>
+        <div className="mx-auto ">{children}</div>
       </main>
     </div>
   );

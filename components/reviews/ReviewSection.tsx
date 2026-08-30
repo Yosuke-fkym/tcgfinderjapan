@@ -153,7 +153,8 @@ export default function ReviewsSection({ shop }: any) {
         </div>
       )}
 
-      {!userId ? (
+      {
+      !userId ? (
         <div className="bg-white border rounded-2xl p-4 shadow-sm flex flex-col items-center justify-center text-center gap-2">
           <p className="text-sm text-gray-700">
             {t.reviews.section.loginRequired}
@@ -166,7 +167,8 @@ export default function ReviewsSection({ shop }: any) {
             {t.auth.login.button}
           </button>
         </div>
-      ) : !myReview || editingReview ? (
+      ) : 
+      !myReview || editingReview ? (
         <ReviewForm
           onSubmit={handleSubmit}
           initialSelection={editingReview?.selection_rating ?? editingReview?.rating}

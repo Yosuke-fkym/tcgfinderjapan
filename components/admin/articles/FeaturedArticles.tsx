@@ -83,7 +83,7 @@ function LeadArticle({
     <article className="group">
       <Link
         href={href}
-        className="grid grid-cols-1 md:grid-cols-[1fr_1fr] lg:grid-cols-[55fr_45fr]
+        className="grid items-center grid-cols-1 md:grid-cols-[1fr_1fr] lg:grid-cols-[55fr_45fr]
                    gap-0 overflow-hidden rounded-sm border border-stone-200
                    bg-white transition-all duration-300
                    hover:border-stone-300 hover:shadow-[0_2px_20px_rgba(0,0,0,0.06)]"
@@ -97,7 +97,7 @@ function LeadArticle({
               alt={article.title}
               fill
               sizes="(max-width: 768px) 100vw, 55vw"
-              className="object-cover transition-transform duration-700 ease-out
+              className="object-contain transition-transform duration-700 ease-out
                          group-hover:scale-[1.03]"
               priority
             />

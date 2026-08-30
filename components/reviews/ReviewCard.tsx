@@ -19,7 +19,7 @@ import DeleteReviewDialog from "./DeleteReviewDialog";
 import ReportReviewModal from "./ReportReviewDialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { getT } from "@/lib/getT";
 import { translations } from "@/lib/i18n";
 import { detectLang } from "@/lib/langTranslation/util";
@@ -41,13 +41,14 @@ export default function ReviewCard({
   onDelete,
   onLike,
 }: Props) {
+
   const [open, setOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
   const [translatedText, setTranslatedText] = useState<string | null>(null);
 const [showTranslation, setShowTranslation] = useState(false);
 const [isTranslating, setIsTranslating] = useState(false);
   const [previewImg, setPreviewImg] = useState<string | null>(null);
-
+const router = useRouter()
   const { locale } = useParams();
   const t = getT(locale as string);
   const reviewLang = detectLang(review.comment || "");
@@ -146,7 +147,7 @@ const [isTranslating, setIsTranslating] = useState(false);
             </div>
           </div>
 
-          {!isOwner && currentUserId !== review.user_id && (
+          {currentUserId && !isOwner && currentUserId !== review.user_id && (
             <DropdownMenu>
               <DropdownMenuTrigger className="p-1" aria-label={''}>
                 <MoreVertical size={18} />
@@ -169,10 +170,6 @@ const [isTranslating, setIsTranslating] = useState(false);
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => onEdit?.(review)}>
                   {t.reviews.card.edit}
-                </DropdownMenuItem>
-
-                <DropdownMenuItem onClick={() => setReportOpen(true)}>
-                  {t.reviews.card.report}
                 </DropdownMenuItem>
 
                 <DropdownMenuItem
@@ -256,7 +253,13 @@ const [isTranslating, setIsTranslating] = useState(false);
         {/* LIKE */}
         <div className="flex items-center gap-2 mt-3 ml-11">
           <button
-            onClick={() => onLike(review.id)}
+            onClick={() => {
+              if(!currentUserId){
+                router.push(`/${locale}/auth/login`)
+                return
+              }
+              onLike(review.id)
+            }}
             className={`text-xs flex items-center gap-1 transition-all duration-200 ${
               likedByMe
                 ? "text-blue-600 scale-105"

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { getT } from "@/lib/getT";
 import { Loader2, Lock } from "lucide-react";
-import shopBg from  "@/assets/japan-bg-poster.png"
+import shopBg from "@/assets/japan-bg-poster.png";
 import { supabaseClient } from "@/lib/supabase/client";
 
 export default function ResetPasswordPage() {
@@ -19,11 +19,15 @@ export default function ResetPasswordPage() {
 
   const handleUpdate = async () => {
     if (!password || !confirm) {
-      return alert(t.auth?.resetPassword.requiredPassword || "Please fill all fields");
+      return alert(
+        t.auth?.resetPassword.requiredPassword || "Please fill all fields",
+      );
     }
 
     if (password !== confirm) {
-      return alert(t.auth?.resetPassword.passwordMismatch || "Passwords do not match");
+      return alert(
+        t.auth?.resetPassword.passwordMismatch || "Passwords do not match",
+      );
     }
 
     setLoading(true);
@@ -35,9 +39,8 @@ export default function ResetPasswordPage() {
     setLoading(false);
 
     if (error) {
-      
-        console.log(error);
-        
+      console.log(error);
+
       alert(t.auth?.forgetPassword.error || "Failed to update password");
     } else {
       setSuccess(true);
@@ -51,18 +54,16 @@ export default function ResetPasswordPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 relative">
-      
       {/* 🌆 Background */}
       <div
-  className="absolute inset-0 bg-center bg-cover bg-no-repeat"
- style={{ backgroundImage: `url(${shopBg.src})` }}
-/>
-        <div className="absolute inset-0 bg-black/60" />
+        className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+        style={{ backgroundImage: `url(${shopBg.src})` }}
+      />
+      <div className="absolute inset-0 bg-black/60" />
 
       {/* 🧾 Card */}
       <div className="relative z-10 w-full max-w-md">
         <div className="bg-black/70 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl space-y-6">
-
           {/* Header */}
           <div className="text-center space-y-2">
             <h1 className="text-2xl font-semibold text-white">
@@ -88,7 +89,9 @@ export default function ResetPasswordPage() {
 
                 <input
                   type="password"
-                  placeholder={t.auth?.resetPassword.newPassword || "New password"}
+                  placeholder={
+                    t.auth?.resetPassword.newPassword || "New password"
+                  }
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full pl-10 pr-3 py-3 bg-black/60 border border-white/20 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-indigo-500 transition"
@@ -101,7 +104,9 @@ export default function ResetPasswordPage() {
 
                 <input
                   type="password"
-                  placeholder={t.auth?.resetPassword.confirmPassword || "Confirm password"}
+                  placeholder={
+                    t.auth?.resetPassword.confirmPassword || "Confirm password"
+                  }
                   value={confirm}
                   onChange={(e) => setConfirm(e.target.value)}
                   className="w-full pl-10 pr-3 py-3 bg-black/60 border border-white/20 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-indigo-500 transition"
@@ -114,14 +119,14 @@ export default function ResetPasswordPage() {
                 disabled={loading}
                 className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 transition px-4 py-3 rounded-lg font-medium text-white disabled:opacity-60"
               >
-               {loading ? (
-  <span className="flex items-center gap-2">
-    <Loader2 className="animate-spin w-4 h-4" />
-    {t.auth?.resetPassword.updating || "Updating..."}
-  </span>
-) : (
-  t.auth?.resetPassword.updatePassword || "Update Password"
-)}
+                {loading ? (
+                  <span className="flex items-center gap-2">
+                    <Loader2 className="animate-spin w-4 h-4" />
+                    {t.auth?.resetPassword.updating || "Updating..."}
+                  </span>
+                ) : (
+                  t.auth?.resetPassword.updatePassword || "Update Password"
+                )}
               </button>
             </>
           )}

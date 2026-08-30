@@ -1,6 +1,5 @@
 import FavouriteCardsPageComponent from "@/components/account/FavouritesCardPageComponent";
 
-
 export async function generateMetadata({
   params,
 }: {
@@ -11,8 +10,7 @@ export async function generateMetadata({
 
   return {
     title: "Favourite Card | TCGFINDERJAPAN",
-    description:
-      "Manage your favorite card.",
+    description: "Manage your favorite card.",
 
     robots: {
       index: false,
@@ -24,7 +22,7 @@ export async function generateMetadata({
 
       languages: {
         en: `${baseUrl}/en/accounts/me/favourite-cards`,
-        jp: `${baseUrl}/jp/accounts/me/favourite-cards`,
+        ja: `${baseUrl}/jp/accounts/me/favourite-cards`,
       },
     },
   };

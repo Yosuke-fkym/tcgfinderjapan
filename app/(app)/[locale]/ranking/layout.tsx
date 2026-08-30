@@ -1,14 +1,15 @@
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
+import shopBg from "@/assets/japan-bg-poster.png";
 import { Spinner } from "@/components/ui/spinner";
-
 
 export default function RankingLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
+  const { locale } = useParams();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -33,36 +34,45 @@ export default function RankingLayout({ children }: { children: ReactNode }) {
     checkAuth();
   }, []);
 
-  useEffect(() => {
-    if (isLoggedIn === false) {
-      router.replace("/auth/login");
-    }
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (isLoggedIn === false) {
+  //     router.replace(`/${locale}/auth/login`);
+  //   }
+  // }, [isLoggedIn]);
 
   if (isLoggedIn === null) {
-    return <div className="text-sm text-gray-500 min-h-[80vh] flex justify-center items-center">loading <Spinner className="inline-flex mx-0.5"/></div>;
+    return (
+      <div className="text-sm text-gray-500 min-h-[80vh] flex justify-center items-center">
+        loading <Spinner className="inline-flex mx-0.5" />
+      </div>
+    );
   }
 
   return (
-    <div className="mx-auto pb-10 pt-4">
+    <div className="relative min-h-screen mx-auto pb-10 pt-4 z-0">
+      <div
+        className="absolute inset-0 bg-center bg-cover bg-no-repeat bg-fixed -z-1"
+        style={{ backgroundImage: `url(${shopBg.src})` }}
+      />
       <div className="max-w-6xl px-4 sm:px-10">
         <div className="flex items-center justify-between mb-4">
-          
           {/* Back Button */}
           <button
-            onClick={() => router.push('map')}
+            onClick={() => router.push("map")}
             className="flex items-center gap-2 text-sm text-gray-600 hover:text-black"
           >
             <ArrowLeft size={16} />
-           Back
+            Back
           </button>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-10 flex justify-center items-center mt-8 gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-10 flex justify-center items-center mt-8 gap-6">
         {/* Content */}
-        <div className="md:col-span-3">
-          <Card className="p-3 sm:p-6">{children}</Card>
+        <div className="md:col-span-3 w-full">
+          <Card className="bg-[#00000059] backdrop-blur-xs p-3 sm:p-6">
+            {children}
+          </Card>
         </div>
       </div>
     </div>

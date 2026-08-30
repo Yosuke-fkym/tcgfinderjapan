@@ -12,6 +12,7 @@ import type { Pack } from "@/types/pack";
 import type { Card } from "@/types/card";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
+import headerImg from '@/assets/header-img.png' 
 
 const PAGE_SIZE = 8;
 const SEARCH_PAGE_SIZE = 50; // wider limit while searching, no pagination shown
@@ -158,17 +159,21 @@ export default function PackEncyclopediaPage() {
         </nav>
 
         {/* Header */}
-        <header className="mb-10">
-          <h1 className="font-serif text-3xl font-semibold tracking-tight text-stone-900 sm:text-4xl">
+       <div className="relative h-75 flex flex-col justify-center p-8 my-4 w-full overflow-hidden rounded-xl">
+        <div className="absolute z-1 bg-black/40 top-0 left-0 h-full w-full"/>
+        <img src={headerImg.src} alt="Header Image" className="absolute top-0 left-0 z-0 -translate-y-75" />
+         <header className="mb-10 relative z-2">
+          <h1 className="font-serif text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             {t.packPage.packEncyclopedia}
           </h1>
-          <p className="mt-2 text-stone-500">{t.packPage.searchExpansionPacks}</p>
+          <p className="mt-2 text-white/60">{t.packPage.searchExpansionPacks}</p>
         </header>
 
         {/* Single shared search — reused PackSearch UI, now drives both packs + cards */}
-        <div className="mb-8">
+        <div className="mb-8 px-2.5 relative z-2">
           <PackSearch value={search} onChange={updateSearch} />
         </div>
+       </div>
 
        {isSearching ? (
   searchLoading ? (

@@ -39,6 +39,7 @@ import {
 
 import { Check, ChevronsUpDown } from "lucide-react";
 import { AREA_MATCH, AREA_OPTIONS } from "@/lib/helpers/areas";
+import { Switch } from "@/components/ui/switch";
 
 export type BusinessHoursType = Record<
   string,
@@ -55,6 +56,7 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState<File[]>([]);
   const [removedImages, setRemovedImages] = useState<number[]>([]);
+  const [isFeatured, setIsFeatured] = useState<boolean>( initialData?.is_featured || false)
   const [existingImages, setExistingImages] = useState<any[]>(
     initialData?.shop_photos || []
   );
@@ -201,6 +203,12 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
     setRemoveIcon(false);
   };
 
+
+  // ─── Featured Shop Handlers ─────────────────────────────────────────────────────
+  const handleFeaturedShop = (checked: boolean)=>{
+    setIsFeatured(checked)
+  }
+
   // FIX 2 & 5: Remove icon clears both the new selection AND marks existing
   // icon for deletion. The preview disappears immediately.
   const handleRemoveIcon = () => {
@@ -289,11 +297,13 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
     e.preventDefault();
 
     const formData = new FormData(e.target);
+    
 
     const body = {
       ...Object.fromEntries(formData),
       business_hours: businessHours,
       holiday_hours: holidayHours,
+      is_featured: isFeatured,
       videos: reels.filter((url) => url.trim() !== ""),
       shop_id: initialData?.shop_id,
       area: area,
@@ -454,6 +464,25 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
                     placeholder="@yourshop"
                   />
                 </div>
+                <div className="border rounded-xl p-5 space-y-4 bg-muted/30">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label
+                    htmlFor="is-featured"
+                    className="font-medium flex flex-col items-start cursor-pointer"
+                  >
+                   {t.admin.shopForm.fields.featuredShop}<br />
+                    <small className="text-muted-foreground">{t.admin.shopForm.fields.featuredShopDescription}</small>
+                  </Label>
+                </div>
+                <Switch
+                  id="is-featured"
+                  checked={isFeatured}
+                  onCheckedChange={handleFeaturedShop}
+                />
+              </div>
+            </div>
+            
               </div>
             </div>
 
@@ -770,7 +799,7 @@ export default function ShopForm({ initialData, mode = "create" }: any) {
             {existingImages.length > 0 && (
               <div className="grid grid-cols-4 gap-4">
                 {existingImages.map((img: any) => (
-                  <div key={img.id} className="relative w-full aspect-[4/3]">
+                  <div key={img.id} className="relative w-full aspect-4/3">
                     <Image
                       alt="preview image"
                       fill

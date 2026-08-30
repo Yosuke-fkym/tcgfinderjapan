@@ -23,7 +23,7 @@ export async function generateMetadata({
 
       languages: {
         en: `${baseUrl}/en/accounts/me/viewed-history`,
-        jp: `${baseUrl}/jp/accounts/me/viewed-history`,
+        ja: `${baseUrl}/jp/accounts/me/viewed-history`,
       },
     },
   };

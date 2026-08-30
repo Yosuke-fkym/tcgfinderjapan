@@ -9,7 +9,7 @@ import {
 } from "@react-google-maps/api";
 import { useEffect, useRef, useCallback, useMemo } from "react";
 import { isShopOpen } from "@/lib/helpers/getShopStatus";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { Heart } from "lucide-react";
 import { getT } from "@/lib/getT";
 import { translations } from "@/lib/i18n";
@@ -40,7 +40,6 @@ export default function Map({
   toggleFavorite,
   isLoggedIn,
 }: MapProps) {
-  const router = useRouter();
   const { locale } = useParams();
   const t = getT(locale as string);
 

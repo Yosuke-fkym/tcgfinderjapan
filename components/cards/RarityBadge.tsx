@@ -124,7 +124,6 @@ const RARITY_STYLES: Record<Rarity, { label: string; classes: string }> = {
 
 export function RarityBadge({ rarity, className }: RarityBadgeProps) {
   const style = RARITY_STYLES[rarity];
-  console.log(rarity);
   
 
   return (

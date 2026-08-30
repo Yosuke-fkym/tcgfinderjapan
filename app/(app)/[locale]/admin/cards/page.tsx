@@ -22,7 +22,7 @@ export async function generateMetadata({
       canonical: `${baseUrl}/${locale}/admin/cards`,
       languages: {
         en: `${baseUrl}/en/admin/cards`,
-        jp: `${baseUrl}/jp/admin/cards`,
+        ja: `${baseUrl}/jp/admin/cards`,
       },
     },
   };

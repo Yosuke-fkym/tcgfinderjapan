@@ -12,24 +12,25 @@ import { Heart } from "lucide-react";
 import { toast } from "sonner";
 import ReviewsSection from "@/components/reviews/ReviewSection";
 import { ShopVideosSection } from "@/components/shopDetails/ShopVideoSection";
-import { fetchShop } from "@/lib/helpers/getShopById";
-import AdBanner from "../ads/VerticalAdBanner";
+// import { fetchShop } from "@/lib/helpers/getShopById";
+// import AdBanner from "../ads/VerticalAdBanner";
 import dynamic from "next/dynamic";
 import { checkUser } from "@/lib/helpers/getUser";
-import { Spinner } from "../ui/spinner";
+// import { Spinner } from "../ui/spinner";
 import { getT } from "@/lib/getT";
 import TweetEmbed from "./TweetCard";
 import { translations } from "@/lib/i18n";
+import Link from "next/link";
 
-export default function ShopPageComponent() {
+export default function ShopPageComponent({shop}: {shop:Shop}) {
   const params = useParams();
   const router = useRouter();
   const id = params.shop_id as string;
 
   const t = getT(params.locale as string);
 
-  const [shop, setShop] = useState<Shop | null>(null);
-  const [loading, setLoading] = useState(true);
+  // const [shop, setShop] = useState<Shop | null>(null);
+  // const [loading, setLoading] = useState(true);
   const [isFav, setIsFav] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
 
@@ -54,13 +55,13 @@ useEffect(() => {
     checkUser({setIsLoggedIn})
   }, []);
 
-  useEffect(() => {
-    async function getShop(){
-      const shop = await fetchShop({ id, setLoading});
-      setShop(shop)
-    } 
-    getShop()
-  }, [id]);
+  // useEffect(() => {
+  //   async function getShop(){
+  //     const shop = await fetchShop({ id, setLoading});
+  //     setShop(shop)
+  //   } 
+  //   getShop()
+  // }, [id]);
 
   const toggleFavorite = async () => {
     if (!isLoggedIn) {
@@ -131,13 +132,13 @@ useEffect(() => {
     checkFavorite();
   }, [shop?.shop_id, isLoggedIn]);
 
-  if (loading || isLoggedIn === null) {
-    return (
-      <div className="text-sm text-gray-500 min-h-[80vh] flex justify-center items-center">
-        {t.common.loading} <Spinner className="inline-flex mx-0.5"/>
-      </div>
-    );
-  }
+  // if (loading || isLoggedIn === null) {
+  //   return (
+  //     <div className="text-sm text-gray-500 min-h-[80vh] flex justify-center items-center">
+  //       {t.common.loading} <Spinner className="inline-flex mx-0.5"/>
+  //     </div>
+  //   );
+  // }
 
   if (!shop) {
     return (
@@ -152,20 +153,19 @@ useEffect(() => {
 
       {/* Back */}
       <div className="space-y-2">
-        <button
-         onClick={() => router.push(`/${params.locale}/map`)}
-         className="text-sm text-gray-500 hover:text-gray-800 transition"
-         >
-          ← {t.common.back}
-        </button>
-
+      <Link
+  href={`/${params.locale}/map`}
+  className="text-sm text-gray-500 hover:text-gray-800 transition"
+>
+  ← {t.common.back}
+</Link>
         <div className="text-xs text-gray-400 flex items-center gap-1">
-          <span
-          onClick={() => router.push(`/${params.locale}/map`)}
-            className="cursor-pointer hover:underline"
-          >
-            {t.shopDetails.page.shopList}
-          </span>
+          <Link
+  href={`/${params.locale}/map`}
+  className="cursor-pointer hover:underline"
+>
+  {t.shopDetails.page.shopList}
+</Link>
           <span>›</span>
           <span className="text-gray-400">
             {
@@ -238,7 +238,7 @@ useEffect(() => {
   </div>
 )}
 
-      <AdBanner position="center"/>
+      {/* <AdBanner position="center"/> */}
 
       <div className="h-70 rounded-2xl overflow-hidden border bg-white shadow-sm">
         <Map

@@ -21,7 +21,15 @@ export const translations = {
       logout: "Logout",
       login: "Login",
     },
-
+    notFound: {
+      label: "Page Not Found",
+      title: "This page seems to be missing.",
+      description:
+        "The page you're looking for may have been moved, removed, or the link might be incorrect.",
+      exploreButton: "Explore TCG Finder",
+      backButton: "Back to Home",
+      hint: "Looking for a card shop? Try exploring the map instead.",
+    },
     favorites: {
       title: "Favorite Shops",
       subtitle: "Your saved card shops",
@@ -30,7 +38,6 @@ export const translations = {
       removing: "Removing from favorites...",
       unknownLocation: "Unknown location",
     },
-
     buttons: {
       login: "Login",
       logout: "Logout",
@@ -45,18 +52,15 @@ export const translations = {
       loading: "Loading...",
       unknownLocation: "Unknown location",
     },
-
     account: {
       title: "My Account",
       subtitle: "Manage your account and settings",
       joined: "Joined",
     },
-
     stats: {
       favoriteShops: "Favorite Shops",
       recentlyViewedShops: "Recently Viewed Shops",
     },
-
     history: {
       emptyTitle: "No viewing history yet",
       emptyDesc: "Your viewed shops will appear here",
@@ -65,58 +69,58 @@ export const translations = {
       viewedAt: "Viewed at",
     },
     csvImport: {
-  title: "CSV Import",
-  subtitle: "Upload CSV files to bulk import data.",
+      title: "CSV Import",
+      subtitle: "Upload CSV files to bulk import data.",
 
-  tabs: {
-    shops: "Shops",
-    cards: "Cards",
-    packs: "Packs"
-  },
+      tabs: {
+        shops: "Shops",
+        cards: "Cards",
+        packs: "Packs",
+      },
 
-  uploadTitle: "Upload CSV file",
-  uploadHint: "Drag & drop or click to select a file",
+      uploadTitle: "Upload CSV file",
+      uploadHint: "Drag & drop or click to select a file",
 
-  rowsDetected: "rows detected",
-  uploading: "Uploading...",
-  importData: "Import Data",
+      rowsDetected: "rows detected",
+      uploading: "Uploading...",
+      importData: "Import Data",
 
-  previewNote: "Showing the first 10 rows (preview)",
+      previewNote: "Showing the first 10 rows (preview)",
 
-  table: {
-    shopName: "Shop Name",
-    address: "Address",
-    website: "Website",
-    mondayHours: "Monday Hours",
-    closed: "Closed",
-    shopVideo: "Shop Video",
-  },
+      table: {
+        shopName: "Shop Name",
+        address: "Address",
+        website: "Website",
+        mondayHours: "Monday Hours",
+        closed: "Closed",
+        shopVideo: "Shop Video",
+      },
 
-  cardTitle: "Card CSV Import",
-  cardSubtitle: "Upload and preview card data from a CSV file.",
-  packTitle: "Pack CSV Import",
-packSubtitle: "Upload and preview pack data from a CSV file.",
+      cardTitle: "Card CSV Import",
+      cardSubtitle: "Upload and preview card data from a CSV file.",
+      packTitle: "Pack CSV Import",
+      packSubtitle: "Upload and preview pack data from a CSV file.",
 
-  cardTable: {
-    cardName: "Card Name",
-    packName: "Pack Name",
-    cardNumber: "Card Number",
-    illustrator: "Illustrator",
-  },
+      cardTable: {
+        cardName: "Card Name",
+        packName: "Pack Name",
+        cardNumber: "Card Number",
+        illustrator: "Illustrator",
+      },
 
-  packTable: {
-    nameEn: "Name (EN)",
-    nameJp: "Name (JP)",
-    slug: "Slug",
-    releaseDate: "Release Date",
-    imageUrl: "Image URL",
-    ebayUrl: "Ebay URL",
-    mercariUrl: "Mercari URL"
-  },
+      packTable: {
+        nameEn: "Name (EN)",
+        nameJp: "Name (JP)",
+        slug: "Slug",
+        releaseDate: "Release Date",
+        imageUrl: "Image URL",
+        ebayUrl: "Ebay URL",
+        mercariUrl: "Mercari URL",
+      },
 
-  success: "CSV imported successfully.",
-  uploadFailed: "Upload failed.",
-},
+      success: "CSV imported successfully.",
+      uploadFailed: "Upload failed.",
+    },
     adminReports: {
       title: "Review Management",
       filters: {
@@ -172,7 +176,7 @@ packSubtitle: "Upload and preview pack data from a CSV file.",
         importCsv: "Import CSV",
         articles: "Articles",
         cards: "Cards",
-        packs: "Packs"
+        packs: "Packs",
       },
 
       dashboard: {
@@ -283,6 +287,9 @@ packSubtitle: "Upload and preview pack data from a CSV file.",
           closed: "Closed",
           website: "Website",
           shopIcon: "Shop Icon",
+          featuredShop: "Featured Shop",
+          featuredShopDescription:
+            "Display this shop in the Featured Shops section.",
           uploadIcon: "Upload Icon",
           iconHint: "Square image recommended. PNG, JPG, WebP accepted.",
           removeIcon: "Remove Icon",
@@ -343,154 +350,155 @@ packSubtitle: "Upload and preview pack data from a CSV file.",
           actions: "Actions",
         },
       },
-cardForm: {
-  editTitle: "Edit Card",
-  createTitle: "Create Card",
+      cardForm: {
+        editTitle: "Edit Card",
+        createTitle: "Create Card",
 
-  editDesc: "Update this card's details.",
-  createDesc: "Add a new card to the database.",
+        editDesc: "Update this card's details.",
+        createDesc: "Add a new card to the database.",
 
-  sections: {
-    cardInfo: "Card Information",
-    packInfo: "Pack Information",
-    cardImage: "Card Image",
-    relatedBlog: "Related Blog",
-    affiliateLinks: "Affiliate Links", 
-  },
+        sections: {
+          cardInfo: "Card Information",
+          packInfo: "Pack Information",
+          cardImage: "Card Image",
+          relatedBlog: "Related Blog",
+          affiliateLinks: "Affiliate Links",
+        },
 
-  fields: {
-    cardName: "Card Name",
-    slug: "Slug",
-    cardNumber: "Card Number",
-    rarity: "Rarity",
-    illustratorName: "Illustrator Name",
-    packName: "Pack Name",
-    packCode: "Pack Code",
-    ebayRawUrl: "Raw eBay URL",              
-ebaySlabUrl: "Slab eBay URL",
-mercariRawUrl: "Raw Mercari URL",
-mercariSlabUrl: "Slab Mercari URL",
-  },
+        fields: {
+          cardName: "Card Name",
+          slug: "Slug",
+          cardNumber: "Card Number",
+          rarity: "Rarity",
+          illustratorName: "Illustrator Name",
+          packName: "Pack Name",
+          packCode: "Pack Code",
+          ebayRawUrl: "Raw eBay URL",
+          ebaySlabUrl: "Slab eBay URL",
+          mercariRawUrl: "Raw Mercari URL",
+          mercariSlabUrl: "Slab Mercari URL",
+        },
 
-  placeholders: {
-    cardName: "e.g. Charizard",
-    slug: "e.g. charizard",
-    cardNumber: "e.g. 006/165",
-    rarity: "e.g. SAR, SR, RR",
-    illustratorName: "Illustrator (English only)",
-    packName: "e.g. Scarlet & Violet",
-    packCode: "e.g. SV1a",
-    ebayRawUrl: "https://...",               
-ebaySlabUrl: "https://...",
-mercariRawUrl: "https://...",
-mercariSlabUrl: "https://...",
-  },
+        placeholders: {
+          cardName: "e.g. Charizard",
+          slug: "e.g. charizard",
+          cardNumber: "e.g. 006/165",
+          rarity: "e.g. SAR, SR, RR",
+          illustratorName: "Illustrator (English only)",
+          packName: "e.g. Scarlet & Violet",
+          packCode: "e.g. SV1a",
+          ebayRawUrl: "https://...",
+          ebaySlabUrl: "https://...",
+          mercariRawUrl: "https://...",
+          mercariSlabUrl: "https://...",
+        },
 
-  image: {
-    upload: "Upload Image",
-    change: "Change Image",
-    remove: "Remove Image",
-    hint: "PNG or JPG, square crop recommended.",
-    alt: "Card Image",
-  },
+        image: {
+          upload: "Upload Image",
+          change: "Change Image",
+          remove: "Remove Image",
+          hint: "PNG or JPG, square crop recommended.",
+          alt: "Card Image",
+        },
 
-  slugHelper:
-    "This slug is generated automatically, but you can edit it manually.",
+        slugHelper:
+          "This slug is generated automatically, but you can edit it manually.",
 
-  relatedBlog: {
-    loading: "Loading articles...",
-    select: "Select an article",
-    search: "Search articles...",
-    empty: "No article found",
-    clear: "Clear selection",
-  },
+        relatedBlog: {
+          loading: "Loading articles...",
+          select: "Select an article",
+          search: "Search articles...",
+          empty: "No article found",
+          clear: "Clear selection",
+        },
 
-  actions: {
-    create: "Create Card",
-    creating: "Creating...",
-    update: "Update Card",
-    updating: "Updating...",
-  },
+        actions: {
+          create: "Create Card",
+          creating: "Creating...",
+          update: "Update Card",
+          updating: "Updating...",
+        },
 
-  toast: {
-     createSuccess: "Card created successfully.",
-  updateSuccess: "Card updated successfully.",
-  successDelete: "Card deleted successfully.",
-  saveError: "Failed to save card.",
-  uploadError: "Image upload failed.",
-    validationErrorTitle: "Validation Error",
-  validationErrorDescription: "Please fill in all required fields before saving the card.",
-  },
-},
-packsPage: {
-  title: "Pack Management",
-  addPack: "Add Pack",
-  loading: "Loading",
-  error: "Something went wrong. Please try again.",
-  retry: "Retry",
-  empty: "No packs found.",
-  searchPlaceholder: "Search packs...",
-  table: {
-    image: "Image",
-    nameJa: "Japanese Name",
-    nameEn: "English Name",
-    releaseDate: "Release Date",
-    actions: "Actions",
-  },
-},
-packForm: {
-  packInfo: "Pack Info",
-  createTitle: "Create Pack",
-  editTitle: "Edit Pack",
+        toast: {
+          createSuccess: "Card created successfully.",
+          updateSuccess: "Card updated successfully.",
+          successDelete: "Card deleted successfully.",
+          saveError: "Failed to save card.",
+          uploadError: "Image upload failed.",
+          validationErrorTitle: "Validation Error",
+          validationErrorDescription:
+            "Please fill in all required fields before saving the card.",
+        },
+      },
+      packsPage: {
+        title: "Pack Management",
+        addPack: "Add Pack",
+        loading: "Loading",
+        error: "Something went wrong. Please try again.",
+        retry: "Retry",
+        empty: "No packs found.",
+        searchPlaceholder: "Search packs...",
+        table: {
+          image: "Image",
+          nameJa: "Japanese Name",
+          nameEn: "English Name",
+          releaseDate: "Release Date",
+          actions: "Actions",
+        },
+      },
+      packForm: {
+        packInfo: "Pack Info",
+        createTitle: "Create Pack",
+        editTitle: "Edit Pack",
 
-  createDesc: "Add a new pack to the database.",
-  editDesc: "Update this pack's details.",
-toast: {
-  createSuccess: "Pack created successfully.",
-  updateSuccess: "Pack updated successfully.",
-  successDelete: "Pack deleted successfully.",
-  saveError: "Failed to save pack.",
-  uploadError: "Image upload failed.",
-   validationErrorTitle: "Validation Error",
-  validationErrorDescription: "Please fill in all required fields before saving the pack.",
-},
+        createDesc: "Add a new pack to the database.",
+        editDesc: "Update this pack's details.",
+        toast: {
+          createSuccess: "Pack created successfully.",
+          updateSuccess: "Pack updated successfully.",
+          successDelete: "Pack deleted successfully.",
+          saveError: "Failed to save pack.",
+          uploadError: "Image upload failed.",
+          validationErrorTitle: "Validation Error",
+          validationErrorDescription:
+            "Please fill in all required fields before saving the pack.",
+        },
 
-  fields: {
-    nameJp: "Japanese Name",
-    nameEn: "English Name",
-    slug: "Slug",
-    releaseDate: "Release Date",
-    ebayUrl: "eBay URL",
-    mercariUrl: "Mercari URL",
-  },
+        fields: {
+          nameJp: "Japanese Name",
+          nameEn: "English Name",
+          slug: "Slug",
+          releaseDate: "Release Date",
+          ebayUrl: "eBay URL",
+          mercariUrl: "Mercari URL",
+        },
 
-  placeholders: {
-    nameJp: "e.g. スカーレット&バイオレット",
-    nameEn: "e.g. Scarlet & Violet",
-    slug: "scarlet-violet",
-    ebayUrl: "Enter eBay URL",
-    mercariUrl: "Enter Mercari URL",
+        placeholders: {
+          nameJp: "e.g. スカーレット&バイオレット",
+          nameEn: "e.g. Scarlet & Violet",
+          slug: "scarlet-violet",
+          ebayUrl: "Enter eBay URL",
+          mercariUrl: "Enter Mercari URL",
+        },
 
-  },
+        slugHelper:
+          "Automatically generated from the English name until manually edited.",
 
-  slugHelper:
-    "Automatically generated from the English name until manually edited.",
+        image: {
+          upload: "Pack Image",
+          alt: "Pack image",
+          change: "Change Image",
+          remove: "Remove Image",
+          hint: "PNG or JPG, up to a few MB.",
+        },
 
-  image: {
-    upload: "Pack Image",
-    alt: "Pack image",
-    change: "Change Image",
-    remove: "Remove Image",
-    hint: "PNG or JPG, up to a few MB.",
-  },
-
-  actions: {
-    create: "Create Pack",
-    creating: "Creating...",
-    update: "Update Pack",
-    updating: "Updating...",
-  },
-},
+        actions: {
+          create: "Create Pack",
+          creating: "Creating...",
+          update: "Update Pack",
+          updating: "Updating...",
+        },
+      },
       deleteDialog: {
         title: "Delete Shop",
         description: "Are you sure you want to delete",
@@ -568,6 +576,14 @@ toast: {
         placeholder: "Search by shop name, area, or address",
       },
 
+      shopCard: {
+        recentlyAddedShops: "Recently Added Shops",
+        featuredShops: "Featured Shops",
+        featured: "Featured",
+        viewShop: "View shop",
+        openNow: "Open now",
+        currentlyClosed: "Currently closed",
+      },
       filters: {
         title: "Filters",
         area: "Area",
@@ -579,7 +595,6 @@ toast: {
         apply: "Apply Filters",
       },
     },
-
     ranking: {
       title: "Card Shop Rankings",
       subtitle:
@@ -813,6 +828,7 @@ toast: {
       email: "Your Email",
       message: "Your Message",
       send: "Send Message",
+      sending: "Sending...",
       alt: "Or contact us directly at",
       success: "Message sent successfully!",
       error: "Failed to send message. Please try again.",
@@ -824,7 +840,7 @@ toast: {
         "Information about the operation and purpose of TCG Finder Japan.",
 
       operatorLabel: "Operator:",
-      operator: "TCG Finder Japan Manangement Office",
+      operator: "TCG Finder Japan Management Office",
 
       websiteLabel: "Website:",
 
@@ -840,6 +856,9 @@ toast: {
       contactButton: "Contact Form",
       contactDesc:
         "For inquiries regarding this website, correction requests, advertising opportunities, or general feedback, please contact us through the contact form below.",
+      shopInfoPolicyLabel: "Shop Information & Updates",
+      shopInfoPolicy:
+        "Shop information on TCG Finder Japan is collected and organized from publicly available sources and information provided by shops and users. We make reasonable efforts to review and update information such as store locations, business hours, supported card categories, and other shop details. However, shop information may change without notice, and we cannot guarantee that all information is always accurate or up to date. If you notice incorrect or outdated information, please contact us through the Contact Form so that we can review and update it.",
 
       disclaimerLabel: "Disclaimer:",
       disclaimer:
@@ -898,7 +917,7 @@ toast: {
       sections: {
         collect: {
           title: "1. Information We Collect",
-          desc: "We may collect personal information such as email addresses submitted through contact forms, as well as usage data including visited pages and interaction history.",
+          desc: "We may collect information that you provide when using the website, such as your name and email address when submitting a contact form, and information associated with your account when you register or use features such as favorites, reviews, and viewing history. We may also collect usage information, such as pages visited and interactions with the website.",
         },
 
         usage: {
@@ -915,63 +934,86 @@ toast: {
             "Third-party vendors including Google use cookies to display personalized advertisements based on users’ previous visits to this and other websites.",
 
           desc3:
-            "By using cookies for advertising, Google and its partners can display appropriate advertisements to users based on their visits to this and other sites.",
-          desc4:
             "Users can disable personalized advertising through Google Ad Settings. In addition, users can disable cookies used for personalized advertising by third-party vendors by visiting www.aboutads.info.",
-          link: "https://www.aboutads.info/",
+          adsSettingsLink: "https://adssettings.google.com/",
+          aboutAdsLink: "https://optout.aboutads.info/?locale=en-US",
+        },
+        cookies: {
+          title: "4. Cookies and Similar Technologies",
+          desc: "This website uses cookies and similar technologies for purposes such as website functionality, analytics, advertising, and improving the user experience. Third-party services, including Google, may also use cookies or similar technologies when providing services on this website.",
         },
 
         analytics: {
-          title: "4. Analytics Tools",
-          desc: "This service uses Google Analytics to analyze traffic and usage trends. Anonymous traffic data may be collected using cookies.",
+          title: "5. Analytics Tools",
+          desc: "This service uses Google Analytics to analyze website traffic and usage trends. Google Analytics may use cookies and similar technologies to collect information about how visitors use the website, such as pages visited and interactions with the site.",
         },
 
         thirdParty: {
-          title: "5. Third-Party Services",
-          desc: "We use third-party services such as Google Maps API, which may also collect anonymized usage data.",
+          title: "6. Third-Party Services",
+          desc: "We use third-party services to provide and operate certain website features, including Google Maps for map and location-related functionality and EmailJS for processing contact form submissions. These services may process information in accordance with their respective privacy policies.",
         },
 
         protection: {
-          title: "6. Data Protection",
+          title: "7. Data Protection",
           desc: "We take appropriate measures to protect user information, although complete security cannot be guaranteed.",
         },
 
         disclaimer: {
-          title: "7. Disclaimer",
+          title: "8. Disclaimer",
           desc: "While we strive to keep information accurate, we are not responsible for actions taken based on information provided on this service. TCG inventory and prices may change frequently, so please confirm final details directly with each store.",
         },
 
         changes: {
-          title: "8. Policy Changes",
+          title: "9. Policy Changes",
           desc: "This policy may be updated when necessary. Changes become effective once published on this page.",
         },
       },
     },
     terms: {
       title: "Terms of Service",
+
       intro:
-        "By accessing and using TCG Finder Japan, you agree to comply with these terms.",
+        "By accessing and using TCG Finder Japan, you agree to comply with these Terms of Service. Please read these terms carefully before using the website.",
 
       sections: {
         responsibilities: {
-          title: "User Responsibilities",
-          desc: "Users must provide accurate information and are responsible for any content they post, including reviews and comments.",
+          title: "1. User Responsibilities",
+          desc: "Users are responsible for providing accurate information when using features that require personal or account information. Users are also responsible for any content they submit, including reviews, comments, and other contributions.",
         },
+
         prohibited: {
-          title: "Prohibited Activities",
-          desc: "Users must not engage in harmful activities such as spamming, abuse, or misuse of the platform.",
+          title: "2. Prohibited Activities",
+          desc: "Users must not use the website for unlawful, abusive, fraudulent, or harmful purposes. Prohibited activities include spamming, attempting to disrupt or compromise the service, submitting misleading information, abusing other users, or otherwise misusing the platform.",
         },
+
         content: {
-          title: "Content Management",
-          desc: "We reserve the right to remove content or suspend accounts that violate these terms.",
+          title: "3. User Content and Reviews",
+          desc: "Users are responsible for the content they submit to TCG Finder Japan, including reviews and comments. Content that is illegal, abusive, misleading, defamatory, or otherwise inappropriate may be removed. We reserve the right to remove content or restrict accounts that violate these terms.",
         },
+
+        shopInfo: {
+          title: "4. Shop Information",
+          desc: "TCG Finder Japan provides information about trading card shops, including store locations, business hours, supported card categories, and other shop-related details. While we make reasonable efforts to keep this information accurate and up to date, information may change without notice. Users should confirm important details directly with each store before visiting.",
+        },
+
+        thirdParty: {
+          title: "5. Third-Party Services and Links",
+          desc: "The website may use or provide links to third-party services, websites, or platforms. We are not responsible for the content, availability, policies, or practices of third-party services. Your use of third-party services is subject to their respective terms and policies.",
+        },
+
         liability: {
-          title: "Limitation of Liability",
-          desc: "We are not responsible for any damages resulting from the use of this platform.",
+          title: "6. Limitation of Liability",
+          desc: "TCG Finder Japan is provided on an as-is and as-available basis. We are not responsible for any loss, damage, or inconvenience resulting from the use of the website or reliance on information provided through the service, including changes to shop information, inventory, prices, or business hours.",
         },
+
+        termination: {
+          title: "7. Account Suspension and Termination",
+          desc: "We reserve the right to restrict, suspend, or terminate access to accounts or features when necessary, including in cases of misuse, violation of these terms, or activities that may harm the website or its users.",
+        },
+
         changes: {
-          title: "Changes to Terms",
-          desc: "These terms may be updated at any time. Continued use of the service implies acceptance of the updated terms.",
+          title: "8. Changes to These Terms",
+          desc: "These Terms of Service may be updated when necessary. Changes become effective once they are published on this page. Continued use of TCG Finder Japan after changes are published constitutes acceptance of the updated terms.",
         },
       },
     },
@@ -1042,6 +1084,7 @@ toast: {
     },
     blogList: {
       hero: {
+        allArticles: "All Articles",
         eyebrow: "TCG Finder Japan",
         title: {
           line1: "Blog &",
@@ -1062,9 +1105,12 @@ toast: {
     },
     blogArticle: {
       hero: {
+        author: "By",
         backToArticles: "Back to Articles",
         protected: "Protected",
+        imageAlt: "Trading card shops and TCG community in Japan",
         published: "Published",
+        updated: "Updated",
       },
       breadcrumb: {
         articles: "Articles",
@@ -1243,127 +1289,127 @@ toast: {
           `${count} tag${count > 1 ? "s" : ""} selected`,
       },
     },
-    cardPage:{
-       home: "Home",
-  cardEncyclopedia: "Card Encyclopedia",
-  searchTradingCards: "Search trading cards available in Japan.",
-  cardsFound: "cards found",
-  cardFound: "card found",
-  pagination:{
-    cardListPagination: "Card list pagination",
-previous: "Previous",
-next: "Next",
-page: "Page",
-of: "of",
-  },
-  cardEmpty:{
-    noCardsFound: "No cards found.",
-tryDifferentSearch: "Try a different search term or adjust your filters.",
-clearFilters: "Clear Filters",
-  },
-  cardNotFound: {
-  home: "Home",
-  cardEncyclopedia: "Card Encyclopedia",
-  notFound: "Not Found",
-  title: "Card Not Found",
-  description:
-    "We couldn't find a card at this address. It may have been renamed or never existed.",
-  backToCardEncyclopedia: "Back to Card Encyclopedia",
-},
-  cardItem:{
-    viewDetails: "View Details",
-cardNumber: "Card Number",
-expansionPack: "Expansion Pack",
-cardArt: "card art",
-  },
-  cardFilter:{
-    filterByRarity: "Filter by rarity",
-allRarities: "All Rarities",
-rarity: "Rarity",
+    cardPage: {
+      home: "Home",
+      cardEncyclopedia: "Card Encyclopedia",
+      searchTradingCards: "Search trading cards available in Japan.",
+      cardsFound: "cards found",
+      cardFound: "card found",
+      pagination: {
+        cardListPagination: "Card list pagination",
+        previous: "Previous",
+        next: "Next",
+        page: "Page",
+        of: "of",
+      },
+      cardEmpty: {
+        noCardsFound: "No cards found.",
+        tryDifferentSearch:
+          "Try a different search term or adjust your filters.",
+        clearFilters: "Clear Filters",
+      },
+      cardNotFound: {
+        home: "Home",
+        cardEncyclopedia: "Card Encyclopedia",
+        notFound: "Not Found",
+        title: "Card Not Found",
+        description:
+          "We couldn't find a card at this address. It may have been renamed or never existed.",
+        backToCardEncyclopedia: "Back to Card Encyclopedia",
+      },
+      cardItem: {
+        viewDetails: "View Details",
+        cardNumber: "Card Number",
+        expansionPack: "Expansion Pack",
+        cardArt: "card art",
+      },
+      cardFilter: {
+        filterByRarity: "Filter by rarity",
+        allRarities: "All Rarities",
+        rarity: "Rarity",
 
-sortCards: "Sort cards",
-sort: "Sort",
+        sortCards: "Sort cards",
+        sort: "Sort",
 
-newest: "Newest",
-nameAsc: "Name A–Z",
-nameDesc: "Name Z–A",
-  },
-  cardDetails:{
-    cardNumber: "Card Number",
-packCode: "Pack Code",
-expansionPack: "Expansion Pack",
-illustrator: "Illustrator",
+        newest: "Newest",
+        nameAsc: "Name A–Z",
+        nameDesc: "Name Z–A",
+      },
+      cardDetails: {
+        cardNumber: "Card Number",
+        packCode: "Pack Code",
+        expansionPack: "Expansion Pack",
+        illustrator: "Illustrator",
 
-clickImageToEnlarge: "Click the image to enlarge",
+        clickImageToEnlarge: "Click the image to enlarge",
 
-fromTheBlog: "From the Blog",
+        fromTheBlog: "From the Blog",
 
-relatedShops: "Related Shops",
-  },
-  affiliateBtns:{
-    affiliateSection: "Where to buy",
-buyOnEbayRaw: "【Raw】 Buy on eBay",
-buyOnEbaySlab: "【Slab】 Buy on eBay",
-buyOnMercariRaw: "【Raw】 Buy on Mercari",
-buyOnMercariSlab: "【Slab】 Buy on Mercari",
-buyOnEbay: "Buy on eBay",
-buyOnMercari: "Buy on Mercari",
-  },
-  relatedShops: {
-  title: "Related Shops",
-  subtitle: "Shops that may carry this product.",
+        relatedShops: "Related Shops",
+      },
+      affiliateBtns: {
+        affiliateSection: "Where to buy",
+        buyOnEbayRaw: "【Raw】 Buy on eBay",
+        buyOnEbaySlab: "【Slab】 Buy on eBay",
+        buyOnMercariRaw: "【Raw】 Buy on Mercari",
+        buyOnMercariSlab: "【Slab】 Buy on Mercari",
+        buyOnEbay: "Buy on eBay",
+        buyOnMercari: "Buy on Mercari",
+      },
+      relatedShops: {
+        title: "Related Shops",
+        subtitle: "Shops that may carry this product.",
 
-  sortByDistance: "Sort by Distance",
-  locating: "Locating...",
+        sortByDistance: "Sort by Distance",
+        locating: "Locating...",
 
-  geolocationNotSupported: "Geolocation is not supported.",
-  locationAccessError: "Unable to access your current location.",
+        geolocationNotSupported: "Geolocation is not supported.",
+        locationAccessError: "Unable to access your current location.",
 
-  kmAway: "km away",
+        kmAway: "km away",
 
-  viewShop: "View Shop",
-},
-favoriteCards: {
-  title: "Favorite Cards",
-  subtitle: "Cards you've saved for quick access.",
+        viewShop: "View Shop",
+      },
+      favoriteCards: {
+        title: "Favorite Cards",
+        subtitle: "Cards you've saved for quick access.",
 
-  emptyTitle: "No Favorite Cards",
-  emptyDescription: "You haven't added any favorite cards yet.",
+        emptyTitle: "No Favorite Cards",
+        emptyDescription: "You haven't added any favorite cards yet.",
 
-  browseCards: "Browse Cards",
-},
+        browseCards: "Browse Cards",
+      },
     },
-packPage: {
-  packEncyclopedia: "Pack Encyclopedia",
-  searchExpansionPacks: "Search packs, cards, or illustrators.",
-  matchingPacks: "Matching Packs",
-matchingCards: "Matching Cards",
-searching: "Searching...",
-noMatchingPacks: "No matching packs found.",
-noMatchingCards: "No matching cards found.",
-searchPlaceholder: "Search packs, cards, or illustrators...",
-packCountFound: "{count} pack{plural} found",
-  packItem: {
-    packArt: "Pack Art",
-    releaseDate: "Release Date",
-    viewDetails: "View Details",
-  },
+    packPage: {
+      packEncyclopedia: "Pack Encyclopedia",
+      searchExpansionPacks: "Search packs, cards, or illustrators.",
+      matchingPacks: "Matching Packs",
+      matchingCards: "Matching Cards",
+      searching: "Searching...",
+      noMatchingPacks: "No matching packs found.",
+      noMatchingCards: "No matching cards found.",
+      searchPlaceholder: "Search packs, cards, or illustrators...",
+      packCountFound: "{count} pack{plural} found",
+      packItem: {
+        packArt: "Pack Art",
+        releaseDate: "Release Date",
+        viewDetails: "View Details",
+      },
 
-  packEmpty: {
-    title: "No packs found",
-    description: "Try a different search term.",
-    clearFilters: "Clear Search",
-  },
+      packEmpty: {
+        title: "No packs found",
+        description: "Try a different search term.",
+        clearFilters: "Clear Search",
+      },
 
-  packDetails: {
-    expansionPack: "Expansion Pack",
-    nameJapanese: "Japanese Name",
-    nameEnglish: "English Name",
-    releaseDate: "Release Date",
-    cardsInThisPack: "Cards Included in This Pack",
-  },
-},
-
+      packDetails: {
+        expansionPack: "Expansion Pack",
+        nameJapanese: "Japanese Name",
+        nameEnglish: "English Name",
+        releaseDate: "Release Date",
+        cardsInThisPack: "Cards Included in This Pack",
+      },
+    },
   },
 
   jp: {
@@ -1383,7 +1429,15 @@ packCountFound: "{count} pack{plural} found",
       logout: "ログアウト",
       login: "ログイン",
     },
-
+    notFound: {
+      label: "ページが見つかりません",
+      title: "お探しのページが見つかりませんでした。",
+      description:
+        "ページが移動または削除されたか、リンクが正しくない可能性があります。",
+      exploreButton: "TCG Finderを探索する",
+      backButton: "ホームに戻る",
+      hint: "カードショップをお探しですか？マップからショップを探してみてください。",
+    },
     favorites: {
       title: "お気に入り店舗",
       subtitle: "保存したカードショップ",
@@ -1392,13 +1446,11 @@ packCountFound: "{count} pack{plural} found",
       removing: "お気に入りから削除中...",
       unknownLocation: "不明な場所",
     },
-
     buttons: {
       login: "ログイン",
       logout: "ログアウト",
       viewDetails: "詳細を見る",
     },
-
     common: {
       back: "戻る",
       cancel: "キャンセル",
@@ -1408,18 +1460,15 @@ packCountFound: "{count} pack{plural} found",
       loading: "読み込み中...",
       unknownLocation: "不明な場所",
     },
-
     account: {
       title: "マイアカウント",
       subtitle: "アカウントと設定を管理",
       joined: "登録日",
     },
-
     stats: {
       favoriteShops: "お気に入り店舗",
       recentlyViewedShops: "最近閲覧した店舗",
     },
-
     history: {
       emptyTitle: "閲覧履歴はまだありません",
       emptyDesc: "閲覧した店舗がここに表示されます",
@@ -1427,61 +1476,61 @@ packCountFound: "{count} pack{plural} found",
       subtitle: "最近訪れた店舗一覧",
       viewedAt: "閲覧日時",
     },
+    csvImport: {
+      title: "CSVインポート",
+      subtitle: "CSVファイルをアップロードしてデータを一括登録します。",
 
-   csvImport: {
-  title: "CSVインポート",
-  subtitle: "CSVファイルをアップロードしてデータを一括登録します。",
+      tabs: {
+        shops: "店舗",
+        cards: "カード",
+        packs: "パック",
+      },
 
-  tabs: {
-    shops: "店舗",
-    cards: "カード",
-    packs: "パック"
-  },
+      uploadTitle: "CSVファイルをアップロード",
+      uploadHint: "ドラッグ＆ドロップまたはクリックして選択",
 
-  uploadTitle: "CSVファイルをアップロード",
-  uploadHint: "ドラッグ＆ドロップまたはクリックして選択",
+      rowsDetected: "件のデータを検出",
+      uploading: "アップロード中...",
+      importData: "データをインポート",
 
-  rowsDetected: "件のデータを検出",
-  uploading: "アップロード中...",
-  importData: "データをインポート",
+      previewNote: "最初の10件をプレビュー表示しています",
 
-  previewNote: "最初の10件をプレビュー表示しています",
+      table: {
+        shopName: "店舗名",
+        address: "住所",
+        website: "ウェブサイト",
+        mondayHours: "月曜日の営業時間",
+        closed: "休業",
+        shopVideo: "ショップ動画",
+      },
 
-  table: {
-    shopName: "店舗名",
-    address: "住所",
-    website: "ウェブサイト",
-    mondayHours: "月曜日の営業時間",
-    closed: "休業",
-    shopVideo: "ショップ動画",
-  },
+      cardTitle: "カードCSVインポート",
+      cardSubtitle:
+        "CSVファイルからカードデータをアップロードし、内容をプレビューします。",
+      packTitle: "パックCSVインポート",
+      packSubtitle:
+        "CSVファイルからパックデータをアップロードし、内容をプレビューします。",
 
-  cardTitle: "カードCSVインポート",
-  cardSubtitle: "CSVファイルからカードデータをアップロードし、内容をプレビューします。",
-  packTitle: "パックCSVインポート",
-packSubtitle: "CSVファイルからパックデータをアップロードし、内容をプレビューします。",
+      cardTable: {
+        cardName: "カード名",
+        packName: "パック名",
+        cardNumber: "カード番号",
+        illustrator: "イラストレーター",
+      },
 
-  cardTable: {
-    cardName: "カード名",
-    packName: "パック名",
-    cardNumber: "カード番号",
-    illustrator: "イラストレーター",
-  },
+      packTable: {
+        nameEn: "英語名",
+        nameJp: "日本語名",
+        slug: "スラッグ",
+        releaseDate: "発売日",
+        imageUrl: "画像URL",
+        ebayUrl: "eBay URL",
+        mercariUrl: "Mercari URL",
+      },
 
-packTable: {
-  nameEn: "英語名",
-  nameJp: "日本語名",
-  slug: "スラッグ",
-  releaseDate: "発売日",
-  imageUrl: "画像URL",
-  ebayUrl: "eBay URL",
-mercariUrl: "Mercari URL",
-},
-
-  success: "CSVのインポートに成功しました。",
-  uploadFailed: "アップロードに失敗しました。",
-},
-
+      success: "CSVのインポートに成功しました。",
+      uploadFailed: "アップロードに失敗しました。",
+    },
     adminReports: {
       title: "レビュー管理",
 
@@ -1528,7 +1577,6 @@ mercariUrl: "Mercari URL",
         next: "次へ",
       },
     },
-
     admin: {
       sidebar: {
         title: "管理パネル",
@@ -1538,7 +1586,7 @@ mercariUrl: "Mercari URL",
         importCsv: "CSVインポート",
         articles: "記事",
         cards: "カード",
-        packs: "パック"
+        packs: "パック",
       },
 
       dashboard: {
@@ -1658,6 +1706,9 @@ mercariUrl: "Mercari URL",
           language: "対応言語",
           description: "説明",
           shopIcon: "店舗アイコン",
+          featuredShop: "おすすめ店舗",
+          featuredShopDescription:
+            "この店舗を「おすすめ店舗」セクションに表示します。",
           uploadIcon: "アイコンをアップロード",
           iconHint:
             "正方形の画像を推奨します。PNG、JPG、WebP形式に対応しています。",
@@ -1698,171 +1749,173 @@ mercariUrl: "Mercari URL",
         },
       },
       cardsPage: {
-  title: "カード管理",
-  addCard: "カードを追加",
-  loading: "読み込み中",
-  error: "問題が発生しました。もう一度お試しください。",
-  retry: "再試行",
-  empty: "カードが見つかりません。",
-  searchPlaceholder: "カードを検索...",
-  table: {
-    image: "画像",
-    nameEn: "カード名",
-    nameJa: "カード名（日本語）",
-    cardNumber: "カード番号",
-    rarity: "レアリティ",
-    pack: "収録パック",
-    createdAt: "作成日",
-    actions: "操作",
-  },
-},
-cardForm: {
-  editTitle: "カード編集",
-  createTitle: "カード作成",
+        title: "カード管理",
+        addCard: "カードを追加",
+        loading: "読み込み中",
+        error: "問題が発生しました。もう一度お試しください。",
+        retry: "再試行",
+        empty: "カードが見つかりません。",
+        searchPlaceholder: "カードを検索...",
+        table: {
+          image: "画像",
+          nameEn: "カード名",
+          nameJa: "カード名（日本語）",
+          cardNumber: "カード番号",
+          rarity: "レアリティ",
+          pack: "収録パック",
+          createdAt: "作成日",
+          actions: "操作",
+        },
+      },
+      cardForm: {
+        editTitle: "カード編集",
+        createTitle: "カード作成",
 
-  editDesc: "カード情報を更新します。",
-  createDesc: "新しいカードをデータベースに追加します。",
+        editDesc: "カード情報を更新します。",
+        createDesc: "新しいカードをデータベースに追加します。",
 
-  sections: {
-    cardInfo: "カード情報",
-    packInfo: "パック情報",
-    cardImage: "カード画像",
-    relatedBlog: "関連ブログ",
-   affiliateLinks: "アフィリエイトリンク",
-  },
+        sections: {
+          cardInfo: "カード情報",
+          packInfo: "パック情報",
+          cardImage: "カード画像",
+          relatedBlog: "関連ブログ",
+          affiliateLinks: "アフィリエイトリンク",
+        },
 
-  fields: {
-    cardName: "カード名",
-    slug: "スラッグ",
-    cardNumber: "カード番号",
-    rarity: "レアリティ",
-    illustratorName: "イラストレーター",
-    packName: "パック名",
-    packCode: "パックコード",
-    ebayRawUrl: "eBay（未鑑定）URL",          
-ebaySlabUrl: "eBay（鑑定済み）URL",
-mercariRawUrl: "メルカリ（未鑑定）URL",
-mercariSlabUrl: "メルカリ（鑑定済み）URL",
-  },
+        fields: {
+          cardName: "カード名",
+          slug: "スラッグ",
+          cardNumber: "カード番号",
+          rarity: "レアリティ",
+          illustratorName: "イラストレーター",
+          packName: "パック名",
+          packCode: "パックコード",
+          ebayRawUrl: "eBay（未鑑定）URL",
+          ebaySlabUrl: "eBay（鑑定済み）URL",
+          mercariRawUrl: "メルカリ（未鑑定）URL",
+          mercariSlabUrl: "メルカリ（鑑定済み）URL",
+        },
 
-  placeholders: {
-    cardName: "例: Charizard",
-    slug: "例: charizard",
-    cardNumber: "例: 006/165",
-    rarity: "例: SAR, SR, RR",
-    illustratorName: "イラストレーター名（英語）",
-    packName: "例: Scarlet & Violet",
-    packCode: "例: SV1a",
-    ebayRawUrl: "https://...",              
-ebaySlabUrl: "https://...",
-mercariRawUrl: "https://...",
-mercariSlabUrl: "https://...",
-  },
+        placeholders: {
+          cardName: "例: Charizard",
+          slug: "例: charizard",
+          cardNumber: "例: 006/165",
+          rarity: "例: SAR, SR, RR",
+          illustratorName: "イラストレーター名（英語）",
+          packName: "例: Scarlet & Violet",
+          packCode: "例: SV1a",
+          ebayRawUrl: "https://...",
+          ebaySlabUrl: "https://...",
+          mercariRawUrl: "https://...",
+          mercariSlabUrl: "https://...",
+        },
 
-  image: {
-    upload: "画像をアップロード",
-    change: "画像を変更",
-    remove: "画像を削除",
-    hint: "PNGまたはJPG（正方形推奨）",
-    alt: "カード画像",
-  },
+        image: {
+          upload: "画像をアップロード",
+          change: "画像を変更",
+          remove: "画像を削除",
+          hint: "PNGまたはJPG（正方形推奨）",
+          alt: "カード画像",
+        },
 
-  slugHelper:
-    "スラッグは自動生成されますが、手動で編集することもできます。",
+        slugHelper:
+          "スラッグは自動生成されますが、手動で編集することもできます。",
 
-  relatedBlog: {
-    loading: "記事を読み込み中...",
-    select: "記事を選択",
-    search: "記事を検索...",
-    empty: "記事が見つかりません",
-    clear: "選択を解除",
-  },
+        relatedBlog: {
+          loading: "記事を読み込み中...",
+          select: "記事を選択",
+          search: "記事を検索...",
+          empty: "記事が見つかりません",
+          clear: "選択を解除",
+        },
 
-  actions: {
-    create: "カードを作成",
-    creating: "作成中...",
-    update: "カードを更新",
-    updating: "更新中...",
-  },
+        actions: {
+          create: "カードを作成",
+          creating: "作成中...",
+          update: "カードを更新",
+          updating: "更新中...",
+        },
 
-  toast: {
-    createSuccess: "カードを作成しました。",
-  updateSuccess: "カードを更新しました。",
-  successDelete: "カードを削除しました。",
-  saveError: "カードの保存に失敗しました。",
-  uploadError: "画像のアップロードに失敗しました。",
-   validationErrorTitle: "入力エラー",
-  validationErrorDescription: "保存する前に、必須項目をすべて入力してください。",
-  },
-},
-packsPage: {
-  title: "パック管理",
-  addPack: "パック追加",
-  loading: "読み込み中",
-  error: "エラーが発生しました。",
-  retry: "再試行",
-  empty: "パックが見つかりません。",
-  searchPlaceholder: "パックを検索...",
-  table: {
-    image: "画像",
-    nameJa: "日本語名",
-    nameEn: "英語名",
-    releaseDate: "発売日",
-    actions: "操作",
-  },
-},
-packForm: {
-  packInfo: "パック情報",
-  createTitle: "パック作成",
-  editTitle: "パック編集",
+        toast: {
+          createSuccess: "カードを作成しました。",
+          updateSuccess: "カードを更新しました。",
+          successDelete: "カードを削除しました。",
+          saveError: "カードの保存に失敗しました。",
+          uploadError: "画像のアップロードに失敗しました。",
+          validationErrorTitle: "入力エラー",
+          validationErrorDescription:
+            "保存する前に、必須項目をすべて入力してください。",
+        },
+      },
+      packsPage: {
+        title: "パック管理",
+        addPack: "パック追加",
+        loading: "読み込み中",
+        error: "エラーが発生しました。",
+        retry: "再試行",
+        empty: "パックが見つかりません。",
+        searchPlaceholder: "パックを検索...",
+        table: {
+          image: "画像",
+          nameJa: "日本語名",
+          nameEn: "英語名",
+          releaseDate: "発売日",
+          actions: "操作",
+        },
+      },
+      packForm: {
+        packInfo: "パック情報",
+        createTitle: "パック作成",
+        editTitle: "パック編集",
 
-  createDesc: "新しいパックをデータベースに追加します。",
-  editDesc: "パック情報を更新します。",
-toast: {
-  createSuccess: "パックを作成しました。",
-  updateSuccess: "パックを更新しました。",
-  successDelete: "パックを削除しました。",
-  saveError: "パックの保存に失敗しました。",
-  uploadError: "画像のアップロードに失敗しました。",
-validationErrorTitle: "入力エラー",
-  validationErrorDescription: "保存する前に、必須項目をすべて入力してください。",
-},
+        createDesc: "新しいパックをデータベースに追加します。",
+        editDesc: "パック情報を更新します。",
+        toast: {
+          createSuccess: "パックを作成しました。",
+          updateSuccess: "パックを更新しました。",
+          successDelete: "パックを削除しました。",
+          saveError: "パックの保存に失敗しました。",
+          uploadError: "画像のアップロードに失敗しました。",
+          validationErrorTitle: "入力エラー",
+          validationErrorDescription:
+            "保存する前に、必須項目をすべて入力してください。",
+        },
 
-  fields: {
-    nameJp: "日本語名",
-    nameEn: "英語名",
-    slug: "スラッグ",
-    releaseDate: "発売日",
-       ebayUrl: "eBay URL",
-    mercariUrl: "メルカリURL",
-  },
+        fields: {
+          nameJp: "日本語名",
+          nameEn: "英語名",
+          slug: "スラッグ",
+          releaseDate: "発売日",
+          ebayUrl: "eBay URL",
+          mercariUrl: "メルカリURL",
+        },
 
-  placeholders: {
-    nameJp: "例：スカーレット＆バイオレット",
-    nameEn: "e.g. Scarlet & Violet",
-    slug: "scarlet-violet",
-      ebayUrl: "eBay URLを入力してください",
-    mercariUrl: "メルカリURLを入力してください",
-  },
+        placeholders: {
+          nameJp: "例：スカーレット＆バイオレット",
+          nameEn: "e.g. Scarlet & Violet",
+          slug: "scarlet-violet",
+          ebayUrl: "eBay URLを入力してください",
+          mercariUrl: "メルカリURLを入力してください",
+        },
 
-  slugHelper:
-    "英語名から自動生成されます（手動で編集すると自動生成は停止します）。",
+        slugHelper:
+          "英語名から自動生成されます（手動で編集すると自動生成は停止します）。",
 
-  image: {
-    upload: "パック画像",
-    alt: "パック画像",
-    change: "画像を変更",
-    remove: "画像を削除",
-    hint: "PNG または JPG（数MBまで）",
-  },
+        image: {
+          upload: "パック画像",
+          alt: "パック画像",
+          change: "画像を変更",
+          remove: "画像を削除",
+          hint: "PNG または JPG（数MBまで）",
+        },
 
-  actions: {
-    create: "パックを作成",
-    creating: "作成中...",
-    update: "パックを更新",
-    updating: "更新中...",
-  },
-},
+        actions: {
+          create: "パックを作成",
+          creating: "作成中...",
+          update: "パックを更新",
+          updating: "更新中...",
+        },
+      },
       footer: "TCG Finder Japan 管理画面",
     },
     reviews: {
@@ -2006,13 +2059,20 @@ validationErrorTitle: "入力エラー",
         switchAction: "ログイン",
       },
     },
-
     map: {
       loading: "店舗を読み込み中...",
       loginRequired: "お気に入り機能を使うにはログインしてください",
 
       search: {
         placeholder: "店舗名・エリア・住所で検索",
+      },
+      shopCard: {
+        recentlyAddedShops: "最近追加された店舗",
+        featuredShops: "おすすめ店舗",
+        featured: "おすすめ",
+        viewShop: "店舗を見る",
+        openNow: "営業中",
+        currentlyClosed: "現在休業中",
       },
 
       filters: {
@@ -2026,7 +2086,6 @@ validationErrorTitle: "入力エラー",
         apply: "フィルターを適用",
       },
     },
-
     ranking: {
       title: "カードショップランキング",
       subtitle: "ユーザーレビューに基づく人気店舗をチェック",
@@ -2171,58 +2230,62 @@ validationErrorTitle: "入力エラー",
       title: "プライバシーポリシー",
 
       intro:
-        "TCG Finder Japan（以下「当サービス」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。",
+        "TCG Finder Japanは、ユーザーのプライバシーを尊重し、個人情報の保護に努めています。",
 
       sections: {
         collect: {
           title: "1. 収集する情報",
-          desc: "当サービスでは、お問い合わせ時のメールアドレスなどの個人情報や、閲覧したページ、操作履歴などの利用データを収集する場合があります。",
+          desc: "当サイトでは、ユーザーがサイトを利用する際に提供する情報を収集する場合があります。これには、お問い合わせフォームから送信された氏名やメールアドレス、アカウント登録時に提供された情報、お気に入り、レビュー、閲覧履歴などの機能の利用に関連する情報が含まれます。また、閲覧したページやサイト上での操作など、当サイトの利用に関する情報を収集する場合があります。",
         },
 
         usage: {
           title: "2. 情報の利用目的",
-          desc: "収集した情報は、お問い合わせへの回答、サービスの改善、ユーザー体験の向上、および機能の維持のために利用されます。",
+          desc: "収集した情報は、お問い合わせへの対応、サービスの改善、ユーザー体験の向上、および当サイトの機能を適切に維持・提供するために利用します。",
         },
 
         ads: {
-          title: "3. 広告の配信について（Google AdSense）",
-
+          title: "3. 広告（Google AdSense）",
           desc1:
-            "当サービスでは、第三者配信の広告サービス「Google AdSense」を利用しています。",
+            "当サイトでは、第三者の広告配信サービスであるGoogle AdSenseを利用しています。",
 
           desc2:
-            "Googleなどの第三者配信事業者は、Cookie（クッキー）を使用して、ユーザーが当サービスや他のウェブサイトに過去にアクセスした際の情報に基づき、適切な広告を配信します。",
+            "Googleを含む第三者の広告配信事業者は、ユーザーによる当サイトおよび他のウェブサイトへの過去の訪問履歴に基づいて、パーソナライズされた広告を表示するためにCookieを使用する場合があります。",
 
           desc3:
-            "Googleが広告配信にCookieを使用することにより、Googleやそのパートナーは、ユーザーが当サービスや他のサイトにアクセスした際の情報に基づいて、適切な広告をユーザーに表示できます。",
-          desc4:
-            "ユーザーは、Google広告設定でパーソナライズ広告を無効にできます。また、www.aboutads.info にアクセスすることで、第三者配信事業者がパーソナライズ広告の掲載で使用するCookieを無効にできます。",
-          // link: "https://www.aboutads.info/",
+            "ユーザーはGoogleの広告設定からパーソナライズド広告を無効にすることができます。また、第三者の広告配信事業者によるパーソナライズド広告に使用されるCookieについては、www.aboutads.infoにアクセスして設定を変更することができます。",
+
+          adsSettingsLink: "https://adssettings.google.com/",
+          aboutAdsLink: "https://optout.aboutads.info/?locale=en-US",
+        },
+
+        cookies: {
+          title: "4. Cookieおよび類似技術",
+          desc: "当サイトでは、サイトの機能提供、アクセス解析、広告配信、ユーザー体験の向上などを目的として、Cookieおよび類似の技術を使用しています。Googleを含む第三者サービスも、当サイト上でサービスを提供する際にCookieまたは類似の技術を使用する場合があります。",
         },
 
         analytics: {
-          title: "4. アクセス解析ツールについて",
-          desc: "当サービスでは、サイトの利用状況を把握するためにGoogleによるアクセス解析ツール「Googleアナリティクス」を利用しています。このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており、個人を特定するものではありません。",
+          title: "5. アクセス解析ツール",
+          desc: "当サイトでは、アクセス状況や利用傾向を分析するためにGoogle Analyticsを使用しています。Google Analyticsは、Cookieおよび類似の技術を使用して、ユーザーが当サイトをどのように利用しているか、閲覧したページやサイト上での操作などの情報を収集する場合があります。",
         },
 
         thirdParty: {
-          title: "5. 第三者サービス",
-          desc: "当サービスでは、Google Maps API等の第三者サービスを利用しており、匿名の利用データが収集される場合があります。",
+          title: "6. 第三者サービス",
+          desc: "当サイトでは、一部の機能を提供・運用するために第三者サービスを利用しています。これには、地図や位置情報に関連する機能を提供するGoogle Mapsや、お問い合わせフォームの送信処理に利用するEmailJSなどが含まれます。これらのサービスは、それぞれのプライバシーポリシーに基づいて情報を取り扱う場合があります。",
         },
 
         protection: {
-          title: "6. データの保護",
-          desc: "当サービスは、ユーザー情報を保護するために適切な対策を講じていますが、完全な安全性を保証するものではありません。",
+          title: "7. 個人情報の保護",
+          desc: "当サイトでは、ユーザーの情報を適切に保護するために必要な対策を講じています。ただし、インターネット上での情報送信や保存について、完全な安全性を保証することはできません。",
         },
 
         disclaimer: {
-          title: "7. 免責事項",
-          desc: "当サービスに掲載されている情報の正確性には万全を期していますが、利用者が本サービスの情報を用いて行う一切の行為について責任を負いません。また、TCG在庫や価格は常に変動するため、最終情報は各店舗にてご確認ください。",
+          title: "8. 免責事項",
+          desc: "当サイトでは、掲載する情報の正確性を保つよう努めていますが、当サイトに掲載された情報に基づいてユーザーが行った行動について、一切の責任を負うものではありません。取扱カードや在庫、価格などの情報は頻繁に変更される場合がありますので、最終的な情報については各店舗に直接ご確認ください。",
         },
 
         changes: {
-          title: "8. ポリシーの変更",
-          desc: "本ポリシーは必要に応じて変更される場合があります。変更後は本ページに掲載した時点より効力を生じるものとします。",
+          title: "9. プライバシーポリシーの変更",
+          desc: "本ポリシーは、必要に応じて更新される場合があります。変更内容は、本ページに掲載された時点から適用されます。",
         },
       },
     },
@@ -2248,7 +2311,9 @@ validationErrorTitle: "入力エラー",
       contactButton: "お問い合わせフォームはこちら",
       contactDesc:
         "当サイトに関するご意見、情報の修正依頼、広告掲載などのお問い合わせは、以下の[お問い合わせフォーム]よりご連絡ください。",
-
+      shopInfoPolicyLabel: "店舗情報の収集・更新について",
+      shopInfoPolicy:
+        "TCG Finder Japanでは、公開されている情報や店舗・ユーザーから提供された情報をもとに、全国のトレーディングカードショップに関する情報を収集・整理しています。店舗所在地、営業時間、対応カードカテゴリーなどの情報について、可能な限り確認・更新を行っています。ただし、店舗情報は予告なく変更される場合があり、掲載情報が常に正確または最新であることを保証するものではありません。誤った情報や古い情報を見つけた場合は、お問い合わせフォームよりご連絡ください。内容を確認のうえ、必要に応じて情報を更新いたします。",
       disclaimerLabel: "免責事項:",
       disclaimer:
         // "掲載情報は細心の注意を払っておりますが、店舗の移転や営業時間変更などにより現状と異なる場合があります。最新の情報は各店舗の公式サイトやSNSをご確認ください。",
@@ -2300,29 +2365,49 @@ validationErrorTitle: "入力エラー",
     },
     terms: {
       title: "利用規約",
+
       intro:
-        "TCG Finder Japan（以下「当サービス」）を利用することにより、本規約に同意したものとみなされます。",
+        "TCG Finder Japanにアクセスし、本ウェブサイトを利用することにより、本利用規約に同意したものとみなされます。ご利用前に、本規約をよくお読みください。",
 
       sections: {
         responsibilities: {
-          title: "ユーザーの責任",
-          desc: "ユーザーは正確な情報を提供する必要があり、投稿したレビューやコメントを含むすべてのコンテンツに責任を負います。",
+          title: "1. ユーザーの責任",
+          desc: "ユーザーは、個人情報やアカウント情報の入力が必要な機能を利用する際、正確な情報を提供する責任を負います。また、レビュー、コメント、その他の投稿を含め、ユーザー自身が投稿するすべてのコンテンツについて責任を負うものとします。",
         },
+
         prohibited: {
-          title: "禁止事項",
-          desc: "スパム行為、誹謗中傷、または本サービスの不正利用など、有害な行為を行ってはなりません。",
+          title: "2. 禁止事項",
+          desc: "ユーザーは、違法行為、迷惑行為、詐欺行為、その他の有害な目的で本ウェブサイトを利用してはなりません。スパム行為、サービスの妨害や不正アクセスを試みる行為、虚偽または誤解を招く情報の投稿、他のユーザーへの嫌がらせ、その他本サービスを不正または不適切に利用する行為を禁止します。",
         },
+
         content: {
-          title: "コンテンツ管理",
-          desc: "当サービスは、本規約に違反するコンテンツの削除やアカウントの停止を行う権利を有します。",
+          title: "3. ユーザーコンテンツおよびレビュー",
+          desc: "ユーザーは、レビューやコメントを含む、TCG Finder Japanに投稿するコンテンツについて責任を負うものとします。違法、悪質、誤解を招く内容、名誉を毀損する内容、その他不適切と判断されるコンテンツは削除される場合があります。また、本規約に違反するコンテンツの削除や、該当するアカウントの利用を制限する権利を当サイトは有します。",
         },
+
+        shopInfo: {
+          title: "4. 店舗情報について",
+          desc: "TCG Finder Japanでは、トレーディングカードショップの所在地、営業時間、取扱カードカテゴリー、その他の店舗に関する情報を提供しています。当サイトでは、これらの情報を可能な限り正確かつ最新の状態に保つよう努めていますが、予告なく情報が変更される場合があります。ご来店前には、重要な情報について各店舗の公式ウェブサイト等で直接ご確認ください。",
+        },
+
+        thirdParty: {
+          title: "5. 第三者サービスおよび外部リンク",
+          desc: "本ウェブサイトでは、第三者が提供するサービス、ウェブサイト、またはプラットフォームを利用したり、それらへのリンクを掲載したりする場合があります。当サイトは、第三者サービスの内容、提供状況、ポリシー、運営方針等について責任を負いません。第三者サービスを利用する場合は、それぞれの利用規約およびプライバシーポリシー等が適用されます。",
+        },
+
         liability: {
-          title: "免責事項",
-          desc: "本サービスの利用により生じた損害について、当サービスは一切の責任を負いません。",
+          title: "6. 免責事項および責任の制限",
+          desc: "TCG Finder Japanは、現状有姿かつ提供可能な範囲で提供されます。本ウェブサイトの利用または本サービスを通じて提供される情報への依存によって生じた損失、損害、その他の不利益について、当サイトは責任を負いません。これには、店舗情報、在庫、価格、営業時間等の変更によって生じるものも含まれます。",
         },
+
+        termination: {
+          title: "7. アカウントの停止および終了",
+          desc: "当サイトは、必要に応じて、アカウントや各種機能へのアクセスを制限、停止、または終了する権利を有します。これには、本規約への違反、本サービスの不正利用、またはウェブサイトや他のユーザーに損害を与える可能性のある行為が含まれます。",
+        },
+
         changes: {
-          title: "規約の変更",
-          desc: "本規約は予告なく変更される場合があります。サービスを継続して利用することで、変更後の規約に同意したものとみなされます。",
+          title: "8. 本規約の変更",
+          desc: "本利用規約は、必要に応じて変更される場合があります。変更後の規約は、本ページに掲載された時点から効力を生じるものとします。変更後もTCG Finder Japanの利用を継続した場合、変更後の規約に同意したものとみなされます。",
         },
       },
     },
@@ -2333,6 +2418,7 @@ validationErrorTitle: "入力エラー",
       email: "メールアドレス",
       message: "メッセージ",
       send: "送信する",
+      sending: "送信中…",
       alt: "または、こちらから直接ご連絡ください",
       success: "メッセージが送信されました！",
       error: "送信に失敗しました。もう一度お試しください。",
@@ -2407,7 +2493,7 @@ validationErrorTitle: "入力エラー",
     blogList: {
       hero: {
         eyebrow: "TCG Finder Japan",
-
+        allArticles: "すべての記事",
         title: {
           line1: "ブログ＆",
           line2: "インサイト",
@@ -2429,9 +2515,12 @@ validationErrorTitle: "入力エラー",
     },
     blogArticle: {
       hero: {
+        author: "著者: ",
         backToArticles: "記事一覧へ戻る",
         protected: "保護記事",
+        imageAlt: "日本のトレーディングカードショップとTCGコミュニティ",
         published: "公開日",
+        updated: "更新日",
       },
 
       breadcrumb: {
@@ -2614,127 +2703,129 @@ validationErrorTitle: "入力エラー",
         tagsSelected: (count: number) => `${count}件のタグを選択中`,
       },
     },
-    cardPage:{
-       home: "ホーム",
-  cardEncyclopedia: "カード図鑑",
-  searchTradingCards: "日本で取り扱われているトレーディングカードを検索できます。",
-  cardsFound: "件のカードが見つかりました",
-  cardFound: "件のカードが見つかりました",
-  pagination:{
-    cardListPagination: "カード一覧ページネーション",
-previous: "前へ",
-next: "次へ",
-page: "ページ",
-of: "/",
-  },
-  cardEmpty: {
-    noCardsFound: "カードが見つかりませんでした。",
-tryDifferentSearch: "検索条件またはフィルターを変更してお試しください。",
-clearFilters: "フィルターをクリア",
-  },
-  cardNotFound: {
-  home: "ホーム",
-  cardEncyclopedia: "カード図鑑",
-  notFound: "見つかりません",
-  title: "カードが見つかりません",
-  description:
-    "このページに対応するカードは見つかりませんでした。名前が変更されたか、存在しない可能性があります。",
-  backToCardEncyclopedia: "カード図鑑へ戻る",
-},
-  cardItem:{
-    viewDetails: "詳細を見る",
-cardNumber: "カード番号",
-expansionPack: "収録パック",
-cardArt: "カード画像",
-  },
-  cardFilter:{
-    filterByRarity: "レアリティで絞り込み",
-allRarities: "すべてのレアリティ",
-rarity: "レアリティ",
+    cardPage: {
+      home: "ホーム",
+      cardEncyclopedia: "カード図鑑",
+      searchTradingCards:
+        "日本で取り扱われているトレーディングカードを検索できます。",
+      cardsFound: "件のカードが見つかりました",
+      cardFound: "件のカードが見つかりました",
+      pagination: {
+        cardListPagination: "カード一覧ページネーション",
+        previous: "前へ",
+        next: "次へ",
+        page: "ページ",
+        of: "/",
+      },
+      cardEmpty: {
+        noCardsFound: "カードが見つかりませんでした。",
+        tryDifferentSearch:
+          "検索条件またはフィルターを変更してお試しください。",
+        clearFilters: "フィルターをクリア",
+      },
+      cardNotFound: {
+        home: "ホーム",
+        cardEncyclopedia: "カード図鑑",
+        notFound: "見つかりません",
+        title: "カードが見つかりません",
+        description:
+          "このページに対応するカードは見つかりませんでした。名前が変更されたか、存在しない可能性があります。",
+        backToCardEncyclopedia: "カード図鑑へ戻る",
+      },
+      cardItem: {
+        viewDetails: "詳細を見る",
+        cardNumber: "カード番号",
+        expansionPack: "収録パック",
+        cardArt: "カード画像",
+      },
+      cardFilter: {
+        filterByRarity: "レアリティで絞り込み",
+        allRarities: "すべてのレアリティ",
+        rarity: "レアリティ",
 
-sortCards: "カードを並び替え",
-sort: "並び替え",
+        sortCards: "カードを並び替え",
+        sort: "並び替え",
 
-newest: "新しい順",
-nameAsc: "名前順（A→Z）",
-nameDesc: "名前順（Z→A）",
-  },
-  cardDetails:{
-    cardNumber: "カード番号",
-packCode: "パックコード",
-expansionPack: "収録パック",
-illustrator: "イラストレーター",
+        newest: "新しい順",
+        nameAsc: "名前順（A→Z）",
+        nameDesc: "名前順（Z→A）",
+      },
+      cardDetails: {
+        cardNumber: "カード番号",
+        packCode: "パックコード",
+        expansionPack: "収録パック",
+        illustrator: "イラストレーター",
 
-clickImageToEnlarge: "画像をクリックすると拡大表示されます",
+        clickImageToEnlarge: "画像をクリックすると拡大表示されます",
 
-fromTheBlog: "関連ブログ",
+        fromTheBlog: "関連ブログ",
 
-relatedShops: "関連店舗",
-  },
-  affiliateBtns:{
-    affiliateSection: "{{card}} の購入先",
-buyOnEbayRaw: "【未鑑定】eBayで購入",
-buyOnEbaySlab: "【鑑定済み】eBayで購入",
-buyOnMercariRaw: "【未鑑定】メルカリで購入",
-buyOnMercariSlab: "【鑑定済み】メルカリで購入",
-buyOnEbay: "eBayで購入",
-buyOnMercari: "メルカリで購入",
-  },
-  relatedShops: {
-  title: "関連店舗",
-  subtitle: "この商品を取り扱っている可能性のある店舗",
+        relatedShops: "関連店舗",
+      },
+      affiliateBtns: {
+        affiliateSection: "{{card}} の購入先",
+        buyOnEbayRaw: "【未鑑定】eBayで購入",
+        buyOnEbaySlab: "【鑑定済み】eBayで購入",
+        buyOnMercariRaw: "【未鑑定】メルカリで購入",
+        buyOnMercariSlab: "【鑑定済み】メルカリで購入",
+        buyOnEbay: "eBayで購入",
+        buyOnMercari: "メルカリで購入",
+      },
+      relatedShops: {
+        title: "関連店舗",
+        subtitle: "この商品を取り扱っている可能性のある店舗",
 
-  sortByDistance: "現在地から近い順",
-  locating: "位置情報を取得中...",
+        sortByDistance: "現在地から近い順",
+        locating: "位置情報を取得中...",
 
-  geolocationNotSupported: "このブラウザでは位置情報がサポートされていません。",
-  locationAccessError: "現在地を取得できませんでした。",
+        geolocationNotSupported:
+          "このブラウザでは位置情報がサポートされていません。",
+        locationAccessError: "現在地を取得できませんでした。",
 
-  kmAway: "km",
+        kmAway: "km",
 
-  viewShop: "店舗を見る",
-},
-favoriteCards: {
-  title: "お気に入りカード",
-  subtitle: "すぐに確認できるよう保存したカードです。",
+        viewShop: "店舗を見る",
+      },
+      favoriteCards: {
+        title: "お気に入りカード",
+        subtitle: "すぐに確認できるよう保存したカードです。",
 
-  emptyTitle: "お気に入りのカードはありません",
-  emptyDescription: "まだお気に入りに追加したカードがありません。",
+        emptyTitle: "お気に入りのカードはありません",
+        emptyDescription: "まだお気に入りに追加したカードがありません。",
 
-  browseCards: "カード一覧を見る",
-},
-},
-packPage: {
-  packEncyclopedia: "パック図鑑",
-  packCountFound: "{count}件のパックが見つかりました",
-  searchExpansionPacks: "パック名・カード名・イラストレーター名で検索",
-  matchingPacks: "該当するパック",
-matchingCards: "該当するカード",
-searching: "検索中...",
-noMatchingPacks: "該当するパックが見つかりませんでした。",
-noMatchingCards: "該当するカードが見つかりませんでした。",
-searchPlaceholder: "パック名・カード名・イラストレーター名で検索",
+        browseCards: "カード一覧を見る",
+      },
+    },
+    packPage: {
+      packEncyclopedia: "パック図鑑",
+      packCountFound: "{count}件のパックが見つかりました",
+      searchExpansionPacks: "パック名・カード名・イラストレーター名で検索",
+      matchingPacks: "該当するパック",
+      matchingCards: "該当するカード",
+      searching: "検索中...",
+      noMatchingPacks: "該当するパックが見つかりませんでした。",
+      noMatchingCards: "該当するカードが見つかりませんでした。",
+      searchPlaceholder: "パック名・カード名・イラストレーター名で検索",
 
-  packItem: {
-    packArt: "パック画像",
-    releaseDate: "発売日",
-    viewDetails: "詳細を見る",
-  },
+      packItem: {
+        packArt: "パック画像",
+        releaseDate: "発売日",
+        viewDetails: "詳細を見る",
+      },
 
-  packEmpty: {
-    title: "パックが見つかりません",
-    description: "別のキーワードで検索してください。",
-    clearFilters: "検索をクリア",
-  },
+      packEmpty: {
+        title: "パックが見つかりません",
+        description: "別のキーワードで検索してください。",
+        clearFilters: "検索をクリア",
+      },
 
-  packDetails: {
-    expansionPack: "拡張パック",
-    nameJapanese: "日本語名",
-    nameEnglish: "英語名",
-    releaseDate: "発売日",
-    cardsInThisPack: "このパックに含まれるカード",
-  },
-},
-
+      packDetails: {
+        expansionPack: "拡張パック",
+        nameJapanese: "日本語名",
+        nameEnglish: "英語名",
+        releaseDate: "発売日",
+        cardsInThisPack: "このパックに含まれるカード",
+      },
+    },
   },
 };

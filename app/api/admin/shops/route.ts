@@ -70,6 +70,7 @@ export async function POST(req: Request) {
         business_hours: body.business_hours,
         holiday_hours: body.holiday_hours,
         area: body.area,
+        is_featured: body.is_featured,
         x_account_username: body.x_account_username
       })
       .select()
@@ -138,6 +139,7 @@ export async function PATCH(req: Request) {
         // language_support: body.language_support,
         description: body.description,
         website: body.website,
+        is_featured: body.is_featured,
         business_hours: body.business_hours,
         holiday_hours: body.holiday_hours,
         x_account_username: body.x_account_username,

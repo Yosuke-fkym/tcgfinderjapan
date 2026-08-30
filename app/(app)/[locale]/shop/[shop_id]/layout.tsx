@@ -1,5 +1,5 @@
 import { Toaster } from "sonner";
-import shopBg from  "@/assets/japan-bg-poster.png"
+import shopBg from "@/assets/japan-bg-poster.png";
 
 export default function ShopLayout({
   children,
@@ -9,10 +9,10 @@ export default function ShopLayout({
   return (
     <div className="relative min-h-screen flex flex-col">
       {/* 🌆 Background Image */}
-   <div
-  className="absolute inset-0 bg-center bg-cover bg-no-repeat"
- style={{ backgroundImage: `url(${shopBg.src})` }}
-/>
+      <div
+        className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+        style={{ backgroundImage: `url(${shopBg.src})` }}
+      />
 
       {/* 🌑 Dark Overlay */}
       <div className="absolute inset-0 bg-black/60" />

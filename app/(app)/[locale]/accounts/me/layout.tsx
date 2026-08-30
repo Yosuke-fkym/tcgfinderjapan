@@ -2,7 +2,6 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import { useParams, usePathname, useRouter } from "next/navigation";
-import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ClockArrowUpIcon, CreditCardIcon, Store, User2 } from "lucide-react";
 import { ChevronRight, ArrowLeft } from "lucide-react";
@@ -90,41 +89,41 @@ export default function AccountLayout({ children }: { children: ReactNode }) {
 
   if (isLoggedIn === null) {
     return (
-      <div className="text-sm text-gray-500 min-h-[60vh] flex justify-center items-center">
+      <div className="bg-[#08080b] min-h-[60vh] text-sm text-white/40 flex justify-center items-center gap-2">
         {t.common.loading} <Spinner className="inline-flex mx-0.5" />
       </div>
     );
   }
 
   return (
-    <div className="mx-auto pt-4 pb-10">
-      {/* Top section */}
-      <div className="max-w-6xl px-4 sm:px-6 md:px-10">
-        <div className="flex flex-col sm:items-start  gap-3 mb-4">
-          
-          {/* Back Button */}
+    <div className="relative min-h-screen bg-[#08080b] overflow-hidden">
+      {/* ambient glow */}
+      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-125 w-225 rounded-full bg-indigo-600/10 blur-[120px]" />
+      <div className="pointer-events-none absolute top-1/3 -right-40 h-100 w-100 rounded-full bg-violet-500/6 blur-[110px]" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-10 pt-6 pb-16">
+        {/* Top row: back + breadcrumb */}
+        <div className="flex items-center justify-between gap-3 mb-5">
           <button
             onClick={() => router.push(`/${locale}/map`)}
-            className="flex items-center gap-2 text-xs sm:text-sm text-white hover:text-gray-400"
+            className="flex items-center gap-2 text-xs sm:text-sm text-white/60 hover:text-indigo-400 transition-colors"
           >
             <ArrowLeft size={16} />
             {t.accountLayout.back}
           </button>
 
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-400 flex-wrap">
+          <div className="hidden sm:flex items-center gap-1 text-xs text-white/30 flex-wrap">
             {breadcrumbs.map((crumb, i) => {
               const isLast = i === breadcrumbs.length - 1;
-
               return (
                 <div key={crumb.href} className="flex items-center gap-1">
                   <span
-                    className={`${
+                    className={`transition-colors ${
                       isLast
-                        ? "text-white font-medium"
+                        ? "text-white/60 font-medium"
                         : crumb.label === t.accountLayout.breadcrumb.account
-                        ? "text-gray-400 cursor-default"
-                        : "hover:underline cursor-pointer"
+                          ? "text-white/30 cursor-default"
+                          : "hover:text-indigo-400 cursor-pointer"
                     }`}
                     onClick={() => {
                       if (
@@ -137,54 +136,39 @@ export default function AccountLayout({ children }: { children: ReactNode }) {
                   >
                     {crumb.label}
                   </span>
-
                   {i < breadcrumbs.length - 1 && (
-                    <ChevronRight size={14} />
+                    <ChevronRight size={12} className="text-white/15" />
                   )}
                 </div>
               );
             })}
           </div>
         </div>
-      </div>
 
-      {/* Layout */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 mt-6 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
-        
-        {/* Sidebar */}
-        <Card className="p-3 md:p-4 h-fit">
-          <h2 className="text-lg font-semibold mb-3 hidden md:block">
-            {t.account.title}
-          </h2>
-
-          {/* Nav */}
-          <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
-
-              return (
-                <button
-                  key={item.href}
-                  onClick={() => router.push(item.href)}
-                  className={cn(
-                    "whitespace-nowrap px-3 py-2 cursor-pointer rounded-md text-sm transition flex items-center gap-1",
-                    isActive
-                      ? "bg-indigo-600 text-white"
-                      : "bg-gray-100 hover:bg-gray-200"
-                  )}
-                >
-                  <item.icon size={14} />
-                  <span className="hidden sm:inline">{item.label}</span>
-                </button>
-              );
-            })}
-          </div>
-        </Card>
-
-        {/* Content */}
-        <div className="md:col-span-3">
-          <Card className="p-4 md:p-6">{children}</Card>
+        {/* Horizontal pill nav — dashboard tab strip */}
+        <div className="flex gap-1.5 overflow-x-auto pb-1 mb-6 -mx-1 px-1">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <button
+                key={item.href}
+                onClick={() => router.push(item.href)}
+                className={cn(
+                  "whitespace-nowrap px-4 py-2 cursor-pointer rounded-full text-sm transition-colors duration-150 flex items-center gap-2 shrink-0",
+                  isActive
+                    ? "bg-indigo-600 text-white font-medium shadow-[0_0_0_1px_rgba(99,102,241,0.3)]"
+                    : "bg-white/3 border border-white/10 text-white/55 hover:text-white hover:bg-white/6",
+                )}
+              >
+                <item.icon size={15} />
+                {item.label}
+              </button>
+            );
+          })}
         </div>
+
+        {/* Full-width dashboard content */}
+        {children}
       </div>
     </div>
   );

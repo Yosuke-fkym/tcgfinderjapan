@@ -23,7 +23,7 @@ export async function generateMetadata({
       canonical: `${baseUrl}/${locale}/admin/packs`,
       languages: {
         en: `${baseUrl}/en/admin/packs`,
-        jp: `${baseUrl}/jp/admin/packs`,
+        ja: `${baseUrl}/jp/admin/packs`,
       },
     },
   };

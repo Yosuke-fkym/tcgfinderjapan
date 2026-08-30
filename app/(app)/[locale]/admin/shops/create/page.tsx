@@ -1,7 +1,6 @@
-"use client"
-import ShopForm from "@/components/admin/shops/ShopForm"
+"use client";
+import ShopForm from "@/components/admin/shops/ShopForm";
 
-export default function CreateShopPage(){
- return <ShopForm mode="create"/>
-
+export default function CreateShopPage() {
+  return <ShopForm mode="create" />;
 }

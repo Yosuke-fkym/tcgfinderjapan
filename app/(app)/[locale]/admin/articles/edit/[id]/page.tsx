@@ -21,9 +21,9 @@ type RawArticle = {
   thumbnail_url: string | null;
   category_id: string;
   status: "draft" | "published";
-  is_protected: boolean;          // ← ADD
-  shopify_url: string;   
-  is_featured: boolean,
+  is_protected: boolean; // ← ADD
+  shopify_url: string;
+  is_featured: boolean;
   article_tags: ArticleTag[];
 };
 
@@ -31,11 +31,11 @@ export default function EditArticlePage() {
   const params = useParams();
   const router = useRouter();
 
-  const id     = params.id as string;
+  const id = params.id as string;
   const locale = params.locale as string;
 
-  const [article,  setArticle]  = useState<RawArticle | null>(null);
-  const [loading,  setLoading]  = useState(true);
+  const [article, setArticle] = useState<RawArticle | null>(null);
+  const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
@@ -47,8 +47,14 @@ export default function EditArticlePage() {
           cache: "no-store",
         });
 
-        if (res.status === 404) { setNotFound(true); return; }
-        if (!res.ok) { toast.error("Failed to load article."); return; }
+        if (res.status === 404) {
+          setNotFound(true);
+          return;
+        }
+        if (!res.ok) {
+          toast.error("Failed to load article.");
+          return;
+        }
 
         const { data } = await res.json();
         setArticle(data);
@@ -84,22 +90,23 @@ export default function EditArticlePage() {
     );
   }
 
-  const tag_ids = article.article_tags?.map((at) => at.general_blog_tag_id) ?? [];
+  const tag_ids =
+    article.article_tags?.map((at) => at.general_blog_tag_id) ?? [];
 
   return (
     <ArticleForm
       mode="edit"
       initialData={{
-        id:            article.id,
-        title:         article.title,
-        slug:          article.slug,
-        excerpt:       article.excerpt,
-        content:       article.content,
+        id: article.id,
+        title: article.title,
+        slug: article.slug,
+        excerpt: article.excerpt,
+        content: article.content,
         thumbnail_url: article.thumbnail_url,
-        category_id:   article.category_id,
-        status:        article.status,
+        category_id: article.category_id,
+        status: article.status,
         is_featured: article.is_featured,
-        is_protected:  article.is_protected,  // ← ADD
+        is_protected: article.is_protected, // ← ADD
         shopify_url: article.shopify_url,
         tag_ids,
       }}

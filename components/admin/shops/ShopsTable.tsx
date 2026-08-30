@@ -281,7 +281,7 @@ export default function ShopsTable({ shops, refresh }: any) {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2 min-w-0">
                         <Store size={18} className="text-gray-500 shrink-0" />
-                        <span className="truncate min-w-0 max-w-[180px] block">
+                        <span className="truncate min-w-0 max-w-45 block">
                           {truncateText(
                             (shop.shop_name_in_langs &&
                               shop.shop_name_in_langs[locale as keyof typeof translations]) ||
@@ -304,7 +304,7 @@ export default function ShopsTable({ shops, refresh }: any) {
 
                   {/* Address */}
                   <TableCell className="py-4">
-                    <div className="max-w-[220px] min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-sm lg:text-base text-gray-600">
+                    <div className="max-w-55 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-sm lg:text-base text-gray-600">
                       {truncateText(
                         (shop.shop_address_in_langs &&
                           shop.shop_address_in_langs[locale as keyof typeof translations]) ||

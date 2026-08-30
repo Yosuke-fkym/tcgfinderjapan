@@ -17,6 +17,7 @@ export type Shop = {
   reviews?: any;
   shop_id: string;
   created_at: string;
+  is_featured: boolean;
   shop_name: string;
   shop_address: string;
   latitude: number;

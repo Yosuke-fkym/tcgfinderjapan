@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { getT } from "@/lib/getT";
-import shopBg from  "@/assets/japan-bg-poster.png"
+import shopBg from "@/assets/japan-bg-poster.png";
 import { Loader2, Mail } from "lucide-react";
 import { supabaseClient } from "@/lib/supabase/client";
 
@@ -16,7 +16,8 @@ export default function ForgotPasswordPage() {
   const [sent, setSent] = useState(false);
 
   const handleReset = async () => {
-    if (!email) return alert(t.auth.forgetPassword.requiredEmail || "Enter your email");
+    if (!email)
+      return alert(t.auth.forgetPassword.requiredEmail || "Enter your email");
 
     setLoading(true);
 
@@ -35,18 +36,16 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 relative">
-      
       {/* 🌆 Background */}
-     <div
-  className="absolute inset-0 bg-center bg-cover bg-no-repeat"
- style={{ backgroundImage: `url(${shopBg.src})` }}
-/>
-        <div className="absolute inset-0 bg-black/60" />
+      <div
+        className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+        style={{ backgroundImage: `url(${shopBg.src})` }}
+      />
+      <div className="absolute inset-0 bg-black/60" />
 
       {/* 🧾 Card */}
       <div className="relative z-10 w-full max-w-md">
         <div className="bg-black/70 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl space-y-6">
-
           {/* Header */}
           <div className="text-center space-y-2">
             <h1 className="text-2xl font-semibold text-white">
@@ -61,17 +60,23 @@ export default function ForgotPasswordPage() {
           {/* Success state */}
           {sent ? (
             <div className="text-center text-green-400 text-sm">
-              {t.auth.forgetPassword.resetSent || "Reset link sent! Check your email."}
+              {t.auth.forgetPassword.resetSent ||
+                "Reset link sent! Check your email."}
             </div>
           ) : (
             <>
               {/* Input */}
               <div className="relative flex items-center">
-                <Mail size={20} className="absolute left-3  w-4 h-4 text-gray-400" />
+                <Mail
+                  size={20}
+                  className="absolute left-3  w-4 h-4 text-gray-400"
+                />
 
                 <input
                   type="email"
-                  placeholder={t.auth.forgetPassword.email || "Enter your email"}
+                  placeholder={
+                    t.auth.forgetPassword.email || "Enter your email"
+                  }
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-3 py-3 bg-black/60 border border-white/20 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-indigo-500 transition"
@@ -84,14 +89,14 @@ export default function ForgotPasswordPage() {
                 disabled={loading}
                 className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 transition px-4 py-3 rounded-lg font-medium text-white disabled:opacity-60"
               >
-                        {loading ? (
-                    <span className="flex items-center gap-2">
-                      <Loader2 className="animate-spin w-4 h-4" />
-                      {t.auth.forgetPassword.sending || "Sending..."}
-                    </span>
-                  ) : (
-                    t.auth.forgetPassword.sendReset || "Send Reset Link"
-                  )}
+                {loading ? (
+                  <span className="flex items-center gap-2">
+                    <Loader2 className="animate-spin w-4 h-4" />
+                    {t.auth.forgetPassword.sending || "Sending..."}
+                  </span>
+                ) : (
+                  t.auth.forgetPassword.sendReset || "Send Reset Link"
+                )}
               </button>
             </>
           )}

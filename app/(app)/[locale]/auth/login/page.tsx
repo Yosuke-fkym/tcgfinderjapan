@@ -23,7 +23,7 @@ export async function generateMetadata({
       canonical: `${baseUrl}/${locale}/auth/login`,
       languages: {
         en: `${baseUrl}/en/auth/login`,
-        jp: `${baseUrl}/jp/auth/login`,
+        ja: `${baseUrl}/jp/auth/login`,
       },
     },
 

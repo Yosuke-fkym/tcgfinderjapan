@@ -75,6 +75,8 @@ export default function ContactPageComponent() {
           />
 
           <input
+          type="email"
+          required
             placeholder={t.contact.email}
             className="w-full p-3 bg-black/60 border border-white/20 rounded-lg focus:outline-none focus:border-indigo-500 transition"
             value={form.email}
@@ -97,7 +99,7 @@ export default function ContactPageComponent() {
             onClick={handleSubmit}
             className="w-full bg-indigo-600 hover:bg-indigo-700 transition px-4 py-3 rounded-lg font-medium"
           >
-            {t.contact.send}
+            {loading ? t.contact.sending : t.contact.send}
           </button>
         </div>
 

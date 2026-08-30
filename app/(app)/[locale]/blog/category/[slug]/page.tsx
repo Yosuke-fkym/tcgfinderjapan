@@ -3,9 +3,12 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArticleCardData, ArticleGrid } from "@/components/admin/articles/ArticleCard";
+import {
+  ArticleCardData,
+  ArticleGrid,
+} from "@/components/admin/articles/ArticleCard";
 import { getT } from "@/lib/getT";
-import VerticalAdBanner from "@/components/ads/VerticalAdBanner";
+// import VerticalAdBanner from "@/components/ads/VerticalAdBanner";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -35,11 +38,13 @@ async function fetchCategory(slug: string): Promise<Category | null> {
   return data ?? null;
 }
 
-async function fetchArticlesByCategory(categorySlug: string): Promise<ArticleCardData[]> {
+async function fetchArticlesByCategory(
+  categorySlug: string,
+): Promise<ArticleCardData[]> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const res = await fetch(
     `${baseUrl}/api/admin/articles?status=published&category=${categorySlug}&orderBy=published_at&order=desc`,
-    { cache: "no-store" }
+    { cache: "no-store" },
   );
   if (!res.ok) return [];
   const json = await res.json();
@@ -51,20 +56,43 @@ async function fetchArticlesByCategory(categorySlug: string): Promise<ArticleCar
 // ---------------------------------------------------------------------------
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const category = await fetchCategory(slug);
-  if (!category) return { title: "Category Not Found" };
+  if (!category) {
+    return {
+      title: "Categories Not Found",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
+
+  const canonical = `${baseUrl}/${locale}/blog/category/${slug}`;
 
   return {
     title: `${category.name} Articles | TCG Finder Japan`,
     description: `Browse ${category.name}-related articles, guides, news, and insights on TCG Finder Japan.`,
+
+    alternates: {
+      canonical,
+      languages: {
+        en: `${baseUrl}/en/blog/category/${slug}`,
+      },
+    },
+
     openGraph: {
       title: `${category.name} Articles | TCG Finder Japan`,
       description: `Browse ${category.name}-related articles, guides, news, and insights on TCG Finder Japan.`,
+      url: canonical,
+      siteName: "TCG Finder Japan",
+      locale: locale === "jp" ? "ja_JP" : "en_US",
       type: "website",
       images: [
         {
-          url: `/og.png`,
+          url: `${baseUrl}/og.png`,
           width: 1200,
           height: 630,
         },
@@ -81,7 +109,7 @@ export default async function CategoryPage({ params }: Props) {
   const { slug, locale } = await params;
 
   // const {locale}  =  useParams();
-  const t = getT(locale as string)
+  const t = getT(locale as string);
 
   const [category, articles] = await Promise.all([
     fetchCategory(slug),
@@ -92,7 +120,6 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-[#FAF8F4]">
-
       {/* ── Hero ── */}
       <header
         className="max-w-6xl mx-auto px-5 sm:px-10 pt-16 sm:pt-24 pb-12 sm:pb-16
@@ -127,24 +154,30 @@ export default async function CategoryPage({ params }: Props) {
             className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-900
                        leading-[1.1] tracking-tight mb-4"
           >
-            {category.name}<br />
-            <span className="text-stone-300">{t.blogCategory.hero.articles}</span>
+            {category.name}
+            <br />
+            <span className="text-stone-300">
+              {t.blogCategory.hero.articles}
+            </span>
           </h1>
 
           <p className="text-sm sm:text-base text-stone-500 leading-relaxed max-w-md">
-            {t.blogCategory.hero.description.replace("{category}", category.name)}
+            {t.blogCategory.hero.description.replace(
+              "{category}",
+              category.name,
+            )}
           </p>
         </div>
 
         {/* Article count — decorative, mirrors blog list page */}
-        <div className="hidden sm:block text-right pb-1 flex-shrink-0">
+        <div className="hidden sm:block text-right pb-1 shrink-0">
           <span
             className="block font-serif text-7xl font-bold text-stone-900 opacity-[0.07]
                        leading-none tracking-tight select-none"
           >
             {String(articles.length).padStart(2, "0")}
           </span>
-          <span className="text-[0.68rem] font-semibold tracking-[0.1em] uppercase text-stone-400">
+          <span className="text-[0.68rem] font-semibold tracking-widest uppercase text-stone-400">
             {t.blogCategory.stats.articles}
           </span>
         </div>
@@ -156,18 +189,20 @@ export default async function CategoryPage({ params }: Props) {
         aria-label={`${category.name} articles`}
       >
         <div className="max-w-5xl mx-auto my-8">
-      <VerticalAdBanner position="center"/>
-      </div>
+          {/* <VerticalAdBanner position="center"/> */}
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <ArticleGrid
-          noArticles={t.blogList.grid.noArticlesYet}
+            noArticles={t.blogList.grid.noArticlesYet}
             articles={articles}
             locale={locale}
-            emptyMessage={`t.blogCategory.grid.emptyMessage.replace("{category}", category.name)`}
+            emptyMessage={t.blogCategory.grid.emptyMessage.replace(
+              "{category}",
+              category.name,
+            )}
           />
         </div>
       </section>
-
     </main>
   );
 }

@@ -23,7 +23,7 @@ export async function generateMetadata({
 
       languages: {
         en: `${baseUrl}/en/accounts/me/favourite-shops`,
-        jp: `${baseUrl}/jp/accounts/me/favourite-shops`,
+        ja: `${baseUrl}/jp/accounts/me/favourite-shops`,
       },
     },
   };

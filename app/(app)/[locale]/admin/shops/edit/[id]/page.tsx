@@ -13,15 +13,15 @@ async function getShop(id: string) {
   return res.json();
 }
 
-export default async function EditShopPage( props: any) {
-  const { id } = await props.params
-  
+export default async function EditShopPage(props: any) {
+  const { id } = await props.params;
+
   const shop = await getShop(id);
-  
+
   if (shop.error) {
     return null;
   }
-  
+
   return (
     <div className="max-w-3xl px-0 sm:px-4">
       <ShopForm initialData={shop.data} mode="edit" />
