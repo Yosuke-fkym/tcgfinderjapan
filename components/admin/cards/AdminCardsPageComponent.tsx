@@ -78,7 +78,7 @@ export default function AdminCardsPageComponent() {
     <div className="flex flex-col gap-6 mx-2">
 
       {/* Toolbar — title left, search + button right */}
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-start sm:items-center sm:flex-row flex-col justify-between gap-3">
         <h1 className="text-xl font-semibold text-white tracking-tight">
           {t.admin.cardsPage.title}
         </h1>
@@ -109,7 +109,9 @@ export default function AdminCardsPageComponent() {
             "
           >
             <Plus size={15} strokeWidth={2.5} className="opacity-90" />
+            <span className="sm:flex hidden">
             {t.admin.cardsPage.addCard}
+            </span>
           </a>
         </div>
       </div>

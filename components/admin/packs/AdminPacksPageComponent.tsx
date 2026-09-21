@@ -106,7 +106,7 @@ export default function AdminPacksPageComponent() {
 
   return (
     <div className="flex flex-col gap-6 mx-2">
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-start sm:items-center sm:flex-row flex-col justify-between gap-3">
         <h1 className="text-xl font-semibold text-white">
           {t.admin.packsPage.title}
         </h1>
@@ -135,7 +135,9 @@ export default function AdminPacksPageComponent() {
             "
           >
             <Plus size={15} />
+            <span className="sm:flex hidden">
             {t.admin.packsPage.addPack}
+            </span>
           </a>
         </div>
       </div>

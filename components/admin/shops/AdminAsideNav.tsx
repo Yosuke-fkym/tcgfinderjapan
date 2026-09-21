@@ -18,7 +18,7 @@ function AdminAsideNav() {
   const t = getT(locale as string);
 
   return (
-    <aside className="w-full xl:w-64 bg-white rounded-xl shadow-sm border p-4 md:p-6 flex flex-col">
+    <aside className="w-full lg:w-64 bg-white rounded-xl shadow-sm border p-4 md:p-6 flex flex-col">
 
       {/* Title */}
       <h2 className="text-lg md:text-xl xl:text-2xl font-bold mb-4 md:mb-6">
@@ -26,7 +26,7 @@ function AdminAsideNav() {
       </h2>
 
       {/* Nav */}
-      <nav className="flex xl:flex-col gap-2 md:gap-3 overflow-x-auto md:overflow-visible">
+      <nav className="flex xl:flex-col gap-2 md:gap-3 overflow-x-auto lg:overflow-visible">
 
         <AdminNavButton
           icon={Home}

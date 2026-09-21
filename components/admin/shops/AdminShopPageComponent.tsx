@@ -81,7 +81,7 @@ export default function AdminShopsPageComponent() {
     <div className="flex flex-col gap-6 mx-2">
 
       {/* Toolbar — title left, filter + button right */}
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-start sm:items-center flex-col sm:flex-row justify-between gap-3">
         <h1 className="text-xl font-semibold text-white tracking-tight">
           {t.admin.shopsPage.title}
         </h1>
@@ -115,7 +115,9 @@ export default function AdminShopsPageComponent() {
             "
           >
             <Plus size={15} strokeWidth={2.5} className="opacity-90" />
+            <span className="hidden sm:flex">
             {t.admin.shopsPage.addShop}
+            </span>
           </a>
         </div>
       </div>

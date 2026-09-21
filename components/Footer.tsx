@@ -4,6 +4,7 @@ import { getT } from "@/lib/getT";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Store, Compass, Info } from "lucide-react";
+import logo from '@/assets/logo-home.png'
 
 export default function Footer() {
   const { locale } = useParams();
@@ -18,14 +19,24 @@ export default function Footer() {
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Brand */}
         <div>
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-600/25 to-transparent border border-indigo-500/25 flex items-center justify-center">
-              <Store className="w-4 h-4 text-indigo-400" />
-            </div>
-            <h2 className="text-base font-semibold text-white tracking-tight">
-              {t.footer.brand.title}
-            </h2>
-          </div>
+           <div
+          className="flex items-center cursor-pointer group shrink-0"
+          // onClick={() => router.push(`/${locale}/blog`)}
+        >
+          <img
+            src={logo.src}
+            alt="TCG Finder Japan"
+            className="
+              w-[145px]
+              min-[400px]:w-[165px]
+              lg:w-[190px]
+              h-auto
+              object-contain
+              transition-opacity
+              group-hover:opacity-85
+            "
+          />
+        </div>
           <p className="text-sm text-white/45 leading-relaxed max-w-xs">
             {t.footer.brand.description}
           </p>
@@ -40,7 +51,7 @@ export default function Footer() {
           <ul className="space-y-2.5 text-sm text-white/45">
             <li>
               <Link
-                href={`/${locale}`}
+                href={`/${locale}/map`}
                 className="inline-flex items-center gap-1.5 hover:text-indigo-400 transition-colors duration-200 hover:translate-x-0.5 will-change-transform"
               >
                 {t.footer.explore.map}
