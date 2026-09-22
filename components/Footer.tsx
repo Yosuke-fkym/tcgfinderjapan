@@ -3,8 +3,8 @@
 import { getT } from "@/lib/getT";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { Store, Compass, Info } from "lucide-react";
-import logo from '@/assets/logo-home.png'
+import { Compass, Info } from "lucide-react";
+import logo from '@/assets/logo.png'
 
 export default function Footer() {
   const { locale } = useParams();
@@ -29,7 +29,7 @@ export default function Footer() {
             className="
               w-[145px]
               min-[400px]:w-[165px]
-              lg:w-[190px]
+              lg:w-[180px]
               h-auto
               object-contain
               transition-opacity

@@ -11,7 +11,7 @@ import {
 } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import { Spinner } from "./ui/spinner";
-import logo from "@/assets/logo-home.png";
+import logo from "@/assets/logo.png";
 import {
   User,
   Menu,
@@ -179,9 +179,9 @@ function Navbar() {
             src={logo.src}
             alt="TCG Finder Japan"
             className="
-              w-[145px]
+              w-[170px]
               min-[400px]:w-[165px]
-              lg:w-[190px]
+              lg:w-[180px]
               h-auto
               object-contain
               transition-opacity
