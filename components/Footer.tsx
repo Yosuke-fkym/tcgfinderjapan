@@ -2,13 +2,17 @@
 
 import { getT } from "@/lib/getT";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { Compass, Info } from "lucide-react";
 import logo from '@/assets/logo.png'
 
 export default function Footer() {
   const { locale } = useParams();
-  const t = getT(locale as string);
+  const pathname = usePathname();
+const isBlogPage = pathname.includes("/blog");
+const navLocaleParams = isBlogPage ? "en" : locale;
+ const navLocale = Array.isArray(navLocaleParams) ? navLocaleParams[0] : navLocaleParams;
+   const t = getT((navLocale) || "en");
 
   return (
     <footer className="relative bg-[#08080b] border-t border-white/10 overflow-hidden">

@@ -37,7 +37,11 @@ function Navbar() {
   const router = useRouter();
   const path = usePathname();
   const { locale } = useParams();
-  const t = getT((locale as string) || "en");
+  
+  const isBlogPage = path.includes("/blog");
+  let navLocaleParams = isBlogPage ? "en" : locale;
+  const navLocale = Array.isArray(navLocaleParams) ? navLocaleParams[0] : navLocaleParams;
+  const t = getT((navLocale) || "en");
 
   const [user, setUser] = useState<UserType | null | undefined>(undefined);
   const [menuOpen, setMenuOpen] = useState(false);

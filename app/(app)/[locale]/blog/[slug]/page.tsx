@@ -195,11 +195,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function formatDate(dateString: string | null, locale: string): string {
+function formatDate(dateString: string | null, uiLocale: string): string {
   if (!dateString) return "";
 
   return new Date(dateString).toLocaleDateString(
-    locale === "jp" ? "ja-JP" : "en-US",
+    uiLocale === "jp" ? "ja-JP" : "en-US",
     {
       year: "numeric",
       month: "long",
@@ -212,6 +212,7 @@ function formatDate(dateString: string | null, locale: string): string {
 
 export default async function ArticleDetailPage({ params }: Props) {
   const { slug, locale } = await params;
+  const uiLocale = locale === "jp" ? "en" : locale;
 
   const article = await fetchArticle(slug);
   if (!article) notFound();
@@ -244,7 +245,7 @@ export default async function ArticleDetailPage({ params }: Props) {
     },
   };
 
-  const t = getT(locale as string);
+  const t = getT(uiLocale as string);
 
   // ── Gate check (server-side) ──────────────────────────────────────────────
   if (article.is_protected) {
@@ -353,14 +354,14 @@ export default async function ArticleDetailPage({ params }: Props) {
               <span className="w-0.75 h-0.75 rounded-full bg-current" />
 
               <span>{t.blogArticle.hero.published}:</span>
-              <span>{formatDate(article.published_at, locale)}</span>
+              <span>{formatDate(article.published_at, uiLocale)}</span>
 
               {article.updated_at &&
                 article.updated_at !== article.published_at && (
                   <>
                     <span className="w-0.75 h-0.75 rounded-full bg-current" />
                     <span>{t.blogArticle.hero.updated}:</span>
-                    <span>{formatDate(article.updated_at, locale)}</span>
+                    <span>{formatDate(article.updated_at, uiLocale)}</span>
                   </>
                 )}
             </div>

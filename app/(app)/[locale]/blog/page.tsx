@@ -105,21 +105,22 @@ async function fetchCategories(): Promise<CategoryOption[]> {
 
 // ─── Locale helpers ───────────────────────────────────────────────────────────
 
-function getFilterLabels(locale: string) {
-  if (locale === "jp") {
+function getFilterLabels(uiLocale: string) {
+  if (uiLocale === "jp") {
     return { all: "全カテゴリー", placeholder: "カテゴリー" };
   }
   return { all: "All Categories", placeholder: "Category" };
 }
 
-function getFeaturedHeading(locale: string) {
-  return locale === "jp" ? "特集記事" : "Featured";
+function getFeaturedHeading(uiLocale: string) {
+  return uiLocale === "jp" ? "特集記事" : "Featured";
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function BlogListPage({ params, searchParams }: Props) {
   const { locale } = await params;
+  const uiLocale = locale === "jp" ? "en" : locale;
   const { category: categorySlug } = await searchParams;
 
   const [articles, categories] = await Promise.all([
@@ -127,8 +128,8 @@ export default async function BlogListPage({ params, searchParams }: Props) {
     fetchCategories(),
   ]);
 
-  const t = getT(locale as string);
-  const filterLabels = getFilterLabels(locale);
+  const t = getT(uiLocale as string);
+  const filterLabels = getFilterLabels(uiLocale);
 
   // Split articles into featured vs normal.
   // When a category filter is active, suppress the featured section:
@@ -211,7 +212,7 @@ export default async function BlogListPage({ params, searchParams }: Props) {
         <FeaturedArticlesSection
           articles={featuredArticles}
           locale={locale}
-          heading={getFeaturedHeading(locale)}
+          heading={getFeaturedHeading(uiLocale)}
         />
       )}
       <div className="max-w-5xl mx-auto my-8">

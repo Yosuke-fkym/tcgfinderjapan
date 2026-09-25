@@ -21,8 +21,11 @@ export default function PasswordGate({ slug, articleTitle, shopifyUrl }: Props) 
   const [showPw,      setShowPw]      = useState(false);
   const [loading,     setLoading]     = useState(false);
   const [error,       setError]       = useState<string | null>(null);
-  const {locale}  =  useParams();
-  const t = getT(locale as string)
+ const { locale } = useParams();
+
+const uiLocale = locale === "jp" ? "en" : locale;
+const t = getT(uiLocale as string);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     
