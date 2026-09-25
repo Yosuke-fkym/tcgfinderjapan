@@ -12,7 +12,10 @@ export async function generateMetadata({
     title: "Japan Card Shop Map | Find Trading Card Shops Near You",
     description:
       "Explore trading card shops across Japan using an interactive map. Discover Pokémon card stores, filter by area, and find top-rated shops.",
-
+robots: {
+  index: false,
+  follow: true,
+},
     alternates: {
       canonical: `${baseUrl}/${locale}/map`,
       languages: {
