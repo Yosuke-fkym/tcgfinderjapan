@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static pages
   const staticRoutes = [
     "",
-    "/map",
+    // "/map",
     "/ranking",
     "/blog",
     // "/cards",
@@ -135,22 +135,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ) ?? [];
 
   // active shops
-  const { data: shops, error: shopsError } = await supabaseAdmin
-    .from("shops")
-    .select("shop_id");
-  if (shopsError) {
-    throw new Error(`Failed to fetch shops for sitemap: ${shopsError.message}`);
-  }
+  // const { data: shops, error: shopsError } = await supabaseAdmin
+  //   .from("shops")
+  //   .select("shop_id");
+  // if (shopsError) {
+  //   throw new Error(`Failed to fetch shops for sitemap: ${shopsError.message}`);
+  // }
 
-  const shopsUrls: MetadataRoute.Sitemap =
-    shops?.flatMap((shop) =>
-      locales.map((locale) => ({
-        url: `${baseUrl}/${locale}/shop/${shop.shop_id}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly",
-        priority: 0.9,
-      })),
-    ) ?? [];
+  // const shopsUrls: MetadataRoute.Sitemap =
+  //   shops?.flatMap((shop) =>
+  //     locales.map((locale) => ({
+  //       url: `${baseUrl}/${locale}/shop/${shop.shop_id}`,
+  //       lastModified: new Date(),
+  //       changeFrequency: "monthly",
+  //       priority: 0.9,
+  //     })),
+  //   ) ?? [];
 
   return [
     ...staticUrls,
@@ -159,6 +159,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...tagUrls,
     // ...cardUrls,
     // ...packUrls,
-    ...shopsUrls,
+    // ...shopsUrls,
   ];
 }
