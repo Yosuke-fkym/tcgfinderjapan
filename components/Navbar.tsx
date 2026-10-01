@@ -254,7 +254,7 @@ function Navbar() {
                 >
                   <Globe size={15} />
                   <span>
-                    {(locale as string)?.toUpperCase() || "EN"}
+                    {(navLocale as string)?.toUpperCase() || "EN"}
                   </span>
                 </button>
               </DropdownMenuTrigger>
@@ -480,7 +480,7 @@ function Navbar() {
               <button
                 onClick={() => changeLanguage("en")}
                 className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm transition-colors ${
-                  locale === "en"
+                  navLocale === "en"
                     ? "bg-indigo-600/15 text-indigo-300"
                     : "text-white/70 hover:bg-white/6"
                 }`}
@@ -492,7 +492,7 @@ function Navbar() {
               <button
                 onClick={() => changeLanguage("jp")}
                 className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm transition-colors ${
-                  locale === "jp"
+                  navLocale === "jp"
                     ? "bg-indigo-600/15 text-indigo-300"
                     : "text-white/70 hover:bg-white/6"
                 }`}
