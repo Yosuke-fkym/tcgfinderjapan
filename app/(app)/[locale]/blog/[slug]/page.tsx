@@ -115,10 +115,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
-  const canonical = `${baseUrl}/${locale}/blog/${slug}`;
-
-  const enUrl = `${baseUrl}/en/blog/${slug}`;
-
+  const canonical = `${baseUrl}/en/blog/${slug}`;
   if (article.is_protected) {
     return {
       title: `${article.title} — Protected Article`,
@@ -126,9 +123,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
       alternates: {
         canonical,
-        languages: {
-          en: enUrl,
-        },
       },
 
       robots: {
@@ -159,11 +153,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: article.excerpt,
 
     alternates: {
-      canonical,
-      languages: {
-        en: enUrl,
-      },
+      canonical
     },
+    robots: {
+  index: locale === "en",
+  follow: true,
+},
 
     openGraph: {
       title: article.title,
@@ -241,7 +236,7 @@ export default async function ArticleDetailPage({ params }: Props) {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${baseUrl}/${locale}/blog/${slug}`,
+      "@id": `${baseUrl}/en/blog/${slug}`,
     },
   };
 

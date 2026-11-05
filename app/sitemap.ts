@@ -23,12 +23,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const staticUrls: MetadataRoute.Sitemap = locales.flatMap((locale) =>
-    staticRoutes.map((route) => ({
-      url: `${baseUrl}/${locale}${route}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: route === "" ? 1 : 0.8,
-    })),
+   staticRoutes.filter((route)=> !(locale === "jp" && route === "/blog"))
+  .map((route)=> ({
+    url: `${baseUrl}/${locale}${route}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: route === "" ? 1.0 : 0.8,
+  }))
   );
 
   // dynamic packs
@@ -106,13 +107,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const categoryUrls: MetadataRoute.Sitemap =
-    categories?.flatMap((category) =>
-      locales.map((locale) => ({
-        url: `${baseUrl}/${locale}/blog/category/${category.slug}`,
+    categories?.map((category) => ({
+        url: `${baseUrl}/en/blog/category/${category.slug}`,
         lastModified: new Date(),
         changeFrequency: "weekly",
         priority: 0.7,
-      })),
+      }),
     ) ?? [];
 
   // Tags
@@ -125,13 +125,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const tagUrls: MetadataRoute.Sitemap =
-    tags?.flatMap((tag) =>
-      locales.map((locale) => ({
-        url: `${baseUrl}/${locale}/blog/tag/${tag.slug}`,
+    tags?.map((tag) => ({
+        url: `${baseUrl}/en/blog/tag/${tag.slug}`,
         lastModified: new Date(),
         changeFrequency: "weekly",
         priority: 0.6,
-      })),
+      }),
     ) ?? [];
 
   // active shops

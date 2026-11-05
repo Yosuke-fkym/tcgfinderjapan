@@ -70,18 +70,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
 
-  const canonical = `${baseUrl}/${locale}/blog/category/${slug}`;
+  const canonical = `${baseUrl}/en/blog/category/${slug}`;
 
   return {
     title: `${category.name} Articles | TCG Finder Japan`,
     description: `Browse ${category.name}-related articles, guides, news, and insights on TCG Finder Japan.`,
 
     alternates: {
-      canonical,
-      languages: {
-        en: `${baseUrl}/en/blog/category/${slug}`,
-      },
-    },
+  canonical,
+},
+
+robots: {
+  index: locale === "en",
+  follow: true,
+},
 
     openGraph: {
       title: `${category.name} Articles | TCG Finder Japan`,

@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
 
-  const canonical = `${baseUrl}/${locale}/blog`;
+  const canonical = `${baseUrl}/en/blog`;
 
   const title =
     locale === "jp" ? "ブログ | TCG Finder Japan" : "Blog | TCG Finder Japan";
@@ -42,15 +42,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
+alternates: {
+  canonical,
+},
 
-    alternates: {
-      canonical,
-      languages: {
-        en: `${baseUrl}/en/blog`,
-        ja: `${baseUrl}/jp/blog`,
-      },
-    },
-
+robots: {
+  index: locale === "en",
+  follow: true,
+},
     openGraph: {
       title,
       description,
