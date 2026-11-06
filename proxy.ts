@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { createAuthClient } from "./lib/supabase/serverAuth";
 
 const locales = ["en", "jp"];
-const defaultLocale = "jp";
+const defaultLocale = "en";
 
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -24,12 +24,20 @@ export async function proxy(req: NextRequest) {
     pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  // redirect if no locale
-  if (!hasLocale) {
+ // Redirect if no locale
+if (!hasLocale) {
+  if (pathname === "/") {
     return NextResponse.redirect(
-      new URL(`/${defaultLocale}${pathname}`, req.url)
+      new URL("/en/blog", req.url),
+      308
     );
   }
+
+  return NextResponse.redirect(
+    new URL(`/en${pathname}`, req.url),
+    308
+  );
+}
 
   //  extract locale
   const locale = pathname.split("/")[1];

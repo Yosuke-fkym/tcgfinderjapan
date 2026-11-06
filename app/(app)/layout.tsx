@@ -1,5 +1,6 @@
 "use client";
 
+// app/(app)/layout.tsx
 import AdminNavbar from "@/components/admin/shops/AdminNavbar";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";

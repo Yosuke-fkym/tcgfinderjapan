@@ -1,3 +1,5 @@
+// app/(app)/[locale]/layout.tsx
+
 export default async function LocaleLayout({
   children,
   params,
