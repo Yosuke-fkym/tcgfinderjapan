@@ -36,7 +36,7 @@ export default function RankingLayout({ children }: { children: ReactNode }) {
 
   // useEffect(() => {
   //   if (isLoggedIn === false) {
-  //     router.replace(`/${locale}/auth/login`);
+  //     router.replace(`/auth/login`);
   //   }
   // }, [isLoggedIn]);
 

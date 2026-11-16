@@ -32,7 +32,7 @@ export default function ShopDiscoveryCard({
 
   return (
     <Link
-      href={`/${locale}/shop/${shop.shop_id}`}
+      href={`/shop/${shop.shop_id}`}
       className="group block"
     >
       <article className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0d0d0d] transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-2xl">

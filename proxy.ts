@@ -1,98 +1,103 @@
+
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { createAuthClient } from "./lib/supabase/serverAuth";
 
 const locales = ["en", "jp"];
-const defaultLocale = "en";
 
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // IGNORE STATIC FILES (IMPORTANT FIX)
+  // Skip API and static assets
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/images") ||
-    pathname === "/favicon.ico" ||
-    pathname.includes(".") 
+    pathname === "/favicon.ico"
   ) {
     return NextResponse.next();
   }
 
-  // CHECK LOCALE
-  const hasLocale = locales.some((locale) =>
-    pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
+  // Normalize both /en/admin and /admin to /admin
+  const segments = pathname.split("/");
+  const hasLocale = locales.includes(segments[1]);
 
- // Redirect if no locale
-if (!hasLocale) {
-  if (pathname === "/") {
-    return NextResponse.redirect(
-      new URL("/en/blog", req.url),
-      308
-    );
+  const cleanPath = hasLocale
+    ? "/" + segments.slice(2).join("/")
+    : pathname;
+
+  if (hasLocale) {
+    const redirectPath = cleanPath === "/blog" ? "/" : cleanPath;
+    const redirectUrl = req.nextUrl.clone();
+    redirectUrl.pathname = redirectPath;
+    return NextResponse.redirect(redirectUrl);
   }
 
-  return NextResponse.redirect(
-    new URL(`/en${pathname}`, req.url),
-    308
-  );
-}
+  if (pathname === "/blog") {
+    const redirectUrl = req.nextUrl.clone();
+    redirectUrl.pathname = "/";
+    return NextResponse.redirect(redirectUrl);
+  }
 
-  //  extract locale
-  const locale = pathname.split("/")[1];
+  const isAuthPage =
+    cleanPath === "/auth/login" ||
+    cleanPath === "/auth/signup";
 
-  //  clean path (remove locale)
-  const cleanPath = pathname.slice(`/${locale}`.length) || "/";
+  const isProtected =
+    cleanPath === "/accounts" ||
+    cleanPath.startsWith("/accounts/");
 
-  const res = NextResponse.next();
+  const isAdminRoute =
+    cleanPath === "/admin" ||
+    cleanPath.startsWith("/admin/");
+
+  // Public routes don't need auth checks
+  if (!isAuthPage && !isProtected && !isAdminRoute) {
+    return NextResponse.next();
+  }
+
   const supabase = await createAuthClient();
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isAuthPage =
-    cleanPath.startsWith("/auth/login") ||
-    cleanPath.startsWith("/auth/signup");
-
-  const isProtected = cleanPath.startsWith("/accounts");
-  const isAdminRoute = cleanPath.startsWith("/admin");
-
-  //  Not logged in
+  // Not logged in
   if (!user && (isProtected || isAdminRoute)) {
     return NextResponse.redirect(
-      new URL(`/${locale}/auth/login`, req.url)
+      new URL("/auth/login", req.url)
     );
   }
 
-  //  Already logged in
+  // Already logged in
   if (user && isAuthPage) {
     return NextResponse.redirect(
-      new URL(`/${locale}/blog`, req.url)
+      new URL("/", req.url)
     );
   }
 
-  // ADMIN CHECK
+  // Admin authorization
   if (user && isAdminRoute) {
-    const { data: profile } = await supabase
+    const { data: profile, error } = await supabase
       .from("users")
       .select("role")
       .eq("id", user.id)
       .single();
 
-    if (!profile || profile.role !== "admin") {
+    if (
+      error ||
+      !profile ||
+      profile.role !== "admin"
+    ) {
       return NextResponse.redirect(
-        new URL(`/${locale}/`, req.url)
+        new URL("/", req.url)
       );
     }
   }
 
-  return res;
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    "/((?!_next|api|favicon.ico).*)",
-  ],
+  matcher: ["/((?!_next|api|favicon.ico).*)"],
 };

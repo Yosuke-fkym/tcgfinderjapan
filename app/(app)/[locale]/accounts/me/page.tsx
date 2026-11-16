@@ -19,12 +19,7 @@ export async function generateMetadata({
     },
 
     alternates: {
-      canonical: `${baseUrl}/${locale}/accounts/me`,
-
-      languages: {
-        en: `${baseUrl}/en/accounts/me`,
-        ja: `${baseUrl}/jp/accounts/me`,
-      },
+      canonical: `${baseUrl}/accounts/me`,
     },
   };
 }

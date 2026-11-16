@@ -18,12 +18,7 @@ export async function generateMetadata({
     },
 
     alternates: {
-      canonical: `${baseUrl}/${locale}/admin/csv-import`,
-
-      languages: {
-        en: `${baseUrl}/en/admin/csv-import`,
-        ja: `${baseUrl}/jp/admin/csv-import`,
-      },
+      canonical: `${baseUrl}/admin/csv-import`,
     },
   };
 }

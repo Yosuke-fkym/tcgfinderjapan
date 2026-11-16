@@ -17,18 +17,14 @@ robots: {
   follow: true,
 },
     alternates: {
-      canonical: `${baseUrl}/${locale}/map`,
-      languages: {
-        en: `${baseUrl}/en/map`,
-        ja: `${baseUrl}/jp/map`,
-      },
+  canonical: `${baseUrl}/map`,
     },
 
     openGraph: {
       title: "Japan Card Shop Map | Find Trading Card Shops Near You",
       description:
         "Explore trading card shops across Japan using an interactive map. Discover Pokémon card stores, filter by area, and find top-rated shops.",
-      url: `${baseUrl}/${locale}/map`,
+      url: `${baseUrl}/map`,
       siteName: "TCG Finder Japan",
       locale: isJP ? "ja_JP" : "en_US",
       images: [

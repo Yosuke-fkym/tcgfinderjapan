@@ -34,16 +34,12 @@ export async function generateMetadata({
     title,
     description,
     alternates: {
-      canonical: `${baseUrl}/${locale}/about`,
-      languages: {
-        en: `${baseUrl}/en/about`,
-        ja: `${baseUrl}/jp/about`,
-      },
+      canonical: `${baseUrl}/about`,
     },
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${locale}/about`,
+      url: `${baseUrl}/about`,
       siteName: "TCG Finder Japan",
       locale: isJP ? "ja_JP" : "en_US",
       type: "website",
@@ -183,7 +179,7 @@ export default async function AboutPage({
               {t.about.contactDesc}
             </p>
             <Link
-              href={`/${locale}/contact`}
+              href={`/contact`}
               className="group inline-flex items-center gap-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 px-5 py-2.5 text-sm font-medium text-white transition-colors"
             >
               {t.about.contactButton}

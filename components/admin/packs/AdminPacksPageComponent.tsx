@@ -121,7 +121,7 @@ export default function AdminPacksPageComponent() {
           />
 
           <a
-            href={`/${locale}/admin/packs/create`}
+            href={`/admin/packs/create`}
             className="
               relative inline-flex items-center gap-2
               px-4 py-2 rounded-lg text-sm font-medium

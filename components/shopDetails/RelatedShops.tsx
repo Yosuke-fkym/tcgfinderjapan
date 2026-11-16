@@ -43,7 +43,7 @@ export default function RelatedShops({ shops }: RelatedShopsProps) {
   return (
     <Link
       key={shop.shop_id}
-      href={`/${locale}/shop/${shop.shop_id}`}
+      href={`/shop/${shop.shop_id}`}
       className="block"
     >
       <Card className="group pt-0 cursor-pointer overflow-hidden border shadow-sm hover:shadow-md transition">

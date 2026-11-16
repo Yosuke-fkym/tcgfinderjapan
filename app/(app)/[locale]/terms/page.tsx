@@ -34,17 +34,13 @@ export async function generateMetadata({
     description,
 
     alternates: {
-      canonical: `${baseUrl}/${locale}/terms`,
-      languages: {
-        en: `${baseUrl}/en/terms`,
-        ja: `${baseUrl}/jp/terms`,
-      },
+      canonical: `${baseUrl}/terms`,
     },
 
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${locale}/terms`,
+      url: `${baseUrl}/terms`,
       siteName: "TCG Finder Japan",
       locale: isJP ? "ja_JP" : "en_US",
       type: "website",

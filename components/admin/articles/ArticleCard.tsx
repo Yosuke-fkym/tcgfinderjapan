@@ -46,7 +46,7 @@ export function ArticleCard({
 
   return (
     <Link
-      href={`/${locale}/blog/${article.slug}`}
+      href={`/blog/${article.slug}`}
       aria-label={article.title}
       className="group flex flex-col bg-white border border-stone-200 rounded-xl overflow-hidden
                  transition-all duration-200 ease-out

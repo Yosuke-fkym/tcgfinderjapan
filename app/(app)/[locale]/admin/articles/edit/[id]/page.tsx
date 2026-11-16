@@ -81,7 +81,7 @@ export default function EditArticlePage() {
       <div className="text-sm text-gray-500 min-h-[60vh] flex flex-col justify-center items-center gap-4">
         <p>Article not found.</p>
         <button
-          onClick={() => router.push(`/${locale}/admin/articles`)}
+          onClick={() => router.push(`/admin/articles`)}
           className="text-sm underline hover:text-gray-800 transition"
         >
           ← Back to Articles

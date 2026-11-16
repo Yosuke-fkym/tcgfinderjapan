@@ -34,7 +34,7 @@ export function RelatedBlogCard({ post, locale}: RelatedBlogCardProps) {
           variant="outline"
           className="mt-3 w-fit gap-1.5 rounded-full border-stone-300 text-stone-700 hover:bg-stone-100"
         >
-          <Link target="_blank" href={`/${locale}/blog/${post.slug}`}>
+          <Link target="_blank" href={`/blog/${post.slug}`}>
             Read Article
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>

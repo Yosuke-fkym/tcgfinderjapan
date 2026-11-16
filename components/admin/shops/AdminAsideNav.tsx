@@ -31,46 +31,46 @@ function AdminAsideNav() {
         <AdminNavButton
           icon={Home}
           name={t.admin.sidebar.overview}
-          path={`/${locale}/admin`}
+          path={`/admin`}
           key="overview"
         />
 
         <AdminNavButton
           icon={ShapesIcon}
           name={t.admin.sidebar.shops}
-          path={`/${locale}/admin/shops`}
+          path={`/admin/shops`}
           key="shops"
         />
 
         <AdminNavButton
           icon={BarChart2Icon}
           name={t.admin.sidebar.reports}
-          path={`/${locale}/admin/reports`}
+          path={`/admin/reports`}
           key="reports"
         />
 
         <AdminNavButton
           icon={Import}
           name={t.admin.sidebar.importCsv}
-          path={`/${locale}/admin/csv-import`}
+          path={`/admin/csv-import`}
           key="csv-import"
         />
         <AdminNavButton
           icon={File}
           name={t.admin.sidebar.articles}
-          path={`/${locale}/admin/articles`}
+          path={`/admin/articles`}
           key="articles"
         />
         <AdminNavButton
           icon={LucideCreditCard}
           name={t.admin.sidebar.cards}
-          path={`/${locale}/admin/cards`}
+          path={`/admin/cards`}
           key="cards"
         />
         <AdminNavButton
           icon={IdCardIcon}
           name={t.admin.sidebar.packs}
-          path={`/${locale}/admin/packs`}
+          path={`/admin/packs`}
           key="packs"
         />
         

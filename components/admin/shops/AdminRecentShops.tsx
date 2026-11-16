@@ -199,7 +199,7 @@ function AdminRecentShops() {
 
               <TableCell className="text-right">
                 <button
-                  onClick={() => router.push(`/${locale}/shop/${shop.shop_id}`)}
+                  onClick={() => router.push(`/shop/${shop.shop_id}`)}
                   className="flex ml-auto items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-3 py-1.5 rounded-md transition"
                 >
                   <Eye size={14} />
@@ -254,7 +254,7 @@ function AdminRecentShops() {
             {new Date(shop.created_at).toLocaleDateString()}
           </div>
           <button
-  onClick={() => router.push(`/${locale}/shop/${shop.shop_id}`)}
+  onClick={() => router.push(`/shop/${shop.shop_id}`)}
   className="w-full flex justify-center items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-3 py-2 rounded-md transition"
 >
   <Eye size={14} />

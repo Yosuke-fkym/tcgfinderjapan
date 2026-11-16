@@ -29,7 +29,7 @@ export async function generateMetadata({
       follow: false,
     },
     alternates: {
-      canonical: `${baseUrl}/${locale}/admin/pack/edit/${(await params).id}`,
+      canonical: `${baseUrl}/admin/pack/edit/${(await params).id}`,
     },
   };
 }

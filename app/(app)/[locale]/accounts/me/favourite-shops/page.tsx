@@ -19,12 +19,7 @@ export async function generateMetadata({
     },
 
     alternates: {
-      canonical: `${baseUrl}/${locale}/accounts/me/favourite-shops`,
-
-      languages: {
-        en: `${baseUrl}/en/accounts/me/favourite-shops`,
-        ja: `${baseUrl}/jp/accounts/me/favourite-shops`,
-      },
+      canonical: `${baseUrl}/accounts/me/favourite-shops`,
     },
   };
 }

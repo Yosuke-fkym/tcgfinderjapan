@@ -374,7 +374,7 @@ export default function ArticleForm({
             : t.articleForm.toast.draftSuccess,
         );
 
-        router.push(`/${locale}/admin/articles`);
+        router.push(`/admin/articles`);
       }
 
       // ── EDIT ─────────────────────────────────────────────────────────────────
@@ -415,7 +415,7 @@ export default function ArticleForm({
           throw new Error(result.error || t.articleForm.toast.genericError);
 
         toast.success(t.articleForm.toast.updateSuccess);
-        router.push(`/${locale}/admin/articles`);
+        router.push(`/admin/articles`);
       }
     } catch (err: any) {
       toast.error(err?.message || t.articleForm.toast.saveError);

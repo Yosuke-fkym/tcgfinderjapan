@@ -11,7 +11,7 @@ function FloatingCreateArticleBtn() {
   const t = getT(locale as string);
 
   const handleClick = () => {
-   router.push(`/${locale}/admin/articles/create`);
+   router.push(`/admin/articles/create`);
   };
 
   return (

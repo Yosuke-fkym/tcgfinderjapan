@@ -57,7 +57,7 @@ export default function FavouriteCardsPageComponent() {
           {t.cardPage.favoriteCards.emptyDescription}
         </p>
         <Button asChild className="mt-4 bg-indigo-600 hover:bg-indigo-500 rounded-full px-5">
-          <Link href={`/${locale}/cards`}>
+          <Link href={`/cards`}>
             {t.cardPage.favoriteCards.browseCards}
           </Link>
         </Button>

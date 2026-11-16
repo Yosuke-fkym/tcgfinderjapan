@@ -19,12 +19,7 @@ export async function generateMetadata({
     },
 
     alternates: {
-      canonical: `${baseUrl}/${locale}/accounts/me/viewed-history`,
-
-      languages: {
-        en: `${baseUrl}/en/accounts/me/viewed-history`,
-        ja: `${baseUrl}/jp/accounts/me/viewed-history`,
-      },
+      canonical: `${baseUrl}/accounts/me/viewed-history`,
     },
   };
 }

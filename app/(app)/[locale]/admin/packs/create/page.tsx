@@ -16,7 +16,7 @@ export async function generateMetadata({
       follow: false,
     },
     alternates: {
-      canonical: `${baseUrl}/${locale}/admin/packs/create`,
+      canonical: `${baseUrl}/admin/packs/create`,
     },
   };
 }
