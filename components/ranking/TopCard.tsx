@@ -14,7 +14,7 @@ export function TopCard({ item, index }: any) {
   const t = getT(locale as string);
 
   return (
-  <Link href={`/${locale}/shop/${item.shopId}`}>
+  <Link href={`/shop/${item.shopId}`}>
       <div className="w-full h-full p-4 sm:p-5 rounded-2xl border shadow-sm hover:shadow-md transition cursor-pointer bg-white flex flex-col justify-between">
 
         {/* TOP */}

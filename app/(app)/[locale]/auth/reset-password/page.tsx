@@ -47,7 +47,7 @@ export default function ResetPasswordPage() {
 
       // optional redirect after 2s
       setTimeout(() => {
-        router.push(`/${locale}/auth/login`);
+        router.push(`/auth/login`);
       }, 2000);
     }
   };
@@ -135,7 +135,7 @@ export default function ResetPasswordPage() {
           <p className="text-xs text-gray-500 text-center">
             {t.auth?.forgetPassword.backToLogin || "Back to"}{" "}
             <a
-              href={`/${locale}/auth/login`}
+              href={`/auth/login`}
               className="text-indigo-400 hover:underline"
             >
               {t.auth?.forgetPassword.login || "Login"}

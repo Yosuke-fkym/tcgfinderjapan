@@ -42,7 +42,7 @@ export default function NotFound() {
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
-            href={`/${locale}`}
+            href="/"
             className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
           >
             <MapPin className="h-4 w-4" />
@@ -50,7 +50,7 @@ export default function NotFound() {
           </Link>
 
           <Link
-            href={`/${locale}`}
+            href="/"
             className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />

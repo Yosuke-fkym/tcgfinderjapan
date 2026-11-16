@@ -124,5 +124,5 @@ export default async function PacksPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  redirect(`/${locale}/cards`);
+  redirect(`/cards`);
 }

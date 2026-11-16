@@ -154,14 +154,14 @@ useEffect(() => {
       {/* Back */}
       <div className="space-y-2">
       <Link
-  href={`/${params.locale}/map`}
+  href="/map"
   className="text-sm text-gray-500 hover:text-gray-800 transition"
 >
   ← {t.common.back}
 </Link>
         <div className="text-xs text-gray-400 flex items-center gap-1">
           <Link
-  href={`/${params.locale}/map`}
+  href="/map"
   className="cursor-pointer hover:underline"
 >
   {t.shopDetails.page.shopList}

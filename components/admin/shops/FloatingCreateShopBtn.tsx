@@ -10,7 +10,7 @@ function FloatingCreateShopBtn() {
   const t = getT(locale as string);
 
   const handleClick = () => {
-   router.push(`/${locale}/admin/shops/create`);
+   router.push(`/admin/shops/create`);
   };
 
   return (

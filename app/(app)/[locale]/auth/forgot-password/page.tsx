@@ -22,7 +22,7 @@ export default function ForgotPasswordPage() {
     setLoading(true);
 
     const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/${locale}/auth/reset-password`,
+      redirectTo: `${window.location.origin}/auth/reset-password`,
     });
 
     setLoading(false);
@@ -105,7 +105,7 @@ export default function ForgotPasswordPage() {
           <p className="text-xs text-gray-500 text-center">
             {t.auth.forgetPassword.backToLogin || "Remember your password?"}{" "}
             <a
-              href={`/${locale}/auth/login`}
+              href={`/auth/login`}
               className="text-indigo-400 hover:underline"
             >
               {t.auth.forgetPassword.login || "Login"}

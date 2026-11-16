@@ -77,7 +77,7 @@ export default async function PackDetailPage({ params }: PackDetailPageProps) {
         <nav aria-label="Breadcrumb" className="mb-8">
           <ol className="flex flex-wrap items-center gap-1.5 text-sm text-stone-500">
             <li>
-              <Link href={`/${locale}/`} className="transition-colors hover:text-stone-800">
+              <Link href={`/`} className="transition-colors hover:text-stone-800">
                 {t.cardPage.home}
               </Link>
             </li>
@@ -85,7 +85,7 @@ export default async function PackDetailPage({ params }: PackDetailPageProps) {
               <ChevronRight className="h-3.5 w-3.5" />
             </li>
             <li>
-              <Link href={`/${locale}/cards`} className="transition-colors hover:text-stone-800">
+              <Link href={`/cards`} className="transition-colors hover:text-stone-800">
                 {t.packPage.packEncyclopedia}
               </Link>
             </li>

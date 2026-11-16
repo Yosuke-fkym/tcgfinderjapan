@@ -20,18 +20,14 @@ export async function generateMetadata({
     },
 
     alternates: {
-      canonical: `${baseUrl}/${locale}/auth/login`,
-      languages: {
-        en: `${baseUrl}/en/auth/login`,
-        ja: `${baseUrl}/jp/auth/login`,
-      },
+      canonical: `${baseUrl}/auth/login`,
     },
 
     openGraph: {
       title: "Login | TCG Finder Japan",
       description:
         "Log in to your account to manage your favorite card shops and view your activity.",
-      url: `${baseUrl}/${locale}/auth/login`,
+      url: `${baseUrl}/auth/login`,
       siteName: "TCG Finder Japan",
       locale: isJP ? "ja_JP" : "en_US",
       type: "website",

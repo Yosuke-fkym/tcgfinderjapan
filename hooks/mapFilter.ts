@@ -61,7 +61,7 @@ export function useMapFilters() {
     if (updated.openNow) params.set("open", "true");
     if (updated.favoritesOnly) params.set("fav", "true"); // ✅ added
 
-    router.replace(`/${locale}/map?${params.toString()}`);
+    router.replace(`/map?${params.toString()}`);
   };
 
   return {

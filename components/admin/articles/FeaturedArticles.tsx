@@ -44,7 +44,7 @@ function categoryLabel(article: ArticleCardData): string | null {
 }
 
 function articleHref(article: ArticleCardData, locale: string): string {
-  return `/${locale}/blog/${(article as any).slug ?? article.id}`;
+  return `/blog/${(article as any).slug ?? article.id}`;
 }
 
 // ─── Editor's Pick badge ──────────────────────────────────────────────────────

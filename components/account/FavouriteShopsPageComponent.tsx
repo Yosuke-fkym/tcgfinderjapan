@@ -111,7 +111,7 @@ export default function FavouriteShopsPageComponent() {
           <div
             key={fav.shops?.shop_id}
             className="group cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm hover:border-indigo-500/25 hover:bg-white/[0.035] transition-colors duration-300"
-            onClick={() => router.push(`/${locale}/shop/${fav.shops?.shop_id}`)}
+            onClick={() => router.push(`/shop/${fav.shops?.shop_id}`)}
           >
             <div className="relative overflow-hidden">
               <Image

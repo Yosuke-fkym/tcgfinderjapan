@@ -19,7 +19,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  const basePath = `${baseUrl}/${locale}/shop/${id}`;
+  const basePath = `${baseUrl}/shop/${id}`;
   const shopName =
     shop.shop_name_in_langs?.[locale as keyof typeof translations] ||
     shop.shop_name;
@@ -42,10 +42,6 @@ robots: {
 },
     alternates: {
       canonical: basePath,
-      languages: {
-        en: `${baseUrl}/en/shop/${id}`,
-        ja: `${baseUrl}/jp/shop/${id}`,
-      },
     },
 
     openGraph: {
@@ -96,7 +92,7 @@ export default async function ShopPage({
 
     description: localizedDescription,
 
-    url: `${baseUrl}/${locale}/shop/${id}`,
+    url: `${baseUrl}/shop/${id}`,
 
     address: {
       "@type": "PostalAddress",

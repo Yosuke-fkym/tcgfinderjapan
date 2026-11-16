@@ -54,7 +54,7 @@ export default function SignupPageComponent() {
     }
 
     toast.success(t.auth.signup.success);
-    router.push(`/${locale}/auth/login`);
+    router.push(`/auth/login`);
   };
 
   return (
@@ -72,7 +72,7 @@ export default function SignupPageComponent() {
           
           {/* 🔙 Back */}
           <button
-            onClick={() => router.push(`/${locale}/map`)}
+            onClick={() => router.push(`/map`)}
             className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition"
           >
             <ArrowLeft size={16} />
@@ -178,7 +178,7 @@ export default function SignupPageComponent() {
           <p className="text-sm text-center text-gray-400">
             {t.auth.signup.switchText}{" "}
             <span
-              onClick={() => router.push(`/${locale}/auth/login`)}
+              onClick={() => router.push(`/auth/login`)}
               className="text-indigo-400 cursor-pointer hover:underline"
             >
               {t.auth.signup.switchAction}

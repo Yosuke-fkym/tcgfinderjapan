@@ -342,7 +342,7 @@ export default function ShopsTable({ shops, refresh }: any) {
                         <DropdownMenuItem asChild>
                           <Link
                             target="_blank"
-                            href={`/${locale}/shop/${shop.shop_id}`}
+                            href={`/shop/${shop.shop_id}`}
                             className="flex items-center gap-2"
                           >
                             <ArrowUpRightFromSquareIcon className="h-4 w-4" />
@@ -355,7 +355,7 @@ export default function ShopsTable({ shops, refresh }: any) {
                         <DropdownMenuItem asChild>
                           <Link
                             target="_blank"
-                            href={`/${locale}/admin/shops/edit/${shop.shop_id}`}
+                            href={`/admin/shops/edit/${shop.shop_id}`}
                             className="flex items-center gap-2"
                           >
                             <Pencil className="h-4 w-4" />
@@ -464,13 +464,13 @@ export default function ShopsTable({ shops, refresh }: any) {
 
               <div className="flex gap-2">
                 <Link
-                  href={`/${locale}/shop/${shop.shop_id}`}
+                  href={`/shop/${shop.shop_id}`}
                   className="flex-1 text-center bg-gray-100 hover:bg-gray-200 py-2 rounded-md text-sm"
                 >
                   {t.buttons.viewDetails}
                 </Link>
                 <Link
-                  href={`/${locale}/admin/shops/edit/${shop.shop_id}`}
+                  href={`/admin/shops/edit/${shop.shop_id}`}
                   className="flex-1 text-center bg-indigo-600 text-white hover:bg-indigo-700 py-2 rounded-md text-sm"
                 >
                   {t.reviews.card.edit}

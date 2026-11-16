@@ -255,7 +255,7 @@ const router = useRouter()
           <button
             onClick={() => {
               if(!currentUserId){
-                router.push(`/${locale}/auth/login`)
+                router.push(`/auth/login`)
                 return
               }
               onLike(review.id)

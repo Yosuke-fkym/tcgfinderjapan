@@ -24,7 +24,7 @@ export function CardItem({ card, showFavoriteButton = false, onRemoved }: CardIt
   const t = getT(locale as string);
   return (
     <Link
-      href={`/${locale}/cards/${card.slug}`}
+      href={`/cards/${card.slug}`}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl focus-visible:-translate-y-1 focus-visible:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B23A2F]/50"
       aria-label={`${card.card_name}, ${card.card_number}`}
     >

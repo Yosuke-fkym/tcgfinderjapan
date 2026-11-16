@@ -76,7 +76,7 @@ const { card, article, relatedShops, pack_slug } = result;
         <nav aria-label="Breadcrumb" className="mb-8">
           <ol className="flex flex-wrap items-center gap-1.5 text-sm text-stone-500">
             <li>
-              <Link href={`/${locale}/`} className="transition-colors hover:text-stone-800">
+              <Link href={`/`} className="transition-colors hover:text-stone-800">
                 {t.cardPage.home}
               </Link>
             </li>
@@ -84,7 +84,7 @@ const { card, article, relatedShops, pack_slug } = result;
               <ChevronRight className="h-3.5 w-3.5" />
             </li>
             <li>
-              <Link href={`/${locale}/cards`} className="transition-colors hover:text-stone-800">
+              <Link href={`/cards`} className="transition-colors hover:text-stone-800">
                {t.cardPage.cardEncyclopedia}
               </Link>
             </li>
@@ -140,7 +140,7 @@ const { card, article, relatedShops, pack_slug } = result;
                 <dd className="mt-1 text-sm text-stone-800">
                   {pack_slug ? (
                     <Link
-                      href={`/${locale}/packs/${pack_slug}`}
+                      href={`/packs/${pack_slug}`}
                       className="inline-flex items-center gap-1 font-medium text-[#B23A2F] transition-colors hover:text-[#8f2e25] hover:underline underline-offset-2"
                     >
                       {card.pack_name}

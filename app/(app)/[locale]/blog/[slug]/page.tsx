@@ -115,7 +115,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
-  const canonical = `${baseUrl}/en/blog/${slug}`;
+  const canonical = `${baseUrl}/blog/${slug}`;
   if (article.is_protected) {
     return {
       title: `${article.title} — Protected Article`,
@@ -236,7 +236,7 @@ export default async function ArticleDetailPage({ params }: Props) {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${baseUrl}/en/blog/${slug}`,
+      "@id": `${baseUrl}/blog/${slug}`,
     },
   };
 
@@ -268,7 +268,14 @@ export default async function ArticleDetailPage({ params }: Props) {
   // page.tsx me ye helper add karo (fetchArticle ke neeche)
   function sanitizeContent(html: string): string {
     // Tiptap <pre><code> ke andar jo <p> tags inject ho jaate hain unhe newlines se replace karo
-    return html.replace(
+    const normalizedHtml = html
+      .replace(
+        /https?:\/\/(?:www\.)?tcgfinderjapan\.com\/(?:en|jp)(\/shop\/)/g,
+        "https://www.tcgfinderjapan.com$1",
+      )
+      .replace(/(["'])\/(?:en|jp)(\/shop\/)/g, "$1$2");
+
+    return normalizedHtml.replace(
       /<pre><code([^>]*)>([\s\S]*?)<\/code><\/pre>/g,
       (_, attrs, inner) => {
         const cleaned = inner
@@ -310,7 +317,7 @@ export default async function ArticleDetailPage({ params }: Props) {
 
         <div className="absolute bottom-0 left-0 right-0 px-[clamp(1.25rem,5vw,4rem)] pb-10 max-w-225 mx-auto">
           <Link
-            href={`/${locale}/blog`}
+            href={`/blog`}
             className="inline-flex items-center gap-1.5 text-white/65 text-xs font-medium tracking-widest uppercase mb-5 hover:text-white transition-colors"
           >
             ← {t.blogArticle.hero.backToArticles}
@@ -319,7 +326,7 @@ export default async function ArticleDetailPage({ params }: Props) {
           {article.blog_categories && (
             <div>
               <Link
-                href={`/${locale}/blog/category/${article.blog_categories.slug}`}
+                href={`/blog/category/${article.blog_categories.slug}`}
                 className={`inline-block text-[0.7rem] font-semibold tracking-[0.09em] uppercase px-3 py-1 rounded-xs mb-4 ${
                   categoryColors[
                     article.blog_categories.name as keyof typeof categoryColors
@@ -372,7 +379,7 @@ export default async function ArticleDetailPage({ params }: Props) {
           aria-label="Breadcrumb"
         >
           <Link
-            href={`/${locale}/blog`}
+            href={`/blog`}
             className="hover:text-[#C8861A] transition-colors"
           >
             {t.blogArticle.breadcrumb.articles}
@@ -381,7 +388,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             <>
               <span className="text-[#E8E3DB] text-sm">›</span>
               <Link
-                href={`/${locale}/blog/category/${article.blog_categories.slug}`}
+                href={`/blog/category/${article.blog_categories.slug}`}
                 className="hover:text-[#C8861A] transition-colors"
               >
                 {article.blog_categories.name}
@@ -442,7 +449,7 @@ prose-code:bg-[#F4F1EC] prose-code:text-[#C8861A] prose-code:px-1.5 prose-code:p
               {tags.map((tag) => (
                 <Link
                   key={tag!.id}
-                  href={`/${locale}/blog/tag/${tag!.slug}`}
+                  href={`/blog/tag/${tag!.slug}`}
                   className="inline-block px-3.5 py-1.5 text-[0.75rem] font-medium text-[#6B7C6E] border border-[#E8E3DB] rounded-full bg-transparent hover:border-[#C8861A] hover:text-[#C8861A] hover:bg-[#C8861A]/6 transition-all duration-150 tracking-[0.01em]"
                 >
                   {tag!.name}

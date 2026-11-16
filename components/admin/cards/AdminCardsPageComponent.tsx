@@ -95,7 +95,7 @@ export default function AdminCardsPageComponent() {
 
           {/* Premium Add Card button */}
           <a
-            href={`/${locale}/admin/cards/create`}
+            href={`/admin/cards/create`}
             className="
               relative inline-flex items-center gap-2
               px-4 py-2 rounded-lg text-sm font-medium

@@ -101,7 +101,7 @@ export default function AdminShopsPageComponent() {
 
           {/* Premium Add Shop button */}
           <a
-            href={`/${locale}/admin/shops/create`}
+            href={`/admin/shops/create`}
             className="
               relative inline-flex items-center gap-2
               px-4 py-2 rounded-lg text-sm font-medium

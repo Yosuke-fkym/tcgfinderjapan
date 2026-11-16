@@ -42,7 +42,7 @@ export default function LoginPageComponent() {
     }
 
     toast.success(t.auth.login.success);
-    router.push(`/${locale}/map`);
+    router.push(`/map`);
   };
 
   return (
@@ -61,7 +61,7 @@ export default function LoginPageComponent() {
 
           {/* 🔙 Back */}
           <button
-            onClick={() => router.push(`/${locale}/map`)}
+            onClick={() => router.push(`/map`)}
             className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition"
           >
             <ArrowLeft size={16} />
@@ -138,7 +138,7 @@ export default function LoginPageComponent() {
 
           {/* 🔗 Forgot password */}
           <p
-            onClick={() => router.push(`/${locale}/auth/forgot-password`)}
+            onClick={() => router.push(`/auth/forgot-password`)}
             className="text-sm text-center text-indigo-400 hover:underline cursor-pointer"
             >
             {t.auth.login.forgot}
@@ -148,7 +148,7 @@ export default function LoginPageComponent() {
           <p className="text-sm text-center text-gray-400">
             {t.auth.login.switchText}{" "}
             <span
-              onClick={() => router.push(`/${locale}/auth/signup`)}
+              onClick={() => router.push(`/auth/signup`)}
               className="text-indigo-400 cursor-pointer hover:underline"
             >
               {t.auth.login.switchAction}

@@ -17,6 +17,10 @@ const noto_sans_jp = Noto_Sans_JP({
 
 
 export const metadata:Metadata = {
+  metadataBase: new URL("https://www.tcgfinderjapan.com"),
+  alternates: {
+    canonical: "/",
+  },
   verification: {
     google: "gHCyD5HRoztBlUJ-2e6i_LJS_iDaM9WAE94eaU5nkyg",
   },

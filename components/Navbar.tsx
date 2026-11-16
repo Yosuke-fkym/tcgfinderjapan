@@ -36,31 +36,38 @@ interface UserType {
 function Navbar() {
   const router = useRouter();
   const path = usePathname();
-  const { locale } = useParams();
-  
-  const isBlogPage = path.includes("/blog");
-  let navLocaleParams = isBlogPage ? "en" : locale;
-  const navLocale = Array.isArray(navLocaleParams) ? navLocaleParams[0] : navLocaleParams;
-  const t = getT((navLocale) || "en");
+ 
+// const params = useParams();
+
+// const rawLocale = params?.locale;
+
+// const locale =
+//   rawLocale === "jp" || rawLocale === "en"
+//     ? rawLocale
+//     : "en";
+
+// const navLocale = locale;
+const t = getT('en');
+
 
   const [user, setUser] = useState<UserType | null | undefined>(undefined);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const changeLanguage = (newLocale: string) => {
-    if (!path) return;
+  // const changeLanguage = (newLocale: string) => {
+  //   if (!path) return;
 
-    const segments = path.split("/");
+  //   const segments = path.split("/");
 
-    // Replace existing locale
-    if (segments[1] === "en" || segments[1] === "jp") {
-      segments[1] = newLocale;
-    } else {
-      segments.unshift("", newLocale);
-    }
+  //   // Replace existing locale
+  //   if (segments[1] === "en" || segments[1] === "jp") {
+  //     segments[1] = newLocale;
+  //   } else {
+  //     segments.unshift("", newLocale);
+  //   }
 
-    router.push(segments.join("/") || `/${newLocale}`);
-    setMenuOpen(false);
-  };
+  //   router.push(segments.join("/") || `/${newLocale}`);
+  //   setMenuOpen(false);
+  // };
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -124,7 +131,7 @@ function Navbar() {
     });
 
     setMenuOpen(false);
-    router.push(`/${locale}/auth/login`);
+    router.push(`/auth/login`);
   };
 
   const getInitials = () => {
@@ -135,24 +142,24 @@ function Navbar() {
   const navItems = [
     {
       label: t.navbar.home,
-      path: `/${locale}/blog`,
+      path: `/`,
     },
     {
       label: t.navbar.map,
-      path: `/${locale}/map`,
+      path: `/map`,
     },
     {
       label: t.navbar.ranking,
-      path: `/${locale}/ranking`,
+      path: `/ranking`,
     },
-    // { label: t.navbar.cards, path: `/${locale}/cards` },
+    // { label: t.navbar.cards, path: `/cards` },
     {
       label: t.navbar.blog,
-      path: `/${locale}/blog`,
+      path: `/`,
     },
     {
       label: t.navbar.contact,
-      path: `/${locale}/contact`,
+      path: `/contact`,
     },
   ];
 
@@ -177,7 +184,7 @@ function Navbar() {
         {/* LEFT / LOGO */}
         <div
           className="flex items-center cursor-pointer group shrink-0"
-          onClick={() => router.push(`/${locale}/blog`)}
+          onClick={() => router.push(`/`)}
         >
           <img
             src={logo.src}
@@ -229,7 +236,7 @@ function Navbar() {
               On smaller screens it is inside
               hamburger menu
           ================================= */}
-          <div className="hidden lg:block">
+          {/* <div className="hidden lg:block">
             <DropdownMenu>
               <DropdownMenuTrigger
                 className="outline-none focus:outline-none cursor-pointer"
@@ -280,7 +287,7 @@ function Navbar() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
+          </div> */}
 
           {/* ================================
               AUTH
@@ -310,7 +317,7 @@ function Navbar() {
                 {user?.isAdmin && (
                   <DropdownMenuItem
                     className="cursor-pointer"
-                    onClick={() => router.push(`/${locale}/admin`)}
+                    onClick={() => router.push(`/admin`)}
                   >
                     <UserCog2 />
                     {t.admin.sidebar.title}
@@ -320,7 +327,7 @@ function Navbar() {
                 <DropdownMenuItem
                   className="cursor-pointer"
                   onClick={() =>
-                    router.push(`/${locale}/accounts/me`)
+                    router.push(`/accounts/me`)
                   }
                 >
                   <User />
@@ -331,7 +338,7 @@ function Navbar() {
                   className="cursor-pointer"
                   onClick={() =>
                     router.push(
-                      `/${locale}/accounts/me/favourite-shops`
+                      `/accounts/me/favourite-shops`
                     )
                   }
                 >
@@ -343,7 +350,7 @@ function Navbar() {
                   className="cursor-pointer"
                   onClick={() =>
                     router.push(
-                      `/${locale}/accounts/me/favourite-cards`
+                      `/accounts/me/favourite-cards`
                     )
                   }
                 >
@@ -355,7 +362,7 @@ function Navbar() {
                   className="cursor-pointer"
                   onClick={() =>
                     router.push(
-                      `/${locale}/accounts/me/viewed-history`
+                      `/accounts/me/viewed-history`
                     )
                   }
                 >
@@ -375,7 +382,7 @@ function Navbar() {
           ) : (
             <Button
               onClick={() =>
-                router.push(`/${locale}/auth/login`)
+                router.push(`/auth/login`)
               }
               className="
                 bg-indigo-600
@@ -472,7 +479,7 @@ function Navbar() {
             {/* ================================
                 LANGUAGE SWITCHER
             ================================= */}
-            <div className="mt-3 pt-3 border-t border-white/10">
+            {/* <div className="mt-3 pt-3 border-t border-white/10">
               <p className="px-4 pb-2 text-xs uppercase tracking-wider text-white/30">
                 Language
               </p>
@@ -500,7 +507,7 @@ function Navbar() {
                 <span>🇯🇵</span>
                 <span>日本語</span>
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       )}

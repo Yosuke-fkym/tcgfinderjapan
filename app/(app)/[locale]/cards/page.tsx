@@ -145,7 +145,7 @@ export default function PackEncyclopediaPage() {
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex items-center gap-1.5 text-sm text-stone-500">
             <li>
-              <Link href={`/${locale}/`} className="transition-colors hover:text-stone-800">
+              <Link href={`/`} className="transition-colors hover:text-stone-800">
                 {t.cardPage.home}
               </Link>
             </li>

@@ -18,12 +18,7 @@ export async function generateMetadata({
     },
 
     alternates: {
-      canonical: `${baseUrl}/${locale}/accounts/me/favourite-cards`,
-
-      languages: {
-        en: `${baseUrl}/en/accounts/me/favourite-cards`,
-        ja: `${baseUrl}/jp/accounts/me/favourite-cards`,
-      },
+      canonical: `${baseUrl}/accounts/me/favourite-cards`,
     },
   };
 }

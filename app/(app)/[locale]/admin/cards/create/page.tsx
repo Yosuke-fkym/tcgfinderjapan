@@ -16,7 +16,7 @@ export async function generateMetadata({
       follow: false,
     },
     alternates: {
-      canonical: `${baseUrl}/${locale}/admin/cards/create`,
+      canonical: `${baseUrl}/admin/cards/create`,
     },
   };
 }

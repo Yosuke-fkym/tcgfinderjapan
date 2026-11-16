@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
 
-  const canonical = `${baseUrl}/en/blog`;
+  const canonical = `${baseUrl}/blog`;
 
   const title =
     locale === "jp" ? "ブログ | TCG Finder Japan" : "Blog | TCG Finder Japan";
@@ -73,7 +73,8 @@ robots: {
 async function fetchPublishedArticles(
   categorySlug?: string,
 ): Promise<ArticleCardData[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.tcgfinderjapan.com";
   const query = new URLSearchParams({
     status: "published",
     orderBy: "published_at",
@@ -90,7 +91,8 @@ async function fetchPublishedArticles(
 }
 
 async function fetchCategories(): Promise<CategoryOption[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.tcgfinderjapan.com";
   const res = await fetch(`${baseUrl}/api/admin/articles/category`, {
     cache: "no-store",
   });

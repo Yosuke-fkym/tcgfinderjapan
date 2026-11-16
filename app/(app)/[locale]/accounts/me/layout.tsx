@@ -40,22 +40,22 @@ export default function AccountLayout({ children }: { children: ReactNode }) {
     {
       label: t.accountLayout.profile,
       icon: User2,
-      href: `/${locale}/accounts/me`,
+      href: `/accounts/me`,
     },
     {
       label: t.accountLayout.breadcrumb.favorites,
       icon: Store,
-      href: `/${locale}/accounts/me/favourite-shops`,
+      href: `/accounts/me/favourite-shops`,
     },
     {
       label: t.accountLayout.breadcrumb.favouritesCard,
       icon: CreditCardIcon,
-      href: `/${locale}/accounts/me/favourite-cards`,
+      href: `/accounts/me/favourite-cards`,
     },
     {
       label: t.accountLayout.breadcrumb.viewedHistory,
       icon: ClockArrowUpIcon,
-      href: `/${locale}/accounts/me/viewed-history`,
+      href: `/accounts/me/viewed-history`,
     },
   ];
 
@@ -83,7 +83,7 @@ export default function AccountLayout({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (isLoggedIn === false) {
-      router.replace(`/${locale}/auth/login`);
+      router.replace(`/auth/login`);
     }
   }, [isLoggedIn]);
 
@@ -105,7 +105,7 @@ export default function AccountLayout({ children }: { children: ReactNode }) {
         {/* Top row: back + breadcrumb */}
         <div className="flex items-center justify-between gap-3 mb-5">
           <button
-            onClick={() => router.push(`/${locale}/map`)}
+            onClick={() => router.push(`/map`)}
             className="flex items-center gap-2 text-xs sm:text-sm text-white/60 hover:text-indigo-400 transition-colors"
           >
             <ArrowLeft size={16} />

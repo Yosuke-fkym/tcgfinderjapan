@@ -181,7 +181,7 @@ export default function PackTable({ packs, refresh }: Props) {
                         <DropdownMenuItem asChild>
                           <Link
                             target="_blank"
-                            href={`/${locale}/packs/${pack.slug}`}
+                            href={`/packs/${pack.slug}`}
                             className="flex-1 text-center bg-gray-100 hover:bg-gray-200 py-2 rounded-md text-sm"
                           >
                             <ArrowUpRightFromSquareIcon className="h-4 w-4" />
@@ -191,7 +191,7 @@ export default function PackTable({ packs, refresh }: Props) {
                         <DropdownMenuItem asChild>
                           <Link
                             target="_blank"
-                            href={`/${locale}/admin/packs/edit/${pack.id}`}
+                            href={`/admin/packs/edit/${pack.id}`}
                             className="flex items-center gap-2"
                           >
                             <Pencil className="h-4 w-4" />
@@ -278,7 +278,7 @@ export default function PackTable({ packs, refresh }: Props) {
 
               <div className="flex gap-2">
                 <Link
-                  href={`/${locale}/admin/packs/${pack.id}`}
+                  href={`/admin/packs/${pack.id}`}
                   className="flex-1 text-center bg-indigo-600 text-white hover:bg-indigo-700 py-2 rounded-md text-sm"
                 >
                   {t.reviews.card.edit}

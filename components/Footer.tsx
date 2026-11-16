@@ -25,7 +25,7 @@ const navLocaleParams = isBlogPage ? "en" : locale;
         <div>
            <div
           className="flex items-center cursor-pointer group shrink-0"
-          // onClick={() => router.push(`/${locale}/blog`)}
+          // onClick={() => router.push(`/blog`)}
         >
           <img
             src={logo.src}
@@ -55,7 +55,7 @@ const navLocaleParams = isBlogPage ? "en" : locale;
           <ul className="space-y-2.5 text-sm text-white/45">
             <li>
               <Link
-                href={`/${locale}/map`}
+                href={`/map`}
                 className="inline-flex items-center gap-1.5 hover:text-indigo-400 transition-colors duration-200 hover:translate-x-0.5 will-change-transform"
               >
                 {t.footer.explore.map}
@@ -63,7 +63,7 @@ const navLocaleParams = isBlogPage ? "en" : locale;
             </li>
             <li>
               <Link
-                href={`/${locale}/ranking`}
+                href={`/ranking`}
                 className="inline-flex items-center gap-1.5 hover:text-indigo-400 transition-colors duration-200 hover:translate-x-0.5 will-change-transform"
               >
                 {t.footer.explore.rankings}
@@ -71,7 +71,7 @@ const navLocaleParams = isBlogPage ? "en" : locale;
             </li>
             <li>
               <Link
-                href={`/${locale}/auth/login`}
+                href={`/auth/login`}
                 className="inline-flex items-center gap-1.5 hover:text-indigo-400 transition-colors duration-200 hover:translate-x-0.5 will-change-transform"
               >
                 {t.footer.explore.login}
@@ -79,7 +79,7 @@ const navLocaleParams = isBlogPage ? "en" : locale;
             </li>
             <li>
               <Link
-                href={`/${locale}/auth/signup`}
+                href={`/auth/signup`}
                 className="inline-flex items-center gap-1.5 hover:text-indigo-400 transition-colors duration-200 hover:translate-x-0.5 will-change-transform"
               >
                 {t.footer.explore.signup}
@@ -110,13 +110,13 @@ const navLocaleParams = isBlogPage ? "en" : locale;
           </p>
 
           <div className="flex items-center gap-5">
-            <Link href={`/${locale}/privacy-policy`} className="hover:text-indigo-400 transition-colors">
+            <Link href={`/privacy-policy`} className="hover:text-indigo-400 transition-colors">
               {t.footer.legal.privacy}
             </Link>
-            <Link href={`/${locale}/terms`} className="hover:text-indigo-400 transition-colors">
+            <Link href={`/terms`} className="hover:text-indigo-400 transition-colors">
               {t.footer.legal.terms}
             </Link>
-            <Link href={`/${locale}/about`} className="hover:text-indigo-400 transition-colors">
+            <Link href={`/about`} className="hover:text-indigo-400 transition-colors">
               {t.footer.legal.about}
             </Link>
           </div>

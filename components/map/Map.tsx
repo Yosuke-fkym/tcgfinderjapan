@@ -189,7 +189,7 @@ icon={
     ? t.shopDetails.header.open
     : t.shopDetails.header.closed}
 </p>
-<Link href={`/${locale}/shop/${selected.shop_id}`} target="_blank">
+<Link href={`/shop/${selected.shop_id}`} target="_blank">
   <p className="text-xs text-blue-600 cursor-pointer mt-1">
     {t.buttons.viewDetails} →
   </p>

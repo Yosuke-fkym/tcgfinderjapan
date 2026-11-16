@@ -206,7 +206,7 @@ export default function AdminReportsPageComponent() {
 
                 <div className="flex justify-start sm:ml-auto">
                   <a
-                    href={`/${locale}/shop/${r.review?.shop_id}`}
+                    href={`/shop/${r.review?.shop_id}`}
                     target="_blank"
                     className="text-sm text-gray-600 hover:underline flex items-center"
                   >

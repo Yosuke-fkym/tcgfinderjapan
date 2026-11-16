@@ -31,7 +31,8 @@ type Props = {
 // ---------------------------------------------------------------------------
 
 async function fetchTag(slug: string): Promise<Tag | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.tcgfinderjapan.com";
   const res = await fetch(`${baseUrl}/api/admin/articles/tag/${slug}`, {
     cache: "no-store",
   });
@@ -42,7 +43,8 @@ async function fetchTag(slug: string): Promise<Tag | null> {
 }
 
 async function fetchArticlesByTag(tagSlug: string): Promise<ArticleCardData[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.tcgfinderjapan.com";
   const res = await fetch(
     `${baseUrl}/api/admin/articles?status=published&tag=${tagSlug}&orderBy=published_at&order=desc`,
     { cache: "no-store" },
@@ -73,7 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
 
-  const canonical = `${baseUrl}/en/blog/tag/${slug}`;
+  const canonical = `${baseUrl}/blog/tag/${slug}`;
 
   return {
     title: `${tag.name} Articles | TCG Finder Japan`,
@@ -136,7 +138,7 @@ export default async function TagPage({ params }: Props) {
             aria-label="Breadcrumb"
           >
             <Link
-              href={`/${locale}/blog`}
+              href={`/blog`}
               className="hover:text-amber-600 transition-colors"
             >
               {t.blogTag.breadcrumb.blog}

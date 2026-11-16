@@ -79,7 +79,7 @@ export default function AdminNavbar() {
 
         {/* Go to Site */}
         <button
-          onClick={() => router.push(`/${locale}`)}
+          onClick={() => router.push("/")}
           className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 transition-colors duration-150"
         >
           <Home size={15} />
